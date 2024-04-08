@@ -52,6 +52,20 @@ export const addEndorsee = async (uid, data) => {
   }
 };
 
+export const deleteEndorsee = async (id, uid) => {
+  const userData = await getUserData(uid);
+  const { endorsees } = userData;
+  const updatedEndorsees = endorsees.filter((endorsee) => endorsee.id !== id);
+
+  const docRef = doc(db, "users", uid);
+  try {
+    await setDoc(docRef, { endorsees: updatedEndorsees }, { merge: true });
+    console.log("endorsee is deleted of id: ", id);
+  } catch (e) {
+    console.log("error deleting endorsee w/ id of ", id, " and error of: ", e);
+  }
+}
+
 export const getEndorsees = async (uid) => {
   const userData = await getUserData(uid);
   const { endorsees } = userData;
