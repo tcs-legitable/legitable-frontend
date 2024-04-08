@@ -2,6 +2,7 @@ import { Avatar, Box, Button, Text } from "@chakra-ui/react";
 import React, { useContext, useEffect, useState } from "react";
 import { SignedInContext } from "../App";
 import { getUserData } from "../firebase/helpers";
+import AddEndorseeModal from "./AddEndorseeModal";
 
 const LoggedIn = () => {
   const { value } = useContext(SignedInContext);
@@ -36,7 +37,11 @@ const LoggedIn = () => {
           Welcome {user?.firstName}
         </Text>
       </Box>
+
+      
       <Button onClick={logout}>Log out</Button>
+
+      <AddEndorseeModal/>
     </Box>
   );
 };
