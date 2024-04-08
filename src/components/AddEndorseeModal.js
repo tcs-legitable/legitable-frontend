@@ -1,4 +1,4 @@
-import React, { useState, useContext } from 'react';
+import React, { useState, useContext } from "react";
 import {
   Box,
   Button,
@@ -40,7 +40,7 @@ const AddEndorseeModal = () => {
     setSkill("");
   };
 
-  const handleMenuItemClick = skill => setSkill(skill);
+  const handleMenuItemClick = (skill) => setSkill(skill);
 
   const saveEndorsee = async () => {
     if (!buttonClicked) {
@@ -78,22 +78,48 @@ const AddEndorseeModal = () => {
           <ModalHeader>Who would you like to endorse?</ModalHeader>
           <ModalCloseButton />
           <ModalBody>
-            <Box className='modal-content'>
-              <Input value={name} onChange={e => setName(e.target.value)} placeholder='Name' />
-              <Input value={email} onChange={e => setEmail(e.target.value)} placeholder="Email" />
+            <Box className="modal-content">
+              <Input
+                value={name}
+                onChange={(e) => setName(e.target.value)}
+                placeholder="Name"
+              />
+              <Input
+                value={email}
+                onChange={(e) => setEmail(e.target.value)}
+                placeholder="Email"
+              />
               <Menu>
                 <MenuButton as={Button}>{skill || "Select Skill"}</MenuButton>
                 <MenuList>
-                  <MenuItem onClick={() => handleMenuItemClick('Software Developer')}>Software Developer</MenuItem>
-                  <MenuItem onClick={() => handleMenuItemClick('Designer')}>Designer</MenuItem>
-                  <MenuItem onClick={() => handleMenuItemClick('PM')}>PM</MenuItem>
-                  <MenuItem onClick={() => handleMenuItemClick('Photographer/Videographer')}>Photographer/Videographer</MenuItem>
+                  <MenuItem
+                    onClick={() => handleMenuItemClick("Software Developer")}
+                  >
+                    Software Developer
+                  </MenuItem>
+                  <MenuItem onClick={() => handleMenuItemClick("Designer")}>
+                    Designer
+                  </MenuItem>
+                  <MenuItem onClick={() => handleMenuItemClick("PM")}>
+                    PM
+                  </MenuItem>
+                  <MenuItem
+                    onClick={() =>
+                      handleMenuItemClick("Photographer/Videographer")
+                    }
+                  >
+                    Photographer/Videographer
+                  </MenuItem>
                 </MenuList>
               </Menu>
             </Box>
           </ModalBody>
           <ModalFooter>
-            <Button isDisabled={!name || !email || !skill || buttonClicked} onClick={saveEndorsee} colorScheme='blue'>
+            <Button
+              isDisabled={!name || !email || !skill || buttonClicked}
+              onClick={saveEndorsee}
+              colorScheme="blue"
+            >
               Add endorsee
             </Button>
           </ModalFooter>
