@@ -1,12 +1,13 @@
 import { Avatar, Box, Button, Text, VStack } from "@chakra-ui/react";
 import React, { useContext, useEffect, useState } from "react";
 import { SignedInContext } from "../App";
-import { getUserData } from "../firebase/helpers";
+import { getEndorsees, getUserData } from "../firebase/helpers";
 import AddEndorseeModal from "./AddEndorseeModal";
 
 const LoggedIn = () => {
   const { value } = useContext(SignedInContext);
   const [user, setUser] = useState(null);
+  const [endorsees, setEndorsees] = useState([]);
 
   useEffect(() => {
     const getUserDetails = async () => {
@@ -23,6 +24,21 @@ const LoggedIn = () => {
     console.log("user is fetched");
   }, [value]);
 
+  useEffect(() => {
+    const fetchEndorsees = async () => {
+      let values = await getEndorsees(value);
+      setEndorsees(values);
+    };
+
+    fetchEndorsees();
+    console.log("updated endorsees");
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [value]);
+
+  useEffect(() => {
+    console.log(endorsees, " is ENDORSSESS");
+  }, [endorsees]);
+
   const logout = () => {
     console.log("logging out!");
     localStorage.removeItem("user-uid");
@@ -37,7 +53,19 @@ const LoggedIn = () => {
           Welcome {user?.firstName}
         </Text>
 
-        <AddEndorseeModal/>
+        <AddEndorseeModal />
+
+        <VStack>
+          {endorsees.map(({ name, email, skill }, index) => {
+            return (
+              <VStack bgColor="gray.200" borderRadius="5px" p="10px">
+                <Text>{name}</Text>
+                <Text>{email}</Text>
+                <Text>Skill: {skill}</Text>
+              </VStack>
+            );
+          })}
+        </VStack>
 
         <Button onClick={logout}>Log out</Button>
       </VStack>
