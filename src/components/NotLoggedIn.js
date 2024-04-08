@@ -15,13 +15,13 @@ const NotLoggedIn = () => {
 
         setValue(uid);
 
-        localStorage.setItem("uid", uid);
+        localStorage.setItem("user-uid", uid);
       })
       .then(() => {});
   };
 
   useEffect(() => {
-    setValue(localStorage.getItem("uid"));
+    setValue(localStorage.getItem("user-uid"));
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
