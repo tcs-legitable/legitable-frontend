@@ -1,4 +1,4 @@
-import { Avatar, Box, Button, Text } from "@chakra-ui/react";
+import { Avatar, Box, Button, Text, VStack } from "@chakra-ui/react";
 import React, { useContext, useEffect, useState } from "react";
 import { SignedInContext } from "../App";
 import { getUserData } from "../firebase/helpers";
@@ -31,17 +31,16 @@ const LoggedIn = () => {
 
   return (
     <Box>
-      <Box>
+      <VStack>
         <Avatar boxSize="90px" src={user?.photoURL} alt="profile" />
         <Text pl="20px" fontSize="30px">
           Welcome {user?.firstName}
         </Text>
-      </Box>
 
-      
-      <Button onClick={logout}>Log out</Button>
+        <AddEndorseeModal/>
 
-      <AddEndorseeModal/>
+        <Button onClick={logout}>Log out</Button>
+      </VStack>
     </Box>
   );
 };
