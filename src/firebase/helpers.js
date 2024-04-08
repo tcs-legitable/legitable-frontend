@@ -51,3 +51,10 @@ export const addEndorsee = async (uid, data) => {
     console.error("error updating document: ", error);
   }
 };
+
+export const getEndorsees = async (uid) => {
+  const userData = await getUserData(uid);
+  const { endorsees } = userData;
+  console.log(endorsees, " within");
+  return endorsees;
+};
