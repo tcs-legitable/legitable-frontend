@@ -83,13 +83,30 @@ const LoggedIn = () => {
             return (
               <VStack
                 key={index}
+                w="340px"
                 bgColor="gray.200"
                 borderRadius="5px"
                 p="10px"
+                alignItems="baseline"
               >
-                <Text>{endorsee.name}</Text>
-                <Text>{endorsee.email}</Text>
-                <Text>Skill: {endorsee.skill}</Text>
+                <Text>
+                  <Box as="span" fontWeight="bold">
+                    Name:
+                  </Box>{" "}
+                  {endorsee.name}
+                </Text>
+                <Text>
+                  <Box as="span" fontWeight="bold">
+                    Email:
+                  </Box>{" "}
+                  {endorsee.email}
+                </Text>
+                <Text>
+                  <Box as="span" fontWeight="bold">
+                    Skill:
+                  </Box>{" "}
+                  {endorsee.skill}
+                </Text>
 
                 <Button
                   colorScheme="blue"
