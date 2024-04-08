@@ -2,6 +2,7 @@ import logo from "./logo.svg";
 import "./App.css";
 import { ChakraProvider, VStack } from "@chakra-ui/react";
 import { createContext, useState } from "react";
+import HomePage from "./components/HomePage";
 
 export const SignedInContext = createContext();
 
@@ -12,7 +13,7 @@ function App() {
     <ChakraProvider>
       <SignedInContext.Provider value={{ value, setValue }}>
         <VStack>
-          <h1>hello</h1>
+          <HomePage />
         </VStack>
       </SignedInContext.Provider>
     </ChakraProvider>
