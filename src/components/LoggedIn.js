@@ -1,6 +1,8 @@
 import { Avatar, Box, Button, Text, useToast, VStack } from "@chakra-ui/react";
+import { doc, onSnapshot } from "firebase/firestore";
 import React, { useContext, useEffect, useState } from "react";
 import { SignedInContext } from "../App";
+import { db } from "../firebase/firebase";
 import { getEndorsees, getUserData, deleteEndorsee } from "../firebase/helpers";
 import AddEndorseeModal from "./AddEndorseeModal";
 
@@ -27,14 +29,14 @@ const LoggedIn = () => {
   }, [value]);
 
   useEffect(() => {
-    const fetchEndorsees = async () => {
-      let values = await getEndorsees(value);
-      setEndorsees(values);
-    };
+    const unsub = onSnapshot(doc(db, "users", value), (doc) => {
+      const source = doc.metadata.hasPendingWrites ? "Local" : "Server";
+      console.log(source, " data: ", doc.data());
+      const { endorsees } = doc.data();
+      setEndorsees(endorsees);
+    });
 
-    fetchEndorsees();
-    console.log("updated endorsees");
-    // eslint-disable-next-line react-hooks/exhaustive-deps
+    return () => unsub();
   }, [value]);
 
   useEffect(() => {
@@ -46,17 +48,17 @@ const LoggedIn = () => {
       await deleteEndorsee(id, value);
       let updatedEndorsees = await getEndorsees(value);
       setEndorsees(updatedEndorsees);
-  
+
       toast({
-        title: 'Endorsee deleted.',
-        description: 'Endorsee successfully deleted.',
-        status: 'error',
+        title: "Endorsee deleted.",
+        description: "Endorsee successfully deleted.",
+        status: "error",
         duration: 5000,
         isClosable: true,
-        position: 'bottom',
+        position: "bottom",
       });
     } catch (error) {
-      console.error('Failed to delete endorsee:', error);
+      console.error("Failed to delete endorsee:", error);
     }
   };
 
@@ -79,12 +81,20 @@ const LoggedIn = () => {
         <VStack>
           {endorsees.map((endorsee, index) => {
             return (
-              <VStack key={endorsee.id} bgColor="gray.200" borderRadius="5px" p="10px">
+              <VStack
+                key={endorsee.id}
+                bgColor="gray.200"
+                borderRadius="5px"
+                p="10px"
+              >
                 <Text>{endorsee.name}</Text>
                 <Text>{endorsee.email}</Text>
                 <Text>Skill: {endorsee.skill}</Text>
 
-                <Button colorScheme='blue' onClick={() => handleDeleteEndorsee(endorsee.id)}>
+                <Button
+                  colorScheme="blue"
+                  onClick={() => handleDeleteEndorsee(endorsee.id)}
+                >
                   Delete
                 </Button>
               </VStack>
