@@ -1,5 +1,5 @@
 // helpers go here
-import { getDoc, getDocs, doc, collection, setDoc } from "@firebase/firestore";
+import { getDoc, doc, setDoc } from "@firebase/firestore";
 import { db } from "./firebase";
 
 export const getUserData = async (id) => {
@@ -64,7 +64,7 @@ export const deleteEndorsee = async (id, uid) => {
   } catch (e) {
     console.log("error deleting endorsee w/ id of ", id, " and error of: ", e);
   }
-}
+};
 
 export const getEndorsees = async (uid) => {
   const userData = await getUserData(uid);
