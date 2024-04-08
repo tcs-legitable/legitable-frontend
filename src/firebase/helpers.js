@@ -36,3 +36,18 @@ export const addUser = async (uid, name, email, photoURL) => {
     console.log("user w/ the uid of ", uid, " already exists");
   }
 };
+
+export const addEndorsee = async (uid, data) => {
+  const endorseeData = data;
+  const userData = await getUserData(uid);
+  const { endorsees } = userData;
+  const updatedEndorsees = [...endorsees, endorseeData];
+
+  const docRef = doc(db, "users", uid);
+  try {
+    await setDoc(docRef, { endorsees: updatedEndorsees }, { merge: true });
+    console.log("doc update success!");
+  } catch (error) {
+    console.error("error updating document: ", error);
+  }
+};
