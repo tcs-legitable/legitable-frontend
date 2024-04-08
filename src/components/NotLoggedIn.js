@@ -3,6 +3,7 @@ import { signInWithPopup } from "firebase/auth";
 import React, { useContext, useEffect } from "react";
 import { SignedInContext } from "../App";
 import { auth, provider } from "../firebase/firebase";
+import { addUser } from "../firebase/helpers";
 
 const NotLoggedIn = () => {
   const { setValue } = useContext(SignedInContext);
@@ -11,8 +12,7 @@ const NotLoggedIn = () => {
     signInWithPopup(auth, provider)
       .then(({ user }) => {
         const { uid, email, displayName, photoURL } = user;
-        // addUser(uid, displayName, email, photoURL);
-
+        addUser(uid, displayName, email, photoURL);
         setValue(uid);
 
         localStorage.setItem("user-uid", uid);
