@@ -1,4 +1,3 @@
-import logo from "./logo.svg";
 import "./App.css";
 import { ChakraProvider, VStack } from "@chakra-ui/react";
 import { createContext, useState } from "react";
