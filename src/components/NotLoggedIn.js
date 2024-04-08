@@ -1,4 +1,4 @@
-import { Box, Button } from "@chakra-ui/react";
+import { Box, Button, VStack } from "@chakra-ui/react";
 import { signInWithPopup } from "firebase/auth";
 import React, { useContext, useEffect } from "react";
 import { SignedInContext } from "../App";
@@ -27,7 +27,9 @@ const NotLoggedIn = () => {
 
   return (
     <Box>
-      <Button onClick={handleClick}>Log in with google</Button>
+      <VStack>
+        <Button onClick={handleClick}>Log in with google</Button>
+      </VStack>
     </Box>
   );
 };
