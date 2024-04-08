@@ -31,17 +31,13 @@ const LoggedIn = () => {
   useEffect(() => {
     const unsub = onSnapshot(doc(db, "users", value), (doc) => {
       const source = doc.metadata.hasPendingWrites ? "Local" : "Server";
-      console.log(source, " data: ", doc.data());
-      const { endorsees } = doc.data();
-      setEndorsees(endorsees);
+      console.log(source, " data: ", doc?.data());
+      const data = doc?.data();
+      if (data) setEndorsees(data?.endorsees);
     });
 
     return () => unsub();
   }, [value]);
-
-  useEffect(() => {
-    console.log(endorsees, " is ENDORSSESS");
-  }, [endorsees]);
 
   const handleDeleteEndorsee = async (id) => {
     try {
