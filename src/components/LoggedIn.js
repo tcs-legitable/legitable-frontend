@@ -82,7 +82,7 @@ const LoggedIn = () => {
           {endorsees.map((endorsee, index) => {
             return (
               <VStack
-                key={endorsee.id}
+                key={index}
                 bgColor="gray.200"
                 borderRadius="5px"
                 p="10px"
