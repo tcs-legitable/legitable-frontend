@@ -1,13 +1,15 @@
-import { Avatar, Box, Button, Text, VStack } from "@chakra-ui/react";
+import { Avatar, Box, Button, Text, useToast, VStack } from "@chakra-ui/react";
 import React, { useContext, useEffect, useState } from "react";
 import { SignedInContext } from "../App";
-import { getEndorsees, getUserData } from "../firebase/helpers";
+import { getEndorsees, getUserData, deleteEndorsee } from "../firebase/helpers";
 import AddEndorseeModal from "./AddEndorseeModal";
 
 const LoggedIn = () => {
   const { value } = useContext(SignedInContext);
   const [user, setUser] = useState(null);
   const [endorsees, setEndorsees] = useState([]);
+
+  const toast = useToast();
 
   useEffect(() => {
     const getUserDetails = async () => {
@@ -39,6 +41,25 @@ const LoggedIn = () => {
     console.log(endorsees, " is ENDORSSESS");
   }, [endorsees]);
 
+  const handleDeleteEndorsee = async (id) => {
+    try {
+      await deleteEndorsee(id, value);
+      let updatedEndorsees = await getEndorsees(value);
+      setEndorsees(updatedEndorsees);
+  
+      toast({
+        title: 'Endorsee deleted.',
+        description: 'Endorsee successfully deleted.',
+        status: 'error',
+        duration: 5000,
+        isClosable: true,
+        position: 'bottom',
+      });
+    } catch (error) {
+      console.error('Failed to delete endorsee:', error);
+    }
+  };
+
   const logout = () => {
     console.log("logging out!");
     localStorage.removeItem("user-uid");
@@ -56,12 +77,16 @@ const LoggedIn = () => {
         <AddEndorseeModal />
 
         <VStack>
-          {endorsees.map(({ name, email, skill }, index) => {
+          {endorsees.map((endorsee, index) => {
             return (
-              <VStack bgColor="gray.200" borderRadius="5px" p="10px">
-                <Text>{name}</Text>
-                <Text>{email}</Text>
-                <Text>Skill: {skill}</Text>
+              <VStack key={endorsee.id} bgColor="gray.200" borderRadius="5px" p="10px">
+                <Text>{endorsee.name}</Text>
+                <Text>{endorsee.email}</Text>
+                <Text>Skill: {endorsee.skill}</Text>
+
+                <Button colorScheme='blue' onClick={() => handleDeleteEndorsee(endorsee.id)}>
+                  Delete
+                </Button>
               </VStack>
             );
           })}
