@@ -28,7 +28,7 @@ const NotLoggedIn = () => {
   return (
     <Box>
       <VStack>
-        <Button onClick={handleClick}>Log in with google</Button>
+        <Button onClick={handleClick} paddingTop='20px'>Log in with google</Button>
       </VStack>
     </Box>
   );
