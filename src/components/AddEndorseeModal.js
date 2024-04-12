@@ -15,6 +15,7 @@ import {
   MenuButton,
   MenuList,
   MenuItem,
+  VStack,
 } from "@chakra-ui/react";
 import { SignedInContext } from "../App";
 import { addEndorsee } from "../firebase/helpers";
@@ -24,11 +25,14 @@ const AddEndorseeModal = () => {
   const { value } = useContext(SignedInContext);
   const toast = useToast();
 
+  const allSkills = ["Software Developer", "Designer", "PM", "Photographer/Videographer"];
+
   const [isOpen, setIsOpen] = useState(false);
 
   const [name, setName] = useState("");
   const [email, setEmail] = useState("");
   const [skill, setSkill] = useState("");
+  const [suggestions, setSuggestions] = useState([]);
   const [buttonClicked, setButtonClicked] = useState(false);
 
   const onOpen = () => setIsOpen(true);
@@ -38,7 +42,27 @@ const AddEndorseeModal = () => {
     setName("");
     setEmail("");
     setSkill("");
+    setSuggestions([]);
   };
+
+  const updateSkill = (skill) => {
+      setSkill(skill);
+      setSuggestions([]);
+  }
+
+  const onSkillChange = (e) => {
+      const value = e.target.value;
+      setSkill(value);
+
+      if(!value) {
+          setSuggestions([]);
+      } else {
+          const filteredSkills = allSkills.filter((skill) => 
+            skill.toLowerCase().includes(value.toLowerCase())
+          );
+          setSuggestions(filteredSkills);
+      }
+  }
 
   const handleMenuItemClick = (skill) => setSkill(skill);
 
@@ -89,7 +113,26 @@ const AddEndorseeModal = () => {
                 onChange={(e) => setEmail(e.target.value)}
                 placeholder="Email"
               />
-              <Menu>
+              <Input
+                value={skill}
+                onChange={onSkillChange}
+                placeholder="Skill"
+              />
+              {suggestions.length> 0 && (
+                  <VStack align="stretch">
+                      {suggestions.map((suggestion) => (
+                        <Button
+                        key={suggestion}
+                        variant="ghost"
+                        justifyContent="start"
+                        onClick={() => updateSkill(suggestion)}
+                        >
+                        {suggestion}
+                        </Button>
+                    ))}
+                  </VStack>
+              )}
+              {/* <Menu>
                 <MenuButton as={Button}>{skill || "Select Skill"}</MenuButton>
                 <MenuList>
                   <MenuItem
@@ -111,7 +154,7 @@ const AddEndorseeModal = () => {
                     Photographer/Videographer
                   </MenuItem>
                 </MenuList>
-              </Menu>
+              </Menu> */}
             </Box>
           </ModalBody>
           <ModalFooter>
