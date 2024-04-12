@@ -11,10 +11,6 @@ import {
   ModalHeader,
   ModalOverlay,
   useToast,
-  Menu,
-  MenuButton,
-  MenuList,
-  MenuItem,
   VStack,
 } from "@chakra-ui/react";
 import { SignedInContext } from "../App";
@@ -63,8 +59,6 @@ const AddEndorseeModal = () => {
           setSuggestions(filteredSkills);
       }
   }
-
-  const handleMenuItemClick = (skill) => setSkill(skill);
 
   const saveEndorsee = async () => {
     if (!buttonClicked) {
@@ -132,29 +126,6 @@ const AddEndorseeModal = () => {
                     ))}
                   </VStack>
               )}
-              {/* <Menu>
-                <MenuButton as={Button}>{skill || "Select Skill"}</MenuButton>
-                <MenuList>
-                  <MenuItem
-                    onClick={() => handleMenuItemClick("Software Developer")}
-                  >
-                    Software Developer
-                  </MenuItem>
-                  <MenuItem onClick={() => handleMenuItemClick("Designer")}>
-                    Designer
-                  </MenuItem>
-                  <MenuItem onClick={() => handleMenuItemClick("PM")}>
-                    PM
-                  </MenuItem>
-                  <MenuItem
-                    onClick={() =>
-                      handleMenuItemClick("Photographer/Videographer")
-                    }
-                  >
-                    Photographer/Videographer
-                  </MenuItem>
-                </MenuList>
-              </Menu> */}
             </Box>
           </ModalBody>
           <ModalFooter>
