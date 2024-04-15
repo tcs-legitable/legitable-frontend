@@ -16,12 +16,13 @@ import {
 import { SignedInContext } from "../App";
 import { addEndorsee } from "../firebase/helpers";
 import { v4 } from "uuid";
+import useSkills from '../hooks/useSkills';
 
 const AddEndorseeModal = () => {
   const { value } = useContext(SignedInContext);
   const toast = useToast();
 
-  const allSkills = ["Software Developer", "Designer", "PM", "Photographer/Videographer"];
+  const skills = useSkills();
 
   const [isOpen, setIsOpen] = useState(false);
 
@@ -53,7 +54,7 @@ const AddEndorseeModal = () => {
       if(!value) {
           setSuggestions([]);
       } else {
-          const filteredSkills = allSkills.filter((skill) => 
+          const filteredSkills = skills.filter((skill) => 
             skill.toLowerCase().includes(value.toLowerCase())
           );
           setSuggestions(filteredSkills);
