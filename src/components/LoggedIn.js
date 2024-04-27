@@ -6,7 +6,6 @@ import { db } from "../firebase/firebase";
 import { getEndorsees, getUserData, deleteEndorsee } from "../firebase/helpers";
 import AddEndorseeModal from "./AddEndorseeModal";
 
-import { Link } from 'react-router-dom';
 import CopyLink from "./CopyLink";
 
 
