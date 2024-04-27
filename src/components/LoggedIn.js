@@ -7,6 +7,7 @@ import { getEndorsees, getUserData, deleteEndorsee } from "../firebase/helpers";
 import AddEndorseeModal from "./AddEndorseeModal";
 
 import { Link } from 'react-router-dom';
+import CopyLink from "./CopyLink";
 
 
 const LoggedIn = () => {
@@ -75,7 +76,11 @@ const LoggedIn = () => {
           Welcome {user?.firstName}
         </Text>
 
-        <Link to={`/endorsees/${value}`}>Share My Endorsees</Link>
+        {/* <Button as={Link} to={`/endorsees/${value}`}>
+          Share my list of endorsees
+        </Button> */}
+
+        <CopyLink/>
 
         <AddEndorseeModal />
 
