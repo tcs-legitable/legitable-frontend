@@ -6,6 +6,9 @@ import { db } from "../firebase/firebase";
 import { getEndorsees, getUserData, deleteEndorsee } from "../firebase/helpers";
 import AddEndorseeModal from "./AddEndorseeModal";
 
+import { Link } from 'react-router-dom';
+
+
 const LoggedIn = () => {
   const { value } = useContext(SignedInContext);
   const [user, setUser] = useState(null);
@@ -71,6 +74,8 @@ const LoggedIn = () => {
         <Text pl="20px" fontSize="30px">
           Welcome {user?.firstName}
         </Text>
+
+        <Link to={`/endorsees/${value}`}>Share My Endorsees</Link>
 
         <AddEndorseeModal />
 
