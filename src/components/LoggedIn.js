@@ -76,10 +76,6 @@ const LoggedIn = () => {
           Welcome {user?.firstName}
         </Text>
 
-        {/* <Button as={Link} to={`/endorsees/${value}`}>
-          Share my list of endorsees
-        </Button> */}
-
         <CopyLink/>
 
         <AddEndorseeModal />
