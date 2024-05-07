@@ -135,7 +135,7 @@ const AddEndorseeModal = () => {
               onClick={saveEndorsee}
               colorScheme="blue"
             >
-              Add endorsee
+              Add to your trusted circle
             </Button>
           </ModalFooter>
         </ModalContent>

@@ -49,15 +49,15 @@ const LoggedIn = () => {
       setEndorsees(updatedEndorsees);
 
       toast({
-        title: "Endorsee deleted.",
-        description: "Endorsee successfully deleted.",
+        title: "Successfully deleted.",
+        description: "Person successfully removed from trusted circle.",
         status: "error",
         duration: 5000,
         isClosable: true,
         position: "bottom",
       });
     } catch (error) {
-      console.error("Failed to delete endorsee:", error);
+      console.error("Failed to remove from trusted circle:", error);
     }
   };
 
