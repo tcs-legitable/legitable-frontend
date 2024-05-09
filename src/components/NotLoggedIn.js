@@ -71,7 +71,7 @@ const NotLoggedIn = () => {
         </Fade>
         <Fade in={show} transition={{ enter: { duration: 1.5, delay: 1 } }}>
           <Text
-            fontSize={{ base: "29px", md: "44px" }}
+            fontSize={{ base: "29px", md: "40px" }}
             pt={{ base: "35px", md: "50px" }}
           >
             Join. Curate. Share.
