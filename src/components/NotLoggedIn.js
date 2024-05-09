@@ -32,7 +32,14 @@ const NotLoggedIn = () => {
 
   return (
     <Box w="100%" h="90vh">
-      <Box margin="30px" w="fit-content">
+      <Box
+        margin="30px"
+        w="fit-content"
+        _hover={{ cursor: "pointer" }}
+        onClick={() => {
+          window.open("https://www.thecreativesolution.ca/", "_blank");
+        }}
+      >
         <Logo width="50px" />
       </Box>
       <Box
@@ -89,6 +96,7 @@ const NotLoggedIn = () => {
             p="20px"
             py="30px"
             fontWeight="medium"
+            mb="40px"
           >
             <Image
               boxSize={10}
