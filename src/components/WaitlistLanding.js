@@ -1,17 +1,13 @@
-import { Box, HStack, Image, Text } from "@chakra-ui/react";
+import { Flex, Image } from "@chakra-ui/react";
 import React from "react";
 import StupaidLogo from "../assets/images/stupaid-logo.svg";
-import StupaidTCSLogo from "../assets/images/stupaid-tcs-logo.svg";
 
-const Waitlist = () => {
+const WaitlistLanding = () => {
   return (
-    <Box>
-      <HStack>
-        <Text color="#969696">Created by</Text>
-        <Image src={StupaidTCSLogo} />
-      </HStack>
-    </Box>
+    <Flex>
+      <Image src={StupaidLogo} />
+    </Flex>
   );
 };
 
-export default Waitlist;
+export default WaitlistLanding;
