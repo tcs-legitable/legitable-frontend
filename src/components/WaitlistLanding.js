@@ -8,13 +8,19 @@ import ArrowText2 from "../assets/images/arrow-text2.svg";
 
 const WaitlistLanding = () => {
   return (
-    <Flex flexDir="column" alignItems="center" pb="0px">
-      <Image w="250px" src={StupaidLogo} />
-      <Text pt="15px" fontSize="20px" color="#969696">
+    <Flex
+      zIndex="0"
+      bg="transparent"
+      flexDir="column"
+      alignItems="center"
+      pb="0px"
+    >
+      <Image bg="transparent" w="250px" src={StupaidLogo} />
+      <Text bg="transparent" pt="15px" fontSize="20px" color="#969696">
         Where <Box as="span">student creatives</Box> become{" "}
         <Box as="span">legit.</Box>{" "}
       </Text>
-      <HStack pt="25px">
+      <HStack bg="transparent" pt="25px">
         <Button
           border="1px solid"
           p="23px"
