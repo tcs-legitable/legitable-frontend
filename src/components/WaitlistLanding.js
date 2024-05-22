@@ -19,9 +19,19 @@ const WaitlistLanding = () => {
           borderRadius="25px"
           color="#fafafa"
           bg="transparent"
+          //   bgGradient="linear(to-r, #4b4b4b 20%, #0C0C0C 80%)"
+          //   transition="background 0.5s ease"
+          //   fontWeight="thin"
+          //   _hover={{
+          //     bgGradient: "linear(to-l, #4b4b4b 20%, #0C0C0C 80%)",
+          //   }}
+          bgGradient="linear(to-r, #4b4b4b 20%, #0C0C0C 80%)"
+          backgroundSize="200% 100%"
+          backgroundPosition="left bottom"
+          transition="background-position 0.5s ease"
           fontWeight="thin"
           _hover={{
-            bgGradient: "linear(to-r, #4b4b4b 20%, #0C0C0C 80%)",
+            backgroundPosition: "right bottom",
           }}
         >
           <Image bgColor="inherit" mr="10px" src={TalentButtonIcon} />
