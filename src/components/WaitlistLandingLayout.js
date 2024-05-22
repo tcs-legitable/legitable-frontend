@@ -13,7 +13,7 @@ import Background1 from "../assets/images/background-1.svg";
 import Background2 from "../assets/images/background-2.svg";
 
 const WaitlistLandingLayout = ({ children }) => {
-  const isDesktop = useBreakpointValue({ base: false, lg: true });
+  const isDesktop = useBreakpointValue({ base: false, mdLg: true });
 
   return (
     <Box
@@ -27,6 +27,7 @@ const WaitlistLandingLayout = ({ children }) => {
         <Image
           src={Background1}
           position="absolute"
+          bg="transparent"
           top="110px"
           left="0"
           zIndex="0"
@@ -36,6 +37,7 @@ const WaitlistLandingLayout = ({ children }) => {
       {isDesktop && (
         <Image
           src={Background2}
+          bg="transparent"
           position="absolute"
           bottom="155px"
           right="0"
