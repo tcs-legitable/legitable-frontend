@@ -19,19 +19,13 @@ const WaitlistLanding = () => {
           borderRadius="25px"
           color="#fafafa"
           bg="transparent"
-          //   bgGradient="linear(to-r, #4b4b4b 20%, #0C0C0C 80%)"
-          //   transition="background 0.5s ease"
-          //   fontWeight="thin"
-          //   _hover={{
-          //     bgGradient: "linear(to-l, #4b4b4b 20%, #0C0C0C 80%)",
-          //   }}
           bgGradient="linear(to-r, #4b4b4b 20%, #0C0C0C 80%)"
           backgroundSize="200% 100%"
-          backgroundPosition="left bottom"
+          backgroundPosition="right bottom"
           transition="background-position 0.5s ease"
           fontWeight="thin"
           _hover={{
-            backgroundPosition: "right bottom",
+            backgroundPosition: "left bottom",
           }}
         >
           <Image bgColor="inherit" mr="10px" src={TalentButtonIcon} />
@@ -43,9 +37,13 @@ const WaitlistLanding = () => {
           borderRadius="25px"
           color="#fafafa"
           bg="transparent"
+          bgGradient="linear(to-r, #4b4b4b 20%, #0C0C0C 80%)"
+          backgroundSize="200% 100%"
+          backgroundPosition="right bottom"
+          transition="background-position 0.5s ease"
           fontWeight="thin"
           _hover={{
-            bgGradient: "linear(to-r, #4b4b4b 20%, #0C0C0C 80%)",
+            backgroundPosition: "left bottom",
           }}
         >
           <Image bgColor="inherit" mr="10px" src={StudentButtonIcon} /> I'm a
