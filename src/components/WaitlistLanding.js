@@ -3,6 +3,8 @@ import React from "react";
 import StupaidLogo from "../assets/images/stupaid-logo.svg";
 import TalentButtonIcon from "../assets/images/talent-button-icon.svg";
 import StudentButtonIcon from "../assets/images/student-button-icon.svg";
+import ArrowText1 from "../assets/images/arrow-text1.svg";
+import ArrowText2 from "../assets/images/arrow-text2.svg";
 
 const WaitlistLanding = () => {
   return (
@@ -50,6 +52,20 @@ const WaitlistLanding = () => {
           student
         </Button>
       </HStack>
+      <Image
+        bg="transparent"
+        position="relative"
+        bottom="285px"
+        right="254px"
+        src={ArrowText1}
+      />
+      <Image
+        bg="transparent"
+        bottom="95px"
+        left="310px"
+        position="relative"
+        src={ArrowText2}
+      />
     </Flex>
   );
 };
