@@ -2,7 +2,6 @@ import {
   Box,
   Button,
   Flex,
-  HStack,
   Image,
   Text,
   useBreakpointValue,
@@ -25,12 +24,21 @@ const WaitlistLanding = () => {
       alignItems="center"
       pb="0px"
     >
-      <Image bg="transparent" w="250px" src={StupaidLogo} />
+      <Image
+        bg="transparent"
+        w={{ base: "300px", mdLg: "250px" }}
+        src={StupaidLogo}
+      />
       <Text bg="transparent" pt="15px" fontSize="20px" color="#969696">
         Where <Box as="span">student creatives</Box> become{" "}
         <Box as="span">legit.</Box>{" "}
       </Text>
-      <Flex flexDir={{ base: "column", md: "row" }} bg="transparent" pt="25px">
+      <Flex
+        w="100%"
+        flexDir={{ base: "column", mdLg: "row" }}
+        bg="transparent"
+        pt="25px"
+      >
         <Button
           border="1px solid"
           p="23px"
@@ -48,7 +56,7 @@ const WaitlistLanding = () => {
           _active={{
             backgroundPosition: "left bottom",
           }}
-          mr={{ base: "0px", md: "10px" }}
+          mr={{ base: "0px", mdLg: "10px" }}
         >
           <Image bgColor="inherit" mr="5px" src={TalentButtonIcon} />
           I'm looking for talent
@@ -70,7 +78,8 @@ const WaitlistLanding = () => {
           _active={{
             backgroundPosition: "left bottom",
           }}
-          ml={{ base: "0px", md: "10px" }}
+          ml={{ base: "0px", mdLg: "10px" }}
+          mt={{ base: "10px", mdLg: "0px" }}
         >
           <Image bgColor="inherit" mr="5px" src={StudentButtonIcon} /> I'm a
           student

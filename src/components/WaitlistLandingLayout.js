@@ -51,7 +51,11 @@ const WaitlistLandingLayout = ({ children }) => {
           <Image zIndex={100} src={StupaidTCSLogo} />
         </HStack>
         {children}
-        <Link mb="78px" href="mailto:team@thecreativesolution.ca">
+        <Link
+          mt={{ base: "180px", mdLg: "0px" }}
+          mb={{ base: "60px", mdLg: "78px" }}
+          href="mailto:team@thecreativesolution.ca"
+        >
           <Text textDecoration="underline" color="#969696">
             team@thecreativesolution.ca
           </Text>
