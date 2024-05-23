@@ -13,7 +13,7 @@ import StudentButtonIcon from "../assets/images/student-button-icon.svg";
 import ArrowText1 from "../assets/images/arrow-text1.svg";
 import ArrowText2 from "../assets/images/arrow-text2.svg";
 
-const WaitlistLanding = () => {
+const WaitlistLanding = ({ handleClick }) => {
   const isDesktop = useBreakpointValue({ base: false, mdLg: true });
 
   return (
@@ -57,6 +57,7 @@ const WaitlistLanding = () => {
             backgroundPosition: "left bottom",
           }}
           mr={{ base: "0px", mdLg: "10px" }}
+          onClick={() => handleClick("organization")}
         >
           <Image bgColor="inherit" mr="5px" src={TalentButtonIcon} />
           I'm looking for talent
@@ -80,6 +81,7 @@ const WaitlistLanding = () => {
           }}
           ml={{ base: "0px", mdLg: "10px" }}
           mt={{ base: "10px", mdLg: "0px" }}
+          onClick={() => handleClick("student")}
         >
           <Image bgColor="inherit" mr="5px" src={StudentButtonIcon} /> I'm a
           student
