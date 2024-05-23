@@ -37,6 +37,7 @@ export const addUser = async (uid, name, email, photoURL) => {
   }
 };
 
+// endorsee functions
 export const addEndorsee = async (uid, data) => {
   const endorseeData = data;
   const userData = await getUserData(uid);
@@ -71,4 +72,20 @@ export const getEndorsees = async (uid) => {
   const { endorsees } = userData;
   console.log(endorsees, " within");
   return endorsees;
+};
+
+// waitlist functions
+export const addWaitlistEntry = async (collection, name, email, id) => {
+  let data = {
+    email: email,
+    name: name,
+  };
+
+  const docRef = doc(db, collection, id);
+  try {
+    await setDoc(docRef, data);
+    console.log("success!");
+  } catch (e) {
+    console.log("error is: ", e);
+  }
 };

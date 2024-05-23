@@ -9,11 +9,19 @@ import {
 } from "@chakra-ui/react";
 import React, { useState } from "react";
 import StupaidLogo from "../assets/images/stupaid-logo.svg";
+import { addWaitlistEntry } from "../firebase/helpers";
+import { v4 as uuidv4 } from "uuid";
 
 const WaitingListLandingClicked = ({ value }) => {
   const [inputName, setInputName] = useState("");
   const [inputEmail, setInputEmail] = useState("");
   const isDesktop = useBreakpointValue({ base: false, mdLg: true });
+
+  const id = uuidv4();
+
+  const handleClick = async () => {
+    await addWaitlistEntry(value, inputName, inputEmail, id);
+  };
 
   return (
     <Flex
@@ -79,8 +87,8 @@ const WaitingListLandingClicked = ({ value }) => {
             backgroundPosition: "left bottom",
           }}
           mt="40px"
+          onClick={handleClick}
         >
-          {/* <Image bgColor="inherit" mr="5px" src={StudentButtonIcon} />  */}
           Join the waitlist
         </Button>
       </Flex>
