@@ -39,21 +39,28 @@ const WaitlistLandingLayout = ({ children }) => {
           src={Background2}
           bg="transparent"
           position="absolute"
-          bottom="155px"
+          top="45px"
           right="0"
           zIndex="0"
           pointerEvents="none"
         />
       )}
-      <Flex direction="column" alignItems="center">
+      <Flex
+        direction="column"
+        alignItems="center"
+        minH={{ base: "760px", mdLg: "700px" }}
+      >
         <HStack mt="80px" mb="130px">
           <Text color="#969696">Created by</Text>
           <Image zIndex={100} src={StupaidTCSLogo} />
         </HStack>
         {children}
         <Link
-          mt={{ base: "180px", mdLg: "0px" }}
-          mb={{ base: "60px", mdLg: "78px" }}
+          position="absolute"
+          bottom="60px"
+          left="50%"
+          transform="translateX(-50%)"
+          mb="0"
           href="mailto:team@thecreativesolution.ca"
         >
           <Text textDecoration="underline" color="#969696">
