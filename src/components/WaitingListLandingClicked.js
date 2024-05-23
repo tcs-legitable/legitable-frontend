@@ -17,8 +17,12 @@ import { v4 as uuidv4 } from "uuid";
 const WaitingListLandingClicked = ({ value }) => {
   const [inputName, setInputName] = useState("");
   const [inputEmail, setInputEmail] = useState("");
-  const isDesktop = useBreakpointValue({ base: false, mdLg: true });
+
+  // 0: not sent
+  // 1: successfully sent
+  // 2: error when sending
   const [success, setSuccess] = useState(0);
+  const isDesktop = useBreakpointValue({ base: false, mdLg: true });
 
   const id = uuidv4();
 
@@ -67,9 +71,6 @@ const WaitingListLandingClicked = ({ value }) => {
         >
           <Box as="span">Yay! </Box>
           You've taken the first step to becoming more legit.
-          {/* <Box as="span">
-            You've taken the first step to becoming more legit.
-          </Box> */}
         </Text>
       )}
       {success === 2 && (
