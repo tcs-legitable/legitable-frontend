@@ -9,10 +9,6 @@ import WaitlistLandingLayout from "./WaitlistLandingLayout";
 
 const HomePage = () => {
   const [clicked, setClicked] = useState(null);
-
-  useEffect(() => {
-    console.log(clicked, " is the clicked");
-  }, [clicked]);
   // const { value } = useContext(SignedInContext);
   // return <Box width="100%">{value ? <LoggedIn /> : <NotLoggedIn />}</Box>;
   return (
