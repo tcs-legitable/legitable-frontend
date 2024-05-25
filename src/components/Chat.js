@@ -93,7 +93,11 @@ function ChatMessage(props) {
   const messageClass = uid === props.uid ? "sent" : "received";
 
   return (
-    <div className={`message ${messageClass}`}>
+    <Box
+      textAlign={messageClass === "sent" && "-webkit-right"}
+      bg="transparent"
+      className={`message ${messageClass}`}
+    >
       <img
         src={
           photoURL || "https://api.adorable.io/avatars/23/abott@adorable.png"
@@ -101,7 +105,7 @@ function ChatMessage(props) {
         alt="Avatar"
       />
       <p>{text}</p>
-    </div>
+    </Box>
   );
 }
 
