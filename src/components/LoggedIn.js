@@ -5,9 +5,9 @@ import { SignedInContext } from "../App";
 import { db } from "../firebase/firebase";
 import { getEndorsees, getUserData, deleteEndorsee } from "../firebase/helpers";
 import AddEndorseeModal from "./AddEndorseeModal";
+import Chat from "./Chat";
 
 import CopyLink from "./CopyLink";
-
 
 const LoggedIn = () => {
   const { value } = useContext(SignedInContext);
@@ -75,9 +75,11 @@ const LoggedIn = () => {
           Welcome {user?.firstName}
         </Text>
 
-        <CopyLink/>
+        <CopyLink />
 
         <AddEndorseeModal />
+
+        <Chat />
 
         <VStack>
           {endorsees.map((endorsee, index) => {
