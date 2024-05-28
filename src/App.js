@@ -5,6 +5,7 @@ import HomePage from "./components/HomePage";
 import EndorseesPage from "./components/EndorseesPage";
 import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
 import theme from "./theme/theme";
+import GetStartedLandingPage from "./components/GetStartedLandingPage";
 
 export const SignedInContext = createContext();
 
@@ -19,6 +20,7 @@ function App() {
           <Router>
             <Routes>
               <Route path="/" element={<HomePage />} />
+              <Route path="/landing" element={<GetStartedLandingPage />} />
               <Route path="/endorsees/:userId" element={<EndorseesPage />} />
             </Routes>
           </Router>

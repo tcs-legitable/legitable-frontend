@@ -7,13 +7,13 @@ import WaitlistLanding from "./WaitlistLanding";
 // import NotLoggedIn from "./NotLoggedIn";
 import WaitlistLandingLayout from "./WaitlistLandingLayout";
 
-const HomePage = () => {
+const GetStartedLandingPage = () => {
   const [clicked, setClicked] = useState(null);
   // const { value } = useContext(SignedInContext);
   // return <Box width="100%">{value ? <LoggedIn /> : <NotLoggedIn />}</Box>;
   return (
     <Flex
-      className="waitlist"
+      className="landing"
       w="100%"
       justifyContent="center"
       alignItems="center"
@@ -29,4 +29,4 @@ const HomePage = () => {
   );
 };
 
-export default HomePage;
+export default GetStartedLandingPage;

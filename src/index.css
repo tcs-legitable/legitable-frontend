@@ -1,4 +1,4 @@
-* {
+.waitlist {
   background-color: #0c0c0c;
   color: #fafafa;
 }
@@ -16,4 +16,9 @@ body {
 code {
   font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
     monospace;
+}
+
+.landing {
+  color: #0c0c0c;
+  background-color: #fafafa !important;
 }
