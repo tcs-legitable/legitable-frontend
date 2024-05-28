@@ -30,7 +30,7 @@ const LandingPage = ({ handleClick }) => {
         w={{ base: "300px", mdLg: "250px" }}
         src={StupaidLogo}
       />
-      <VStack fontSize="20px">
+      <VStack spacing="0px" fontSize="20px">
         <Text color="#969696" pt="15px">
           Welcome to Stupaid!
         </Text>
@@ -57,7 +57,8 @@ const LandingPage = ({ handleClick }) => {
           borderRadius="25px"
           color="#0c0c0c"
           bg="transparent"
-          bgGradient="linear(to-r, #c9c9c9 30%, #fafafa 80%)"
+          //   bgColor="#fafafa"
+          bgGradient="linear(to-r, #c9c9c9 0%, #fafafa 80%)"
           backgroundSize="200% 100%"
           backgroundPosition="right bottom"
           transition="background-position 0.5s ease"
@@ -69,7 +70,7 @@ const LandingPage = ({ handleClick }) => {
             backgroundPosition: "left bottom",
           }}
           mr={{ base: "0px", mdLg: "10px" }}
-          onClick={() => handleClick("organization")}
+          //   onClick={() => handleClick("organization")}
         >
           <Image bgColor="inherit" mr="5px" src={TalentButtonIcon} />
           I'm looking for talent
