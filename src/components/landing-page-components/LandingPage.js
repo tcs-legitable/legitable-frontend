@@ -5,11 +5,12 @@ import {
   Image,
   Text,
   useBreakpointValue,
+  VStack,
 } from "@chakra-ui/react";
 import React from "react";
 import StupaidLogo from "../../assets/landing-page-images/stupaid-logo-main.svg";
-import TalentButtonIcon from "../../assets/images/talent-button-icon.svg";
-import StudentButtonIcon from "../../assets/images/student-button-icon.svg";
+import TalentButtonIcon from "../../assets/landing-page-images/landing-talent.svg";
+import StudentButtonIcon from "../../assets/landing-page-images/landing-student.svg";
 import ArrowText1 from "../../assets/images/arrow-text1.svg";
 import ArrowText2 from "../../assets/images/arrow-text2.svg";
 
@@ -29,10 +30,21 @@ const LandingPage = ({ handleClick }) => {
         w={{ base: "300px", mdLg: "250px" }}
         src={StupaidLogo}
       />
-      <Text bg="transparent" pt="15px" fontSize="20px" color="#969696">
-        Where <Box as="span">student creatives</Box> become{" "}
-        <Box as="span">legit.</Box>{" "}
-      </Text>
+      <VStack fontSize="20px">
+        <Text color="#969696" pt="15px">
+          Welcome to Stupaid!
+        </Text>
+        <Text bg="transparent" color="#969696">
+          Where{" "}
+          <Box color="#0c0c0c" as="span">
+            student creatives
+          </Box>{" "}
+          become{" "}
+          <Box color="#0c0c0c" as="span">
+            legit.
+          </Box>{" "}
+        </Text>
+      </VStack>
       <Flex
         w="100%"
         flexDir={{ base: "column", mdLg: "row" }}
@@ -43,9 +55,9 @@ const LandingPage = ({ handleClick }) => {
           border="1px solid"
           p="23px"
           borderRadius="25px"
-          color="#fafafa"
+          color="#0c0c0c"
           bg="transparent"
-          bgGradient="linear(to-r, #4b4b4b 20%, #0C0C0C 80%)"
+          bgGradient="linear(to-r, #c9c9c9 30%, #fafafa 80%)"
           backgroundSize="200% 100%"
           backgroundPosition="right bottom"
           transition="background-position 0.5s ease"
@@ -66,9 +78,9 @@ const LandingPage = ({ handleClick }) => {
           border="1px solid"
           p="23px"
           borderRadius="25px"
-          color="#fafafa"
+          color="#0c0c0c"
           bg="transparent"
-          bgGradient="linear(to-r, #4b4b4b 20%, #0C0C0C 80%)"
+          bgGradient="linear(to-r, #c9c9c9 20%, #fafafa 80%)"
           backgroundSize="200% 100%"
           backgroundPosition="right bottom"
           transition="background-position 0.5s ease"
@@ -87,26 +99,6 @@ const LandingPage = ({ handleClick }) => {
           student
         </Button>
       </Flex>
-      {isDesktop && (
-        <Image
-          bg="transparent"
-          position="relative"
-          bottom="265px"
-          right="224px"
-          src={ArrowText1}
-        />
-      )}
-      {isDesktop && (
-        <Image
-          pb="0"
-          mb="0"
-          bg="transparent"
-          bottom="95px"
-          left="310px"
-          position="relative"
-          src={ArrowText2}
-        />
-      )}
     </Flex>
   );
 };

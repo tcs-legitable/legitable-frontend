@@ -23,7 +23,7 @@ const LandingLayout = ({ children }) => {
       minH="100vh"
       overflow="hidden"
     >
-      {isDesktop && (
+      {/* {isDesktop && (
         <Image
           src={Background1}
           position="absolute"
@@ -33,8 +33,8 @@ const LandingLayout = ({ children }) => {
           zIndex="0"
           pointerEvents="none"
         />
-      )}
-      {isDesktop && (
+      )} */}
+      {/* {isDesktop && (
         <Image
           src={Background2}
           bg="transparent"
@@ -44,7 +44,7 @@ const LandingLayout = ({ children }) => {
           zIndex="0"
           pointerEvents="none"
         />
-      )}
+      )} */}
       <Flex
         direction="column"
         alignItems="center"
