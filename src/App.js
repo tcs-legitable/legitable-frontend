@@ -5,7 +5,7 @@ import HomePage from "./components/HomePage";
 import EndorseesPage from "./components/EndorseesPage";
 import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
 import theme from "./theme/theme";
-import GetStartedLandingPage from "./components/GetStartedLandingPage";
+import GetStartedLandingPage from "./components/landing-page-components/GetStartedLandingPage";
 
 export const SignedInContext = createContext();
 
