@@ -11,6 +11,7 @@ import React, { useState } from "react";
 import StupaidLogo from "../assets/images/stupaid-logo.svg";
 import ErrorArrow from "../assets/images/error-arrow.svg";
 import SuccessArrow from "../assets/images/success-arrow.svg";
+import GoBackArrow from "../assets/images/go-back-arrow.svg";
 import { addWaitlistEntry } from "../firebase/helpers";
 import { v4 as uuidv4 } from "uuid";
 
@@ -44,6 +45,29 @@ const WaitingListLandingClicked = ({ value }) => {
       alignItems="center"
       pb={isDesktop ? "100px" : "0px"}
     >
+      <Button
+        fontSize="15px"
+        fontWeight="thin"
+        pos="absolute"
+        left="60px"
+        top="60px"
+        bg="transparent"
+        borderRadius="25px"
+        color="#fafafa"
+        outline="1px solid #fafafa"
+        onClick={() => {
+          window.location.reload();
+        }}
+        _hover={{
+          outline: "2px solid #fafafa",
+        }}
+        _active={{
+          outline: "2px solid #fafafa",
+        }}
+      >
+        <Image src={GoBackArrow} pr="10px" />
+        Go back
+      </Button>
       <Image
         bg="transparent"
         w={{ base: "200px", mdLg: "150px" }}
