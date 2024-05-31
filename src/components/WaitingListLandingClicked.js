@@ -50,7 +50,7 @@ const WaitingListLandingClicked = ({ value }) => {
         fontWeight="thin"
         pos="absolute"
         left="60px"
-        top="60px"
+        top={{ base: "130px", md: "60px" }}
         bg="transparent"
         borderRadius="25px"
         color="#fafafa"
