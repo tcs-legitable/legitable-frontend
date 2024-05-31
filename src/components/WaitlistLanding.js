@@ -30,8 +30,14 @@ const WaitlistLanding = ({ handleClick }) => {
         src={StupaidLogo}
       />
       <Text bg="transparent" pt="15px" fontSize="20px" color="#969696">
-        Where <Box as="span">student creatives</Box> become{" "}
-        <Box as="span">legit.</Box>{" "}
+        Where{" "}
+        <Box color="#fafafa" as="span">
+          student creatives
+        </Box>{" "}
+        become{" "}
+        <Box color="#fafafa" as="span">
+          legit.
+        </Box>{" "}
       </Text>
       <Flex
         w="100%"

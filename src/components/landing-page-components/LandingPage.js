@@ -31,9 +31,7 @@ const LandingPage = ({ handleClick }) => {
         src={StupaidLogo}
       />
       <VStack spacing="0px" fontSize="20px">
-        <Text color="#969696" pt="15px">
-          Welcome to Stupaid!
-        </Text>
+        <Text pt="15px">Welcome to Stupaid!</Text>
         <Text bg="transparent" color="#969696">
           Where{" "}
           <Box color="#0c0c0c" as="span">
