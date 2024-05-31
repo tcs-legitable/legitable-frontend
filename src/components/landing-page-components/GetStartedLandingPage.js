@@ -29,7 +29,6 @@ const GetStartedLandingPage = () => {
     >
       <LandingLayout goPrev={goPrev} step={step}>
         {step === 0 && <LandingPage goNext={goNext} />}
-        {/* sign in w/ gmail page */}
         {step === 1 && (
           <LandingGetStarted
             data={data}
@@ -38,7 +37,6 @@ const GetStartedLandingPage = () => {
             goPrev={goPrev}
           />
         )}
-        {/* create student profile page */}
         {step === 2 && (
           <LandingSignIn
             data={data}
@@ -47,7 +45,6 @@ const GetStartedLandingPage = () => {
             goPrev={goPrev}
           />
         )}
-        {/* skills page */}
         {step === 3 && (
           <LandingCreateStudentProfile
             data={data}
@@ -56,7 +53,6 @@ const GetStartedLandingPage = () => {
             goPrev={goPrev}
           />
         )}
-        {/* ending page */}
         {step === 4 && (
           <LandingSelectSkills
             data={data}
