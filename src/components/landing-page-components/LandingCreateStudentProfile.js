@@ -107,7 +107,7 @@ const LandingCreateStudentProfile = ({ goNext }) => {
         </Flex>
         <Flex flexDir="column">
           <Text>Project preference</Text>
-          <Flex flexDir="row">
+          <Flex flexDir="row" pb="30px">
             {projectPrefButtons.map(({ id, text, value }) => {
               return (
                 <Box
