@@ -45,29 +45,31 @@ const WaitingListLandingClicked = ({ value }) => {
       alignItems="center"
       pb={isDesktop ? "100px" : "0px"}
     >
-      <Button
-        fontSize="15px"
-        fontWeight="thin"
-        pos="absolute"
-        left="60px"
-        top={{ base: "130px", md: "60px" }}
-        bg="transparent"
-        borderRadius="25px"
-        color="#fafafa"
-        outline="1px solid #fafafa"
-        onClick={() => {
-          window.location.reload();
-        }}
-        _hover={{
-          outline: "2px solid #fafafa",
-        }}
-        _active={{
-          outline: "2px solid #fafafa",
-        }}
-      >
-        <Image src={GoBackArrow} pr="10px" />
-        Go back
-      </Button>
+      {success === 0 && (
+        <Button
+          fontSize="15px"
+          fontWeight="thin"
+          pos="absolute"
+          left="60px"
+          top={{ base: "130px", md: "60px" }}
+          bg="transparent"
+          borderRadius="25px"
+          color="#fafafa"
+          outline="1px solid #fafafa"
+          onClick={() => {
+            window.location.reload();
+          }}
+          _hover={{
+            outline: "2px solid #fafafa",
+          }}
+          _active={{
+            outline: "2px solid #fafafa",
+          }}
+        >
+          <Image src={GoBackArrow} pr="10px" />
+          Go back
+        </Button>
+      )}
       <Image
         bg="transparent"
         w={{ base: "200px", mdLg: "150px" }}
