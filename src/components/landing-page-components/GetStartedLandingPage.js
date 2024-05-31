@@ -1,7 +1,5 @@
-import { Box, Flex } from "@chakra-ui/react";
+import { Flex } from "@chakra-ui/react";
 import React, { useContext, useEffect, useState } from "react";
-import WaitingListLandingClicked from "../WaitingListLandingClicked";
-import WaitlistLanding from "../WaitlistLanding";
 import LandingCreateStudentProfile from "./LandingCreateStudentProfile";
 import LandingFinal from "./LandingFinal";
 import LandingGetStarted from "./LandingGetStarted";
