@@ -29,21 +29,10 @@ const GetStartedLandingPage = () => {
       justifyContent="center"
       alignItems="center"
     >
-      <LandingLayout>
-        {step === 0 && (
-          <LandingPage data={data} setData={setData} goNext={goNext} />
-        )}
-        {/* let's get started page */}
-        {step === 1 && (
-          <LandingPage
-            data={data}
-            setData={setData}
-            goNext={goNext}
-            goPrev={goPrev}
-          />
-        )}
+      <LandingLayout goPrev={goPrev} step={step}>
+        {step === 0 && <LandingPage goNext={goNext} />}
         {/* sign in w/ gmail page */}
-        {step === 2 && (
+        {step === 1 && (
           <LandingGetStarted
             data={data}
             setData={setData}
@@ -52,7 +41,7 @@ const GetStartedLandingPage = () => {
           />
         )}
         {/* create student profile page */}
-        {step === 3 && (
+        {step === 2 && (
           <LandingSignIn
             data={data}
             setData={setData}
@@ -61,7 +50,7 @@ const GetStartedLandingPage = () => {
           />
         )}
         {/* skills page */}
-        {step === 4 && (
+        {step === 3 && (
           <LandingCreateStudentProfile
             data={data}
             setData={setData}
@@ -70,7 +59,7 @@ const GetStartedLandingPage = () => {
           />
         )}
         {/* ending page */}
-        {step === 5 && (
+        {step === 4 && (
           <LandingSelectSkills
             data={data}
             setData={setData}
@@ -78,7 +67,7 @@ const GetStartedLandingPage = () => {
             goPrev={goPrev}
           />
         )}
-        {step === 6 && (
+        {step === 5 && (
           <LandingFinal
             data={data}
             setData={setData}

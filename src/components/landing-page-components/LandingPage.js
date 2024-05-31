@@ -13,7 +13,7 @@ import TalentButtonIcon from "../../assets/landing-page-images/landing-talent.sv
 import StudentButtonIcon from "../../assets/landing-page-images/landing-student.svg";
 import { useNavigate } from "react-router-dom";
 
-const LandingPage = ({ data, setData, goNext }) => {
+const LandingPage = ({ goNext }) => {
   const isDesktop = useBreakpointValue({ base: false, mdLg: true });
   const navigate = useNavigate();
 
@@ -55,7 +55,6 @@ const LandingPage = ({ data, setData, goNext }) => {
           borderRadius="25px"
           color="#0c0c0c"
           bg="transparent"
-          //   bgColor="#fafafa"
           bgGradient="linear(to-r, #c9c9c9 0%, #fafafa 80%)"
           backgroundSize="200% 100%"
           backgroundPosition="right bottom"
