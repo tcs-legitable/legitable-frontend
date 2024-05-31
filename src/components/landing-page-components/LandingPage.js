@@ -11,11 +11,11 @@ import React from "react";
 import StupaidLogo from "../../assets/landing-page-images/stupaid-logo-main.svg";
 import TalentButtonIcon from "../../assets/landing-page-images/landing-talent.svg";
 import StudentButtonIcon from "../../assets/landing-page-images/landing-student.svg";
-import ArrowText1 from "../../assets/images/arrow-text1.svg";
-import ArrowText2 from "../../assets/images/arrow-text2.svg";
+import { useNavigate } from "react-router-dom";
 
-const LandingPage = ({ handleClick }) => {
+const LandingPage = ({ data, setData, goNext }) => {
   const isDesktop = useBreakpointValue({ base: false, mdLg: true });
+  const navigate = useNavigate();
 
   return (
     <Flex
@@ -68,7 +68,7 @@ const LandingPage = ({ handleClick }) => {
             backgroundPosition: "left bottom",
           }}
           mr={{ base: "0px", mdLg: "10px" }}
-          //   onClick={() => handleClick("organization")}
+          onClick={() => navigate("/")}
         >
           <Image bgColor="inherit" mr="5px" src={TalentButtonIcon} />
           I'm looking for talent
@@ -92,7 +92,7 @@ const LandingPage = ({ handleClick }) => {
           }}
           ml={{ base: "0px", mdLg: "10px" }}
           mt={{ base: "10px", mdLg: "0px" }}
-          onClick={() => handleClick("student")}
+          onClick={() => goNext()}
         >
           <Image bgColor="inherit" mr="5px" src={StudentButtonIcon} /> I'm a
           student
