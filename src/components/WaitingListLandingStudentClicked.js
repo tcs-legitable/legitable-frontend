@@ -186,6 +186,11 @@ const WaitingListLandingStudentClicked = () => {
                         }
                         newSkills.push(id);
                         setSkills(newSkills);
+                      } else if (skills.includes(id)) {
+                        const filteredList = newSkills.filter(
+                          (skill) => skill !== id
+                        );
+                        setSkills(filteredList);
                       }
                     }}
                     bgColor={skills.includes(id) && "#303030"}
