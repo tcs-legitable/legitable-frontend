@@ -8,7 +8,6 @@ import AddEndorseeModal from "./AddEndorseeModal";
 
 import CopyLink from "./CopyLink";
 
-
 const LoggedIn = () => {
   const { value } = useContext(SignedInContext);
   const [user, setUser] = useState(null);
@@ -62,7 +61,6 @@ const LoggedIn = () => {
   };
 
   const logout = () => {
-    console.log("logging out!");
     localStorage.removeItem("user-uid");
     window.location.reload();
   };
@@ -75,7 +73,7 @@ const LoggedIn = () => {
           Welcome {user?.firstName}
         </Text>
 
-        <CopyLink/>
+        <CopyLink />
 
         <AddEndorseeModal />
 

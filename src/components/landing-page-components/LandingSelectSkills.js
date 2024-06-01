@@ -24,10 +24,6 @@ const LandingSelectSkills = ({ goNext }) => {
     { id: 13, text: "Music Production", value: "music-production" },
   ];
 
-  useEffect(() => {
-    console.log(skills, " are skill");
-  }, [skills]);
-
   return (
     <Flex
       zIndex="0"
@@ -70,7 +66,6 @@ const LandingSelectSkills = ({ goNext }) => {
                 color="#0c0c0c"
                 bg="transparent"
                 onClick={() => {
-                  console.log("clicked " + id);
                   const newSkills = [...skills];
                   if (!skills.includes(id)) {
                     while (newSkills.length >= 3) {

@@ -89,3 +89,61 @@ export const addWaitlistEntry = async (collection, name, email, id) => {
     console.log("error is: ", e);
   }
 };
+
+export const addOrganizationWaitlistEntry = async (
+  name,
+  organizationName,
+  email,
+  socialLink,
+  country,
+  city,
+  id
+) => {
+  let data = {
+    name: name,
+    organizationName: organizationName,
+    email: email,
+    socialLink: socialLink,
+    country: country,
+    city: city,
+  };
+
+  const docRef = doc(db, "organization", id);
+  try {
+    await setDoc(docRef, data);
+    console.log("success!");
+  } catch (e) {
+    console.log("error is: ", e);
+  }
+};
+
+export const addStudentWaitlistEntry = async (
+  name,
+  email,
+  id,
+  school,
+  year,
+  country,
+  city,
+  projectPref,
+  skills
+) => {
+  let data = {
+    email: email,
+    name: name,
+    school: school,
+    year: year,
+    country: country,
+    city: city,
+    projectPref: projectPref,
+    skills: skills,
+  };
+
+  const docRef = doc(db, "student", id);
+  try {
+    await setDoc(docRef, data);
+    console.log("success!");
+  } catch (e) {
+    console.log("error is: ", e);
+  }
+};

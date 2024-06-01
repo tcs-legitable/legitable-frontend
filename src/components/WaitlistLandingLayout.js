@@ -20,7 +20,7 @@ const WaitlistLandingLayout = ({ children }) => {
       position="relative"
       bg="transparent"
       w="100%"
-      minH="100vh"
+      // minH={{ base: "1050px", mdLg: "1050px" }}
       overflow="hidden"
     >
       {isDesktop && (

@@ -1,6 +1,7 @@
 import { Box, Flex } from "@chakra-ui/react";
 import React, { useContext, useEffect, useState } from "react";
-import WaitingListLandingClicked from "./WaitingListLandingClicked";
+import WaitingListLandingOrganizationClicked from "./WaitingListLandingOrganizationClicked";
+import WaitingListLandingStudentClicked from "./WaitingListLandingStudentClicked";
 import WaitlistLanding from "./WaitlistLanding";
 // import { SignedInContext } from "../App";
 // import LoggedIn from "./LoggedIn";
@@ -19,11 +20,17 @@ const HomePage = () => {
       alignItems="center"
     >
       <WaitlistLandingLayout>
-        {clicked ? (
-          <WaitingListLandingClicked value={clicked} />
-        ) : (
-          <WaitlistLanding handleClick={setClicked} />
-        )}
+        <Box mb="100px">
+          {clicked ? (
+            clicked === "student" ? (
+              <WaitingListLandingStudentClicked />
+            ) : (
+              <WaitingListLandingOrganizationClicked value={clicked} />
+            )
+          ) : (
+            <WaitlistLanding handleClick={setClicked} />
+          )}
+        </Box>
       </WaitlistLandingLayout>
     </Flex>
   );
