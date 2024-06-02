@@ -58,7 +58,7 @@ const LandingCreateStudentProfile = ({ goNext }) => {
           value={name}
           _placeholder={{ color: "#969696" }}
           onChange={(e) => setName(e.target.value)}
-          mb="5px"
+          mb="10px"
         />
         <Input
           placeholder="Name of School / Institution"
@@ -66,7 +66,7 @@ const LandingCreateStudentProfile = ({ goNext }) => {
           value={school}
           _placeholder={{ color: "#969696" }}
           onChange={(e) => setSchool(e.target.value)}
-          mb="5px"
+          mb="10px"
         />
         <Input
           placeholder="Student Number"
@@ -74,18 +74,18 @@ const LandingCreateStudentProfile = ({ goNext }) => {
           value={studentNum}
           _placeholder={{ color: "#969696" }}
           onChange={(e) => setStudentNum(e.target.value)}
-          mb="5px"
+          mb="10px"
         />
         <Input
+          mb="20px"
           placeholder="Year Level"
           borderRadius="20px"
           value={year}
           _placeholder={{ color: "#969696" }}
           onChange={(e) => setYear(e.target.value)}
-          mb="5px"
         />
-        <Flex flexDir="column">
-          <Text>I am based in...</Text>
+        <Flex mb="20px" flexDir="column">
+          <Text mb="4px">I am based in...</Text>
           <Flex flexDir="row">
             <Input
               placeholder="Country"
@@ -106,14 +106,20 @@ const LandingCreateStudentProfile = ({ goNext }) => {
           </Flex>
         </Flex>
         <Flex flexDir="column">
-          <Text>Project preference</Text>
-          <Flex flexDir="row" pb="30px">
+          <Text mb="4px">Project preference</Text>
+          <Flex
+            flexDir="row"
+            pb="30px"
+            alignSelf="center"
+            justifyContent="space-between"
+            w="100%"
+          >
             {projectPrefButtons.map(({ id, text, value }) => {
               return (
                 <Box
                   key={id}
                   border="1px solid #0c0c0c"
-                  p="8px 30px"
+                  p="8px 40px"
                   _hover={{
                     cursor: "pointer",
                   }}
@@ -144,6 +150,8 @@ const LandingCreateStudentProfile = ({ goNext }) => {
             backgroundPosition: "left bottom",
           }}
           onClick={() => goNext()}
+          w="50%"
+          alignSelf="center"
         >
           Continue
           <Image pl="10px" src={GmailArrow} />

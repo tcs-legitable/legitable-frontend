@@ -1,5 +1,5 @@
 import { Box, Button, Flex, Image, Text, VStack } from "@chakra-ui/react";
-import React, { useEffect, useState } from "react";
+import React, { useState } from "react";
 import StupaidLogo from "../../assets/landing-page-images/stupaid-logo-small.svg";
 import GmailArrow from "../../assets/landing-page-images/continue-w-gmail-arrow-black.svg";
 import CheckMark from "../../assets/landing-page-images/check-mark.svg";
@@ -47,10 +47,16 @@ const LandingSelectSkills = ({ goNext }) => {
         minW="800px"
         flexDir="column"
         bg="transparent"
-        pt="25px"
+        pt="35px"
       >
-        <Flex flexWrap="wrap" align="center" justify="center" pb="30px">
-          {skillList.map(({ id, text, value }) => {
+        <Flex
+          w={{ base: "450px", md: "770px" }}
+          flexWrap="wrap"
+          align="center"
+          justify="center"
+          pb="30px"
+        >
+          {skillList.map(({ id, text }) => {
             return (
               <Box
                 display="flex"
@@ -73,6 +79,11 @@ const LandingSelectSkills = ({ goNext }) => {
                     }
                     newSkills.push(id);
                     setSkills(newSkills);
+                  } else if (skills.includes(id)) {
+                    const filteredList = newSkills.filter(
+                      (skill) => skill !== id
+                    );
+                    setSkills(filteredList);
                   }
                 }}
                 bgColor={skills.includes(id) && "#d7d7d7"}
