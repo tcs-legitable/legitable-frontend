@@ -1,6 +1,13 @@
 // helpers go here
-import { getDoc, doc, setDoc } from "@firebase/firestore";
+import { getDoc, getDocs, doc, setDoc, collection } from "@firebase/firestore";
 import { db } from "./firebase";
+
+export const getAllUsers = async () => {
+  const usersCol = collection(db, "mvp_users");
+  const userSnapshot = await getDocs(usersCol);
+  const userList = userSnapshot.docs.map(doc => ({ id: doc.id, ...doc.data() }));
+  return userList;
+};
 
 export const doesUserExist = async (id) => {
   const docRef = doc(db, "mvp_users", id);
