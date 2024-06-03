@@ -1,5 +1,5 @@
 import { Flex } from "@chakra-ui/react";
-import React, { useContext, useEffect, useState } from "react";
+import React, { useState } from "react";
 import LandingCreateStudentProfile from "./LandingCreateStudentProfile";
 import LandingFinal from "./LandingFinal";
 import LandingGetStarted from "./LandingGetStarted";
