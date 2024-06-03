@@ -6,6 +6,7 @@ import EndorseesPage from "./components/EndorseesPage";
 import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
 import theme from "./theme/theme";
 import GetStartedLandingPage from "./components/landing-page-components/GetStartedLandingPage";
+import Home from "./components/main-projects-view/Home";
 
 export const SignedInContext = createContext();
 
@@ -22,6 +23,7 @@ function App() {
               <Route path="/" element={<HomePage />} />
               <Route path="/landing" element={<GetStartedLandingPage />} />
               <Route path="/endorsees/:userId" element={<EndorseesPage />} />
+              <Route path="/home" element={<Home />}/>
             </Routes>
           </Router>
         </VStack>
