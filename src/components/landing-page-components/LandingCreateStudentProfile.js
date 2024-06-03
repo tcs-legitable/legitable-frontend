@@ -11,10 +11,9 @@ import React, { useState } from "react";
 import StupaidLogo from "../../assets/landing-page-images/stupaid-logo-small.svg";
 import GmailArrow from "../../assets/landing-page-images/continue-w-gmail-arrow-black.svg";
 
-const LandingCreateStudentProfile = ({ goNext }) => {
+const LandingCreateStudentProfile = ({ goNext, setData, data }) => {
   const [name, setName] = useState("");
   const [school, setSchool] = useState("");
-  const [studentNum, setStudentNum] = useState("");
   const [year, setYear] = useState("");
 
   const [country, setCountry] = useState("");
@@ -27,6 +26,21 @@ const LandingCreateStudentProfile = ({ goNext }) => {
     { id: 1, text: "Remote", value: "remote" },
     { id: 2, text: "Any", value: "any" },
   ];
+
+  const handleClick = () => {
+    const moreData = {
+      input_name: name,
+      input_first_name: name.split(" ")[0],
+      year: year,
+      school: school,
+      city: city,
+      country: country,
+      projectPref: projectPrefButtons[projectPref].value,
+    };
+
+    setData({ ...data, ...moreData });
+    goNext();
+  };
 
   return (
     <Flex
@@ -66,14 +80,6 @@ const LandingCreateStudentProfile = ({ goNext }) => {
           value={school}
           _placeholder={{ color: "#969696" }}
           onChange={(e) => setSchool(e.target.value)}
-          mb="10px"
-        />
-        <Input
-          placeholder="Student Number"
-          borderRadius="20px"
-          value={studentNum}
-          _placeholder={{ color: "#969696" }}
-          onChange={(e) => setStudentNum(e.target.value)}
           mb="10px"
         />
         <Input
@@ -137,6 +143,14 @@ const LandingCreateStudentProfile = ({ goNext }) => {
         </Flex>
 
         <Button
+          isDisabled={
+            name === "" ||
+            school === "" ||
+            year === "" ||
+            country === "" ||
+            city === "" ||
+            projectPref === ""
+          }
           border="1px solid"
           p="23px"
           borderRadius="25px"
@@ -149,7 +163,7 @@ const LandingCreateStudentProfile = ({ goNext }) => {
           _active={{
             backgroundPosition: "left bottom",
           }}
-          onClick={() => goNext()}
+          onClick={() => handleClick()}
           w="50%"
           alignSelf="center"
         >

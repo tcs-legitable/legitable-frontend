@@ -2,8 +2,41 @@ import { Button, Flex, Image, Text, VStack } from "@chakra-ui/react";
 import React from "react";
 import StupaidLogo from "../../assets/landing-page-images/stupaid-logo-small.svg";
 import GmailArrow from "../../assets/landing-page-images/continue-w-gmail-arrow-black.svg";
+import { signInWithPopup } from "firebase/auth";
+import { auth, provider } from "../../firebase/firebase";
+import { doesUserExist } from "../../firebase/helpers";
+import { useNavigate } from "react-router-dom";
 
-const LandingSignIn = ({ goNext }) => {
+const LandingSignIn = ({ goNext, setData }) => {
+  const navigate = useNavigate();
+  const handleClick = async () => {
+    try {
+      const { user } = await signInWithPopup(auth, provider);
+      console.log(user, " is the user");
+
+      const { uid, email, displayName, photoURL } = user;
+      const exists = await doesUserExist(uid);
+
+      if (exists) {
+        // fix this to point to main page
+        navigate("/");
+      }
+
+      const data = {
+        uid: uid,
+        full_name: displayName,
+        first_name: displayName.split(" ")[0],
+        email: email,
+        photo_url: photoURL,
+      };
+      setData(data);
+
+      goNext();
+    } catch (error) {
+      console.error("An error occurred during sign-in:", error);
+    }
+  };
+
   return (
     <Flex
       zIndex="0"
@@ -40,7 +73,7 @@ const LandingSignIn = ({ goNext }) => {
           _active={{
             backgroundPosition: "left bottom",
           }}
-          onClick={() => goNext()}
+          onClick={() => handleClick()}
         >
           Continue with Gmail
           <Image pl="10px" src={GmailArrow} />

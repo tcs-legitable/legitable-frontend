@@ -4,7 +4,7 @@ import StupaidLogo from "../../assets/landing-page-images/stupaid-logo-small.svg
 import GmailArrow from "../../assets/landing-page-images/continue-w-gmail-arrow-black.svg";
 import CheckMark from "../../assets/landing-page-images/check-mark.svg";
 
-const LandingSelectSkills = ({ goNext }) => {
+const LandingSelectSkills = ({ goNext, data, setData }) => {
   const [skills, setSkills] = useState([]);
 
   const skillList = [
@@ -23,6 +23,16 @@ const LandingSelectSkills = ({ goNext }) => {
     { id: 12, text: "3D Modeling", value: "3d-modeling" },
     { id: 13, text: "Music Production", value: "music-production" },
   ];
+
+  const handleClick = () => {
+    const skillNames = skills.map((skill) => {
+      return skillList[skill].value;
+    });
+
+    setData({ ...data, skills: skillNames });
+
+    goNext();
+  };
 
   return (
     <Flex
@@ -109,7 +119,7 @@ const LandingSelectSkills = ({ goNext }) => {
           _active={{
             backgroundPosition: "left bottom",
           }}
-          onClick={() => goNext()}
+          onClick={() => handleClick()}
         >
           Continue
           <Image pl="10px" src={GmailArrow} />

@@ -1,8 +1,20 @@
 import { Button, Flex, Image, Text, VStack } from "@chakra-ui/react";
-import React from "react";
+import React, { useEffect } from "react";
+import { useNavigate } from "react-router-dom";
 import StupaidLogo from "../../assets/landing-page-images/stupaid-logo-small.svg";
+import { addStupaidUser } from "../../firebase/helpers";
 
-const LandingFinal = () => {
+const LandingFinal = ({ data }) => {
+  const navigate = useNavigate();
+
+  const handleClick = async () => {
+    await addStupaidUser(data);
+    navigate("/");
+  };
+
+  useEffect(() => {
+    console.log(data, " is the data");
+  }, [data]);
   return (
     <Flex
       zIndex="0"
@@ -41,7 +53,7 @@ const LandingFinal = () => {
           _active={{
             backgroundPosition: "left bottom",
           }}
-          // onClick={() => goNext()}
+          onClick={handleClick}
         >
           Let's get stupaid
         </Button>
