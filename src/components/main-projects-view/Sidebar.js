@@ -1,4 +1,4 @@
-import { Box, Button, Flex, Text } from '@chakra-ui/react'
+import { Box, Button, Flex, Switch, Text } from '@chakra-ui/react'
 import React, { useState } from 'react'
 
 const Sidebar = () => {
@@ -69,13 +69,21 @@ const Sidebar = () => {
             </Flex>
         </Flex>
 
-        <Box>
-            <Text>
-                Stupaid verified
-            </Text>
-            <Text>
-                Show only hand-selected verified Stupaid creatives
-            </Text>
+        <Box
+            display='flex'
+            flexDirection='row'
+        >
+            <Box>
+                <Text>
+                    Stupaid verified
+                </Text>
+                <Text>
+                    Show only hand-selected verified Stupaid creatives
+                </Text>
+            </Box>
+
+            {/* FIX COLOR */}
+            <Switch colorScheme='teal' size='lg' />
         </Box>
 
         <Button
