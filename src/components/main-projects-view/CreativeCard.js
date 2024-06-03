@@ -1,34 +1,40 @@
 import { Box, Button, Flex, Image, Text, Link } from '@chakra-ui/react';
 import React from 'react';
 
-const CreativeCard = ({ image, location, school, work, name, endorsements, website }) => {
+const CreativeCard = ({ photo_url, city, country, school, projectPref, full_name, email, skills, website }) => {
   return (
     <Box 
-        border="1px solid #ccc"
+        backgroundColor='white'
         borderRadius="10px"
         display='flex'
         flexDirection='row'
-        backgroundColor='white'
     >
-        <Image src={image} alt={`${name}'s picture`} boxSize="50px" />
+        <Image src={photo_url} alt={`${full_name}'s picture`} boxSize="50px" mr="10px"/>
 
         <Box>
-            <Flex mb="10px" justifyContent="space-between">
-                <Text>{location}</Text>
+            <Box
+                display='flex'
+                flexDirection='row'
+            >
+                <Text>{city}, {country}</Text>
+                <Text>•</Text>
                 <Text>{school}</Text>
-                <Text>{work}</Text>
-            </Flex>
+                <Text>•</Text>
+                <Text>{projectPref}</Text>
+            </Box>
 
-            <Flex mb="10px">
-                <Flex flexDir="column" justifyContent="center">
-                    <Text fontSize="xl" fontWeight="bold">{name}</Text>
-                    <Text>{endorsements} endorsements</Text>
-                </Flex>
-            </Flex>
-
+            <Box
+                display='flex'
+                flexDirection='row'
+            >
+                <Text fontSize="xl" fontWeight="bold">
+                    {full_name}
+                </Text>
+            </Box>
+            
             <Box>
                 <Link href={website} isExternal>
-                    <Button>Click me</Button>
+                    <Button>Website</Button>
                 </Link>
             </Box>
         </Box>
@@ -37,4 +43,3 @@ const CreativeCard = ({ image, location, school, work, name, endorsements, websi
 }
 
 export default CreativeCard;
-

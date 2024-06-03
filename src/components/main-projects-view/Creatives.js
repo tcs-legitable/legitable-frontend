@@ -1,55 +1,36 @@
-import { Box, Flex } from '@chakra-ui/react'
-import React from 'react'
-import StupaidLogo from './../../assets/images/stupaid-logo.svg'
+import { Flex } from '@chakra-ui/react'
+import React, { useEffect, useState } from 'react'
 import CreativeCard from './CreativeCard'
+import { getAllUsers } from './../../firebase/helpers'
 
 const Creatives = () => {
-
-    const creativesList = [
-        {
-            image: StupaidLogo,
-            location: "Vancouver, Canada",
-            school: "University of British Colubmia",
-            work: "Remote",
-            name: "Byron Wang",
-            endorsements: 4,
-            website: "https://www.stupaid.work/"
-        },
-        {
-            image: StupaidLogo,
-            location: "Vancouver, Canada",
-            school: "Uniersity of British Colubmia",
-            work: "Remote",
-            name: "Alan Wang",
-            endorsements: 4,
-            website: "https://www.stupaid.work/"
-        },
-        {
-            image: StupaidLogo,
-            location: "Vancouver, Canada",
-            school: "Uniersity of British Colubmia",
-            work: "Remote",
-            name: "Aayush Kogar",
-            endorsements: 4,
-            website: "https://www.stupaid.work/"
-        }
-    ]
+    const [creativesList, setCreativesList] = useState([]);
+    
+    useEffect(() => {
+        const fetchData = async () => {
+          const users = await getAllUsers();
+          setCreativesList(users);
+        };
+        fetchData();
+      }, []);
 
   return (
     <Flex
         display='flex'
         flexDirection='column'
     >
-      {creativesList.map((creative, index) => (
+        {creativesList.map((creative, index) => (
         <CreativeCard
           key={index}
-          image={creative.image}
-          location={creative.location}
+          photo_url={creative.photo_url}
+          city={creative.city}
+          country={creative.country}
           school={creative.school}
-          work={creative.work}
-          name={creative.name}
-          endorsements={creative.endorsements}
-          website={creative.website}
+          projectPref={creative.projectPref}
+          full_name={creative.full_name}
+          email={creative.email}
+          skills={creative.skills}
+          website={creative.website || "https://www.stupaid.work/"}
         />
       ))}
     </Flex>
