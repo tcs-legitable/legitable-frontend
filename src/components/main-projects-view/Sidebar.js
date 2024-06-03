@@ -1,15 +1,42 @@
-import { Box, Button, Flex, Text } from '@chakra-ui/react'
+import { Box, Button, Flex, Input, Select, Switch, Text } from '@chakra-ui/react'
 import React, { useState } from 'react'
 
 const Sidebar = () => {
 
-  const [preference, setPreference] = useState('');
+  const [skill, setSkill] = useState("");
+  const [location, setLocation] = useState("");
+  const [preference, setPreference] = useState("");
+  const [verified, setVerified] = useState(false);
 
   const preferenceList = [
     { id: 0, text: "In-person", value: "in-person" },
     { id: 1, text: "Remote", value: "remote" },
     { id: 2, text: "Any", value: "any" },
   ];
+
+  const skillList = [
+    { id: 0, text: "Branding", value: "branding" },
+    { id: 1, text: "Graphic Design", value: "graphic-design" },
+    { id: 2, text: "Digital Art", value: "digital-art" },
+    { id: 3, text: "Traditional Art", value: "traditional-art" },
+    { id: 4, text: "Slidedeck Design", value: "slidedeck-design" },
+    { id: 5, text: "Website Design", value: "website-design" },
+    { id: 6, text: "Website Development", value: "website-development" },
+    { id: 7, text: "UI/UX Design", value: "ui-ux-design" },
+    { id: 8, text: "Social Media Content", value: "social-media-content" },
+    { id: 9, text: "Photography", value: "photography" },
+    { id: 10, text: "Videography", value: "videography" },
+    { id: 11, text: "Animation", value: "animation" },
+    { id: 12, text: "3D Modeling", value: "3d-modeling" },
+    { id: 13, text: "Music Production", value: "music-production" },
+  ];
+
+  const test = () => {
+    console.log('Skill:', skill);
+    console.log('Location:', location);
+    console.log('Preference:', preference);
+    console.log('Switch:', verified);
+  }
 
   return (
     <Box
@@ -20,10 +47,30 @@ const Sidebar = () => {
         <Text>
             Skills
         </Text>
+        <Select
+          placeholder="Select a skill"
+          borderRadius="20px"
+          value={skill}
+          onChange={(e) => setSkill(e.target.value)}
+          color={skill ? '#000' : '#969696'}
+          mb="10px"
+        >
+          {skillList.map(({ id, text, value }) => (
+            <option key={id} value={value}>{text}</option>
+          ))}
+        </Select>
 
         <Text>
             location
         </Text>
+        <Input
+          placeholder="e.g. Vancouver"
+          borderRadius="20px"
+          value={location}
+          _placeholder={{ color: "#969696" }}
+          onChange={(e) => setLocation(e.target.value)}
+          mb="10px"
+        />
 
         <Text>
             Project preference
@@ -69,13 +116,27 @@ const Sidebar = () => {
             </Flex>
         </Flex>
 
-        <Box>
-            <Text>
-                Stupaid verified
-            </Text>
-            <Text>
-                Show only hand-selected verified Stupaid creatives
-            </Text>
+        <Box
+            display='flex'
+            flexDirection='row'
+        >
+            <Box>
+                <Text>
+                    Stupaid verified
+                </Text>
+                <Text>
+                    Show only hand-selected verified Stupaid creatives
+                </Text>
+            </Box>
+
+            {/* FIX COLOR */}
+            <Switch
+                colorScheme="teal"
+                size="lg"
+                ml="10px"
+                isChecked={verified}
+                onChange={() => setVerified(!verified)}
+            />
         </Box>
 
         <Button
@@ -91,6 +152,7 @@ const Sidebar = () => {
             _active={{
               backgroundPosition: "left bottom",
             }}
+            onClick={test}
         >
             Find your creative
         </Button>
