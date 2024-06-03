@@ -8,8 +8,14 @@ const Home = () => {
   return (
     <Box>
         <Navbar/>
-        <Creatives/>
-        <Sidebar/>
+        <Box
+          display='flex'
+          flexDirection='row'
+          justifyContent='space-between'
+        >
+          <Creatives/>
+          <Sidebar/>
+        </Box>
     </Box>
   )
 }

@@ -1,4 +1,4 @@
-import { Box, Button, Flex, Image, Text, Link } from '@chakra-ui/react';
+import { Box, Button, Image, Text, Link } from '@chakra-ui/react';
 import React from 'react';
 
 const CreativeCard = ({ photo_url, city, country, school, projectPref, full_name, email, skills, website }) => {
