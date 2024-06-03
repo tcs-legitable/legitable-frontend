@@ -18,8 +18,7 @@ const LandingSignIn = ({ goNext, setData }) => {
       const exists = await doesUserExist(uid);
 
       if (exists) {
-        // fix this to point to main page
-        navigate("/");
+        navigate("/home");
       }
 
       const data = {
