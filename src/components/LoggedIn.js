@@ -3,7 +3,11 @@ import { doc, onSnapshot } from "firebase/firestore";
 import React, { useContext, useEffect, useState } from "react";
 import { SignedInContext } from "../App";
 import { db } from "../firebase/firebase";
-import { getEndorsees, getUserData, deleteEndorsee } from "../firebase/helpers";
+import {
+  getEndorsees,
+  getEndorseeUserData,
+  deleteEndorsee,
+} from "../firebase/helpers";
 import AddEndorseeModal from "./AddEndorseeModal";
 
 import CopyLink from "./CopyLink";
@@ -17,7 +21,7 @@ const LoggedIn = () => {
 
   useEffect(() => {
     const getUserDetails = async () => {
-      const data = await getUserData(value);
+      const data = await getEndorseeUserData(value);
       return data;
     };
 

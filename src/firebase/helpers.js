@@ -10,6 +10,17 @@ export const doesUserExist = async (id) => {
 };
 
 export const getUserData = async (id) => {
+  const docRef = doc(db, "mvp_users", id);
+  const docSnap = await getDoc(docRef);
+
+  if (docSnap.exists()) {
+    return docSnap.data();
+  } else {
+    return null;
+  }
+};
+
+export const getEndorseeUserData = async (id) => {
   const docRef = doc(db, "users", id);
   const docSnap = await getDoc(docRef);
 
@@ -20,8 +31,26 @@ export const getUserData = async (id) => {
   }
 };
 
-export const addUser = async (uid, name, email, photoURL) => {
+// adding users MVP - June 2, 2024
+export const addStupaidUser = async (data) => {
+  const uid = data?.uid;
   const docSnap = await getUserData(uid);
+  if (docSnap === null) {
+    const userRef = doc(db, "mvp_users", uid);
+    try {
+      await setDoc(userRef, data);
+      console.log("success!");
+    } catch (e) {
+      console.log("error is: ", e);
+    }
+  } else {
+    console.log("user w/ the uid of ", uid, " already exists");
+  }
+};
+
+// old when endorsees was a thing
+export const addUser = async (uid, name, email, photoURL) => {
+  const docSnap = await getEndorseeUserData(uid);
   if (docSnap == null) {
     let data = {
       email: email,
@@ -47,7 +76,7 @@ export const addUser = async (uid, name, email, photoURL) => {
 // endorsee functions
 export const addEndorsee = async (uid, data) => {
   const endorseeData = data;
-  const userData = await getUserData(uid);
+  const userData = await getEndorseeUserData(uid);
   const { endorsees } = userData;
   const updatedEndorsees = [...endorsees, endorseeData];
 
@@ -61,7 +90,7 @@ export const addEndorsee = async (uid, data) => {
 };
 
 export const deleteEndorsee = async (id, uid) => {
-  const userData = await getUserData(uid);
+  const userData = await getEndorseeUserData(uid);
   const { endorsees } = userData;
   const updatedEndorsees = endorsees.filter((endorsee) => endorsee.id !== id);
 
@@ -75,7 +104,7 @@ export const deleteEndorsee = async (id, uid) => {
 };
 
 export const getEndorsees = async (uid) => {
-  const userData = await getUserData(uid);
+  const userData = await getEndorseeUserData(uid);
   const { endorsees } = userData;
   console.log(endorsees, " within");
   return endorsees;
