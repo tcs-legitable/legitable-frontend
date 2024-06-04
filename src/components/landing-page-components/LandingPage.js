@@ -31,8 +31,15 @@ const LandingPage = ({ goNext }) => {
         src={StupaidLogo}
       />
       <VStack spacing="0px" fontSize="20px">
-        <Text pt="15px">Welcome to Stupaid!</Text>
-        <Text bg="transparent" color="#969696">
+        <Text textAlign="center" w={{ base: "300px", mdLg: "420px" }} pt="15px">
+          Welcome to{" "}
+          <Box color="#969696" as="span">
+            Stupaid
+          </Box>
+          ! A platform for connecting passionate business owners to eager
+          creative students to work on cool projects.
+        </Text>
+        {/* <Text bg="transparent" color="#969696">
           Where{" "}
           <Box color="#0c0c0c" as="span">
             student creatives
@@ -41,7 +48,7 @@ const LandingPage = ({ goNext }) => {
           <Box color="#0c0c0c" as="span">
             legit.
           </Box>{" "}
-        </Text>
+        </Text> */}
       </VStack>
       <Flex
         w="100%"
