@@ -1,4 +1,4 @@
-import React, { useState, useContext } from "react";
+import React, { useState, useContext } from 'react';
 import {
   Box,
   Button,
@@ -12,10 +12,10 @@ import {
   ModalOverlay,
   useToast,
   VStack,
-} from "@chakra-ui/react";
-import { SignedInContext } from "../App";
-import { addEndorsee } from "../firebase/helpers";
-import { v4 } from "uuid";
+} from '@chakra-ui/react';
+import { SignedInContext } from '../App';
+import { addEndorsee } from '../firebase/helpers';
+import { v4 } from 'uuid';
 import useSkills from '../hooks/useSkills';
 
 const AddEndorseeModal = () => {
@@ -26,9 +26,9 @@ const AddEndorseeModal = () => {
 
   const [isOpen, setIsOpen] = useState(false);
 
-  const [name, setName] = useState("");
-  const [email, setEmail] = useState("");
-  const [skill, setSkill] = useState("");
+  const [name, setName] = useState('');
+  const [email, setEmail] = useState('');
+  const [skill, setSkill] = useState('');
   const [suggestions, setSuggestions] = useState([]);
   const [buttonClicked, setButtonClicked] = useState(false);
 
@@ -36,30 +36,30 @@ const AddEndorseeModal = () => {
 
   const onClose = () => {
     setIsOpen(false);
-    setName("");
-    setEmail("");
-    setSkill("");
+    setName('');
+    setEmail('');
+    setSkill('');
     setSuggestions([]);
   };
 
   const updateSkill = (skill) => {
-      setSkill(skill);
-      setSuggestions([]);
-  }
+    setSkill(skill);
+    setSuggestions([]);
+  };
 
   const onSkillChange = (e) => {
-      const value = e.target.value;
-      setSkill(value);
+    const value = e.target.value;
+    setSkill(value);
 
-      if(!value) {
-          setSuggestions([]);
-      } else {
-          const filteredSkills = skills.filter((skill) => 
-            skill.toLowerCase().includes(value.toLowerCase())
-          );
-          setSuggestions(filteredSkills);
-      }
-  }
+    if (!value) {
+      setSuggestions([]);
+    } else {
+      const filteredSkills = skills.filter((skill) =>
+        skill.toLowerCase().includes(value.toLowerCase()),
+      );
+      setSuggestions(filteredSkills);
+    }
+  };
 
   const saveEndorsee = async () => {
     if (!buttonClicked) {
@@ -74,13 +74,13 @@ const AddEndorseeModal = () => {
 
       await addEndorsee(value, data);
 
-      setName("");
-      setEmail("");
-      setSkill("");
+      setName('');
+      setEmail('');
+      setSkill('');
       onClose();
       toast({
-        description: "Endorsee Saved!",
-        status: "success",
+        description: 'Endorsee Saved!',
+        status: 'success',
         duration: 3000,
         isClosable: true,
       });
@@ -113,19 +113,19 @@ const AddEndorseeModal = () => {
                 onChange={onSkillChange}
                 placeholder="Skill"
               />
-              {suggestions.length> 0 && (
-                  <VStack align="stretch">
-                      {suggestions.map((suggestion) => (
-                        <Button
-                        key={suggestion}
-                        variant="ghost"
-                        justifyContent="start"
-                        onClick={() => updateSkill(suggestion)}
-                        >
-                        {suggestion}
-                        </Button>
-                    ))}
-                  </VStack>
+              {suggestions.length > 0 && (
+                <VStack align="stretch">
+                  {suggestions.map((suggestion) => (
+                    <Button
+                      key={suggestion}
+                      variant="ghost"
+                      justifyContent="start"
+                      onClick={() => updateSkill(suggestion)}
+                    >
+                      {suggestion}
+                    </Button>
+                  ))}
+                </VStack>
               )}
             </Box>
           </ModalBody>

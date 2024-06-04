@@ -1,11 +1,11 @@
-import { Flex } from "@chakra-ui/react";
-import React, { useState } from "react";
-import LandingCreateStudentProfile from "./LandingCreateStudentProfile";
-import LandingFinal from "./LandingFinal";
-import LandingLayout from "./LandingLayout";
-import LandingPage from "./LandingPage";
-import LandingSelectSkills from "./LandingSelectSkills";
-import LandingSignIn from "./LandingSignIn";
+import { Flex } from '@chakra-ui/react';
+import React, { useState } from 'react';
+import LandingCreateStudentProfile from './LandingCreateStudentProfile';
+import LandingFinal from './LandingFinal';
+import LandingLayout from './LandingLayout';
+import LandingPage from './LandingPage';
+import LandingSelectSkills from './LandingSelectSkills';
+import LandingSignIn from './LandingSignIn';
 
 const GetStartedLandingPage = () => {
   const [data, setData] = useState({});

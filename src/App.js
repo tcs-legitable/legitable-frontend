@@ -1,18 +1,18 @@
-import "./App.css";
-import { ChakraProvider, VStack } from "@chakra-ui/react";
-import { createContext, useState } from "react";
-import HomePage from "./components/HomePage";
-import EndorseesPage from "./components/EndorseesPage";
-import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
-import theme from "./theme/theme";
-import GetStartedLandingPage from "./components/landing-page-components/GetStartedLandingPage";
-import Home from "./components/organization-view-components/Home";
-import StudentLanding from "./components/student-view-components/StudentLanding";
+import './App.css';
+import { ChakraProvider, VStack } from '@chakra-ui/react';
+import { createContext, useState } from 'react';
+import HomePage from './components/HomePage';
+import EndorseesPage from './components/EndorseesPage';
+import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
+import theme from './theme/theme';
+import GetStartedLandingPage from './components/landing-page-components/GetStartedLandingPage';
+import Home from './components/organization-view-components/Home';
+import StudentLanding from './components/student-view-components/StudentLanding';
 
 export const SignedInContext = createContext();
 
 function App() {
-  const [value, setValue] = useState("");
+  const [value, setValue] = useState('');
 
   return (
     <ChakraProvider theme={theme}>

@@ -6,10 +6,10 @@ import {
   Image,
   Text,
   useBreakpointValue,
-} from "@chakra-ui/react";
-import React from "react";
-import StupaidTCSLogo from "../../assets/images/stupaid-tcs-logo.svg";
-import GoBackArrow from "../../assets/landing-page-images/go-back-arrow-black.svg";
+} from '@chakra-ui/react';
+import React from 'react';
+import StupaidTCSLogo from '../../assets/images/stupaid-tcs-logo.svg';
+import GoBackArrow from '../../assets/landing-page-images/go-back-arrow-black.svg';
 
 const LandingLayout = ({ children, goPrev, step }) => {
   const isDesktop = useBreakpointValue({ base: false, mdLg: true });
@@ -28,7 +28,7 @@ const LandingLayout = ({ children, goPrev, step }) => {
           fontWeight="regular"
           pos="absolute"
           left="60px"
-          top={{ base: "130px", md: "60px" }}
+          top={{ base: '130px', md: '60px' }}
           bg="transparent"
           borderRadius="25px"
           color="#0c0c0c"
@@ -37,10 +37,10 @@ const LandingLayout = ({ children, goPrev, step }) => {
             goPrev();
           }}
           _hover={{
-            outline: "2px solid #0c0c0c",
+            outline: '2px solid #0c0c0c',
           }}
           _active={{
-            outline: "2px solid #0c0c0c",
+            outline: '2px solid #0c0c0c',
           }}
         >
           <Image src={GoBackArrow} pr="10px" />
@@ -50,7 +50,7 @@ const LandingLayout = ({ children, goPrev, step }) => {
       <Flex
         direction="column"
         alignItems="center"
-        minH={{ base: "760px", mdLg: "700px" }}
+        minH={{ base: '760px', mdLg: '700px' }}
         justifyContent="center"
       >
         {children}

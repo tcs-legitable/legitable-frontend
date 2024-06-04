@@ -1,23 +1,26 @@
 // helpers go here
-import { getDoc, getDocs, doc, setDoc, collection } from "@firebase/firestore";
-import { db } from "./firebase";
+import { getDoc, getDocs, doc, setDoc, collection } from '@firebase/firestore';
+import { db } from './firebase';
 
 export const getAllUsers = async () => {
-  const usersCol = collection(db, "mvp_users");
+  const usersCol = collection(db, 'mvp_users');
   const userSnapshot = await getDocs(usersCol);
-  const userList = userSnapshot.docs.map(doc => ({ id: doc.id, ...doc.data() }));
+  const userList = userSnapshot.docs.map((doc) => ({
+    id: doc.id,
+    ...doc.data(),
+  }));
   return userList;
 };
 
 export const doesUserExist = async (id) => {
-  const docRef = doc(db, "mvp_users", id);
+  const docRef = doc(db, 'mvp_users', id);
   const docSnap = await getDoc(docRef);
 
   return docSnap.exists();
 };
 
 export const getUserData = async (id) => {
-  const docRef = doc(db, "mvp_users", id);
+  const docRef = doc(db, 'mvp_users', id);
   const docSnap = await getDoc(docRef);
 
   if (docSnap.exists()) {
@@ -28,7 +31,7 @@ export const getUserData = async (id) => {
 };
 
 export const getEndorseeUserData = async (id) => {
-  const docRef = doc(db, "users", id);
+  const docRef = doc(db, 'users', id);
   const docSnap = await getDoc(docRef);
 
   if (docSnap.exists()) {
@@ -43,15 +46,15 @@ export const addStupaidUser = async (data) => {
   const uid = data?.uid;
   const docSnap = await getUserData(uid);
   if (docSnap === null) {
-    const userRef = doc(db, "mvp_users", uid);
+    const userRef = doc(db, 'mvp_users', uid);
     try {
       await setDoc(userRef, data);
-      console.log("success!");
+      console.log('success!');
     } catch (e) {
-      console.log("error is: ", e);
+      console.log('error is: ', e);
     }
   } else {
-    console.log("user w/ the uid of ", uid, " already exists");
+    console.log('user w/ the uid of ', uid, ' already exists');
   }
 };
 
@@ -62,21 +65,21 @@ export const addUser = async (uid, name, email, photoURL) => {
     let data = {
       email: email,
       name: name,
-      firstName: name.split(" ")[0],
+      firstName: name.split(' ')[0],
       uid: uid,
       photoURL: photoURL,
       endorsees: [],
     };
 
-    const userRef = doc(db, "users", uid);
+    const userRef = doc(db, 'users', uid);
     try {
       await setDoc(userRef, data);
-      console.log("success!");
+      console.log('success!');
     } catch (e) {
-      console.log("error is: ", e);
+      console.log('error is: ', e);
     }
   } else {
-    console.log("user w/ the uid of ", uid, " already exists");
+    console.log('user w/ the uid of ', uid, ' already exists');
   }
 };
 
@@ -87,12 +90,12 @@ export const addEndorsee = async (uid, data) => {
   const { endorsees } = userData;
   const updatedEndorsees = [...endorsees, endorseeData];
 
-  const docRef = doc(db, "users", uid);
+  const docRef = doc(db, 'users', uid);
   try {
     await setDoc(docRef, { endorsees: updatedEndorsees }, { merge: true });
-    console.log("doc update success!");
+    console.log('doc update success!');
   } catch (error) {
-    console.error("error updating document: ", error);
+    console.error('error updating document: ', error);
   }
 };
 
@@ -101,19 +104,19 @@ export const deleteEndorsee = async (id, uid) => {
   const { endorsees } = userData;
   const updatedEndorsees = endorsees.filter((endorsee) => endorsee.id !== id);
 
-  const docRef = doc(db, "users", uid);
+  const docRef = doc(db, 'users', uid);
   try {
     await setDoc(docRef, { endorsees: updatedEndorsees }, { merge: true });
-    console.log("endorsee is deleted of id: ", id);
+    console.log('endorsee is deleted of id: ', id);
   } catch (e) {
-    console.log("error deleting endorsee w/ id of ", id, " and error of: ", e);
+    console.log('error deleting endorsee w/ id of ', id, ' and error of: ', e);
   }
 };
 
 export const getEndorsees = async (uid) => {
   const userData = await getEndorseeUserData(uid);
   const { endorsees } = userData;
-  console.log(endorsees, " within");
+  console.log(endorsees, ' within');
   return endorsees;
 };
 
@@ -127,9 +130,9 @@ export const addWaitlistEntry = async (collection, name, email, id) => {
   const docRef = doc(db, collection, id);
   try {
     await setDoc(docRef, data);
-    console.log("success!");
+    console.log('success!');
   } catch (e) {
-    console.log("error is: ", e);
+    console.log('error is: ', e);
   }
 };
 
@@ -140,7 +143,7 @@ export const addOrganizationWaitlistEntry = async (
   socialLink,
   country,
   city,
-  id
+  id,
 ) => {
   let data = {
     name: name,
@@ -151,12 +154,12 @@ export const addOrganizationWaitlistEntry = async (
     city: city,
   };
 
-  const docRef = doc(db, "organization", id);
+  const docRef = doc(db, 'organization', id);
   try {
     await setDoc(docRef, data);
-    console.log("success!");
+    console.log('success!');
   } catch (e) {
-    console.log("error is: ", e);
+    console.log('error is: ', e);
   }
 };
 
@@ -169,7 +172,7 @@ export const addStudentWaitlistEntry = async (
   country,
   city,
   projectPref,
-  skills
+  skills,
 ) => {
   let data = {
     email: email,
@@ -182,11 +185,11 @@ export const addStudentWaitlistEntry = async (
     skills: skills,
   };
 
-  const docRef = doc(db, "student", id);
+  const docRef = doc(db, 'student', id);
   try {
     await setDoc(docRef, data);
-    console.log("success!");
+    console.log('success!');
   } catch (e) {
-    console.log("error is: ", e);
+    console.log('error is: ', e);
   }
 };

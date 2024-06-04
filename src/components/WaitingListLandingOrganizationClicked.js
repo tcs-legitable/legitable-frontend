@@ -6,21 +6,21 @@ import {
   Input,
   Text,
   useBreakpointValue,
-} from "@chakra-ui/react";
-import React, { useState } from "react";
-import StupaidLogo from "../assets/images/stupaid-logo.svg";
-import ErrorArrow from "../assets/images/error-arrow.svg";
-import SuccessArrow from "../assets/images/success-arrow.svg";
-import GoBackArrow from "../assets/images/go-back-arrow.svg";
+} from '@chakra-ui/react';
+import React, { useState } from 'react';
+import StupaidLogo from '../assets/images/stupaid-logo.svg';
+import ErrorArrow from '../assets/images/error-arrow.svg';
+import SuccessArrow from '../assets/images/success-arrow.svg';
+import GoBackArrow from '../assets/images/go-back-arrow.svg';
 import {
   addOrganizationWaitlistEntry,
   addWaitlistEntry,
-} from "../firebase/helpers";
-import { v4 as uuidv4 } from "uuid";
+} from '../firebase/helpers';
+import { v4 as uuidv4 } from 'uuid';
 
 const WaitingListLandingOrganizationClicked = ({ value }) => {
-  const [inputName, setInputName] = useState("");
-  const [inputEmail, setInputEmail] = useState("");
+  const [inputName, setInputName] = useState('');
+  const [inputEmail, setInputEmail] = useState('');
 
   // 0: not sent
   // 1: successfully sent
@@ -28,10 +28,10 @@ const WaitingListLandingOrganizationClicked = ({ value }) => {
   const [success, setSuccess] = useState(0);
   const isDesktop = useBreakpointValue({ base: false, mdLg: true });
 
-  const [socialLink, setSocialLink] = useState("");
-  const [organizationName, setOrganizationName] = useState("");
-  const [country, setCountry] = useState("");
-  const [city, setCity] = useState("");
+  const [socialLink, setSocialLink] = useState('');
+  const [organizationName, setOrganizationName] = useState('');
+  const [country, setCountry] = useState('');
+  const [city, setCity] = useState('');
 
   const id = uuidv4();
 
@@ -44,12 +44,12 @@ const WaitingListLandingOrganizationClicked = ({ value }) => {
         socialLink,
         country,
         city,
-        id
+        id,
       );
       setSuccess(1);
     } catch (error) {
       setSuccess(2);
-      console.error(error, " is the error");
+      console.error(error, ' is the error');
     }
   };
 
@@ -59,7 +59,7 @@ const WaitingListLandingOrganizationClicked = ({ value }) => {
       bg="transparent"
       flexDir="column"
       alignItems="center"
-      pb={isDesktop ? "100px" : "70px"}
+      pb={isDesktop ? '100px' : '70px'}
     >
       {success === 0 && (
         <Button
@@ -67,7 +67,7 @@ const WaitingListLandingOrganizationClicked = ({ value }) => {
           fontWeight="thin"
           pos="absolute"
           left="60px"
-          top={{ base: "130px", md: "60px" }}
+          top={{ base: '130px', md: '60px' }}
           bg="transparent"
           borderRadius="25px"
           color="#fafafa"
@@ -76,10 +76,10 @@ const WaitingListLandingOrganizationClicked = ({ value }) => {
             window.location.reload();
           }}
           _hover={{
-            outline: "2px solid #fafafa",
+            outline: '2px solid #fafafa',
           }}
           _active={{
-            outline: "2px solid #fafafa",
+            outline: '2px solid #fafafa',
           }}
         >
           <Image src={GoBackArrow} pr="10px" />
@@ -88,7 +88,7 @@ const WaitingListLandingOrganizationClicked = ({ value }) => {
       )}
       <Image
         bg="transparent"
-        w={{ base: "200px", mdLg: "150px" }}
+        w={{ base: '200px', mdLg: '150px' }}
         src={StupaidLogo}
       />
       {success === 0 && (
@@ -99,14 +99,14 @@ const WaitingListLandingOrganizationClicked = ({ value }) => {
           fontSize="20px"
           color="#969696"
         >
-          Where{" "}
+          Where{' '}
           <Box color="#fafafa" as="span">
             student creatives
-          </Box>{" "}
-          become{" "}
+          </Box>{' '}
+          become{' '}
           <Box color="#fafafa" as="span">
             legit.
-          </Box>{" "}
+          </Box>{' '}
         </Text>
       )}
       {success === 1 && (
@@ -139,7 +139,7 @@ const WaitingListLandingOrganizationClicked = ({ value }) => {
             borderRadius="20px"
             focusBorderColor="#fafafa"
             placeholder="Full name"
-            _placeholder={{ color: "#535353" }}
+            _placeholder={{ color: '#535353' }}
             type="text"
             value={inputName}
             onChange={(e) => setInputName(e.target.value)}
@@ -149,7 +149,7 @@ const WaitingListLandingOrganizationClicked = ({ value }) => {
             borderRadius="20px"
             focusBorderColor="#fafafa"
             placeholder="Organization Name"
-            _placeholder={{ color: "#535353" }}
+            _placeholder={{ color: '#535353' }}
             type="text"
             value={organizationName}
             onChange={(e) => setOrganizationName(e.target.value)}
@@ -159,7 +159,7 @@ const WaitingListLandingOrganizationClicked = ({ value }) => {
             borderRadius="20px"
             focusBorderColor="#fafafa"
             placeholder="Email"
-            _placeholder={{ color: "#535353" }}
+            _placeholder={{ color: '#535353' }}
             value={inputEmail}
             onChange={(e) => setInputEmail(e.target.value)}
             mb="10px"
@@ -168,7 +168,7 @@ const WaitingListLandingOrganizationClicked = ({ value }) => {
             borderRadius="20px"
             focusBorderColor="#fafafa"
             placeholder="Social Link (e.g. Linkedin)"
-            _placeholder={{ color: "#535353" }}
+            _placeholder={{ color: '#535353' }}
             type="text"
             value={socialLink}
             onChange={(e) => setSocialLink(e.target.value)}
@@ -183,7 +183,7 @@ const WaitingListLandingOrganizationClicked = ({ value }) => {
                 placeholder="Country"
                 borderRadius="20px"
                 value={country}
-                _placeholder={{ color: "#969696" }}
+                _placeholder={{ color: '#969696' }}
                 onChange={(e) => setCountry(e.target.value)}
                 mb="5px"
               />
@@ -192,7 +192,7 @@ const WaitingListLandingOrganizationClicked = ({ value }) => {
                 placeholder="City"
                 borderRadius="20px"
                 value={city}
-                _placeholder={{ color: "#969696" }}
+                _placeholder={{ color: '#969696' }}
                 onChange={(e) => setCity(e.target.value)}
                 mb="5px"
               />
@@ -200,11 +200,11 @@ const WaitingListLandingOrganizationClicked = ({ value }) => {
           </Flex>
           <Button
             isDisabled={
-              inputName === "" ||
-              inputEmail === "" ||
-              organizationName === "" ||
-              country === "" ||
-              city === ""
+              inputName === '' ||
+              inputEmail === '' ||
+              organizationName === '' ||
+              country === '' ||
+              city === ''
             }
             borderRadius="20px"
             bg="transparent"
@@ -214,10 +214,10 @@ const WaitingListLandingOrganizationClicked = ({ value }) => {
             color="#0c0c0c"
             backgroundColor="#fafafa"
             _hover={{
-              backgroundColor: "#b3b3b3",
+              backgroundColor: '#b3b3b3',
             }}
             _active={{
-              backgroundColor: "#b3b3b3",
+              backgroundColor: '#b3b3b3',
             }}
             onClick={handleClick}
           >
@@ -265,14 +265,14 @@ const WaitingListLandingOrganizationClicked = ({ value }) => {
           transition="background-position 0.5s ease"
           fontWeight="thin"
           _hover={{
-            backgroundPosition: "left bottom",
+            backgroundPosition: 'left bottom',
           }}
           _active={{
-            backgroundPosition: "left bottom",
+            backgroundPosition: 'left bottom',
           }}
           mt="40px"
           onClick={() => {
-            window.open("https://www.thecreativesolution.ca/", "_blank");
+            window.open('https://www.thecreativesolution.ca/', '_blank');
           }}
         >
           Check out our other work
@@ -281,7 +281,7 @@ const WaitingListLandingOrganizationClicked = ({ value }) => {
       )}
       {success === 2 && (
         <Button
-          isDisabled={inputName === "" || inputEmail === ""}
+          isDisabled={inputName === '' || inputEmail === ''}
           w="fit-content"
           alignSelf="center"
           border="1px solid"
@@ -295,10 +295,10 @@ const WaitingListLandingOrganizationClicked = ({ value }) => {
           transition="background-position 0.5s ease"
           fontWeight="thin"
           _hover={{
-            backgroundPosition: "left bottom",
+            backgroundPosition: 'left bottom',
           }}
           _active={{
-            backgroundPosition: "left bottom",
+            backgroundPosition: 'left bottom',
           }}
           mt="40px"
           onClick={() => {

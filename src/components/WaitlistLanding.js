@@ -5,13 +5,13 @@ import {
   Image,
   Text,
   useBreakpointValue,
-} from "@chakra-ui/react";
-import React from "react";
-import StupaidLogo from "../assets/images/stupaid-logo.svg";
-import TalentButtonIcon from "../assets/images/talent-button-icon.svg";
-import StudentButtonIcon from "../assets/images/student-button-icon.svg";
-import ArrowText1 from "../assets/images/arrow-text1.svg";
-import ArrowText2 from "../assets/images/arrow-text2.svg";
+} from '@chakra-ui/react';
+import React from 'react';
+import StupaidLogo from '../assets/images/stupaid-logo.svg';
+import TalentButtonIcon from '../assets/images/talent-button-icon.svg';
+import StudentButtonIcon from '../assets/images/student-button-icon.svg';
+import ArrowText1 from '../assets/images/arrow-text1.svg';
+import ArrowText2 from '../assets/images/arrow-text2.svg';
 
 const WaitlistLanding = ({ handleClick }) => {
   const isDesktop = useBreakpointValue({ base: false, mdLg: true });
@@ -26,22 +26,22 @@ const WaitlistLanding = ({ handleClick }) => {
     >
       <Image
         bg="transparent"
-        w={{ base: "300px", mdLg: "250px" }}
+        w={{ base: '300px', mdLg: '250px' }}
         src={StupaidLogo}
       />
       <Text bg="transparent" pt="15px" fontSize="20px" color="#969696">
-        Where{" "}
+        Where{' '}
         <Box color="#fafafa" as="span">
           student creatives
-        </Box>{" "}
-        become{" "}
+        </Box>{' '}
+        become{' '}
         <Box color="#fafafa" as="span">
           legit.
-        </Box>{" "}
+        </Box>{' '}
       </Text>
       <Flex
         w="100%"
-        flexDir={{ base: "column", mdLg: "row" }}
+        flexDir={{ base: 'column', mdLg: 'row' }}
         bg="transparent"
         pt="25px"
       >
@@ -57,13 +57,13 @@ const WaitlistLanding = ({ handleClick }) => {
           transition="background-position 0.5s ease"
           fontWeight="thin"
           _hover={{
-            backgroundPosition: "left bottom",
+            backgroundPosition: 'left bottom',
           }}
           _active={{
-            backgroundPosition: "left bottom",
+            backgroundPosition: 'left bottom',
           }}
-          mr={{ base: "0px", mdLg: "10px" }}
-          onClick={() => handleClick("organization")}
+          mr={{ base: '0px', mdLg: '10px' }}
+          onClick={() => handleClick('organization')}
         >
           <Image bgColor="inherit" mr="5px" src={TalentButtonIcon} />
           I'm looking for talent
@@ -80,14 +80,14 @@ const WaitlistLanding = ({ handleClick }) => {
           transition="background-position 0.5s ease"
           fontWeight="thin"
           _hover={{
-            backgroundPosition: "left bottom",
+            backgroundPosition: 'left bottom',
           }}
           _active={{
-            backgroundPosition: "left bottom",
+            backgroundPosition: 'left bottom',
           }}
-          ml={{ base: "0px", mdLg: "10px" }}
-          mt={{ base: "10px", mdLg: "0px" }}
-          onClick={() => handleClick("student")}
+          ml={{ base: '0px', mdLg: '10px' }}
+          mt={{ base: '10px', mdLg: '0px' }}
+          onClick={() => handleClick('student')}
         >
           <Image bgColor="inherit" mr="5px" src={StudentButtonIcon} /> I'm a
           student

@@ -7,19 +7,19 @@ import {
   Text,
   useBreakpointValue,
   VStack,
-} from "@chakra-ui/react";
-import React, { useState } from "react";
-import StupaidLogo from "../assets/images/stupaid-logo.svg";
-import ErrorArrow from "../assets/images/error-arrow.svg";
-import SuccessArrow from "../assets/images/success-arrow.svg";
-import GoBackArrow from "../assets/images/go-back-arrow.svg";
-import { addStudentWaitlistEntry } from "../firebase/helpers";
-import { v4 as uuidv4 } from "uuid";
-import CheckMark from "../assets/images/check-mark-white.svg";
+} from '@chakra-ui/react';
+import React, { useState } from 'react';
+import StupaidLogo from '../assets/images/stupaid-logo.svg';
+import ErrorArrow from '../assets/images/error-arrow.svg';
+import SuccessArrow from '../assets/images/success-arrow.svg';
+import GoBackArrow from '../assets/images/go-back-arrow.svg';
+import { addStudentWaitlistEntry } from '../firebase/helpers';
+import { v4 as uuidv4 } from 'uuid';
+import CheckMark from '../assets/images/check-mark-white.svg';
 
 const WaitingListLandingStudentClicked = () => {
-  const [inputName, setInputName] = useState("");
-  const [inputEmail, setInputEmail] = useState("");
+  const [inputName, setInputName] = useState('');
+  const [inputEmail, setInputEmail] = useState('');
 
   // 0: info page
   // 1: skills page
@@ -28,18 +28,18 @@ const WaitingListLandingStudentClicked = () => {
   const [success, setSuccess] = useState(0);
   const isDesktop = useBreakpointValue({ base: false, mdLg: true });
 
-  const [school, setSchool] = useState("");
-  const [year, setYear] = useState("");
+  const [school, setSchool] = useState('');
+  const [year, setYear] = useState('');
 
-  const [country, setCountry] = useState("");
-  const [city, setCity] = useState("");
+  const [country, setCountry] = useState('');
+  const [city, setCity] = useState('');
 
   const [projectPref, setProjectPref] = useState(0);
 
   const projectPrefButtons = [
-    { id: 0, text: "In-person", value: "in-person" },
-    { id: 1, text: "Remote", value: "remote" },
-    { id: 2, text: "Any", value: "any" },
+    { id: 0, text: 'In-person', value: 'in-person' },
+    { id: 1, text: 'Remote', value: 'remote' },
+    { id: 2, text: 'Any', value: 'any' },
   ];
 
   const id = uuidv4();
@@ -47,20 +47,20 @@ const WaitingListLandingStudentClicked = () => {
   const [skills, setSkills] = useState([]);
 
   const skillList = [
-    { id: 0, text: "Branding", value: "branding" },
-    { id: 1, text: "Graphic Design", value: "graphic-design" },
-    { id: 2, text: "Digital Art", value: "digital-art" },
-    { id: 3, text: "Traditional Art", value: "traditional-art" },
-    { id: 4, text: "Slidedeck Design", value: "slidedeck-design" },
-    { id: 5, text: "Website Design", value: "website-design" },
-    { id: 6, text: "Website Development", value: "website-development" },
-    { id: 7, text: "UI/UX Design", value: "ui-ux-design" },
-    { id: 8, text: "Social Media Content", value: "social-media-content" },
-    { id: 9, text: "Photography", value: "photography" },
-    { id: 10, text: "Videography", value: "videography" },
-    { id: 11, text: "Animation", value: "animation" },
-    { id: 12, text: "3D Modeling", value: "3d-modeling" },
-    { id: 13, text: "Music Production", value: "music-production" },
+    { id: 0, text: 'Branding', value: 'branding' },
+    { id: 1, text: 'Graphic Design', value: 'graphic-design' },
+    { id: 2, text: 'Digital Art', value: 'digital-art' },
+    { id: 3, text: 'Traditional Art', value: 'traditional-art' },
+    { id: 4, text: 'Slidedeck Design', value: 'slidedeck-design' },
+    { id: 5, text: 'Website Design', value: 'website-design' },
+    { id: 6, text: 'Website Development', value: 'website-development' },
+    { id: 7, text: 'UI/UX Design', value: 'ui-ux-design' },
+    { id: 8, text: 'Social Media Content', value: 'social-media-content' },
+    { id: 9, text: 'Photography', value: 'photography' },
+    { id: 10, text: 'Videography', value: 'videography' },
+    { id: 11, text: 'Animation', value: 'animation' },
+    { id: 12, text: '3D Modeling', value: '3d-modeling' },
+    { id: 13, text: 'Music Production', value: 'music-production' },
   ];
 
   // this sets the student info
@@ -79,12 +79,12 @@ const WaitingListLandingStudentClicked = () => {
         country,
         city,
         projectPrefButtons[projectPref].value,
-        skillNames
+        skillNames,
       );
       setSuccess(2);
     } catch (error) {
       setSuccess(3);
-      console.error(error, " is the error");
+      console.error(error, ' is the error');
     }
   };
 
@@ -95,7 +95,7 @@ const WaitingListLandingStudentClicked = () => {
       flexDir="column"
       alignItems="center"
       // minH={success ="100vh"}
-      pb={isDesktop ? "100px" : "0px"}
+      pb={isDesktop ? '100px' : '0px'}
     >
       {success < 2 && (
         <Button
@@ -103,7 +103,7 @@ const WaitingListLandingStudentClicked = () => {
           fontWeight="thin"
           pos="absolute"
           left="60px"
-          top={{ base: "130px", md: "60px" }}
+          top={{ base: '130px', md: '60px' }}
           bg="transparent"
           borderRadius="25px"
           color="#fafafa"
@@ -116,10 +116,10 @@ const WaitingListLandingStudentClicked = () => {
             }
           }}
           _hover={{
-            outline: "2px solid #fafafa",
+            outline: '2px solid #fafafa',
           }}
           _active={{
-            outline: "2px solid #fafafa",
+            outline: '2px solid #fafafa',
           }}
         >
           <Image src={GoBackArrow} pr="10px" />
@@ -128,7 +128,7 @@ const WaitingListLandingStudentClicked = () => {
       )}
       <Image
         bg="transparent"
-        w={{ base: "200px", mdLg: "150px" }}
+        w={{ base: '200px', mdLg: '150px' }}
         src={StupaidLogo}
       />
       {success === 0 && (
@@ -157,7 +157,7 @@ const WaitingListLandingStudentClicked = () => {
             pt="35px"
           >
             <Flex
-              w={{ base: "450px", md: "800px" }}
+              w={{ base: '450px', md: '800px' }}
               flexWrap="wrap"
               align="center"
               justify="center"
@@ -173,7 +173,7 @@ const WaitingListLandingStudentClicked = () => {
                     border="1px solid #fafafa"
                     p="8px 30px"
                     _hover={{
-                      cursor: "pointer",
+                      cursor: 'pointer',
                     }}
                     borderRadius="25px"
                     color="#fafafa"
@@ -188,12 +188,12 @@ const WaitingListLandingStudentClicked = () => {
                         setSkills(newSkills);
                       } else if (skills.includes(id)) {
                         const filteredList = newSkills.filter(
-                          (skill) => skill !== id
+                          (skill) => skill !== id,
                         );
                         setSkills(filteredList);
                       }
                     }}
-                    bgColor={skills.includes(id) && "#303030"}
+                    bgColor={skills.includes(id) && '#303030'}
                   >
                     {skills.includes(id) && <Image pr="10px" src={CheckMark} />}
                     {text}
@@ -211,10 +211,10 @@ const WaitingListLandingStudentClicked = () => {
             color="#0c0c0c"
             backgroundColor="#fafafa"
             _hover={{
-              backgroundColor: "#b3b3b3",
+              backgroundColor: '#b3b3b3',
             }}
             _active={{
-              backgroundColor: "#b3b3b3",
+              backgroundColor: '#b3b3b3',
             }}
             onClick={handleClick}
           >
@@ -252,7 +252,7 @@ const WaitingListLandingStudentClicked = () => {
             borderRadius="20px"
             focusBorderColor="#fafafa"
             placeholder="Full name"
-            _placeholder={{ color: "#535353" }}
+            _placeholder={{ color: '#535353' }}
             type="text"
             value={inputName}
             onChange={(e) => setInputName(e.target.value)}
@@ -262,7 +262,7 @@ const WaitingListLandingStudentClicked = () => {
             borderRadius="20px"
             focusBorderColor="#fafafa"
             placeholder="Email"
-            _placeholder={{ color: "#535353" }}
+            _placeholder={{ color: '#535353' }}
             type="Email"
             value={inputEmail}
             onChange={(e) => setInputEmail(e.target.value)}
@@ -272,7 +272,7 @@ const WaitingListLandingStudentClicked = () => {
             borderRadius="20px"
             focusBorderColor="#fafafa"
             placeholder="Name of School / Institution"
-            _placeholder={{ color: "#535353" }}
+            _placeholder={{ color: '#535353' }}
             type="text"
             value={school}
             onChange={(e) => setSchool(e.target.value)}
@@ -282,7 +282,7 @@ const WaitingListLandingStudentClicked = () => {
             borderRadius="20px"
             focusBorderColor="#fafafa"
             placeholder="Year Level"
-            _placeholder={{ color: "#535353" }}
+            _placeholder={{ color: '#535353' }}
             type="Email"
             value={year}
             onChange={(e) => setYear(e.target.value)}
@@ -297,7 +297,7 @@ const WaitingListLandingStudentClicked = () => {
                 placeholder="Country"
                 borderRadius="20px"
                 value={country}
-                _placeholder={{ color: "#969696" }}
+                _placeholder={{ color: '#969696' }}
                 onChange={(e) => setCountry(e.target.value)}
                 mb="5px"
               />
@@ -305,7 +305,7 @@ const WaitingListLandingStudentClicked = () => {
                 placeholder="City"
                 borderRadius="20px"
                 value={city}
-                _placeholder={{ color: "#969696" }}
+                _placeholder={{ color: '#969696' }}
                 onChange={(e) => setCity(e.target.value)}
                 mb="5px"
               />
@@ -327,13 +327,13 @@ const WaitingListLandingStudentClicked = () => {
                     border="1px solid #fafafa"
                     p="8px 40px"
                     _hover={{
-                      cursor: "pointer",
+                      cursor: 'pointer',
                     }}
                     borderRadius="25px"
                     color="#fafafa"
                     bg="transparent"
                     onClick={() => setProjectPref(id)}
-                    bgColor={id === projectPref && "#303030"}
+                    bgColor={id === projectPref && '#303030'}
                   >
                     {text}
                   </Box>
@@ -350,18 +350,18 @@ const WaitingListLandingStudentClicked = () => {
             color="#0c0c0c"
             backgroundColor="#fafafa"
             _hover={{
-              backgroundColor: "#b3b3b3",
+              backgroundColor: '#b3b3b3',
             }}
             _active={{
-              backgroundColor: "#b3b3b3",
+              backgroundColor: '#b3b3b3',
             }}
             isDisabled={
-              inputName === "" ||
-              inputEmail === "" ||
-              school === "" ||
-              year === "" ||
-              country === "" ||
-              city === ""
+              inputName === '' ||
+              inputEmail === '' ||
+              school === '' ||
+              year === '' ||
+              country === '' ||
+              city === ''
             }
             w="50%"
             alignSelf="center"
@@ -393,14 +393,14 @@ const WaitingListLandingStudentClicked = () => {
           transition="background-position 0.5s ease"
           fontWeight="thin"
           _hover={{
-            backgroundPosition: "left bottom",
+            backgroundPosition: 'left bottom',
           }}
           _active={{
-            backgroundPosition: "left bottom",
+            backgroundPosition: 'left bottom',
           }}
           mt="40px"
           onClick={() => {
-            window.open("https://www.thecreativesolution.ca/", "_blank");
+            window.open('https://www.thecreativesolution.ca/', '_blank');
           }}
         >
           Check out our other work
@@ -422,10 +422,10 @@ const WaitingListLandingStudentClicked = () => {
           transition="background-position 0.5s ease"
           fontWeight="thin"
           _hover={{
-            backgroundPosition: "left bottom",
+            backgroundPosition: 'left bottom',
           }}
           _active={{
-            backgroundPosition: "left bottom",
+            backgroundPosition: 'left bottom',
           }}
           mt="40px"
           onClick={() => {

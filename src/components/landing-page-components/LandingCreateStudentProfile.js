@@ -6,31 +6,31 @@ import {
   Input,
   Text,
   VStack,
-} from "@chakra-ui/react";
-import React, { useState } from "react";
-import StupaidLogo from "../../assets/landing-page-images/stupaid-logo-small.svg";
-import GmailArrow from "../../assets/landing-page-images/continue-w-gmail-arrow-black.svg";
+} from '@chakra-ui/react';
+import React, { useState } from 'react';
+import StupaidLogo from '../../assets/landing-page-images/stupaid-logo-small.svg';
+import GmailArrow from '../../assets/landing-page-images/continue-w-gmail-arrow-black.svg';
 
 const LandingCreateStudentProfile = ({ goNext, setData, data }) => {
-  const [name, setName] = useState("");
-  const [school, setSchool] = useState("");
-  const [year, setYear] = useState("");
+  const [name, setName] = useState('');
+  const [school, setSchool] = useState('');
+  const [year, setYear] = useState('');
 
-  const [country, setCountry] = useState("");
-  const [city, setCity] = useState("");
+  const [country, setCountry] = useState('');
+  const [city, setCity] = useState('');
 
   const [projectPref, setProjectPref] = useState(0);
 
   const projectPrefButtons = [
-    { id: 0, text: "In-person", value: "in-person" },
-    { id: 1, text: "Remote", value: "remote" },
-    { id: 2, text: "Any", value: "any" },
+    { id: 0, text: 'In-person', value: 'in-person' },
+    { id: 1, text: 'Remote', value: 'remote' },
+    { id: 2, text: 'Any', value: 'any' },
   ];
 
   const handleClick = () => {
     const moreData = {
       input_name: name,
-      input_first_name: name.split(" ")[0],
+      input_first_name: name.split(' ')[0],
       year: year,
       school: school,
       city: city,
@@ -52,7 +52,7 @@ const LandingCreateStudentProfile = ({ goNext, setData, data }) => {
     >
       <Image
         bg="transparent"
-        w={{ base: "200px", mdLg: "150px" }}
+        w={{ base: '200px', mdLg: '150px' }}
         src={StupaidLogo}
       />
       <VStack spacing="0px" fontSize="20px">
@@ -70,7 +70,7 @@ const LandingCreateStudentProfile = ({ goNext, setData, data }) => {
           placeholder="Full name"
           borderRadius="20px"
           value={name}
-          _placeholder={{ color: "#969696" }}
+          _placeholder={{ color: '#969696' }}
           onChange={(e) => setName(e.target.value)}
           mb="10px"
         />
@@ -78,7 +78,7 @@ const LandingCreateStudentProfile = ({ goNext, setData, data }) => {
           placeholder="Name of School / Institution"
           borderRadius="20px"
           value={school}
-          _placeholder={{ color: "#969696" }}
+          _placeholder={{ color: '#969696' }}
           onChange={(e) => setSchool(e.target.value)}
           mb="10px"
         />
@@ -87,7 +87,7 @@ const LandingCreateStudentProfile = ({ goNext, setData, data }) => {
           placeholder="Year Level"
           borderRadius="20px"
           value={year}
-          _placeholder={{ color: "#969696" }}
+          _placeholder={{ color: '#969696' }}
           onChange={(e) => setYear(e.target.value)}
         />
         <Flex mb="20px" flexDir="column">
@@ -97,7 +97,7 @@ const LandingCreateStudentProfile = ({ goNext, setData, data }) => {
               placeholder="Country"
               borderRadius="20px"
               value={country}
-              _placeholder={{ color: "#969696" }}
+              _placeholder={{ color: '#969696' }}
               onChange={(e) => setCountry(e.target.value)}
               mb="5px"
             />
@@ -105,7 +105,7 @@ const LandingCreateStudentProfile = ({ goNext, setData, data }) => {
               placeholder="City"
               borderRadius="20px"
               value={city}
-              _placeholder={{ color: "#969696" }}
+              _placeholder={{ color: '#969696' }}
               onChange={(e) => setCity(e.target.value)}
               mb="5px"
             />
@@ -127,13 +127,13 @@ const LandingCreateStudentProfile = ({ goNext, setData, data }) => {
                   border="1px solid #0c0c0c"
                   p="8px 40px"
                   _hover={{
-                    cursor: "pointer",
+                    cursor: 'pointer',
                   }}
                   borderRadius="25px"
                   color="#0c0c0c"
                   bg="transparent"
                   onClick={() => setProjectPref(id)}
-                  bgColor={id === projectPref && "#d7d7d7"}
+                  bgColor={id === projectPref && '#d7d7d7'}
                 >
                   {text}
                 </Box>
@@ -144,12 +144,12 @@ const LandingCreateStudentProfile = ({ goNext, setData, data }) => {
 
         <Button
           isDisabled={
-            name === "" ||
-            school === "" ||
-            year === "" ||
-            country === "" ||
-            city === "" ||
-            projectPref === ""
+            name === '' ||
+            school === '' ||
+            year === '' ||
+            country === '' ||
+            city === '' ||
+            projectPref === ''
           }
           border="1px solid"
           p="23px"
@@ -158,10 +158,10 @@ const LandingCreateStudentProfile = ({ goNext, setData, data }) => {
           bgColor="#0c0c0c"
           fontWeight="regular"
           _hover={{
-            backgroundPosition: "left bottom",
+            backgroundPosition: 'left bottom',
           }}
           _active={{
-            backgroundPosition: "left bottom",
+            backgroundPosition: 'left bottom',
           }}
           onClick={() => handleClick()}
           w="50%"

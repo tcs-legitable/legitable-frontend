@@ -1,19 +1,19 @@
-import { Button, Flex, Image, Text, VStack } from "@chakra-ui/react";
-import React, { useEffect } from "react";
-import { useNavigate } from "react-router-dom";
-import StupaidLogo from "../../assets/landing-page-images/stupaid-logo-small.svg";
-import { addStupaidUser } from "../../firebase/helpers";
+import { Button, Flex, Image, Text, VStack } from '@chakra-ui/react';
+import React, { useEffect } from 'react';
+import { useNavigate } from 'react-router-dom';
+import StupaidLogo from '../../assets/landing-page-images/stupaid-logo-small.svg';
+import { addStupaidUser } from '../../firebase/helpers';
 
 const LandingFinal = ({ data }) => {
   const navigate = useNavigate();
 
   const handleClick = async () => {
     await addStupaidUser(data);
-    navigate("/home");
+    navigate('/home');
   };
 
   useEffect(() => {
-    console.log(data, " is the data");
+    console.log(data, ' is the data');
   }, [data]);
   return (
     <Flex
@@ -25,7 +25,7 @@ const LandingFinal = ({ data }) => {
     >
       <Image
         bg="transparent"
-        w={{ base: "200px", mdLg: "150px" }}
+        w={{ base: '200px', mdLg: '150px' }}
         src={StupaidLogo}
       />
       <VStack spacing="0px" fontSize="20px">
@@ -36,7 +36,7 @@ const LandingFinal = ({ data }) => {
       <Flex
         justifyContent="center"
         w="100%"
-        flexDir={{ base: "column", mdLg: "row" }}
+        flexDir={{ base: 'column', mdLg: 'row' }}
         bg="transparent"
         pt="25px"
       >
@@ -48,10 +48,10 @@ const LandingFinal = ({ data }) => {
           bgColor="#0c0c0c"
           fontWeight="regular"
           _hover={{
-            backgroundPosition: "left bottom",
+            backgroundPosition: 'left bottom',
           }}
           _active={{
-            backgroundPosition: "left bottom",
+            backgroundPosition: 'left bottom',
           }}
           onClick={handleClick}
         >

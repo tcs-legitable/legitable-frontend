@@ -1,6 +1,6 @@
-import { Button, Flex, Image, Text, VStack } from "@chakra-ui/react";
-import React from "react";
-import StupaidLogo from "../../assets/landing-page-images/stupaid-logo-small.svg";
+import { Button, Flex, Image, Text, VStack } from '@chakra-ui/react';
+import React from 'react';
+import StupaidLogo from '../../assets/landing-page-images/stupaid-logo-small.svg';
 
 const LandingGetStarted = ({ goNext }) => {
   return (
@@ -13,7 +13,7 @@ const LandingGetStarted = ({ goNext }) => {
     >
       <Image
         bg="transparent"
-        w={{ base: "200px", mdLg: "150px" }}
+        w={{ base: '200px', mdLg: '150px' }}
         src={StupaidLogo}
       />
       <VStack spacing="0px" fontSize="20px">
@@ -21,7 +21,7 @@ const LandingGetStarted = ({ goNext }) => {
       </VStack>
       <Flex
         w="100%"
-        flexDir={{ base: "column", mdLg: "row" }}
+        flexDir={{ base: 'column', mdLg: 'row' }}
         bg="transparent"
         pt="25px"
       >
@@ -33,12 +33,12 @@ const LandingGetStarted = ({ goNext }) => {
           bgColor="#0c0c0c"
           fontWeight="regular"
           _hover={{
-            backgroundPosition: "left bottom",
+            backgroundPosition: 'left bottom',
           }}
           _active={{
-            backgroundPosition: "left bottom",
+            backgroundPosition: 'left bottom',
           }}
-          mr={{ base: "0px", mdLg: "10px" }}
+          mr={{ base: '0px', mdLg: '10px' }}
           onClick={() => goNext()}
         >
           I'm a new user
@@ -51,13 +51,13 @@ const LandingGetStarted = ({ goNext }) => {
           bgColor="#fafafa"
           fontWeight="regular"
           _hover={{
-            backgroundPosition: "left bottom",
+            backgroundPosition: 'left bottom',
           }}
           _active={{
-            backgroundPosition: "left bottom",
+            backgroundPosition: 'left bottom',
           }}
-          ml={{ base: "0px", mdLg: "10px" }}
-          mt={{ base: "10px", mdLg: "0px" }}
+          ml={{ base: '0px', mdLg: '10px' }}
+          mt={{ base: '10px', mdLg: '0px' }}
           // onClick={() => goNext()}
         >
           I'm a returning user

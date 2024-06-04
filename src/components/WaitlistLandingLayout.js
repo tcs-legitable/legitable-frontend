@@ -6,11 +6,11 @@ import {
   Link,
   Text,
   useBreakpointValue,
-} from "@chakra-ui/react";
-import React from "react";
-import StupaidTCSLogo from "../assets/images/stupaid-tcs-logo.svg";
-import Background1 from "../assets/images/background-1.svg";
-import Background2 from "../assets/images/background-2.svg";
+} from '@chakra-ui/react';
+import React from 'react';
+import StupaidTCSLogo from '../assets/images/stupaid-tcs-logo.svg';
+import Background1 from '../assets/images/background-1.svg';
+import Background2 from '../assets/images/background-2.svg';
 
 const WaitlistLandingLayout = ({ children }) => {
   const isDesktop = useBreakpointValue({ base: false, mdLg: true });
@@ -48,7 +48,7 @@ const WaitlistLandingLayout = ({ children }) => {
       <Flex
         direction="column"
         alignItems="center"
-        minH={{ base: "760px", mdLg: "700px" }}
+        minH={{ base: '760px', mdLg: '700px' }}
       >
         <HStack mt="80px" mb="130px">
           <Text color="#969696">Created by</Text>

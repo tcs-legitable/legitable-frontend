@@ -1,16 +1,16 @@
-import { Avatar, Box, Button, Text, useToast, VStack } from "@chakra-ui/react";
-import { doc, onSnapshot } from "firebase/firestore";
-import React, { useContext, useEffect, useState } from "react";
-import { SignedInContext } from "../App";
-import { db } from "../firebase/firebase";
+import { Avatar, Box, Button, Text, useToast, VStack } from '@chakra-ui/react';
+import { doc, onSnapshot } from 'firebase/firestore';
+import React, { useContext, useEffect, useState } from 'react';
+import { SignedInContext } from '../App';
+import { db } from '../firebase/firebase';
 import {
   getEndorsees,
   getEndorseeUserData,
   deleteEndorsee,
-} from "../firebase/helpers";
-import AddEndorseeModal from "./AddEndorseeModal";
+} from '../firebase/helpers';
+import AddEndorseeModal from './AddEndorseeModal';
 
-import CopyLink from "./CopyLink";
+import CopyLink from './CopyLink';
 
 const LoggedIn = () => {
   const { value } = useContext(SignedInContext);
@@ -31,13 +31,13 @@ const LoggedIn = () => {
     };
 
     fetchUser();
-    console.log("user is fetched");
+    console.log('user is fetched');
   }, [value]);
 
   useEffect(() => {
-    const unsub = onSnapshot(doc(db, "users", value), (doc) => {
-      const source = doc.metadata.hasPendingWrites ? "Local" : "Server";
-      console.log(source, " data: ", doc?.data());
+    const unsub = onSnapshot(doc(db, 'users', value), (doc) => {
+      const source = doc.metadata.hasPendingWrites ? 'Local' : 'Server';
+      console.log(source, ' data: ', doc?.data());
       const data = doc?.data();
       if (data) setEndorsees(data?.endorsees);
     });
@@ -52,20 +52,20 @@ const LoggedIn = () => {
       setEndorsees(updatedEndorsees);
 
       toast({
-        title: "Successfully deleted.",
-        description: "Person successfully removed from trusted circle.",
-        status: "error",
+        title: 'Successfully deleted.',
+        description: 'Person successfully removed from trusted circle.',
+        status: 'error',
         duration: 5000,
         isClosable: true,
-        position: "bottom",
+        position: 'bottom',
       });
     } catch (error) {
-      console.error("Failed to remove from trusted circle:", error);
+      console.error('Failed to remove from trusted circle:', error);
     }
   };
 
   const logout = () => {
-    localStorage.removeItem("user-uid");
+    localStorage.removeItem('user-uid');
     window.location.reload();
   };
 
@@ -95,19 +95,19 @@ const LoggedIn = () => {
                 <Text>
                   <Box as="span" fontWeight="bold">
                     Name:
-                  </Box>{" "}
+                  </Box>{' '}
                   {endorsee.name}
                 </Text>
                 <Text>
                   <Box as="span" fontWeight="bold">
                     Email:
-                  </Box>{" "}
+                  </Box>{' '}
                   {endorsee.email}
                 </Text>
                 <Text>
                   <Box as="span" fontWeight="bold">
                     Skill:
-                  </Box>{" "}
+                  </Box>{' '}
                   {endorsee.skill}
                 </Text>
 

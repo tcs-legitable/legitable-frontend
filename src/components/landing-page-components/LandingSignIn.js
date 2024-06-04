@@ -1,30 +1,30 @@
-import { Button, Flex, Image, Text, VStack } from "@chakra-ui/react";
-import React from "react";
-import StupaidLogo from "../../assets/landing-page-images/stupaid-logo-small.svg";
-import GmailArrow from "../../assets/landing-page-images/continue-w-gmail-arrow-black.svg";
-import { signInWithPopup } from "firebase/auth";
-import { auth, provider } from "../../firebase/firebase";
-import { doesUserExist } from "../../firebase/helpers";
-import { useNavigate } from "react-router-dom";
+import { Button, Flex, Image, Text, VStack } from '@chakra-ui/react';
+import React from 'react';
+import StupaidLogo from '../../assets/landing-page-images/stupaid-logo-small.svg';
+import GmailArrow from '../../assets/landing-page-images/continue-w-gmail-arrow-black.svg';
+import { signInWithPopup } from 'firebase/auth';
+import { auth, provider } from '../../firebase/firebase';
+import { doesUserExist } from '../../firebase/helpers';
+import { useNavigate } from 'react-router-dom';
 
 const LandingSignIn = ({ goNext, setData }) => {
   const navigate = useNavigate();
   const handleClick = async () => {
     try {
       const { user } = await signInWithPopup(auth, provider);
-      console.log(user, " is the user");
+      console.log(user, ' is the user');
 
       const { uid, email, displayName, photoURL } = user;
       const exists = await doesUserExist(uid);
 
       if (exists) {
-        navigate("/home");
+        navigate('/projects');
       }
 
       const data = {
         uid: uid,
         full_name: displayName,
-        first_name: displayName.split(" ")[0],
+        first_name: displayName.split(' ')[0],
         email: email,
         photo_url: photoURL,
       };
@@ -32,7 +32,7 @@ const LandingSignIn = ({ goNext, setData }) => {
 
       goNext();
     } catch (error) {
-      console.error("An error occurred during sign-in:", error);
+      console.error('An error occurred during sign-in:', error);
     }
   };
 
@@ -46,7 +46,7 @@ const LandingSignIn = ({ goNext, setData }) => {
     >
       <Image
         bg="transparent"
-        w={{ base: "200px", mdLg: "150px" }}
+        w={{ base: '200px', mdLg: '150px' }}
         src={StupaidLogo}
       />
       <VStack spacing="0px" fontSize="20px">
@@ -55,7 +55,7 @@ const LandingSignIn = ({ goNext, setData }) => {
       <Flex
         justifyContent="center"
         w="100%"
-        flexDir={{ base: "column", mdLg: "row" }}
+        flexDir={{ base: 'column', mdLg: 'row' }}
         bg="transparent"
         pt="25px"
       >
@@ -67,10 +67,10 @@ const LandingSignIn = ({ goNext, setData }) => {
           bgColor="#0c0c0c"
           fontWeight="regular"
           _hover={{
-            backgroundPosition: "left bottom",
+            backgroundPosition: 'left bottom',
           }}
           _active={{
-            backgroundPosition: "left bottom",
+            backgroundPosition: 'left bottom',
           }}
           onClick={() => handleClick()}
         >

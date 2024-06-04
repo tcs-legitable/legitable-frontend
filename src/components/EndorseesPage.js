@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from 'react';
 import { useParams } from 'react-router-dom';
-import { Box, Text, VStack } from "@chakra-ui/react";
+import { Box, Text, VStack } from '@chakra-ui/react';
 import { doc, updateDoc, getDoc, increment } from 'firebase/firestore';
 import { db } from '../firebase/firebase';
 // import { getEndorsees } from '../firebase/helpers';
@@ -12,12 +12,12 @@ const EndorseesPage = () => {
 
   useEffect(() => {
     const updateViewsAndGetEndorsees = async () => {
-      const userRef = doc(db, "users", userId);
-  
+      const userRef = doc(db, 'users', userId);
+
       await updateDoc(userRef, {
-        viewCount: increment(1)
+        viewCount: increment(1),
       });
-  
+
       const docSnap = await getDoc(userRef);
       if (docSnap.exists()) {
         const userData = docSnap.data();
@@ -25,7 +25,7 @@ const EndorseesPage = () => {
         setEndorsees(userData.endorsees || []);
       }
     };
-  
+
     updateViewsAndGetEndorsees();
   }, [userId]);
 
@@ -46,4 +46,3 @@ const EndorseesPage = () => {
 };
 
 export default EndorseesPage;
-

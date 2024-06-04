@@ -1,12 +1,12 @@
-import { Box, Flex } from "@chakra-ui/react";
-import React, { useContext, useEffect, useState } from "react";
-import WaitingListLandingOrganizationClicked from "./WaitingListLandingOrganizationClicked";
-import WaitingListLandingStudentClicked from "./WaitingListLandingStudentClicked";
-import WaitlistLanding from "./WaitlistLanding";
+import { Box, Flex } from '@chakra-ui/react';
+import React, { useContext, useEffect, useState } from 'react';
+import WaitingListLandingOrganizationClicked from './WaitingListLandingOrganizationClicked';
+import WaitingListLandingStudentClicked from './WaitingListLandingStudentClicked';
+import WaitlistLanding from './WaitlistLanding';
 // import { SignedInContext } from "../App";
 // import LoggedIn from "./LoggedIn";
 // import NotLoggedIn from "./NotLoggedIn";
-import WaitlistLandingLayout from "./WaitlistLandingLayout";
+import WaitlistLandingLayout from './WaitlistLandingLayout';
 
 const HomePage = () => {
   const [clicked, setClicked] = useState(null);
@@ -22,7 +22,7 @@ const HomePage = () => {
       <WaitlistLandingLayout>
         <Box mb="100px">
           {clicked ? (
-            clicked === "student" ? (
+            clicked === 'student' ? (
               <WaitingListLandingStudentClicked />
             ) : (
               <WaitingListLandingOrganizationClicked value={clicked} />

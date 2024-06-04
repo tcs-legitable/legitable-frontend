@@ -6,12 +6,12 @@ import {
   Text,
   useBreakpointValue,
   VStack,
-} from "@chakra-ui/react";
-import React from "react";
-import StupaidLogo from "../../assets/landing-page-images/stupaid-logo-main.svg";
-import TalentButtonIcon from "../../assets/landing-page-images/landing-talent.svg";
-import StudentButtonIcon from "../../assets/landing-page-images/landing-student.svg";
-import { useNavigate } from "react-router-dom";
+} from '@chakra-ui/react';
+import React from 'react';
+import StupaidLogo from '../../assets/landing-page-images/stupaid-logo-main.svg';
+import TalentButtonIcon from '../../assets/landing-page-images/landing-talent.svg';
+import StudentButtonIcon from '../../assets/landing-page-images/landing-student.svg';
+import { useNavigate } from 'react-router-dom';
 
 const LandingPage = ({ goNext }) => {
   const isDesktop = useBreakpointValue({ base: false, mdLg: true });
@@ -27,17 +27,20 @@ const LandingPage = ({ goNext }) => {
     >
       <Image
         bg="transparent"
-        w={{ base: "300px", mdLg: "250px" }}
+        w={{ base: '300px', mdLg: '250px' }}
         src={StupaidLogo}
       />
       <VStack spacing="0px" fontSize="20px">
-        <Text textAlign="center" w={{ base: "300px", mdLg: "420px" }} pt="15px">
-          Welcome to{" "}
+        <Text textAlign="center" w={{ base: '300px', mdLg: '420px' }} pt="15px">
+          Welcome to{' '}
           <Box color="#969696" as="span">
             Stupaid
           </Box>
-          ! A platform for connecting passionate business owners to eager
-          creative students to work on cool projects.
+          !
+        </Text>
+        <Text textAlign="center" w={{ base: '330px', mdLg: '420px' }} pt="15px">
+          A platform for connecting passionate business owners to eager creative
+          students to work on cool projects.
         </Text>
         {/* <Text bg="transparent" color="#969696">
           Where{" "}
@@ -52,7 +55,7 @@ const LandingPage = ({ goNext }) => {
       </VStack>
       <Flex
         w="100%"
-        flexDir={{ base: "column", mdLg: "row" }}
+        flexDir={{ base: 'column', mdLg: 'row' }}
         bg="transparent"
         pt="25px"
       >
@@ -68,13 +71,13 @@ const LandingPage = ({ goNext }) => {
           transition="background-position 0.5s ease"
           fontWeight="thin"
           _hover={{
-            backgroundPosition: "left bottom",
+            backgroundPosition: 'left bottom',
           }}
           _active={{
-            backgroundPosition: "left bottom",
+            backgroundPosition: 'left bottom',
           }}
-          mr={{ base: "0px", mdLg: "10px" }}
-          onClick={() => navigate("/")}
+          mr={{ base: '0px', mdLg: '10px' }}
+          onClick={() => navigate('/')}
         >
           <Image bgColor="inherit" mr="5px" src={TalentButtonIcon} />
           I'm looking for talent
@@ -91,13 +94,13 @@ const LandingPage = ({ goNext }) => {
           transition="background-position 0.5s ease"
           fontWeight="thin"
           _hover={{
-            backgroundPosition: "left bottom",
+            backgroundPosition: 'left bottom',
           }}
           _active={{
-            backgroundPosition: "left bottom",
+            backgroundPosition: 'left bottom',
           }}
-          ml={{ base: "0px", mdLg: "10px" }}
-          mt={{ base: "10px", mdLg: "0px" }}
+          ml={{ base: '0px', mdLg: '10px' }}
+          mt={{ base: '10px', mdLg: '0px' }}
           onClick={() => goNext()}
         >
           <Image bgColor="inherit" mr="5px" src={StudentButtonIcon} /> I'm a

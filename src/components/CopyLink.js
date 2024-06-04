@@ -1,6 +1,6 @@
 import React, { useContext } from 'react';
-import { Button, useToast } from "@chakra-ui/react";
-import { SignedInContext } from "../App";
+import { Button, useToast } from '@chakra-ui/react';
+import { SignedInContext } from '../App';
 
 const CopyLink = () => {
   const { value } = useContext(SignedInContext);
@@ -12,17 +12,17 @@ const CopyLink = () => {
     try {
       await navigator.clipboard.writeText(url);
       toast({
-        title: "URL Copied!",
-        description: "The link has been copied to your clipboard.",
-        status: "success",
+        title: 'URL Copied!',
+        description: 'The link has been copied to your clipboard.',
+        status: 'success',
         duration: 2000,
         isClosable: true,
       });
     } catch (err) {
       toast({
-        title: "Failed to Copy",
-        description: "Unable to copy the URL. Please try again.",
-        status: "error",
+        title: 'Failed to Copy',
+        description: 'Unable to copy the URL. Please try again.',
+        status: 'error',
         duration: 2000,
         isClosable: true,
       });
