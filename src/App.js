@@ -6,7 +6,8 @@ import EndorseesPage from "./components/EndorseesPage";
 import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
 import theme from "./theme/theme";
 import GetStartedLandingPage from "./components/landing-page-components/GetStartedLandingPage";
-import Home from "./components/main-projects-view/Home";
+import Home from "./components/organization-view-components/Home";
+import StudentLanding from "./components/student-view-components/StudentLanding";
 
 export const SignedInContext = createContext();
 
@@ -23,7 +24,8 @@ function App() {
               <Route path="/" element={<HomePage />} />
               <Route path="/landing" element={<GetStartedLandingPage />} />
               <Route path="/endorsees/:userId" element={<EndorseesPage />} />
-              <Route path="/home" element={<Home />}/>
+              <Route path="/home" element={<Home />} />
+              <Route path="/projects" element={<StudentLanding />} />
             </Routes>
           </Router>
         </VStack>
