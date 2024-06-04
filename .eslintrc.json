@@ -21,6 +21,6 @@
   "rules": {
     "indent": ["error", 2],
     "semi": ["error", "always"],
-    "rules": { "react/no-unescaped-entities": 0 }
+    "react/no-unescaped-entities": 0
   }
 }
