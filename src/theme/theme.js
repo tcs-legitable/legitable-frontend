@@ -13,6 +13,10 @@ const breakpoints = {
 
 const theme = extendTheme({
   breakpoints,
+  fonts: {
+    heading: `'Archivo', sans-serif`,
+    body: `'Archivo', sans-serif`,
+  },
 });
 
 export default theme;
