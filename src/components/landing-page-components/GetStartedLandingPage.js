@@ -2,7 +2,6 @@ import { Flex } from "@chakra-ui/react";
 import React, { useState } from "react";
 import LandingCreateStudentProfile from "./LandingCreateStudentProfile";
 import LandingFinal from "./LandingFinal";
-import LandingGetStarted from "./LandingGetStarted";
 import LandingLayout from "./LandingLayout";
 import LandingPage from "./LandingPage";
 import LandingSelectSkills from "./LandingSelectSkills";
@@ -30,14 +29,6 @@ const GetStartedLandingPage = () => {
       <LandingLayout goPrev={goPrev} step={step}>
         {step === 0 && <LandingPage goNext={goNext} />}
         {step === 1 && (
-          <LandingGetStarted
-            data={data}
-            setData={setData}
-            goNext={goNext}
-            goPrev={goPrev}
-          />
-        )}
-        {step === 2 && (
           <LandingSignIn
             data={data}
             setData={setData}
@@ -45,7 +36,7 @@ const GetStartedLandingPage = () => {
             goPrev={goPrev}
           />
         )}
-        {step === 3 && (
+        {step === 2 && (
           <LandingCreateStudentProfile
             data={data}
             setData={setData}
@@ -53,7 +44,7 @@ const GetStartedLandingPage = () => {
             goPrev={goPrev}
           />
         )}
-        {step === 4 && (
+        {step === 3 && (
           <LandingSelectSkills
             data={data}
             setData={setData}
@@ -61,7 +52,7 @@ const GetStartedLandingPage = () => {
             goPrev={goPrev}
           />
         )}
-        {step === 5 && (
+        {step === 4 && (
           <LandingFinal
             data={data}
             setData={setData}
