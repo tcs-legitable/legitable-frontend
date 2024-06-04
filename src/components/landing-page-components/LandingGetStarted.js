@@ -2,7 +2,7 @@ import { Button, Flex, Image, Text, VStack } from '@chakra-ui/react';
 import React from 'react';
 import StupaidLogo from '../../assets/landing-page-images/stupaid-logo-small.svg';
 
-const LandingGetStarted = ({ goNext }) => {
+const LandingGetStarted = () => {
   return (
     <Flex
       zIndex="0"
@@ -39,7 +39,7 @@ const LandingGetStarted = ({ goNext }) => {
             backgroundPosition: 'left bottom',
           }}
           mr={{ base: '0px', mdLg: '10px' }}
-          onClick={() => goNext()}
+          // onClick={() => goNext()}
         >
           I'm a new user
         </Button>

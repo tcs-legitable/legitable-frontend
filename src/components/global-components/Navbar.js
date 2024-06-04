@@ -1,5 +1,6 @@
 import React from 'react';
-import StupaidLogo from './../../assets/images/stupaid-logo.svg';
+// import StupaidLogo from './../../assets/images/stupaid-logo.svg';
+import StupaidLogo from './../../assets/landing-page-images/stupaid-logo-main.svg';
 import { Box, Button, Image } from '@chakra-ui/react';
 
 const Navbar = () => {
