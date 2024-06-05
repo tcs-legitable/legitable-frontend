@@ -58,6 +58,7 @@ const LandingPage = ({ goNext }) => {
         flexDir={{ base: 'column', mdLg: 'row' }}
         bg="transparent"
         pt="25px"
+        justify="center"
       >
         <Button
           border="1px solid"
