@@ -1,3 +1,4 @@
+/* eslint-disable react/react-in-jsx-scope */
 import './App.css';
 import { ChakraProvider, VStack } from '@chakra-ui/react';
 import { createContext, useState } from 'react';
