@@ -22,6 +22,8 @@ const LandingSignIn = ({ goNext, setData }) => {
       const newInfo = {
         uid: uid,
         name: displayName,
+        photo_url: photoURL,
+        type: 'student',
       };
       setValue(newInfo);
       localStorage.setItem('user-data', JSON.stringify(newInfo));
