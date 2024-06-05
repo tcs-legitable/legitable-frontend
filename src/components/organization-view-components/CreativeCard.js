@@ -11,7 +11,12 @@ const CreativeCard = ({
   email,
   skills,
   website,
+  // is_verified
 }) => {
+
+  //PLACEHOLDER
+  const is_verified = true;
+
   return (
     <Box
       backgroundColor="white"
@@ -37,6 +42,16 @@ const CreativeCard = ({
           <Text fontSize="xl" fontWeight="bold">
             {full_name}
           </Text>
+          {is_verified && (
+            <>
+              <Text fontSize="xl" mx='10px'>
+                |
+              </Text>
+              <Button>
+                Stupaid verified
+              </Button>
+            </>
+          )}
         </Box>
 
         <Box>
@@ -46,7 +61,20 @@ const CreativeCard = ({
         </Box>
       </Box>
 
-      <Button>
+      <Button
+        border="1px solid"
+        p="23px"
+        borderRadius="25px"
+        color="#fafafa"
+        bgColor="#0c0c0c"
+        fontWeight="regular"
+        _hover={{
+          backgroundPosition: 'left bottom',
+        }}
+        _active={{
+          backgroundPosition: 'left bottom',
+        }}
+      >
         Let's chat!
       </Button>
     </Box>
