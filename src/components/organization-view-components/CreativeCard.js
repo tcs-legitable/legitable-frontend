@@ -29,12 +29,8 @@ const CreativeCard = ({
       <Box>
         <Box display="flex" flexDirection="row">
           <Text>
-            {city}, {country}
+            {city}, {country} • {school} • {projectPref}
           </Text>
-          <Text>•</Text>
-          <Text>{school}</Text>
-          <Text>•</Text>
-          <Text>{projectPref}</Text>
         </Box>
 
         <Box display="flex" flexDirection="row">
@@ -49,6 +45,10 @@ const CreativeCard = ({
           </Link>
         </Box>
       </Box>
+
+      <Button>
+        Let's chat!
+      </Button>
     </Box>
   );
 };
