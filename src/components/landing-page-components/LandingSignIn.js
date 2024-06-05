@@ -1,14 +1,17 @@
 import { Button, Flex, Image, Text, VStack } from '@chakra-ui/react';
-import React from 'react';
+import React, { useContext } from 'react';
 import StupaidLogo from '../../assets/landing-page-images/stupaid-logo-small.svg';
 import GmailArrow from '../../assets/landing-page-images/continue-w-gmail-arrow-black.svg';
 import { signInWithPopup } from 'firebase/auth';
 import { auth, provider } from '../../firebase/firebase';
 import { doesUserExist } from '../../firebase/helpers';
 import { useNavigate } from 'react-router-dom';
+import { SignedInContext } from '../../App';
 
 const LandingSignIn = ({ goNext, setData }) => {
   const navigate = useNavigate();
+  const { setValue } = useContext(SignedInContext);
+
   const handleClick = async () => {
     try {
       const { user } = await signInWithPopup(auth, provider);
@@ -16,6 +19,12 @@ const LandingSignIn = ({ goNext, setData }) => {
 
       const { uid, email, displayName, photoURL } = user;
       const exists = await doesUserExist(uid);
+      const newInfo = {
+        uid: uid,
+        name: displayName,
+      };
+      setValue(newInfo);
+      localStorage.setItem('user-data', JSON.stringify(newInfo));
 
       if (exists) {
         navigate('/projects');
