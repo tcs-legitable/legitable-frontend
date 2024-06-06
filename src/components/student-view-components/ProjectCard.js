@@ -1,5 +1,8 @@
-import { Box, Button, Flex, Image, Link, Text } from '@chakra-ui/react';
+import { Box, Button, Flex, HStack, Image, Link, Text } from '@chakra-ui/react';
 import React from 'react';
+import DeadlineIcon from '../../assets/images/deadline-icon.svg';
+import BudgetIcon from '../../assets/images/budget-icon.svg';
+import LinkArrow from '../../assets/images/link-arrow.svg';
 
 const ProjectCard = ({ project }) => {
   const {
@@ -33,11 +36,28 @@ const ProjectCard = ({ project }) => {
       <Text color="#555555" pb="20px">
         {description}
       </Text>
-      <Text py="7px">Deadline {deadline}</Text>
-      <Text pb="20px">Budget (CAD) {budget}</Text>
+      <HStack py="7px">
+        <Image src={DeadlineIcon} />
+        <Text color="#969696">
+          Deadline{' '}
+          <Box pl="10px" color="#0c0c0c" as="span">
+            {deadline}
+          </Box>
+        </Text>
+      </HStack>
+      <HStack pb="20px">
+        <Image src={BudgetIcon} />
+        <Text color="#969696">
+          Budget (CAD){' '}
+          <Box pl="10px" color="#0c0c0c" as="span">
+            {budget}
+          </Box>
+        </Text>
+      </HStack>
       {tags.map((tag, id) => {
         return (
           <Box
+            color="#555555"
             my="5px"
             borderRadius="20px"
             py="6px"
@@ -50,12 +70,24 @@ const ProjectCard = ({ project }) => {
           </Box>
         );
       })}
-      <Text pt="20px">Example links</Text>
+      <Text color="#555555" pt="20px">
+        Example links
+      </Text>
       <Flex pt="15px" flexDir="column">
         {links.map(({ display_name, link }, id) => {
           return (
-            <Link isExternal href={link} key={id} textDecoration="underline">
-              {display_name}
+            <Link
+              w="fit-content"
+              color="#969696"
+              isExternal
+              href={link}
+              key={id}
+              textDecoration="underline"
+            >
+              <HStack>
+                <Text>{display_name}</Text>
+                <Image src={LinkArrow} />
+              </HStack>
             </Link>
           );
         })}
@@ -63,11 +95,32 @@ const ProjectCard = ({ project }) => {
       <Flex pt="20px" flexDir="row" align="center">
         <Image mr="20px" borderRadius="50%" w="80px" src={photo_url} />
         <Flex flexDir="column">
-          <Link>{lead_name?.name}</Link>
-          <Text>{organization_name}</Text>
+          <HStack>
+            <Link src={lead_name?.link}>{lead_name?.name}</Link>
+            <Image src={LinkArrow} />
+          </HStack>
+          <Text color="#969696">{organization_name}</Text>
         </Flex>
       </Flex>
-      <Button>Apply now!</Button>
+      <Button
+        alignSelf="center"
+        py="24px"
+        w="300px"
+        fontWeight="regular"
+        mt="20px"
+        bgColor="#0c0c0c"
+        color="white"
+        _hover={{
+          bgColor: '#2e2e2e',
+          color: 'white',
+        }}
+        _active={{
+          bgColor: '#2e2e2e',
+          color: 'white',
+        }}
+      >
+        Apply now!
+      </Button>
     </Flex>
   );
 };
