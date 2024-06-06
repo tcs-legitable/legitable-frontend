@@ -32,7 +32,7 @@ const CreativeCard = ({
       <Image
         src={photo_url}
         alt={`${full_name}'s picture`}
-        boxSize="50px"
+        boxSize="70px"
         mr="20px"
         ml="30px"
         mt="30px"
@@ -72,6 +72,7 @@ const CreativeCard = ({
                 <Text
                   marginLeft="6px"
                   fontSize="12px"
+                  fontWeight="300"
                 >
                   Stupaid verified
                 </Text>
@@ -89,7 +90,10 @@ const CreativeCard = ({
               border="1px solid black"
               bg="transparent"
             >
-              <Text marginRight='6px'>
+              <Text
+                marginRight="6px"
+                fontWeight="300"
+              >
                 Graphic Design
               </Text>
               <Image src={arrow} />
@@ -98,23 +102,26 @@ const CreativeCard = ({
         </Box>
       </Box>
 
-      <Button
-        mt="30px"
-        border="1px solid"
-        p="20px"
-        borderRadius="25px"
-        color="#fafafa"
-        bgColor="#0c0c0c"
-        fontWeight="regular"
-        _hover={{
-          backgroundPosition: 'left bottom',
-        }}
-        _active={{
-          backgroundPosition: 'left bottom',
-        }}
+      <Box
       >
-        Let's chat!
-      </Button>
+        <Button
+          mt="30px"
+          border="1px solid"
+          p="20px"
+          borderRadius="25px"
+          color="#fafafa"
+          bgColor="#0c0c0c"
+          fontWeight="300"
+          _hover={{
+            backgroundPosition: 'left bottom',
+          }}
+          _active={{
+            backgroundPosition: 'left bottom',
+          }}
+        >
+          Let's chat!
+        </Button>
+      </Box>
     </Box>
   );
 };
