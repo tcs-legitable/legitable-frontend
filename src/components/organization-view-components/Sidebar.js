@@ -46,8 +46,17 @@ const Sidebar = () => {
   };
 
   return (
-    <Box backgroundColor="white" width="40%" float="right">
-      <Text>Skills</Text>
+    <Box
+      backgroundColor="white"
+      width="40%"
+      borderLeft="outset">
+      <Text
+        fontWeight="700"
+        ml="60px"
+        mt="60px"
+      >
+        Skills
+      </Text>
       <Select
         placeholder="Select a skill"
         borderRadius="20px"
@@ -55,6 +64,9 @@ const Sidebar = () => {
         onChange={(e) => setSkill(e.target.value)}
         color={skill ? '#000' : '#969696'}
         mb="10px"
+        ml="60px"
+        mr="60px"
+        width="100%"
       >
         {skillList.map(({ id, text, value }) => (
           <option key={id} value={value}>
@@ -63,7 +75,13 @@ const Sidebar = () => {
         ))}
       </Select>
 
-      <Text>location</Text>
+      <Text
+        fontWeight="700"
+        ml="60px"
+        mt="30px"
+      >
+        Location
+      </Text>
       <Input
         placeholder="e.g. Vancouver"
         borderRadius="20px"
@@ -71,9 +89,16 @@ const Sidebar = () => {
         _placeholder={{ color: '#969696' }}
         onChange={(e) => setLocation(e.target.value)}
         mb="10px"
+        ml="60px"
       />
 
-      <Text>Project preference</Text>
+      <Text
+        fontWeight="700"
+        ml="60px"
+        mt="30px"
+      >
+        Project preference
+      </Text>
 
       <Flex
         align="center"
@@ -87,7 +112,7 @@ const Sidebar = () => {
           w={{ base: '300px', md: '400px' }}
           flexWrap="wrap"
           align="center"
-          justify="center"
+          ml="60px"
           pb="20px"
         >
           {preferenceList.map(({ id, text, value }) => {
@@ -115,25 +140,43 @@ const Sidebar = () => {
         </Flex>
       </Flex>
 
-      <Box display="flex" flexDirection="row">
-        <Box>
-          <Text>Stupaid verified</Text>
-          <Text>Show only hand-selected verified Stupaid creatives</Text>
+      <Box
+        display="flex"
+        flexDirection="row"
+        ml="60px"
+      >
+        <Box
+          width="60%"
+        >
+          <Text
+            fontWeight="700">
+            Stupaid verified
+          </Text>
+          <Text>
+            Show only hand-selected verified Stupaid creatives
+          </Text>
         </Box>
 
         {/* FIX COLOR */}
-        <Switch
-          colorScheme="teal"
-          size="lg"
-          ml="10px"
-          isChecked={verified}
-          onChange={() => setVerified(!verified)}
-        />
+        <Box
+          alignContent="center"
+        >
+          <Switch
+            colorScheme="teal"
+            size="lg"
+            ml="10px"
+            isChecked={verified}
+            onChange={() => setVerified(!verified)}
+          />
+        </Box>
       </Box>
 
       <Button
+        width="100%"
         border="1px solid"
         p="23px"
+        ml="60px"
+        mt="50px"
         borderRadius="25px"
         color="#fafafa"
         bgColor="#0c0c0c"
