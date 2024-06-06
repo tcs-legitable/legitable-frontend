@@ -30,7 +30,9 @@ const ProjectCard = ({ project }) => {
       <Text py="20px" fontSize="23px" fontWeight="bold">
         {name}
       </Text>
-      <Text pb="20px">{description}</Text>
+      <Text color="#555555" pb="20px">
+        {description}
+      </Text>
       <Text py="7px">Deadline {deadline}</Text>
       <Text pb="20px">Budget (CAD) {budget}</Text>
       {tags.map((tag, id) => {
