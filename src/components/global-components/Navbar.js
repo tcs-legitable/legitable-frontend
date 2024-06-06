@@ -18,6 +18,7 @@ const Navbar = () => {
       py="30px"
       paddingLeft="1.5vw"
       paddingRight="1.5vw"
+      borderBottom="2px solid #ececec"
     >
       <Flex alignItems="center">
         <Image
