@@ -1,9 +1,16 @@
-import { Box, Flex, Text, useBreakpointValue } from '@chakra-ui/react';
-import React from 'react';
+import {
+  Box,
+  Flex,
+  Text,
+  useBreakpointValue,
+  useDisclosure,
+} from '@chakra-ui/react';
+import React, { useState } from 'react';
+import ProjectApplyModal from './ProjectApplyModal';
 import ProjectCard from './ProjectCard';
 
 const ProjectsExplore = () => {
-  const isDesktop = useBreakpointValue({ base: false, mdLg: true });
+  const isDesktop = useBreakpointValue({ base: false, lg: true });
 
   const projects = [
     {
