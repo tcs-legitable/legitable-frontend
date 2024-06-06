@@ -66,6 +66,7 @@ const Sidebar = () => {
         mb="10px"
         ml="60px"
         mr="60px"
+        mt="10px"
         width="100%"
       >
         {skillList.map(({ id, text, value }) => (
@@ -90,6 +91,7 @@ const Sidebar = () => {
         onChange={(e) => setLocation(e.target.value)}
         mb="10px"
         ml="60px"
+        mt="10px"
       />
 
       <Text
@@ -149,10 +151,13 @@ const Sidebar = () => {
           width="60%"
         >
           <Text
-            fontWeight="700">
+            fontWeight="700"
+          >
             Stupaid verified
           </Text>
-          <Text>
+          <Text
+            mt="10px"
+          >
             Show only hand-selected verified Stupaid creatives
           </Text>
         </Box>
@@ -172,15 +177,15 @@ const Sidebar = () => {
       </Box>
 
       <Button
-        width="100%"
+        width="70%"
         border="1px solid"
-        p="23px"
+        p="25px"
         ml="60px"
         mt="50px"
         borderRadius="25px"
         color="#fafafa"
         bgColor="#0c0c0c"
-        fontWeight="regular"
+        fontWeight="300"
         _hover={{
           backgroundPosition: 'left bottom',
         }}
