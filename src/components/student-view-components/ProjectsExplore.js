@@ -1,5 +1,6 @@
 import { Box, Flex, Text, useBreakpointValue } from '@chakra-ui/react';
 import React from 'react';
+import ProjectCard from './ProjectCard';
 
 const ProjectsExplore = () => {
   const isDesktop = useBreakpointValue({ base: false, mdLg: true });
@@ -50,6 +51,26 @@ const ProjectsExplore = () => {
       ],
       organization_name: 'Mondays Association',
     },
+    {
+      name: 'TCS branding',
+      location: 'Vancouver',
+      deadline: 'July 1, 2024',
+      budget: '$500',
+      project_pref: 'In-person',
+      tags: ['Branding', 'Web Design'],
+      description: 'Doing the branding for the creative solution ayo',
+      photo_url:
+        'https://media.licdn.com/dms/image/D4E03AQHRHHKsGXsN2Q/profile-displayphoto-shrink_200_200/0/1708636073967?e=2147483647&v=beta&t=4_kJRYqMsVcpeDOo-Gbp7yucbwIbKi4h2SxJXxsRSK4',
+      lead_name: {
+        name: 'Aayush Kogar',
+        link: 'https://www.byronwang.com/',
+      },
+      links: [
+        { display_name: 'Airbnb', link: 'https://www.byronwang.com/' },
+        { display_name: 'Website example', link: 'https://www.byronwang.com/' },
+      ],
+      organization_name: 'Mondays Association',
+    },
   ];
 
   return (
@@ -58,7 +79,16 @@ const ProjectsExplore = () => {
         Top projects for you this week
       </Text>
       <Box mt="40px" bgColor="#e7e7e7" h="2px" w="100%"></Box>
-      <Flex flexDir={isDesktop ? 'row' : 'column'}></Flex>
+      <Flex
+        pt="40px"
+        gap="30px"
+        justify="center"
+        flexDir={isDesktop ? 'row' : 'column'}
+      >
+        {projects.map((project, id) => {
+          return <ProjectCard project={project} key={id} />;
+        })}
+      </Flex>
     </Flex>
   );
 };
