@@ -6,7 +6,9 @@ import Creatives from './Creatives';
 
 const Home = () => {
   return (
-    <Box>
+    <Box
+      backgroundColor="#fafafa"
+    >
       <Navbar />
       <Box display="flex" flexDirection="row" justifyContent="space-between">
         <Creatives />

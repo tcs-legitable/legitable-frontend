@@ -28,6 +28,7 @@ const Creatives = () => {
           email={creative.email}
           skills={creative.skills}
           website={creative.website || 'https://www.stupaid.work/'}
+        // is_verified={creative.is_verified}
         />
       ))}
     </Flex>
