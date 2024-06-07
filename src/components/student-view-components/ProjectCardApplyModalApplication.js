@@ -9,12 +9,23 @@ import {
 } from '@chakra-ui/react';
 import React, { useContext, useState } from 'react';
 import { SignedInContext } from '../../App';
+import { applyForProject } from '../../firebase/helpers';
 
-const ProjectCardApplyModalApplication = ({ handleApply }) => {
+const ProjectCardApplyModalApplication = ({
+  handleApply,
+  project,
+  setAlreadyApplied,
+}) => {
   const { value } = useContext(SignedInContext);
   const [formValue, setFormValue] = useState('');
 
   const { name, photo_url } = value;
+
+  const handleClick = async () => {
+    const applied = await applyForProject(value.uid, project.id, formValue);
+    setAlreadyApplied(applied);
+    handleApply();
+  };
 
   return (
     <Flex h="590px" p="30px" color="white" w="400px" flexDir="column">
@@ -54,9 +65,7 @@ const ProjectCardApplyModalApplication = ({ handleApply }) => {
         _active={{
           bgColor: '#d2d2d2',
         }}
-        onClick={() => {
-          handleApply();
-        }}
+        onClick={handleClick}
       >
         Apply now!
       </Button>

@@ -10,7 +10,13 @@ import ProjectApplicationSuccessModal from './ProjectApplicationSuccessModal';
 import ProjectCardApplyModal from './ProjectCardApplyModal';
 import ProjectCardApplyModalApplication from './ProjectCardApplyModalApplication';
 
-const ProjectApplyModal = ({ isOpen, onClose, project, key }) => {
+const ProjectApplyModal = ({
+  isOpen,
+  onClose,
+  project,
+  setAlreadyApplied,
+  key,
+}) => {
   const isDesktop = useBreakpointValue({ base: false, lg: true });
   const [triggerSuccessModal, setTriggerSuccessModal] = useState(false);
 
@@ -48,6 +54,7 @@ const ProjectApplyModal = ({ isOpen, onClose, project, key }) => {
                 project={project}
                 triggerSuccessModal={triggerSuccessModal}
                 handleApply={handleApply}
+                setAlreadyApplied={setAlreadyApplied}
               />
             </Flex>
           </ModalContent>
