@@ -23,7 +23,7 @@ function App() {
   return (
     <ChakraProvider theme={theme}>
       <SignedInContext.Provider value={{ value, setValue }}>
-        <VStack height="100%" class="outer-container">
+        <VStack height="100%" className="outer-container">
           {/* <HomePage /> */}
           <Router>
             <Routes>
@@ -31,7 +31,10 @@ function App() {
               <Route path="/landing" element={<GetStartedLandingPage />} />
               <Route path="/endorsees/:userId" element={<EndorseesPage />} />
               <Route path="/home" element={<Home />} />
-              <Route path="/projects" element={<StudentLanding />} />
+              <Route
+                path="/projects"
+                element={<StudentLanding view={value?.type} />}
+              />
             </Routes>
           </Router>
         </VStack>
