@@ -93,7 +93,6 @@ export const applyForProject = async (
     studentId,
     projectId,
   );
-  console.log(userExists, studentApplied, ' are vars');
   if (userExists && projectExists && !studentApplied) {
     // updating the user side
     const studentRef = doc(db, 'mvp_users', studentId);
@@ -102,13 +101,11 @@ export const applyForProject = async (
       ...studentSnap.data(),
       projects: [...(studentSnap.data().projects || []), projectId],
     };
-    console.log(updatedStudentData, ' is the new');
 
     // updating the project side
     const projectRef = doc(db, 'projects', projectId);
     const projectSnap = await getDoc(projectRef);
 
-    console.log(projectSnap.data(), ' is the current project data');
     const projectApplication = {
       studentId: studentId,
       studentName: studentSnap.data().full_name,
@@ -122,14 +119,13 @@ export const applyForProject = async (
         projectApplication,
       ],
     };
-    console.log(updatedProjectData, ' is the new2');
     try {
       await setDoc(studentRef, updatedStudentData);
-      console.log('SET! 1');
       await setDoc(projectRef, updatedProjectData);
-      console.log('SET! 2');
+      return true;
     } catch (e) {
       console.log('error: ', e);
+      return false;
     }
   }
 };
