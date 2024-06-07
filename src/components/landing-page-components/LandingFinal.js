@@ -1,5 +1,5 @@
 import { Button, Flex, Image, Text, VStack } from '@chakra-ui/react';
-import React, { useEffect } from 'react';
+import React from 'react';
 import { useNavigate } from 'react-router-dom';
 import StupaidLogo from '../../assets/landing-page-images/stupaid-logo-small.svg';
 import { addStupaidUser } from '../../firebase/helpers';
@@ -12,9 +12,6 @@ const LandingFinal = ({ data }) => {
     navigate('/home');
   };
 
-  useEffect(() => {
-    console.log(data, ' is the data');
-  }, [data]);
   return (
     <Flex
       zIndex="0"

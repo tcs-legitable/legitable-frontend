@@ -1,12 +1,5 @@
-import {
-  Box,
-  Flex,
-  Text,
-  useBreakpointValue,
-  useDisclosure,
-} from '@chakra-ui/react';
-import React, { useState } from 'react';
-import ProjectApplyModal from './ProjectApplyModal';
+import { Box, Flex, Text, useBreakpointValue } from '@chakra-ui/react';
+import React from 'react';
 import ProjectCard from './ProjectCard';
 
 const ProjectsExplore = () => {
@@ -14,6 +7,7 @@ const ProjectsExplore = () => {
 
   const projects = [
     {
+      id: '1',
       name: 'CFC podcast branding',
       location: 'Vancouver',
       deadline: 'July 1, 2024',
@@ -39,6 +33,7 @@ const ProjectsExplore = () => {
       organization_name: 'Mondays Association',
     },
     {
+      id: '2',
       name: 'TCS branding',
       location: 'Vancouver',
       deadline: 'July 1, 2024',
@@ -59,6 +54,7 @@ const ProjectsExplore = () => {
       organization_name: 'Mondays Association',
     },
     {
+      id: '3',
       name: 'TCS branding',
       location: 'Vancouver',
       deadline: 'July 1, 2024',

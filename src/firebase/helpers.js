@@ -19,10 +19,28 @@ export const doesUserExist = async (id) => {
   return docSnap.exists();
 };
 
+export const doesProjectExist = async (id) => {
+  const docRef = doc(db, 'projects', id);
+  const docSnap = await getDoc(docRef);
+
+  return docSnap.exists();
+};
+
+// GET DATA FUNCTIONS
 export const getUserData = async (id) => {
   const docRef = doc(db, 'mvp_users', id);
   const docSnap = await getDoc(docRef);
 
+  if (docSnap.exists()) {
+    return docSnap.data();
+  } else {
+    return null;
+  }
+};
+
+export const getProjectData = async (id) => {
+  const docRef = doc(db, 'projects', id);
+  const docSnap = await getDoc(docRef);
   if (docSnap.exists()) {
     return docSnap.data();
   } else {
@@ -55,6 +73,60 @@ export const addStupaidUser = async (data) => {
     }
   } else {
     console.log('user w/ the uid of ', uid, ' already exists');
+  }
+};
+
+export const studentAlreadyAppliedForProject = async (studentId, projectId) => {
+  const data = await getUserData(studentId);
+  return data?.projects?.some((project) => project === projectId) || false;
+};
+
+// student applies for a project
+export const applyForProject = async (
+  studentId,
+  projectId,
+  applicationDescription,
+) => {
+  const userExists = await doesUserExist(studentId);
+  const projectExists = await doesProjectExist(projectId);
+  const studentApplied = await studentAlreadyAppliedForProject(
+    studentId,
+    projectId,
+  );
+  if (userExists && projectExists && !studentApplied) {
+    // updating the user side
+    const studentRef = doc(db, 'mvp_users', studentId);
+    const studentSnap = await getDoc(studentRef);
+    const updatedStudentData = {
+      ...studentSnap.data(),
+      projects: [...(studentSnap.data().projects || []), projectId],
+    };
+
+    // updating the project side
+    const projectRef = doc(db, 'projects', projectId);
+    const projectSnap = await getDoc(projectRef);
+
+    const projectApplication = {
+      studentId: studentId,
+      studentName: studentSnap.data().full_name,
+      applicationDescription: applicationDescription,
+      time_applied: new Date().toISOString(),
+    };
+    const updatedProjectData = {
+      ...projectSnap.data(),
+      applications: [
+        ...(projectSnap.data().applications || []),
+        projectApplication,
+      ],
+    };
+    try {
+      await setDoc(studentRef, updatedStudentData);
+      await setDoc(projectRef, updatedProjectData);
+      return true;
+    } catch (e) {
+      console.log('error: ', e);
+      return false;
+    }
   }
 };
 

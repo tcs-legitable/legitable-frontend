@@ -29,7 +29,7 @@ const LandingSelectSkills = ({ goNext, data, setData }) => {
       return skillList[skill].value;
     });
 
-    setData({ ...data, skills: skillNames });
+    setData({ ...data, skills: skillNames, projects: [], isVerified: false });
 
     goNext();
   };

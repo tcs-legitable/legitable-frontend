@@ -1,13 +1,16 @@
 import { Box, Button, Flex, HStack, Image, Link, Text } from '@chakra-ui/react';
-import React, { useState } from 'react';
+import React, { useContext, useEffect, useState } from 'react';
 import DeadlineIcon from '../../assets/images/deadline-icon.svg';
 import BudgetIcon from '../../assets/images/budget-icon.svg';
 import LinkArrow from '../../assets/images/link-arrow.svg';
 import ProjectApplyModal from './ProjectApplyModal';
+import { studentAlreadyAppliedForProject } from '../../firebase/helpers';
+import { SignedInContext } from '../../App';
 
 const ProjectCard = ({ project, key }) => {
   const {
     name,
+    id,
     location,
     deadline,
     budget,
@@ -21,6 +24,17 @@ const ProjectCard = ({ project, key }) => {
   } = project;
 
   const [projectApplyModalOpen, setProjectApplyModalOpen] = useState({});
+  const { value } = useContext(SignedInContext);
+
+  const [alreadyApplied, setAlreadyApplied] = useState(false);
+  useEffect(() => {
+    const checkApplied = async () => {
+      const check = await studentAlreadyAppliedForProject(value?.uid, id);
+      setAlreadyApplied(check);
+    };
+
+    checkApplied();
+  }, [value]);
 
   const openProjectModal = (id) => {
     setProjectApplyModalOpen((prevModalOpen) => ({
@@ -120,6 +134,7 @@ const ProjectCard = ({ project, key }) => {
         </Flex>
       </Flex>
       <Button
+        isDisabled={alreadyApplied}
         alignSelf="center"
         py="24px"
         w="300px"
@@ -139,7 +154,7 @@ const ProjectCard = ({ project, key }) => {
           openProjectModal(key);
         }}
       >
-        Apply now!
+        {alreadyApplied ? 'Already applied' : 'Apply now!'}
       </Button>
       <ProjectApplyModal
         pt="0px"
@@ -149,6 +164,7 @@ const ProjectCard = ({ project, key }) => {
           closeProjectModal(key);
         }}
         isOpen={projectApplyModalOpen[key] || false}
+        setAlreadyApplied={setAlreadyApplied}
       />
     </Flex>
   );
