@@ -1,11 +1,10 @@
-import { Box, Button, Flex, HStack, Image, Link, Text } from '@chakra-ui/react';
-import React, { useState } from 'react';
+import { Box, Flex, HStack, Image, Link, Text } from '@chakra-ui/react';
+import React from 'react';
 import DeadlineIcon from '../../assets/images/deadline-icon.svg';
 import BudgetIcon from '../../assets/images/budget-icon.svg';
 import LinkArrow from '../../assets/images/link-arrow.svg';
-import ProjectApplyModal from './ProjectApplyModal';
 
-const ProjectCard = ({ project, key }) => {
+const ProjectCardApplyModal = ({ project, key }) => {
   const {
     name,
     location,
@@ -20,30 +19,8 @@ const ProjectCard = ({ project, key }) => {
     organization_name,
   } = project;
 
-  const [projectApplyModalOpen, setProjectApplyModalOpen] = useState({});
-
-  const openProjectModal = (id) => {
-    setProjectApplyModalOpen((prevModalOpen) => ({
-      ...prevModalOpen,
-      [id]: true,
-    }));
-  };
-
-  const closeProjectModal = (id) => {
-    setProjectApplyModalOpen((prevModalOpen) => ({
-      ...prevModalOpen,
-      [id]: false,
-    }));
-  };
   return (
-    <Flex
-      border="2px solid #ececec"
-      borderRadius="20px"
-      p="20px"
-      bgColor="white"
-      w="100%"
-      flexDir="column"
-    >
+    <Flex p="30px" bgColor="white" w="400px" flexDir="column">
       <Text color="#555555">
         {location} - {project_pref}
       </Text>
@@ -119,39 +96,8 @@ const ProjectCard = ({ project, key }) => {
           <Text color="#969696">{organization_name}</Text>
         </Flex>
       </Flex>
-      <Button
-        alignSelf="center"
-        py="24px"
-        w="300px"
-        fontWeight="regular"
-        mt="20px"
-        bgColor="#0c0c0c"
-        color="white"
-        _hover={{
-          bgColor: '#2e2e2e',
-          color: 'white',
-        }}
-        _active={{
-          bgColor: '#2e2e2e',
-          color: 'white',
-        }}
-        onClick={() => {
-          openProjectModal(key);
-        }}
-      >
-        Apply now!
-      </Button>
-      <ProjectApplyModal
-        pt="0px"
-        key={key}
-        project={project}
-        onClose={() => {
-          closeProjectModal(key);
-        }}
-        isOpen={projectApplyModalOpen[key] || false}
-      />
     </Flex>
   );
 };
 
-export default ProjectCard;
+export default ProjectCardApplyModal;

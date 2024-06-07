@@ -5,7 +5,7 @@ import ProjectsExplore from './ProjectsExplore';
 
 const StudentLanding = () => {
   return (
-    <Flex flexDir="column" w="100%" h="100vh">
+    <Flex className="landing" flexDir="column" w="100%" h="100%">
       <Navbar />
       <ProjectsExplore />
     </Flex>
