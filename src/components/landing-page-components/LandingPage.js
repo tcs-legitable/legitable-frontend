@@ -78,7 +78,7 @@ const LandingPage = ({ goNext }) => {
             backgroundPosition: 'left bottom',
           }}
           mr={{ base: '0px', mdLg: '10px' }}
-          onClick={() => navigate('/')}
+          onClick={() => navigate('/home')}
         >
           <Image bgColor="inherit" mr="5px" src={TalentButtonIcon} />
           I'm looking for talent
