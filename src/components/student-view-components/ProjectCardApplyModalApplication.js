@@ -6,14 +6,12 @@ import {
   Image,
   Text,
   Textarea,
-  useBreakpointValue,
 } from '@chakra-ui/react';
 import React, { useContext } from 'react';
 import { SignedInContext } from '../../App';
 
-const ProjectCardApplyModalApplication = ({ project, key }) => {
+const ProjectCardApplyModalApplication = () => {
   const { value } = useContext(SignedInContext);
-  const isDesktop = useBreakpointValue({ base: false, lg: true });
 
   const { name, photo_url } = value;
 
