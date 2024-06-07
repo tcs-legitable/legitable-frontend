@@ -22,9 +22,11 @@ const ProjectCardApplyModalApplication = ({
   const { name, photo_url } = value;
 
   const handleClick = async () => {
-    const applied = await applyForProject(value.uid, project.id, formValue);
-    setAlreadyApplied(applied);
-    handleApply();
+    if (value.uid) {
+      const applied = await applyForProject(value.uid, project.id, formValue);
+      setAlreadyApplied(applied);
+      handleApply();
+    }
   };
 
   return (

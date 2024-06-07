@@ -33,7 +33,9 @@ const ProjectCard = ({ project, key }) => {
       setAlreadyApplied(check);
     };
 
-    checkApplied();
+    if (value.uid) {
+      checkApplied();
+    }
   }, [value]);
 
   const openProjectModal = (id) => {
