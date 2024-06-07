@@ -10,7 +10,7 @@ import {
 import React, { useContext, useState } from 'react';
 import { SignedInContext } from '../../App';
 
-const ProjectCardApplyModalApplication = () => {
+const ProjectCardApplyModalApplication = ({ handleApply }) => {
   const { value } = useContext(SignedInContext);
   const [formValue, setFormValue] = useState('');
 
@@ -41,7 +41,6 @@ const ProjectCardApplyModalApplication = () => {
       </Flex>
       <Button
         mt="auto"
-        // position="relative"
         border="1px solid #0c0c0c"
         py="20px"
         px="30px"
@@ -54,6 +53,9 @@ const ProjectCardApplyModalApplication = () => {
         }}
         _active={{
           bgColor: '#d2d2d2',
+        }}
+        onClick={() => {
+          handleApply();
         }}
       >
         Apply now!
