@@ -7,11 +7,12 @@ import {
   Text,
   Textarea,
 } from '@chakra-ui/react';
-import React, { useContext } from 'react';
+import React, { useContext, useState } from 'react';
 import { SignedInContext } from '../../App';
 
 const ProjectCardApplyModalApplication = () => {
   const { value } = useContext(SignedInContext);
+  const [formValue, setFormValue] = useState('');
 
   const { name, photo_url } = value;
 
@@ -25,6 +26,10 @@ const ProjectCardApplyModalApplication = () => {
       <Flex flexDir="column">
         <Text pb="10px">Note to client</Text>
         <Textarea
+          onChange={(e) => {
+            setFormValue(e.target.value);
+          }}
+          value={formValue}
           border="1.5px solid #535353"
           _placeholder={{
             color: '#969696',
