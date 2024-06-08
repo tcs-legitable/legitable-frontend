@@ -14,10 +14,14 @@ export const SignedInContext = createContext();
 
 function App() {
   const [value, setValue] = useState({});
+  const [loading, setLoading] = useState(true);
 
   useEffect(() => {
     const storedValue = localStorage.getItem('user-data');
-    setValue(JSON.parse(storedValue));
+    if (storedValue) {
+      setValue(JSON.parse(storedValue));
+    }
+    setLoading(false);
   }, []);
 
   return (
@@ -33,7 +37,7 @@ function App() {
               <Route path="/home" element={<Home />} />
               <Route
                 path="/projects"
-                element={<StudentLanding view={value?.type} />}
+                element={!loading && <StudentLanding view={value?.type} />}
               />
             </Routes>
           </Router>
