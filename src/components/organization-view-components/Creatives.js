@@ -1,4 +1,4 @@
-import { Flex } from '@chakra-ui/react';
+import { Flex, Text } from '@chakra-ui/react';
 import React, { useEffect, useState } from 'react';
 import CreativeCard from './CreativeCard';
 import { getAllUsers } from '../../firebase/helpers';
@@ -32,21 +32,31 @@ const Creatives = ({ filters }) => {
 
   return (
     <Flex display="flex" flexDirection="column">
-      {filteredCreativesList.map((creative, index) => (
-        <CreativeCard
-          key={index}
-          photo_url={creative.photo_url}
-          city={creative.city}
-          country={creative.country}
-          school={creative.school}
-          projectPref={creative.projectPref}
-          full_name={creative.full_name}
-          email={creative.email}
-          skills={creative.skills}
-          website={creative.website || 'https://www.stupaid.work/'}
-          isVerified={creative.isVerified}
-        />
-      ))}
+      {filteredCreativesList.length > 0 ? (
+        filteredCreativesList.map((creative, index) => (
+          <CreativeCard
+            key={index}
+            photo_url={creative.photo_url}
+            city={creative.city}
+            country={creative.country}
+            school={creative.school}
+            projectPref={creative.projectPref}
+            full_name={creative.full_name}
+            email={creative.email}
+            skills={creative.skills}
+            website={creative.website || 'https://www.stupaid.work/'}
+            isVerified={creative.isVerified}
+          />
+        ))
+      ) : (
+        <Flex
+          justifyContent="center"
+          width="100%">
+          <Text fontSize="20px">
+            No results.
+          </Text>
+        </Flex>
+      )}
     </Flex>
   );
 };
