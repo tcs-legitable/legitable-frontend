@@ -3,7 +3,7 @@ import React, { useEffect, useState } from 'react';
 import CreativeCard from './CreativeCard';
 import { getAllUsers } from '../../firebase/helpers';
 
-const Creatives = () => {
+const Creatives = ({ filters }) => {
   const [creativesList, setCreativesList] = useState([]);
 
   useEffect(() => {
@@ -14,9 +14,26 @@ const Creatives = () => {
     fetchData();
   }, []);
 
+  const filteredCreativesList = creativesList.filter((creative) => {
+    if (filters.skill && !creative.skills.includes(filters.skill)) {
+      return false;
+    }
+    if (filters.location && !creative.city.includes(filters.location)) {
+      return false;
+    }
+    if (filters.preference && creative.projectPref !== filters.preference) {
+      return false;
+    }
+    if (filters.verified && !creative.is_verified) {
+      return false;
+    }
+    return true;
+  });
+
   return (
     <Flex display="flex" flexDirection="column">
-      {creativesList.map((creative, index) => (
+      {filteredCreativesList.map((creative, index) => (
+        // {creativesList.map((creative, index) => (
         <CreativeCard
           key={index}
           photo_url={creative.photo_url}
