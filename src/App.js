@@ -9,7 +9,7 @@ import theme from './theme/theme';
 import GetStartedLandingPage from './components/landing-page-components/GetStartedLandingPage';
 import Home from './components/organization-view-components/Home';
 import StudentLanding from './components/student-view-components/StudentLanding';
-import ProfilePage from './components/global-components/ProfilePage';
+import ProfilePage from './components/profile-components/ProfilePage';
 
 export const SignedInContext = createContext();
 
