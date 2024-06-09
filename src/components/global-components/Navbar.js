@@ -16,8 +16,12 @@ import { SignedInContext } from '../../App';
 import { useNavigate } from 'react-router-dom';
 
 const Navbar = () => {
-  const { value } = useContext(SignedInContext);
+  const { value, setValue } = useContext(SignedInContext);
   const navigate = useNavigate();
+
+  const login = () => {
+    navigate('/landing');
+  };
 
   const logout = () => {
     localStorage.removeItem('user-data');
@@ -147,7 +151,12 @@ const Navbar = () => {
             Sign up
           </Button>
 
-          <Button border="1px solid" p="23px" borderRadius="25px">
+          <Button
+            onClick={login}
+            border="1px solid"
+            p="23px"
+            borderRadius="25px"
+          >
             Log in
           </Button>
         </Box>
