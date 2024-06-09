@@ -24,6 +24,8 @@ const CreativeCard = ({
       flexDirection="row"
       marginBottom="20px"
       marginLeft="60px"
+      marginRight="40px"
+      marginTop="20px"
       border="1px solid #dbdbdb"
     >
       <Image
