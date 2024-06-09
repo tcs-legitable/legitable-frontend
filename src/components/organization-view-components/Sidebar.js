@@ -9,7 +9,7 @@ import {
 } from '@chakra-ui/react';
 import React, { useState } from 'react';
 
-const Sidebar = () => {
+const Sidebar = ({ onFilterChange }) => {
   const [skill, setSkill] = useState('');
   const [location, setLocation] = useState('');
   const [preference, setPreference] = useState('');
@@ -45,6 +45,15 @@ const Sidebar = () => {
     console.log('Switch:', verified);
   };
 
+  const handleFilterChange = () => {
+    onFilterChange({
+      skill,
+      location,
+      preference,
+      verified
+    });
+  };
+
   return (
     <Box
       backgroundColor="white"
@@ -64,8 +73,9 @@ const Sidebar = () => {
         onChange={(e) => setSkill(e.target.value)}
         color={skill ? '#000' : '#969696'}
         mb="10px"
-        ml="60px"
-        mr="60px"
+        //FIX THIS
+        // pl="60px"
+        // pr="60px"
         mt="10px"
         width="100%"
       >
@@ -90,8 +100,10 @@ const Sidebar = () => {
         _placeholder={{ color: '#969696' }}
         onChange={(e) => setLocation(e.target.value)}
         mb="10px"
-        ml="60px"
+        //FIX THIS
+        // ml="60px"
         mt="10px"
+        borderLeft="#969696"
       />
 
       <Text
@@ -114,6 +126,7 @@ const Sidebar = () => {
           w={{ base: '300px', md: '400px' }}
           flexWrap="wrap"
           align="center"
+          FIX THIS
           ml="60px"
           pb="20px"
         >
@@ -192,7 +205,8 @@ const Sidebar = () => {
         _active={{
           backgroundPosition: 'left bottom',
         }}
-        onClick={test}
+        // onClick={test}
+        onClick={handleFilterChange}
       >
         Find your creative
       </Button>
