@@ -24,7 +24,7 @@ const Creatives = ({ filters }) => {
     if (filters.preference && creative.projectPref !== filters.preference) {
       return false;
     }
-    if (filters.verified && !creative.is_verified) {
+    if (filters.verified && !creative.isVerified) {
       return false;
     }
     return true;
@@ -33,7 +33,6 @@ const Creatives = ({ filters }) => {
   return (
     <Flex display="flex" flexDirection="column">
       {filteredCreativesList.map((creative, index) => (
-        // {creativesList.map((creative, index) => (
         <CreativeCard
           key={index}
           photo_url={creative.photo_url}
@@ -45,7 +44,7 @@ const Creatives = ({ filters }) => {
           email={creative.email}
           skills={creative.skills}
           website={creative.website || 'https://www.stupaid.work/'}
-        // is_verified={creative.is_verified}
+          isVerified={creative.isVerified}
         />
       ))}
     </Flex>

@@ -13,10 +13,8 @@ const CreativeCard = ({
   email,
   skills,
   website,
-  // is_verified
+  isVerified
 }) => {
-  //PLACEHOLDER
-  const is_verified = true;
 
   return (
     <Box
@@ -49,7 +47,7 @@ const CreativeCard = ({
           <Text fontSize="xl" fontWeight="bold">
             {full_name}
           </Text>
-          {is_verified && (
+          {isVerified && (
             <>
               <Text fontSize="xl" mx="10px">
                 |
