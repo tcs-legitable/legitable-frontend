@@ -16,7 +16,7 @@ import { SignedInContext } from '../../App';
 import { useNavigate } from 'react-router-dom';
 
 const Navbar = () => {
-  const { value, setValue } = useContext(SignedInContext);
+  const { value } = useContext(SignedInContext);
   const navigate = useNavigate();
 
   const login = () => {
@@ -26,6 +26,10 @@ const Navbar = () => {
   const logout = () => {
     localStorage.removeItem('user-data');
     window.location.reload();
+  };
+
+  const goToProfile = () => {
+    navigate('/user/' + value?.uid);
   };
 
   return (
@@ -117,7 +121,7 @@ const Navbar = () => {
               />
             </MenuButton>
             <MenuList>
-              <MenuItem>My profile</MenuItem>
+              <MenuItem onClick={goToProfile}>My profile</MenuItem>
               <MenuItem onClick={logout}>Log out</MenuItem>
             </MenuList>
           </Menu>
