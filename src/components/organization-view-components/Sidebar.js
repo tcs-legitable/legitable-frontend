@@ -66,25 +66,30 @@ const Sidebar = ({ onFilterChange }) => {
       >
         Skills
       </Text>
-      <Select
-        placeholder="Select a skill"
-        borderRadius="20px"
-        value={skill}
-        onChange={(e) => setSkill(e.target.value)}
-        color={skill ? '#000' : '#969696'}
-        mb="10px"
-        //FIX THIS
-        // pl="60px"
-        // pr="60px"
-        mt="10px"
-        width="100%"
+      <Flex
+        w="70%"
+        marginLeft="60px"
       >
-        {skillList.map(({ id, text, value }) => (
-          <option key={id} value={value}>
-            {text}
-          </option>
-        ))}
-      </Select>
+        <Select
+          placeholder="Select a skill"
+          borderRadius="20px"
+          value={skill}
+          onChange={(e) => setSkill(e.target.value)}
+          color={skill ? '#000' : '#969696'}
+          mb="10px"
+          //FIX THIS
+          // pl="60px"
+          // pr="60px"
+          mt="10px"
+          width="100%"
+        >
+          {skillList.map(({ id, text, value }) => (
+            <option key={id} value={value}>
+              {text}
+            </option>
+          ))}
+        </Select>
+      </Flex>
 
       <Text
         fontWeight="700"
@@ -93,18 +98,22 @@ const Sidebar = ({ onFilterChange }) => {
       >
         Location
       </Text>
-      <Input
-        placeholder="e.g. Vancouver"
-        borderRadius="20px"
-        value={location}
-        _placeholder={{ color: '#969696' }}
-        onChange={(e) => setLocation(e.target.value)}
-        mb="10px"
-        //FIX THIS
-        // ml="60px"
-        mt="10px"
-        borderLeft="#969696"
-      />
+      <Flex
+        w="70%"
+        marginLeft="60px"
+      >
+        <Input
+          placeholder="e.g. Vancouver"
+          borderRadius="20px"
+          value={location}
+          _placeholder={{ color: '#969696' }}
+          onChange={(e) => setLocation(e.target.value)}
+          mb="10px"
+          //FIX THIS
+          // ml="60px"
+          mt="10px"
+        />
+      </Flex>
 
       <Text
         fontWeight="700"
