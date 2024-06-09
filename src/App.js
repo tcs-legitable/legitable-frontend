@@ -9,6 +9,7 @@ import theme from './theme/theme';
 import GetStartedLandingPage from './components/landing-page-components/GetStartedLandingPage';
 import Home from './components/organization-view-components/Home';
 import StudentLanding from './components/student-view-components/StudentLanding';
+import ProfilePage from './components/global-components/ProfilePage';
 
 export const SignedInContext = createContext();
 
@@ -38,6 +39,10 @@ function App() {
               <Route
                 path="/projects"
                 element={!loading && <StudentLanding view={value?.type} />}
+              />
+              <Route
+                path={'/user/:userId'}
+                element={!loading && <ProfilePage />}
               />
             </Routes>
           </Router>
