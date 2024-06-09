@@ -1,13 +1,36 @@
 import React, { useContext } from 'react';
 // import StupaidLogo from './../../assets/images/stupaid-logo.svg';
 import StupaidLogo from './../../assets/landing-page-images/stupaid-logo-main.svg';
-import { Box, Button, Flex, Image, Text } from '@chakra-ui/react';
+import {
+  Box,
+  Button,
+  Flex,
+  Image,
+  Menu,
+  MenuButton,
+  MenuItem,
+  MenuList,
+  Text,
+} from '@chakra-ui/react';
 import { SignedInContext } from '../../App';
 import { useNavigate } from 'react-router-dom';
 
 const Navbar = () => {
   const { value } = useContext(SignedInContext);
   const navigate = useNavigate();
+
+  const login = () => {
+    navigate('/landing');
+  };
+
+  const logout = () => {
+    localStorage.removeItem('user-data');
+    window.location.reload();
+  };
+
+  const goToProfile = () => {
+    navigate('/user/' + value?.uid);
+  };
 
   return (
     <Box
@@ -79,7 +102,35 @@ const Navbar = () => {
             My projects
           </Button>
 
-          <Image w="55px" borderRadius="50%" src={value?.photo_url} />
+          <Menu>
+            <MenuButton
+            // as={
+            //   <Image
+            //     _hover={{ cursor: 'pointer' }}
+            //     w="55px"
+            //     borderRadius="50%"
+            //     src={value?.photo_url}
+            //   />
+            // }
+            >
+              <Image
+                _hover={{ cursor: 'pointer' }}
+                w="55px"
+                borderRadius="50%"
+                src={value?.photo_url}
+              />
+            </MenuButton>
+            <MenuList>
+              <MenuItem onClick={goToProfile}>My profile</MenuItem>
+              <MenuItem onClick={logout}>Log out</MenuItem>
+            </MenuList>
+          </Menu>
+          {/* <Image
+            _hover={{ cursor: 'pointer' }}
+            w="55px"
+            borderRadius="50%"
+            src={value?.photo_url}
+          /> */}
         </Flex>
       ) : (
         <Box className="button-container">
@@ -104,7 +155,12 @@ const Navbar = () => {
             Sign up
           </Button>
 
-          <Button border="1px solid" p="23px" borderRadius="25px">
+          <Button
+            onClick={login}
+            border="1px solid"
+            p="23px"
+            borderRadius="25px"
+          >
             Log in
           </Button>
         </Box>
