@@ -21,7 +21,7 @@ const Creatives = ({ filters }) => {
     if (filters.location && !creative.city.includes(filters.location)) {
       return false;
     }
-    if (filters.preference && creative.projectPref !== filters.preference) {
+    if (filters.preference && filters.preference !== 'any' && creative.projectPref !== filters.preference) {
       return false;
     }
     if (filters.verified && !creative.isVerified) {
