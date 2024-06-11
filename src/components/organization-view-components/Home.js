@@ -15,6 +15,8 @@ const Home = () => {
   return (
     <Box
       backgroundColor="#fafafa"
+      width="100vw"
+      height="100vh"
     >
       <Navbar />
       <Box display="flex" flexDirection="row" justifyContent="space-between">
