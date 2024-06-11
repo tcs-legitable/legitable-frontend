@@ -27,6 +27,7 @@ const CreativeCard = ({
       marginRight="40px"
       marginTop="20px"
       border="1px solid #dbdbdb"
+      width="100%"
     >
       <Image
         src={photo_url}
@@ -38,7 +39,10 @@ const CreativeCard = ({
         borderRadius="full"
       />
 
-      <Box mt="30px">
+      <Box
+        mt="30px"
+        width="200%"
+      >
         <Box display="flex" flexDirection="row">
           <Text color="#555" fontSize="13px" mb="7px">
             {city}, {country} • {school} • {projectPref}
@@ -56,7 +60,10 @@ const CreativeCard = ({
               </Text>
               <Button borderRadius="25px">
                 <Image src={star} />
-                <Text marginLeft="6px" fontSize="12px" fontWeight="300">
+                <Text
+                  marginLeft="6px"
+                  fontSize="12px"
+                  fontWeight="300">
                   Stupaid verified
                 </Text>
               </Button>
@@ -80,11 +87,15 @@ const CreativeCard = ({
         </Box>
       </Box>
 
-      <Box>
+      <Box
+        width="100%"
+        textAlign="right"
+        mr="30px"
+      >
         <Button
           mt="30px"
           border="1px solid"
-          p="20px"
+          p="15px"
           borderRadius="25px"
           color="#fafafa"
           bgColor="#0c0c0c"

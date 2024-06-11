@@ -57,7 +57,7 @@ const Sidebar = ({ onFilterChange }) => {
   return (
     <Box
       backgroundColor="white"
-      width="40%"
+      width="30%"
       borderLeft="outset">
       <Text
         fontWeight="700"
@@ -94,7 +94,7 @@ const Sidebar = ({ onFilterChange }) => {
       <Text
         fontWeight="700"
         ml="60px"
-        mt="30px"
+        mt="20px"
       >
         Location
       </Text>
@@ -118,7 +118,7 @@ const Sidebar = ({ onFilterChange }) => {
       <Text
         fontWeight="700"
         ml="60px"
-        mt="30px"
+        mt="20px"
       >
         Project preference
       </Text>
@@ -132,11 +132,9 @@ const Sidebar = ({ onFilterChange }) => {
         pt="10px"
       >
         <Flex
-          w={{ base: '300px', md: '400px' }}
           flexWrap="wrap"
           align="center"
           FIX THIS
-          ml="60px"
           pb="20px"
         >
           {preferenceList.map(({ id, text, value }) => {
@@ -147,7 +145,7 @@ const Sidebar = ({ onFilterChange }) => {
                 m="4px"
                 key={id}
                 border="1px solid #0c0c0c"
-                p="8px 20px"
+                p="4px 10px"
                 _hover={{
                   cursor: 'pointer',
                 }}
@@ -156,6 +154,7 @@ const Sidebar = ({ onFilterChange }) => {
                 bg="transparent"
                 onClick={() => setPreference(value)}
                 bgColor={preference === value ? '#d7d7d7' : 'transparent'}
+                fontSize="15px"
               >
                 {text}
               </Box>
@@ -168,6 +167,7 @@ const Sidebar = ({ onFilterChange }) => {
         display="flex"
         flexDirection="row"
         ml="60px"
+        mt="5px"
       >
         <Box
           width="60%"
@@ -201,9 +201,9 @@ const Sidebar = ({ onFilterChange }) => {
       <Button
         width="70%"
         border="1px solid"
-        p="25px"
+        p="4px 10px"
         ml="60px"
-        mt="50px"
+        mt="30px"
         borderRadius="25px"
         color="#fafafa"
         bgColor="#0c0c0c"
@@ -214,7 +214,6 @@ const Sidebar = ({ onFilterChange }) => {
         _active={{
           backgroundPosition: 'left bottom',
         }}
-        // onClick={test}
         onClick={handleFilterChange}
       >
         Find your creative
