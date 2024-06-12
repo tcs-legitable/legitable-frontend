@@ -22,6 +22,7 @@ import EditIcon from '../../assets/images/edit-icon.svg';
 import PersonalSiteIcon from '../../assets/images/website-icon.svg';
 import DefaultProfile from '../../assets/images/default-pfp.svg';
 import ReplaceIcon from '../../assets/images/replace-icon.svg';
+import BackArrow from '../../assets/images/back-arrow-black.svg';
 
 const ProfileUserInfo = ({ userData, canEdit }) => {
   const {
@@ -38,12 +39,19 @@ const ProfileUserInfo = ({ userData, canEdit }) => {
 
   const { isOpen, onOpen, onClose } = useDisclosure();
 
+  const projectPrefButtons = [
+    { id: 0, text: 'In-person', value: 'in-person' },
+    { id: 1, text: 'Remote', value: 'remote' },
+    { id: 2, text: 'Hybrid', value: 'hybrid' },
+  ];
+
   // edit setters
   const [newName, setNewName] = useState(input_name);
   const [newSchool, setNewSchool] = useState(school);
   const [newYear, setNewYear] = useState(year);
   const [newCountry, setNewCountry] = useState(country);
   const [newCity, setNewCity] = useState(city);
+  const [newProjectPref, setNewProjectPref] = useState(projectPref);
   const [newWebsite, setNewWebsite] = useState(personal_site);
 
   const onSave = (data) => {
@@ -61,6 +69,7 @@ const ProfileUserInfo = ({ userData, canEdit }) => {
     setNewCountry(country);
     setNewCity(city);
     setNewWebsite(personal_site);
+    setNewProjectPref(projectPref);
     onClose();
   };
 
@@ -131,8 +140,15 @@ const ProfileUserInfo = ({ userData, canEdit }) => {
             <Flex flexDir="row">
               <VStack>
                 <Image src={photo_url ? photo_url : DefaultProfile} />
-                <Button>
-                  <Image src={ReplaceIcon} />
+                <Button
+                  borderRadius="20px"
+                  fontWeight="regular"
+                  w="100%"
+                  border="#0d0d0d 1.5px solid"
+                  bg="transparent"
+                  mt="20px"
+                >
+                  <Image mr="10px" src={ReplaceIcon} />
                   <Text>Replace</Text>
                 </Button>
               </VStack>
@@ -181,6 +197,36 @@ const ProfileUserInfo = ({ userData, canEdit }) => {
                   </VStack>
                 </HStack>
                 <VStack alignItems="baseline">
+                  <Text fontWeight="bold">Project Preference</Text>
+                  <Flex
+                    flexDir="row"
+                    alignSelf="center"
+                    justifyContent="space-between"
+                    w="100%"
+                    gap="10px"
+                  >
+                    {projectPrefButtons.map(({ id, text }) => {
+                      return (
+                        <Box
+                          key={id}
+                          border="1px solid #0c0c0c"
+                          p="8px 40px"
+                          _hover={{
+                            cursor: 'pointer',
+                          }}
+                          borderRadius="15px"
+                          color="#0c0c0c"
+                          bg="transparent"
+                          onClick={() => setNewProjectPref(text)}
+                          bgColor={newProjectPref === text && '#d7d7d7'}
+                        >
+                          {text}
+                        </Box>
+                      );
+                    })}
+                  </Flex>
+                </VStack>
+                <VStack alignItems="baseline">
                   <Text fontWeight="bold">Website URL (Optional)</Text>
                   <Input
                     placeholder="Link to personal portfolio"
@@ -188,12 +234,44 @@ const ProfileUserInfo = ({ userData, canEdit }) => {
                     onChange={(e) => setNewWebsite(e.target.value)}
                   />
                 </VStack>
-                <Button colorScheme="blue" mr={3} onClick={handleSave}>
-                  Save
-                </Button>
-                <Button variant="ghost" onClick={handleClose}>
-                  Cancel
-                </Button>
+                <HStack mt="10px">
+                  <Button
+                    borderRadius="15px"
+                    fontWeight="regular"
+                    w="100%"
+                    border="#0d0d0d 1.5px solid"
+                    bg="transparent"
+                    onClick={handleClose}
+                  >
+                    <Image src={BackArrow} mr="8px" />
+                    Back to profile
+                  </Button>
+                  <Button
+                    isDisabled={
+                      newName === '' ||
+                      newSchool === '' ||
+                      newYear === '' ||
+                      newCountry === '' ||
+                      newCity === ''
+                    }
+                    borderRadius="15px"
+                    border="#101010 1.5px solid"
+                    bgColor="#101010"
+                    fontWeight="regular"
+                    w="100%"
+                    colorScheme="blue"
+                    mr={3}
+                    onClick={handleSave}
+                    _hover={{
+                      bgColor: 'black',
+                    }}
+                    _active={{
+                      bgColor: 'black',
+                    }}
+                  >
+                    Save changes
+                  </Button>
+                </HStack>
               </Flex>
             </Flex>
           </ModalBody>
