@@ -24,7 +24,7 @@ const LandingCreateStudentProfile = ({ goNext, setData, data }) => {
   const projectPrefButtons = [
     { id: 0, text: 'In-person', value: 'in-person' },
     { id: 1, text: 'Remote', value: 'remote' },
-    { id: 2, text: 'Any', value: 'any' },
+    { id: 2, text: 'Hybrid', value: 'hybrid' },
   ];
 
   const handleClick = () => {
@@ -68,7 +68,7 @@ const LandingCreateStudentProfile = ({ goNext, setData, data }) => {
       >
         <Input
           placeholder="Full name"
-          borderRadius="20px"
+          borderRadius="10px"
           value={name}
           _placeholder={{ color: '#969696' }}
           onChange={(e) => setName(e.target.value)}
@@ -76,7 +76,7 @@ const LandingCreateStudentProfile = ({ goNext, setData, data }) => {
         />
         <Input
           placeholder="Name of School / Institution"
-          borderRadius="20px"
+          borderRadius="10px"
           value={school}
           _placeholder={{ color: '#969696' }}
           onChange={(e) => setSchool(e.target.value)}
@@ -85,17 +85,17 @@ const LandingCreateStudentProfile = ({ goNext, setData, data }) => {
         <Input
           mb="20px"
           placeholder="Year Level"
-          borderRadius="20px"
+          borderRadius="10px"
           value={year}
           _placeholder={{ color: '#969696' }}
           onChange={(e) => setYear(e.target.value)}
         />
         <Flex mb="20px" flexDir="column">
           <Text mb="4px">I am based in...</Text>
-          <Flex flexDir="row">
+          <Flex gap="10px" flexDir="row">
             <Input
               placeholder="Country"
-              borderRadius="20px"
+              borderRadius="10px"
               value={country}
               _placeholder={{ color: '#969696' }}
               onChange={(e) => setCountry(e.target.value)}
@@ -103,7 +103,7 @@ const LandingCreateStudentProfile = ({ goNext, setData, data }) => {
             />
             <Input
               placeholder="City"
-              borderRadius="20px"
+              borderRadius="10px"
               value={city}
               _placeholder={{ color: '#969696' }}
               onChange={(e) => setCity(e.target.value)}
@@ -112,13 +112,14 @@ const LandingCreateStudentProfile = ({ goNext, setData, data }) => {
           </Flex>
         </Flex>
         <Flex flexDir="column">
-          <Text mb="4px">Project preference</Text>
+          <Text mb="8px">Project preference</Text>
           <Flex
             flexDir="row"
             pb="30px"
             alignSelf="center"
             justifyContent="space-between"
             w="100%"
+            gap="10px"
           >
             {projectPrefButtons.map(({ id, text, value }) => {
               return (
@@ -129,7 +130,7 @@ const LandingCreateStudentProfile = ({ goNext, setData, data }) => {
                   _hover={{
                     cursor: 'pointer',
                   }}
-                  borderRadius="25px"
+                  borderRadius="15px"
                   color="#0c0c0c"
                   bg="transparent"
                   onClick={() => setProjectPref(id)}
