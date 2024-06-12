@@ -13,7 +13,7 @@ import {
   Input,
   Box,
 } from '@chakra-ui/react';
-import React, { useEffect, useState } from 'react';
+import React, { useContext, useEffect, useState } from 'react';
 import StupaidVerified from '../global-components/StupaidVerified';
 import LocationIcon from '../../assets/images/location-icon.svg';
 import ProjectPrefIcon from '../../assets/images/project-pref-icon.svg';
@@ -24,8 +24,11 @@ import DefaultProfile from '../../assets/images/default-pfp.svg';
 import ReplaceIcon from '../../assets/images/replace-icon.svg';
 import BackArrow from '../../assets/images/back-arrow-black.svg';
 import { updateStupaidUser } from '../../firebase/helpers';
+import { SignedInContext } from '../../App';
 
 const ProfileUserInfo = ({ userId, userData, canEdit }) => {
+  const { setValue, value } = useContext(SignedInContext);
+
   const {
     input_name,
     city,
@@ -55,10 +58,6 @@ const ProfileUserInfo = ({ userId, userData, canEdit }) => {
   const [newProjectPref, setNewProjectPref] = useState(projectPref);
   const [newWebsite, setNewWebsite] = useState(personal_site);
 
-  useEffect(() => {
-    // console.log(newName, ' is the name');
-  }, []);
-
   const handleClose = () => {
     setNewName(input_name);
     setNewSchool(school);
@@ -80,8 +79,19 @@ const ProfileUserInfo = ({ userId, userData, canEdit }) => {
       city: newCity,
       country: newCountry,
       year: newYear,
+      school: newSchool,
     };
     await updateStupaidUser(userId, updatedData);
+    let storedValue = localStorage.getItem('user-data');
+    if (storedValue) {
+      storedValue = JSON.parse(storedValue);
+      const updatedLocalStorage = {
+        ...storedValue,
+        name: newName,
+      };
+      setValue(updatedLocalStorage);
+      localStorage.setItem('user-data', JSON.stringify(updatedLocalStorage));
+    }
     onClose();
   };
 

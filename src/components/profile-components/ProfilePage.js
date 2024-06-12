@@ -21,7 +21,7 @@ const ProfilePage = () => {
       setLoaded(true);
     };
     fetchUserData();
-  }, [userId]);
+  }, [userId, value]);
 
   useEffect(() => {
     console.log(userData, ' is the data');
