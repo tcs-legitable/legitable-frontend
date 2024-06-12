@@ -1,5 +1,12 @@
 // helpers go here
-import { getDoc, getDocs, doc, setDoc, collection } from '@firebase/firestore';
+import {
+  getDoc,
+  updateDoc,
+  getDocs,
+  doc,
+  setDoc,
+  collection,
+} from '@firebase/firestore';
 import { db } from './firebase';
 
 export const getAllUsers = async () => {
@@ -73,6 +80,25 @@ export const addStupaidUser = async (data) => {
     }
   } else {
     console.log('user w/ the uid of ', uid, ' already exists');
+  }
+};
+
+export const updateStupaidUser = async (uid, updatedFields) => {
+  if (!uid) {
+    console.error('UID is required!');
+    return;
+  }
+  console.log(updatedFields, ' are this');
+
+  const userRef = doc(db, 'mvp_users', uid);
+  const docSnap = await getUserData(uid);
+
+  if (docSnap !== null) {
+    try {
+      await updateDoc(userRef, updatedFields);
+    } catch (error) {
+      console.log('error encountered while updating fields: ', error);
+    }
   }
 };
 
