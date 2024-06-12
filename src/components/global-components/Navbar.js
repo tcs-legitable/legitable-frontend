@@ -1,6 +1,7 @@
 import React, { useContext } from 'react';
 // import StupaidLogo from './../../assets/images/stupaid-logo.svg';
 import StupaidLogo from './../../assets/landing-page-images/stupaid-logo-main.svg';
+import DefaultProfile from '../../assets/images/default-pfp.svg';
 import {
   Box,
   Button,
@@ -117,7 +118,7 @@ const Navbar = () => {
                 _hover={{ cursor: 'pointer' }}
                 w="55px"
                 borderRadius="50%"
-                src={value?.photo_url}
+                src={value?.photo_url ? value.photo_url : DefaultProfile}
               />
             </MenuButton>
             <MenuList>

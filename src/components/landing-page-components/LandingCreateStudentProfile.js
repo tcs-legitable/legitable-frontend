@@ -35,7 +35,7 @@ const LandingCreateStudentProfile = ({ goNext, setData, data }) => {
       school: school,
       city: city,
       country: country,
-      projectPref: projectPrefButtons[projectPref].value,
+      projectPref: projectPrefButtons[projectPref].text,
     };
 
     setData({ ...data, ...moreData });
@@ -121,7 +121,7 @@ const LandingCreateStudentProfile = ({ goNext, setData, data }) => {
             w="100%"
             gap="10px"
           >
-            {projectPrefButtons.map(({ id, text, value }) => {
+            {projectPrefButtons.map(({ id, text }) => {
               return (
                 <Box
                   key={id}

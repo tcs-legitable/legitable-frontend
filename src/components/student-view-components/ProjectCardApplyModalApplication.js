@@ -10,6 +10,7 @@ import {
 import React, { useContext, useState } from 'react';
 import { SignedInContext } from '../../App';
 import { applyForProject } from '../../firebase/helpers';
+import DefaultProfile from '../../assets/images/default-pfp.svg';
 
 const ProjectCardApplyModalApplication = ({
   handleApply,
@@ -32,7 +33,12 @@ const ProjectCardApplyModalApplication = ({
   return (
     <Flex h="590px" p="30px" color="white" w="400px" flexDir="column">
       <HStack>
-        <Image mr="5px" borderRadius="50%" w="65px" src={photo_url} />
+        <Image
+          mr="5px"
+          borderRadius="50%"
+          w="65px"
+          src={photo_url ? photo_url : DefaultProfile}
+        />
         <Text fontWeight="regular">{name}</Text>
       </HStack>
       <Box my="25px" bgColor="#535353" h="1px"></Box>

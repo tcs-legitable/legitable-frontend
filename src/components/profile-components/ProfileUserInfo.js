@@ -5,6 +5,8 @@ import LocationIcon from '../../assets/images/location-icon.svg';
 import ProjectPrefIcon from '../../assets/images/project-pref-icon.svg';
 import SchoolIcon from '../../assets/images/school-icon.svg';
 import EditIcon from '../../assets/images/edit-icon.svg';
+import PersonalSiteIcon from '../../assets/images/website-icon.svg';
+import DefaultProfile from '../../assets/images/default-pfp.svg';
 
 const ProfileUserInfo = ({ userData, canEdit }) => {
   const {
@@ -15,11 +17,15 @@ const ProfileUserInfo = ({ userData, canEdit }) => {
     photo_url,
     school,
     projectPref,
+    personal_site,
   } = userData;
   return (
     <Flex mb="30px" flexDir="column">
       <HStack>
-        <Image borderRadius="50%" src={photo_url} />
+        <Image
+          borderRadius="50%"
+          src={photo_url ? photo_url : DefaultProfile}
+        />
         <VStack alignItems="baseline" ml="20px">
           <Text fontWeight="bold" fontSize="29px">
             {input_name}
@@ -54,6 +60,12 @@ const ProfileUserInfo = ({ userData, canEdit }) => {
           <Image src={ProjectPrefIcon} />
           <Text>{projectPref}</Text>
         </HStack>
+        {personal_site && (
+          <HStack mt="2px">
+            <Image src={PersonalSiteIcon} />
+            <Text>{personal_site}</Text>
+          </HStack>
+        )}
       </VStack>
     </Flex>
   );

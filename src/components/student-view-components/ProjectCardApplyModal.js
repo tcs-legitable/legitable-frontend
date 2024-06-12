@@ -3,6 +3,7 @@ import React from 'react';
 import DeadlineIcon from '../../assets/images/deadline-icon.svg';
 import BudgetIcon from '../../assets/images/budget-icon.svg';
 import LinkArrow from '../../assets/images/link-arrow.svg';
+import DefaultProfile from '../../assets/images/default-pfp.svg';
 
 const ProjectCardApplyModal = ({ project, key }) => {
   const {
@@ -87,7 +88,12 @@ const ProjectCardApplyModal = ({ project, key }) => {
         })}
       </Flex>
       <Flex pt="20px" flexDir="row" align="center">
-        <Image mr="20px" borderRadius="50%" w="80px" src={photo_url} />
+        <Image
+          mr="20px"
+          borderRadius="50%"
+          w="80px"
+          src={photo_url ? photo_url : DefaultProfile}
+        />
         <Flex flexDir="column">
           <HStack>
             <Link src={lead_name?.link}>{lead_name?.name}</Link>

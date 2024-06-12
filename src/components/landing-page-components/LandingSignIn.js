@@ -17,12 +17,11 @@ const LandingSignIn = ({ goNext, setData }) => {
       const { user } = await signInWithPopup(auth, provider);
       console.log(user, ' is the user');
 
-      const { uid, email, displayName, photoURL } = user;
+      const { uid, email, displayName } = user;
       const exists = await doesUserExist(uid);
       const newInfo = {
         uid: uid,
         name: displayName,
-        photo_url: photoURL,
         type: 'student',
       };
       setValue(newInfo);
@@ -37,7 +36,7 @@ const LandingSignIn = ({ goNext, setData }) => {
         full_name: displayName,
         first_name: displayName.split(' ')[0],
         email: email,
-        photo_url: photoURL,
+        photo_url: null,
       };
       setData(data);
 
