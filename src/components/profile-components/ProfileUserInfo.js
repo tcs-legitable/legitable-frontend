@@ -1,5 +1,19 @@
-import { Button, Flex, HStack, Image, Text, VStack } from '@chakra-ui/react';
-import React from 'react';
+import {
+  Button,
+  Flex,
+  HStack,
+  Image,
+  Text,
+  VStack,
+  Modal,
+  ModalOverlay,
+  ModalContent,
+  ModalBody,
+  useDisclosure,
+  Input,
+  Box,
+} from '@chakra-ui/react';
+import React, { useEffect, useState } from 'react';
 import StupaidVerified from '../global-components/StupaidVerified';
 import LocationIcon from '../../assets/images/location-icon.svg';
 import ProjectPrefIcon from '../../assets/images/project-pref-icon.svg';
@@ -7,6 +21,7 @@ import SchoolIcon from '../../assets/images/school-icon.svg';
 import EditIcon from '../../assets/images/edit-icon.svg';
 import PersonalSiteIcon from '../../assets/images/website-icon.svg';
 import DefaultProfile from '../../assets/images/default-pfp.svg';
+import ReplaceIcon from '../../assets/images/replace-icon.svg';
 
 const ProfileUserInfo = ({ userData, canEdit }) => {
   const {
@@ -18,7 +33,47 @@ const ProfileUserInfo = ({ userData, canEdit }) => {
     school,
     projectPref,
     personal_site,
+    year,
   } = userData;
+
+  const { isOpen, onOpen, onClose } = useDisclosure();
+
+  // edit setters
+  const [newName, setNewName] = useState(input_name);
+  const [newSchool, setNewSchool] = useState(school);
+  const [newYear, setNewYear] = useState(year);
+  const [newCountry, setNewCountry] = useState(country);
+  const [newCity, setNewCity] = useState(city);
+  const [newWebsite, setNewWebsite] = useState(personal_site);
+
+  const onSave = (data) => {
+    return;
+  };
+
+  useEffect(() => {
+    // console.log(newName, ' is the name');
+  }, []);
+
+  const handleClose = () => {
+    setNewName(input_name);
+    setNewSchool(school);
+    setNewYear(year);
+    setNewCountry(country);
+    setNewCity(city);
+    setNewWebsite(personal_site);
+    onClose();
+  };
+
+  const handleSave = () => {
+    const updatedData = {
+      ...userData,
+      input_name: name,
+      input_first_name: name.split(' ')[0],
+    };
+    onSave(updatedData);
+    onClose();
+  };
+
   return (
     <Flex mb="30px" flexDir="column">
       <HStack>
@@ -39,6 +94,7 @@ const ProfileUserInfo = ({ userData, canEdit }) => {
             borderRadius="20px"
             alignSelf="baseline"
             ml="auto"
+            onClick={onOpen}
           >
             <Image mr="5px" src={EditIcon} />
             <Text>Edit profile</Text>
@@ -67,6 +123,82 @@ const ProfileUserInfo = ({ userData, canEdit }) => {
           </HStack>
         )}
       </VStack>
+
+      <Modal isOpen={isOpen} onClose={handleClose}>
+        <ModalOverlay />
+        <ModalContent p="40px" h="fit-content" maxW="800px">
+          <ModalBody>
+            <Flex flexDir="row">
+              <VStack>
+                <Image src={photo_url ? photo_url : DefaultProfile} />
+                <Button>
+                  <Image src={ReplaceIcon} />
+                  <Text>Replace</Text>
+                </Button>
+              </VStack>
+              <Box mx="30px" h="inherit" bgColor="#ececec" w="1.5px"></Box>
+              <Flex gap="20px" flexDir="column">
+                <VStack alignItems="baseline">
+                  <Text fontWeight="bold">Full name</Text>
+                  <Input
+                    placeholder="Full name"
+                    value={newName}
+                    onChange={(e) => setNewName(e.target.value)}
+                  />
+                </VStack>
+                <VStack alignItems="baseline">
+                  <Text fontWeight="bold">School / Institution</Text>
+                  <Input
+                    placeholder="Name of School / Institution"
+                    value={newSchool}
+                    onChange={(e) => setNewSchool(e.target.value)}
+                  />
+                </VStack>
+                <VStack alignItems="baseline">
+                  <Text fontWeight="bold">Year level</Text>
+                  <Input
+                    placeholder="Select year level"
+                    value={newYear}
+                    onChange={(e) => setNewYear(e.target.value)}
+                  />
+                </VStack>
+                <HStack>
+                  <VStack alignItems="baseline">
+                    <Text fontWeight="bold">Country</Text>
+                    <Input
+                      placeholder="Select country"
+                      value={newCountry}
+                      onChange={(e) => setNewCountry(e.target.value)}
+                    />
+                  </VStack>
+                  <VStack alignItems="baseline">
+                    <Text fontWeight="bold">City</Text>
+                    <Input
+                      placeholder="Select city"
+                      value={newCity}
+                      onChange={(e) => setNewCity(e.target.value)}
+                    />
+                  </VStack>
+                </HStack>
+                <VStack alignItems="baseline">
+                  <Text fontWeight="bold">Website URL (Optional)</Text>
+                  <Input
+                    placeholder="Link to personal portfolio"
+                    value={newWebsite}
+                    onChange={(e) => setNewWebsite(e.target.value)}
+                  />
+                </VStack>
+                <Button colorScheme="blue" mr={3} onClick={handleSave}>
+                  Save
+                </Button>
+                <Button variant="ghost" onClick={handleClose}>
+                  Cancel
+                </Button>
+              </Flex>
+            </Flex>
+          </ModalBody>
+        </ModalContent>
+      </Modal>
     </Flex>
   );
 };
