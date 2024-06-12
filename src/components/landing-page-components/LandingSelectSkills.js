@@ -26,7 +26,12 @@ const LandingSelectSkills = ({ goNext, data, setData }) => {
 
   const handleClick = () => {
     const skillNames = skills.map((skill) => {
-      return skillList[skill].text;
+      return {
+        skillName: skillList[skill].text,
+        description: null,
+        image: null,
+        link: null,
+      };
     });
 
     setData({

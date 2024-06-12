@@ -66,7 +66,12 @@ const WaitingListLandingStudentClicked = () => {
   // this sets the student info
   const handleClick = async () => {
     const skillNames = skills.map((skill) => {
-      return skillList[skill].value;
+      return {
+        skillName: skillList[skill].value,
+        description: null,
+        image: null,
+        link: null,
+      };
     });
 
     try {
