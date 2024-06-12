@@ -12,6 +12,7 @@ import {
   useDisclosure,
   Input,
   Box,
+  Link,
 } from '@chakra-ui/react';
 import React, { useContext, useEffect, useState } from 'react';
 import StupaidVerified from '../global-components/StupaidVerified';
@@ -140,7 +141,13 @@ const ProfileUserInfo = ({ userId, userData, canEdit }) => {
         {personal_site && (
           <HStack mt="2px">
             <Image src={PersonalSiteIcon} />
-            <Text>{personal_site}</Text>
+            <Link
+              href={personal_site}
+              target="_blank"
+              textDecoration="underline"
+            >
+              {personal_site}
+            </Link>
           </HStack>
         )}
       </VStack>
