@@ -6,6 +6,7 @@ import LinkArrow from '../../assets/images/link-arrow.svg';
 import ProjectApplyModal from './ProjectApplyModal';
 import { studentAlreadyAppliedForProject } from '../../firebase/helpers';
 import { SignedInContext } from '../../App';
+import DefaultProfile from '../../assets/images/default-pfp.svg';
 
 const ProjectCard = ({ project, key }) => {
   const {
@@ -126,7 +127,12 @@ const ProjectCard = ({ project, key }) => {
         })}
       </Flex>
       <Flex pt="20px" flexDir="row" align="center">
-        <Image mr="20px" borderRadius="50%" w="80px" src={photo_url} />
+        <Image
+          mr="20px"
+          borderRadius="50%"
+          w="80px"
+          src={photo_url ? photo_url : DefaultProfile}
+        />
         <Flex flexDir="column">
           <HStack>
             <Link src={lead_name?.link}>{lead_name?.name}</Link>

@@ -12,14 +12,16 @@ const ProfilePage = () => {
   const { value } = useContext(SignedInContext);
   const [canEdit, setCanEdit] = useState(false);
   const [userData, setUserData] = useState({});
+  const [loaded, setLoaded] = useState(false);
 
   useEffect(() => {
     const fetchUserData = async () => {
       const tempData = await getUserData(userId);
       setUserData(tempData);
+      setLoaded(true);
     };
     fetchUserData();
-  }, [userId]);
+  }, [userId, value]);
 
   useEffect(() => {
     console.log(userData, ' is the data');
@@ -34,7 +36,13 @@ const ProfilePage = () => {
     <Flex w="100%" flexDir="column" h="inherit" bgColor="#fcfcfc">
       <Navbar />
       <Box p="30px">
-        <ProfileUserInfo canEdit={canEdit} userData={userData} />
+        {loaded && (
+          <ProfileUserInfo
+            userId={userId}
+            canEdit={canEdit}
+            userData={userData}
+          />
+        )}
         <ProfileSkills userData={userData} />
       </Box>
     </Flex>

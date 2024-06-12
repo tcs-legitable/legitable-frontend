@@ -9,7 +9,7 @@ const LandingFinal = ({ data }) => {
 
   const handleClick = async () => {
     await addStupaidUser(data);
-    navigate('/home');
+    navigate('/projects');
   };
 
   return (

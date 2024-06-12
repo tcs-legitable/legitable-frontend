@@ -26,10 +26,16 @@ const LandingSelectSkills = ({ goNext, data, setData }) => {
 
   const handleClick = () => {
     const skillNames = skills.map((skill) => {
-      return skillList[skill].value;
+      return skillList[skill].text;
     });
 
-    setData({ ...data, skills: skillNames, projects: [], isVerified: false });
+    setData({
+      ...data,
+      skills: skillNames,
+      projects: [],
+      isVerified: false,
+      personal_site: null,
+    });
 
     goNext();
   };

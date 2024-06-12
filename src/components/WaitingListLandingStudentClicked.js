@@ -39,7 +39,7 @@ const WaitingListLandingStudentClicked = () => {
   const projectPrefButtons = [
     { id: 0, text: 'In-person', value: 'in-person' },
     { id: 1, text: 'Remote', value: 'remote' },
-    { id: 2, text: 'Any', value: 'any' },
+    { id: 2, text: 'Hybrid', value: 'Hybrid' },
   ];
 
   const id = uuidv4();
