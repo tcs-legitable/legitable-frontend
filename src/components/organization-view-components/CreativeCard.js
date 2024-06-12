@@ -1,6 +1,6 @@
 import { Box, Button, Image, Text, Link } from '@chakra-ui/react';
 import React from 'react';
-import star from './../../assets/images/star-stupaid-verified.svg';
+import star from './../../assets/images/Star-stupaid-verified1.svg';
 import arrow from './../../assets/images/up-right-arrow.svg';
 
 const CreativeCard = ({
@@ -13,9 +13,8 @@ const CreativeCard = ({
   email,
   skills,
   website,
-  isVerified
+  isVerified,
 }) => {
-
   return (
     <Box
       backgroundColor="white"
@@ -39,10 +38,7 @@ const CreativeCard = ({
         borderRadius="full"
       />
 
-      <Box
-        mt="30px"
-        width="200%"
-      >
+      <Box mt="30px" width="200%">
         <Box display="flex" flexDirection="row">
           <Text color="#555" fontSize="13px" mb="7px">
             {city}, {country} • {school} • {projectPref}
@@ -60,10 +56,7 @@ const CreativeCard = ({
               </Text>
               <Button borderRadius="25px">
                 <Image src={star} />
-                <Text
-                  marginLeft="6px"
-                  fontSize="12px"
-                  fontWeight="300">
+                <Text marginLeft="6px" fontSize="12px" fontWeight="300">
                   Stupaid verified
                 </Text>
               </Button>
@@ -87,11 +80,7 @@ const CreativeCard = ({
         </Box>
       </Box>
 
-      <Box
-        width="100%"
-        textAlign="right"
-        mr="30px"
-      >
+      <Box width="100%" textAlign="right" mr="30px">
         <Button
           mt="30px"
           border="1px solid"
