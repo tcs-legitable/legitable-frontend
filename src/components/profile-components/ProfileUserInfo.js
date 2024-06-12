@@ -23,8 +23,9 @@ import PersonalSiteIcon from '../../assets/images/website-icon.svg';
 import DefaultProfile from '../../assets/images/default-pfp.svg';
 import ReplaceIcon from '../../assets/images/replace-icon.svg';
 import BackArrow from '../../assets/images/back-arrow-black.svg';
+import { updateStupaidUser } from '../../firebase/helpers';
 
-const ProfileUserInfo = ({ userData, canEdit }) => {
+const ProfileUserInfo = ({ userId, userData, canEdit }) => {
   const {
     input_name,
     city,
@@ -54,10 +55,6 @@ const ProfileUserInfo = ({ userData, canEdit }) => {
   const [newProjectPref, setNewProjectPref] = useState(projectPref);
   const [newWebsite, setNewWebsite] = useState(personal_site);
 
-  const onSave = (data) => {
-    return;
-  };
-
   useEffect(() => {
     // console.log(newName, ' is the name');
   }, []);
@@ -73,13 +70,18 @@ const ProfileUserInfo = ({ userData, canEdit }) => {
     onClose();
   };
 
-  const handleSave = () => {
+  const handleSave = async () => {
     const updatedData = {
-      ...userData,
-      input_name: name,
-      input_first_name: name.split(' ')[0],
+      input_name: newName,
+      full_name: newName,
+      input_first_name: newName.split(' ')[0],
+      personal_site: newWebsite,
+      projectPref: newProjectPref,
+      city: newCity,
+      country: newCountry,
+      year: newYear,
     };
-    onSave(updatedData);
+    await updateStupaidUser(userId, updatedData);
     onClose();
   };
 

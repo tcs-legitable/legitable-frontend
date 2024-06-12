@@ -36,7 +36,13 @@ const ProfilePage = () => {
     <Flex w="100%" flexDir="column" h="inherit" bgColor="#fcfcfc">
       <Navbar />
       <Box p="30px">
-        {loaded && <ProfileUserInfo canEdit={canEdit} userData={userData} />}
+        {loaded && (
+          <ProfileUserInfo
+            userId={userId}
+            canEdit={canEdit}
+            userData={userData}
+          />
+        )}
         <ProfileSkills userData={userData} />
       </Box>
     </Flex>
