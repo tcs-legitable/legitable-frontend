@@ -4,6 +4,7 @@ import { extendTheme } from '@chakra-ui/react';
 // Define custom breakpoints
 const breakpoints = {
   sm: '30em', // 480px
+  smMd: '38em',
   md: '48em', // 768px
   mdLg: '57em', // Custom breakpoint between md and lg
   lg: '62em', // 992px
