@@ -43,7 +43,7 @@ const ProfilePage = () => {
             userData={userData}
           />
         )}
-        <ProfileSkills userData={userData} />
+        <ProfileSkills canEdit={canEdit} userData={userData} />
       </Box>
     </Flex>
   );
