@@ -8,6 +8,7 @@ import {
   Text,
 } from '@chakra-ui/react';
 import React, { useState } from 'react';
+import { skillOptions } from '../skillOptions';
 
 const Sidebar = ({ onFilterChange }) => {
   const [skill, setSkill] = useState('');
@@ -19,23 +20,6 @@ const Sidebar = ({ onFilterChange }) => {
     { id: 0, text: 'In-person', value: 'in-person' },
     { id: 1, text: 'Remote', value: 'remote' },
     { id: 2, text: 'Any', value: 'any' },
-  ];
-
-  const skillList = [
-    { id: 0, text: 'Branding', value: 'branding' },
-    { id: 1, text: 'Graphic Design', value: 'graphic-design' },
-    { id: 2, text: 'Digital Art', value: 'digital-art' },
-    { id: 3, text: 'Traditional Art', value: 'traditional-art' },
-    { id: 4, text: 'Slidedeck Design', value: 'slidedeck-design' },
-    { id: 5, text: 'Website Design', value: 'website-design' },
-    { id: 6, text: 'Website Development', value: 'website-development' },
-    { id: 7, text: 'UI/UX Design', value: 'ui-ux-design' },
-    { id: 8, text: 'Social Media Content', value: 'social-media-content' },
-    { id: 9, text: 'Photography', value: 'photography' },
-    { id: 10, text: 'Videography', value: 'videography' },
-    { id: 11, text: 'Animation', value: 'animation' },
-    { id: 12, text: '3D Modeling', value: '3d-modeling' },
-    { id: 13, text: 'Music Production', value: 'music-production' },
   ];
 
   const test = () => {
@@ -50,26 +34,16 @@ const Sidebar = ({ onFilterChange }) => {
       skill,
       location,
       preference,
-      verified
+      verified,
     });
   };
 
   return (
-    <Box
-      backgroundColor="white"
-      width="30%"
-      borderLeft="outset">
-      <Text
-        fontWeight="700"
-        ml="60px"
-        mt="60px"
-      >
+    <Box backgroundColor="white" width="30%" borderLeft="outset">
+      <Text fontWeight="700" ml="60px" mt="60px">
         Skills
       </Text>
-      <Flex
-        w="70%"
-        marginLeft="60px"
-      >
+      <Flex w="70%" marginLeft="60px">
         <Select
           placeholder="Select a skill"
           borderRadius="20px"
@@ -83,7 +57,7 @@ const Sidebar = ({ onFilterChange }) => {
           mt="10px"
           width="100%"
         >
-          {skillList.map(({ id, text, value }) => (
+          {skillOptions.map(({ id, text, value }) => (
             <option key={id} value={value}>
               {text}
             </option>
@@ -91,17 +65,10 @@ const Sidebar = ({ onFilterChange }) => {
         </Select>
       </Flex>
 
-      <Text
-        fontWeight="700"
-        ml="60px"
-        mt="20px"
-      >
+      <Text fontWeight="700" ml="60px" mt="20px">
         Location
       </Text>
-      <Flex
-        w="70%"
-        marginLeft="60px"
-      >
+      <Flex w="70%" marginLeft="60px">
         <Input
           placeholder="e.g. Vancouver"
           borderRadius="20px"
@@ -115,11 +82,7 @@ const Sidebar = ({ onFilterChange }) => {
         />
       </Flex>
 
-      <Text
-        fontWeight="700"
-        ml="60px"
-        mt="20px"
-      >
+      <Text fontWeight="700" ml="60px" mt="20px">
         Project preference
       </Text>
 
@@ -131,12 +94,7 @@ const Sidebar = ({ onFilterChange }) => {
         bg="transparent"
         pt="10px"
       >
-        <Flex
-          flexWrap="wrap"
-          align="center"
-          FIX THIS
-          pb="20px"
-        >
+        <Flex flexWrap="wrap" align="center" FIX THIS pb="20px">
           {preferenceList.map(({ id, text, value }) => {
             return (
               <Box
@@ -163,31 +121,16 @@ const Sidebar = ({ onFilterChange }) => {
         </Flex>
       </Flex>
 
-      <Box
-        display="flex"
-        flexDirection="row"
-        ml="60px"
-        mt="5px"
-      >
-        <Box
-          width="60%"
-        >
-          <Text
-            fontWeight="700"
-          >
-            Stupaid verified
-          </Text>
-          <Text
-            mt="10px"
-          >
+      <Box display="flex" flexDirection="row" ml="60px" mt="5px">
+        <Box width="60%">
+          <Text fontWeight="700">Stupaid verified</Text>
+          <Text mt="10px">
             Show only hand-selected verified Stupaid creatives
           </Text>
         </Box>
 
         {/* FIX COLOR */}
-        <Box
-          alignContent="center"
-        >
+        <Box alignContent="center">
           <Switch
             colorScheme="teal"
             size="lg"

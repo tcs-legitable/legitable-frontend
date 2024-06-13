@@ -16,6 +16,7 @@ import GoBackArrow from '../assets/images/go-back-arrow.svg';
 import { addStudentWaitlistEntry } from '../firebase/helpers';
 import { v4 as uuidv4 } from 'uuid';
 import CheckMark from '../assets/images/check-mark-white.svg';
+import { skillOptions } from './skillOptions';
 
 const WaitingListLandingStudentClicked = () => {
   const [inputName, setInputName] = useState('');
@@ -46,28 +47,11 @@ const WaitingListLandingStudentClicked = () => {
 
   const [skills, setSkills] = useState([]);
 
-  const skillList = [
-    { id: 0, text: 'Branding', value: 'branding' },
-    { id: 1, text: 'Graphic Design', value: 'graphic-design' },
-    { id: 2, text: 'Digital Art', value: 'digital-art' },
-    { id: 3, text: 'Traditional Art', value: 'traditional-art' },
-    { id: 4, text: 'Slidedeck Design', value: 'slidedeck-design' },
-    { id: 5, text: 'Website Design', value: 'website-design' },
-    { id: 6, text: 'Website Development', value: 'website-development' },
-    { id: 7, text: 'UI/UX Design', value: 'ui-ux-design' },
-    { id: 8, text: 'Social Media Content', value: 'social-media-content' },
-    { id: 9, text: 'Photography', value: 'photography' },
-    { id: 10, text: 'Videography', value: 'videography' },
-    { id: 11, text: 'Animation', value: 'animation' },
-    { id: 12, text: '3D Modeling', value: '3d-modeling' },
-    { id: 13, text: 'Music Production', value: 'music-production' },
-  ];
-
   // this sets the student info
   const handleClick = async () => {
     const skillNames = skills.map((skill) => {
       return {
-        skillName: skillList[skill].value,
+        skillName: skillOptions[skill].value,
         description: null,
         image: null,
         link: null,
@@ -168,7 +152,7 @@ const WaitingListLandingStudentClicked = () => {
               justify="center"
               pb="30px"
             >
-              {skillList.map(({ id, text, value }) => {
+              {skillOptions.map(({ id, text, value }) => {
                 return (
                   <Box
                     display="flex"

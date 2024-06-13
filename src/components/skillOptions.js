@@ -1,0 +1,16 @@
+export const skillOptions = [
+  { id: 0, text: 'Branding', value: 'branding' },
+  { id: 1, text: 'Graphic Design', value: 'graphic-design' },
+  { id: 2, text: 'Digital Art', value: 'digital-art' },
+  { id: 3, text: 'Traditional Art', value: 'traditional-art' },
+  { id: 4, text: 'Slidedeck Design', value: 'slidedeck-design' },
+  { id: 5, text: 'Website Design', value: 'website-design' },
+  { id: 6, text: 'Website Development', value: 'website-development' },
+  { id: 7, text: 'UI/UX Design', value: 'ui-ux-design' },
+  { id: 8, text: 'Social Media Content', value: 'social-media-content' },
+  { id: 9, text: 'Photography', value: 'photography' },
+  { id: 10, text: 'Videography', value: 'videography' },
+  { id: 11, text: 'Animation', value: 'animation' },
+  { id: 12, text: '3D Modeling', value: '3d-modeling' },
+  { id: 13, text: 'Music Production', value: 'music-production' },
+];
