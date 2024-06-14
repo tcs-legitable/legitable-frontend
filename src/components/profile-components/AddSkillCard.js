@@ -94,12 +94,12 @@ const AddSkillCard = ({ addSkillInState }) => {
     // create this function
     await addSkill(value?.uid, newSkillData);
     addSkillInState(newSkillData);
-    onClose();
+    handleClose();
   };
 
   return (
     <Flex
-      //   maxW="500px"
+      maxW="500px"
       border="#efefef solid 2px"
       borderRadius="10px"
       p="20px"

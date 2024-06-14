@@ -86,18 +86,17 @@ const SkillCard = ({
       skillName: newSkillName,
     };
 
-    console.log(updatedSkillData, ' HERE');
     // create this function
     await updateSkills(value?.uid, skillName, updatedSkillData);
     updateSkillInState({ ...skill, ...updatedSkillData });
-    onClose();
+    handleClose();
   };
 
   const handleDelete = async () => {
     try {
       await deleteSkillFromDB(value?.uid, skillName); // call the delete function
       removeSkillFromState(skillName); // remove the skill from the state in parent component
-      onClose();
+      handleClose();
     } catch (error) {
       console.error('Error deleting skill:', error);
     }
@@ -105,7 +104,7 @@ const SkillCard = ({
 
   return (
     <Flex
-      //   maxW="500px"
+      maxW="500px"
       border="#efefef solid 2px"
       borderRadius="10px"
       p="20px"
