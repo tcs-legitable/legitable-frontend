@@ -3,30 +3,19 @@ import React, { useState } from 'react';
 import StupaidLogo from '../../assets/landing-page-images/stupaid-logo-small.svg';
 import GmailArrow from '../../assets/landing-page-images/continue-w-gmail-arrow-black.svg';
 import CheckMark from '../../assets/landing-page-images/check-mark.svg';
+import { skillOptions } from '../skillOptions';
 
 const LandingSelectSkills = ({ goNext, data, setData }) => {
   const [skills, setSkills] = useState([]);
 
-  const skillList = [
-    { id: 0, text: 'Branding', value: 'branding' },
-    { id: 1, text: 'Graphic Design', value: 'graphic-design' },
-    { id: 2, text: 'Digital Art', value: 'digital-art' },
-    { id: 3, text: 'Traditional Art', value: 'traditional-art' },
-    { id: 4, text: 'Slidedeck Design', value: 'slidedeck-design' },
-    { id: 5, text: 'Website Design', value: 'website-design' },
-    { id: 6, text: 'Website Development', value: 'website-development' },
-    { id: 7, text: 'UI/UX Design', value: 'ui-ux-design' },
-    { id: 8, text: 'Social Media Content', value: 'social-media-content' },
-    { id: 9, text: 'Photography', value: 'photography' },
-    { id: 10, text: 'Videography', value: 'videography' },
-    { id: 11, text: 'Animation', value: 'animation' },
-    { id: 12, text: '3D Modeling', value: '3d-modeling' },
-    { id: 13, text: 'Music Production', value: 'music-production' },
-  ];
-
   const handleClick = () => {
     const skillNames = skills.map((skill) => {
-      return skillList[skill].text;
+      return {
+        skillName: skillOptions[skill].text,
+        description: null,
+        image: null,
+        link: null,
+      };
     });
 
     setData({
@@ -72,7 +61,7 @@ const LandingSelectSkills = ({ goNext, data, setData }) => {
           justify="center"
           pb="30px"
         >
-          {skillList.map(({ id, text }) => {
+          {skillOptions.map(({ id, text }) => {
             return (
               <Box
                 display="flex"

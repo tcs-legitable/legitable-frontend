@@ -39,7 +39,7 @@ const Navbar = () => {
       display="flex"
       flexDirection="row"
       justifyContent="space-between"
-      py="30px"
+      py="15px"
       paddingLeft="1.5vw"
       paddingRight="1.5vw"
       borderBottom="2px solid #ececec"

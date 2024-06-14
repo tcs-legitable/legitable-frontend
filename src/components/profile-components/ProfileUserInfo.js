@@ -14,7 +14,7 @@ import {
   Box,
   Link,
 } from '@chakra-ui/react';
-import React, { useContext, useEffect, useState } from 'react';
+import React, { useContext, useState } from 'react';
 import StupaidVerified from '../global-components/StupaidVerified';
 import LocationIcon from '../../assets/images/location-icon.svg';
 import ProjectPrefIcon from '../../assets/images/project-pref-icon.svg';
@@ -28,7 +28,7 @@ import { updateStupaidUser } from '../../firebase/helpers';
 import { SignedInContext } from '../../App';
 
 const ProfileUserInfo = ({ userId, userData, canEdit }) => {
-  const { setValue, value } = useContext(SignedInContext);
+  const { setValue } = useContext(SignedInContext);
 
   const {
     input_name,
