@@ -7,7 +7,13 @@ import {
   setDoc,
   collection,
 } from '@firebase/firestore';
-import { db } from './firebase';
+import {
+  deleteObject,
+  getDownloadURL,
+  ref,
+  uploadBytes,
+} from 'firebase/storage';
+import { db, storage } from './firebase';
 
 export const getAllUsers = async () => {
   const usersCol = collection(db, 'mvp_users');
@@ -88,7 +94,6 @@ export const updateStupaidUser = async (uid, updatedFields) => {
     console.error('UID is required!');
     return;
   }
-  console.log(updatedFields, ' are this');
 
   const userRef = doc(db, 'mvp_users', uid);
   const docSnap = await getUserData(uid);
@@ -102,9 +107,73 @@ export const updateStupaidUser = async (uid, updatedFields) => {
   }
 };
 
+export const updateSkills = async (uid, skillName, updatedSkills) => {
+  if (!uid) {
+    console.error('UID is required!');
+    return;
+  }
+  console.log('these are the updated fields');
+  const userRef = doc(db, 'mvp_users', uid);
+  const docSnap = await getUserData(uid);
+  const { skills } = docSnap;
+
+  console.log('before skills ', skills);
+  const updatedSkillsArray = skills.map((skill) => {
+    if (skill?.skillName === skillName) {
+      return { ...skill, ...updatedSkills };
+    }
+    return skill;
+  });
+
+  console.log('after skills ', updatedSkillsArray);
+
+  if (skills !== null) {
+    try {
+      await updateDoc(userRef, { skills: updatedSkillsArray });
+      console.log('success');
+    } catch (error) {
+      console.log('error encountered while updating fields: ', error);
+    }
+  }
+};
+
+export const deleteSkillFromDB = async (uid, skillName) => {
+  if (!uid) {
+    console.error('UID is required!');
+    return;
+  }
+  const userRef = doc(db, 'mvp_users', uid);
+  const docSnap = await getUserData(uid);
+  const { skills } = docSnap;
+
+  const updatedSkillsArray = skills.filter(
+    (skill) => skill.skillName !== skillName,
+  );
+
+  try {
+    await updateDoc(userRef, { skills: updatedSkillsArray });
+    console.log('Skill deleted successfully');
+  } catch (error) {
+    console.log('Error deleting skill: ', error);
+  }
+};
+
 export const studentAlreadyAppliedForProject = async (studentId, projectId) => {
   const data = await getUserData(studentId);
   return data?.projects?.some((project) => project === projectId) || false;
+};
+
+// uploading + deleting image helpers
+export const uploadImage = async (file, userId, imagePath) => {
+  const storageRef = ref(storage, imagePath || `images/${userId}/${file.name}`);
+  const snapshot = await uploadBytes(storageRef, file);
+  const url = await getDownloadURL(snapshot.ref);
+  return { url, path: snapshot.ref.fullPath };
+};
+
+export const deleteImage = async (imagePath) => {
+  const imageRef = ref(storage, imagePath);
+  await deleteObject(imageRef);
 };
 
 // student applies for a project
