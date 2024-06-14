@@ -108,6 +108,17 @@ export const updateStupaidUser = async (uid, updatedFields) => {
 };
 
 // user skills helper functions
+export const getExistingSkillNames = async (uid) => {
+  const docSnap = await getUserData(uid);
+  const { skills } = docSnap;
+  const res = [];
+  skills.forEach((skill) => {
+    res.push(skill?.skillName);
+  });
+
+  return res;
+};
+
 export const updateSkills = async (uid, skillName, updatedSkills) => {
   if (!uid) {
     console.error('UID is required!');

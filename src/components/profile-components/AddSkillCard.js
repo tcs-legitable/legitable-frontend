@@ -22,7 +22,11 @@ import AddSkillIcon from '../../assets/images/add-skill-icon.svg';
 import TemplateSkillImage from '../../assets/images/template-image.svg';
 import ChevronDownIcon from '../../assets/images/chevron-down.svg';
 import { skillOptions } from '../skillOptions';
-import { addSkill, uploadImage } from '../../firebase/helpers';
+import {
+  addSkill,
+  getExistingSkillNames,
+  uploadImage,
+} from '../../firebase/helpers';
 import { SignedInContext } from '../../App';
 import ReplaceIcon from '../../assets/images/replace-icon.svg';
 
@@ -36,6 +40,21 @@ const AddSkillCard = ({ addSkillInState }) => {
   const [newSkillName, setNewSkillName] = useState('');
   const [newImage, setNewImage] = useState('');
   const [isUploading, setIsUploading] = useState(false);
+  const [availableSkills, setAvailableSkills] = useState(skillOptions);
+
+  useEffect(() => {
+    const fetchExistingSkills = async () => {
+      const existingSkills = await getExistingSkillNames(value?.uid);
+      const filteredSkills = skillOptions.filter(
+        (skill) => !existingSkills.includes(skill.text),
+      );
+      setAvailableSkills(filteredSkills);
+    };
+
+    if (isOpen) {
+      fetchExistingSkills();
+    }
+  }, [isOpen, value?.uid]);
 
   const handleClose = () => {
     setNewLink('');
@@ -161,7 +180,7 @@ const AddSkillCard = ({ addSkillInState }) => {
                   </Flex>
                 </MenuButton>
                 <MenuList>
-                  {skillOptions.map((skill) => (
+                  {availableSkills.map((skill) => (
                     <MenuItem
                       key={skill.id}
                       onClick={() => setNewSkillName(skill.text)}
