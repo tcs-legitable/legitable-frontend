@@ -5,10 +5,6 @@ import {
   Image,
   Input,
   Link,
-  Menu,
-  MenuButton,
-  MenuItem,
-  MenuList,
   Modal,
   ModalBody,
   ModalContent,
@@ -18,11 +14,10 @@ import {
   useDisclosure,
   VStack,
 } from '@chakra-ui/react';
-import React, { useContext, useEffect, useState } from 'react';
+import React, { useContext, useState } from 'react';
 import EditIcon from '../../assets/images/edit-icon.svg';
 import TemplateSkillImage from '../../assets/images/template-image.svg';
 import ChevronDownIcon from '../../assets/images/chevron-down.svg';
-import { skillOptions } from '../skillOptions';
 import {
   deleteSkillFromDB,
   updateSkills,
@@ -40,10 +35,6 @@ const SkillCard = ({
   const { value } = useContext(SignedInContext);
   const { skillName, image, link, description } = skill;
   const { isOpen, onOpen, onClose } = useDisclosure();
-
-  useEffect(() => {
-    console.log(skill, ' is the SKILL');
-  }, []);
 
   const [newLink, setNewLink] = useState(link || '');
   const [newDescription, setNewDescription] = useState(description || '');
@@ -64,7 +55,7 @@ const SkillCard = ({
     if (file) {
       setIsUploading(true);
       try {
-        const { url, path } = await uploadImage(
+        const { url } = await uploadImage(
           file,
           value?.uid,
           `${value?.uid}/images/${file.name}`,
@@ -104,13 +95,13 @@ const SkillCard = ({
 
   return (
     <Flex
-      maxW="500px"
+      maxW="600px"
       border="#efefef solid 2px"
       borderRadius="10px"
       p="20px"
       flexDir="column"
       w="100%"
-      h="440px"
+      h={canEdit ? '440px' : '360px'}
       bgColor="white"
     >
       <Text fontSize="20px" fontWeight="bold">

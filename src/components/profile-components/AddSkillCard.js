@@ -32,7 +32,6 @@ import ReplaceIcon from '../../assets/images/replace-icon.svg';
 
 const AddSkillCard = ({ addSkillInState }) => {
   const { value } = useContext(SignedInContext);
-  // const { skillName, image, link, description } = skill;
   const { isOpen, onOpen, onClose } = useDisclosure();
 
   const [newLink, setNewLink] = useState('');
@@ -99,7 +98,7 @@ const AddSkillCard = ({ addSkillInState }) => {
 
   return (
     <Flex
-      maxW="500px"
+      maxW="600px"
       border="#efefef solid 2px"
       borderRadius="10px"
       p="20px"
