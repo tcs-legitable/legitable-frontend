@@ -14,7 +14,7 @@ import {
   Box,
   Link,
 } from '@chakra-ui/react';
-import React, { useContext, useState } from 'react';
+import React, { useContext, useRef, useState } from 'react';
 import StupaidVerified from '../global-components/StupaidVerified';
 import LocationIcon from '../../assets/images/location-icon.svg';
 import ProjectPrefIcon from '../../assets/images/project-pref-icon.svg';
@@ -24,11 +24,11 @@ import PersonalSiteIcon from '../../assets/images/website-icon.svg';
 import DefaultProfile from '../../assets/images/default-pfp.svg';
 import ReplaceIcon from '../../assets/images/replace-icon.svg';
 import BackArrow from '../../assets/images/back-arrow-black.svg';
-import { updateStupaidUser } from '../../firebase/helpers';
+import { updateStupaidUser, uploadImage } from '../../firebase/helpers';
 import { SignedInContext } from '../../App';
 
 const ProfileUserInfo = ({ userId, userData, canEdit }) => {
-  const { setValue } = useContext(SignedInContext);
+  const { value, setValue } = useContext(SignedInContext);
 
   const {
     input_name,
@@ -58,6 +58,9 @@ const ProfileUserInfo = ({ userId, userData, canEdit }) => {
   const [newCity, setNewCity] = useState(city);
   const [newProjectPref, setNewProjectPref] = useState(projectPref);
   const [newWebsite, setNewWebsite] = useState(personal_site);
+  const [newImage, setNewImage] = useState(photo_url);
+
+  const fileInputRef = useRef(null);
 
   const handleClose = () => {
     setNewName(input_name);
@@ -68,6 +71,22 @@ const ProfileUserInfo = ({ userId, userData, canEdit }) => {
     setNewWebsite(personal_site);
     setNewProjectPref(projectPref);
     onClose();
+  };
+
+  const handleImageUpload = async (e) => {
+    const file = e.target.files[0];
+    if (file) {
+      try {
+        const { url } = await uploadImage(
+          file,
+          value?.uid,
+          `${value?.uid}/profile-pic/${file.name}`,
+        );
+        setNewImage(url);
+      } catch (error) {
+        console.error('Error uploading image:', error);
+      }
+    }
   };
 
   const handleSave = async () => {
@@ -167,9 +186,22 @@ const ProfileUserInfo = ({ userId, userData, canEdit }) => {
                   border="#0d0d0d 1.5px solid"
                   bg="transparent"
                   mt="20px"
+                  onClick={() => fileInputRef.current.click()}
                 >
                   <Image mr="10px" src={ReplaceIcon} />
                   <Text>Replace</Text>
+                  <Input
+                    borderRadius="20px"
+                    type="file"
+                    accept="image/*"
+                    opacity="0"
+                    position="absolute"
+                    width="100%"
+                    height="100%"
+                    ref={fileInputRef}
+                    onChange={handleImageUpload}
+                    style={{ display: 'none' }}
+                  />
                 </Button>
               </VStack>
               <Box mx="30px" h="inherit" bgColor="#ececec" w="1.5px"></Box>
