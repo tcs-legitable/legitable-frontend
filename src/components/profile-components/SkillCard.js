@@ -4,6 +4,7 @@ import {
   Flex,
   Image,
   Input,
+  Link,
   Menu,
   MenuButton,
   MenuItem,
@@ -17,19 +18,32 @@ import {
   useDisclosure,
   VStack,
 } from '@chakra-ui/react';
-import React, { useContext, useState } from 'react';
+import React, { useContext, useEffect, useState } from 'react';
 import EditIcon from '../../assets/images/edit-icon.svg';
 import TemplateSkillImage from '../../assets/images/template-image.svg';
 import ChevronDownIcon from '../../assets/images/chevron-down.svg';
 import { skillOptions } from '../skillOptions';
-import { uploadImage } from '../../firebase/helpers';
+import {
+  deleteSkillFromDB,
+  updateSkills,
+  uploadImage,
+} from '../../firebase/helpers';
 import { SignedInContext } from '../../App';
 import ReplaceIcon from '../../assets/images/replace-icon.svg';
 
-const SkillCard = ({ skill, canEdit }) => {
+const SkillCard = ({
+  skill,
+  canEdit,
+  updateSkillInState,
+  removeSkillFromState,
+}) => {
   const { value } = useContext(SignedInContext);
   const { skillName, image, link, description } = skill;
   const { isOpen, onOpen, onClose } = useDisclosure();
+
+  useEffect(() => {
+    console.log(skill, ' is the SKILL');
+  }, []);
 
   const [newLink, setNewLink] = useState(link || '');
   const [newDescription, setNewDescription] = useState(description || '');
@@ -74,7 +88,19 @@ const SkillCard = ({ skill, canEdit }) => {
 
     console.log(updatedSkillData, ' HERE');
     // create this function
-    // await updatedSkillData(userId, updatedSkillData);
+    await updateSkills(value?.uid, skillName, updatedSkillData);
+    updateSkillInState({ ...skill, ...updatedSkillData });
+    onClose();
+  };
+
+  const handleDelete = async () => {
+    try {
+      await deleteSkillFromDB(value?.uid, skillName); // call the delete function
+      removeSkillFromState(skillName); // remove the skill from the state in parent component
+      onClose();
+    } catch (error) {
+      console.error('Error deleting skill:', error);
+    }
   };
 
   return (
@@ -85,13 +111,49 @@ const SkillCard = ({ skill, canEdit }) => {
       p="20px"
       flexDir="column"
       w="100%"
-      h="400px"
+      h="440px"
       bgColor="white"
     >
       <Text fontSize="20px" fontWeight="bold">
         {skillName}
       </Text>
-      <Image py="23px" src={link ? link : TemplateSkillImage} />
+      <Box
+        borderRadius="20px"
+        my="20px"
+        w="100%"
+        h="150px"
+        alignContent="center"
+        backgroundImage={image ? `url(${image})` : TemplateSkillImage}
+        backgroundColor="#dbdbdb"
+        backgroundSize="cover"
+        backgroundPosition="center"
+        position="relative"
+        align="center"
+      ></Box>
+      {link && (
+        <Link target="_blank" color="#1c9bd1" fontWeight="bold" href={link}>
+          {link}
+        </Link>
+      )}
+      {description && (
+        <Text
+          color="#969696"
+          mt="15px"
+          maxHeight="80px"
+          overflow="hidden"
+          textOverflow="ellipsis"
+          display="-webkit-box"
+          WebkitLineClamp="3" // Limit to 3 lines
+          WebkitBoxOrient="vertical"
+          css={{
+            // display: '-webkit-box',
+            WebkitLineClamp: 3,
+            WebkitBoxOrient: 'vertical',
+          }}
+        >
+          {description}
+        </Text>
+      )}
       {canEdit && (
         <Button
           border="#545454 solid 1.5px"
@@ -204,6 +266,7 @@ const SkillCard = ({ skill, canEdit }) => {
                 border="#cc0000 1.5px solid"
                 w="100%"
                 fontWeight="regular"
+                onClick={handleDelete}
               >
                 Delete skill
               </Button>

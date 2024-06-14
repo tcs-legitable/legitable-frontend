@@ -13,25 +13,32 @@ const ProfilePage = () => {
   const [canEdit, setCanEdit] = useState(false);
   const [userData, setUserData] = useState({});
   const [loaded, setLoaded] = useState(false);
+  const [skills, setSkills] = useState([]);
 
   useEffect(() => {
     const fetchUserData = async () => {
       const tempData = await getUserData(userId);
       setUserData(tempData);
+      setSkills(tempData.skills || []);
       setLoaded(true);
     };
     fetchUserData();
   }, [userId, value]);
 
   useEffect(() => {
-    console.log(userData, ' is the data');
-  }, [userData]);
-
-  useEffect(() => {
     if (userId === value?.uid) {
       setCanEdit(true);
     }
   }, [userId]);
+
+  const updateSkills = (updatedSkills) => {
+    setSkills(updatedSkills);
+    setUserData((prevUserData) => ({
+      ...prevUserData,
+      skills: updatedSkills,
+    }));
+  };
+
   return (
     <Flex w="100%" flexDir="column" h="inherit" bgColor="#fcfcfc">
       <Navbar />
@@ -43,7 +50,13 @@ const ProfilePage = () => {
             userData={userData}
           />
         )}
-        <ProfileSkills canEdit={canEdit} userData={userData} />
+        {loaded && (
+          <ProfileSkills
+            canEdit={canEdit}
+            skills={skills}
+            updateSkills={updateSkills}
+          />
+        )}
       </Box>
     </Flex>
   );
