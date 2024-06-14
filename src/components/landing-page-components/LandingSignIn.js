@@ -4,7 +4,7 @@ import StupaidLogo from '../../assets/landing-page-images/stupaid-logo-small.svg
 import GmailArrow from '../../assets/landing-page-images/continue-w-gmail-arrow-black.svg';
 import { signInWithPopup } from 'firebase/auth';
 import { auth, provider } from '../../firebase/firebase';
-import { doesUserExist } from '../../firebase/helpers';
+import { doesUserExist, getUserData } from '../../firebase/helpers';
 import { useNavigate } from 'react-router-dom';
 import { SignedInContext } from '../../App';
 
@@ -19,11 +19,21 @@ const LandingSignIn = ({ goNext, setData }) => {
 
       const { uid, email, displayName } = user;
       const exists = await doesUserExist(uid);
-      const newInfo = {
-        uid: uid,
-        name: displayName,
-        type: 'student',
-      };
+      let newInfo = {};
+      if (exists) {
+        const info = await getUserData(uid);
+        newInfo = {
+          uid: uid,
+          name: info?.full_name,
+          type: 'student',
+        };
+      } else {
+        newInfo = {
+          uid: uid,
+          name: displayName,
+          type: 'student',
+        };
+      }
       setValue(newInfo);
       localStorage.setItem('user-data', JSON.stringify(newInfo));
 

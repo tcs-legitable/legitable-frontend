@@ -75,6 +75,7 @@ const ProfileUserInfo = ({ userId, userData, canEdit }) => {
       input_name: newName,
       full_name: newName,
       input_first_name: newName.split(' ')[0],
+      first_name: newName.split(' ')[0],
       personal_site: newWebsite,
       projectPref: newProjectPref,
       city: newCity,
