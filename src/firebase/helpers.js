@@ -107,17 +107,16 @@ export const updateStupaidUser = async (uid, updatedFields) => {
   }
 };
 
+// user skills helper functions
 export const updateSkills = async (uid, skillName, updatedSkills) => {
   if (!uid) {
     console.error('UID is required!');
     return;
   }
-  console.log('these are the updated fields');
   const userRef = doc(db, 'mvp_users', uid);
   const docSnap = await getUserData(uid);
   const { skills } = docSnap;
 
-  console.log('before skills ', skills);
   const updatedSkillsArray = skills.map((skill) => {
     if (skill?.skillName === skillName) {
       return { ...skill, ...updatedSkills };
@@ -125,11 +124,32 @@ export const updateSkills = async (uid, skillName, updatedSkills) => {
     return skill;
   });
 
-  console.log('after skills ', updatedSkillsArray);
-
   if (skills !== null) {
     try {
       await updateDoc(userRef, { skills: updatedSkillsArray });
+      console.log('success');
+    } catch (error) {
+      console.log('error encountered while updating fields: ', error);
+    }
+  }
+};
+
+export const addSkill = async (uid, newSkill) => {
+  if (!uid) {
+    console.error('UID is required!');
+    return;
+  }
+  const userRef = doc(db, 'mvp_users', uid);
+  const docSnap = await getUserData(uid);
+  const { skills } = docSnap;
+
+  console.log(skills, ' are the skills AFTER');
+  skills.push(newSkill);
+  console.log(skills, ' are the skills AFTER');
+
+  if (skills !== null) {
+    try {
+      await updateDoc(userRef, { skills: skills });
       console.log('success');
     } catch (error) {
       console.log('error encountered while updating fields: ', error);
@@ -152,7 +172,6 @@ export const deleteSkillFromDB = async (uid, skillName) => {
 
   try {
     await updateDoc(userRef, { skills: updatedSkillsArray });
-    console.log('Skill deleted successfully');
   } catch (error) {
     console.log('Error deleting skill: ', error);
   }
