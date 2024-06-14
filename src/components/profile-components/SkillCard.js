@@ -211,28 +211,20 @@ const SkillCard = ({
             </Box>
             <VStack alignItems="baseline" fontWeight="bold">
               <Text>Skill</Text>
-              <Menu>
-                <MenuButton w="100%">
-                  <Flex
-                    p="10px"
-                    borderRadius="8px"
-                    border="#555555 1.5px solid"
-                  >
+              <Button
+                isDisabled
+                border="#555555 1.5px solid"
+                borderRadius="8px"
+                w="100%"
+              >
+                <Flex w="100%" p="10px">
+                  <Text fontWeight="regular" mr="auto">
                     {newSkillName}
-                    <Image ml="auto" mr="10px" src={ChevronDownIcon} />
-                  </Flex>
-                </MenuButton>
-                <MenuList>
-                  {skillOptions.map((skill) => (
-                    <MenuItem
-                      key={skill.id}
-                      onClick={() => setNewSkillName(skill.text)}
-                    >
-                      {skill.text}
-                    </MenuItem>
-                  ))}
-                </MenuList>
-              </Menu>
+                  </Text>
+
+                  <Image ml="auto" mr="10px" src={ChevronDownIcon} />
+                </Flex>
+              </Button>
             </VStack>
             <VStack my="20px" alignItems="baseline" fontWeight="bold">
               <Text>Description</Text>
