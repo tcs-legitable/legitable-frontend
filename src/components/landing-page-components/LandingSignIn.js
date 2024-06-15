@@ -26,12 +26,14 @@ const LandingSignIn = ({ goNext, setData }) => {
           uid: uid,
           name: info?.full_name,
           type: 'student',
+          photo_url: info?.photo_url,
         };
       } else {
         newInfo = {
           uid: uid,
           name: displayName,
           type: 'student',
+          photo_url: null,
         };
       }
       setValue(newInfo);
