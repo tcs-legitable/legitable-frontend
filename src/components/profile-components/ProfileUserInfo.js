@@ -14,7 +14,7 @@ import {
   Box,
   Link,
 } from '@chakra-ui/react';
-import React, { useContext, useRef, useState } from 'react';
+import React, { useContext, useEffect, useRef, useState } from 'react';
 import StupaidVerified from '../global-components/StupaidVerified';
 import LocationIcon from '../../assets/images/location-icon.svg';
 import ProjectPrefIcon from '../../assets/images/project-pref-icon.svg';
@@ -70,11 +70,24 @@ const ProfileUserInfo = ({ userId, userData, canEdit }) => {
     setNewCity(city);
     setNewWebsite(personal_site);
     setNewProjectPref(projectPref);
+    setNewImage(photo_url);
     onClose();
   };
 
-  const handleImageUpload = async (e) => {
+  const handleImageUpload = (e) => {
     const file = e.target.files[0];
+    if (file) {
+      const reader = new FileReader();
+      reader.onloadend = () => {
+        setNewImage(reader.result);
+      };
+      reader.readAsDataURL(file);
+    }
+  };
+
+  const handleSave = async () => {
+    const file = fileInputRef.current.files[0];
+    let globalUrl = null;
     if (file) {
       try {
         const { url } = await uploadImage(
@@ -82,14 +95,11 @@ const ProfileUserInfo = ({ userId, userData, canEdit }) => {
           value?.uid,
           `${value?.uid}/profile-pic/${file.name}`,
         );
-        setNewImage(url);
+        globalUrl = url;
       } catch (error) {
         console.error('Error uploading image:', error);
       }
     }
-  };
-
-  const handleSave = async () => {
     const updatedData = {
       input_name: newName,
       full_name: newName,
@@ -101,6 +111,7 @@ const ProfileUserInfo = ({ userId, userData, canEdit }) => {
       country: newCountry,
       year: newYear,
       school: newSchool,
+      photo_url: globalUrl !== null ? globalUrl : photo_url,
     };
     await updateStupaidUser(userId, updatedData);
     let storedValue = localStorage.getItem('user-data');
@@ -109,6 +120,7 @@ const ProfileUserInfo = ({ userId, userData, canEdit }) => {
       const updatedLocalStorage = {
         ...storedValue,
         name: newName,
+        photo_url: globalUrl !== null ? globalUrl : photo_url,
       };
       setValue(updatedLocalStorage);
       localStorage.setItem('user-data', JSON.stringify(updatedLocalStorage));
@@ -119,10 +131,15 @@ const ProfileUserInfo = ({ userId, userData, canEdit }) => {
   return (
     <Flex mb="30px" flexDir="column">
       <HStack>
-        <Image
-          borderRadius="50%"
-          src={photo_url ? photo_url : DefaultProfile}
-        />
+        <Box
+          borderRadius="100%"
+          w="110px"
+          h="110px"
+          backgroundImage={photo_url ? photo_url : DefaultProfile}
+          backgroundColor="#dbdbdb"
+          backgroundSize="cover"
+          backgroundPosition="center"
+        ></Box>
         <VStack alignItems="baseline" ml="20px">
           <Text fontWeight="bold" fontSize="29px">
             {input_name}
@@ -178,7 +195,15 @@ const ProfileUserInfo = ({ userId, userData, canEdit }) => {
           <ModalBody>
             <Flex flexDir="row">
               <VStack>
-                <Image src={photo_url ? photo_url : DefaultProfile} />
+                <Box
+                  borderRadius="100%"
+                  w="110px"
+                  h="110px"
+                  backgroundImage={newImage ? newImage : DefaultProfile}
+                  backgroundColor="#dbdbdb"
+                  backgroundSize="cover"
+                  backgroundPosition="center"
+                ></Box>
                 <Button
                   borderRadius="20px"
                   fontWeight="regular"
