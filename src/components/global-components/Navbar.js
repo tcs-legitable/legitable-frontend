@@ -114,12 +114,26 @@ const Navbar = () => {
             //   />
             // }
             >
-              <Image
+              <Box
+                borderRadius="100%"
+                w="60px"
+                h="60px"
+                alignContent="center"
+                backgroundImage={
+                  value?.photo_url ? value.photo_url : DefaultProfile
+                }
+                backgroundColor="#dbdbdb"
+                backgroundSize="cover"
+                backgroundPosition="center"
+                position="relative"
+                align="center"
+              ></Box>
+              {/* <Image
                 _hover={{ cursor: 'pointer' }}
                 w="55px"
                 borderRadius="50%"
                 src={value?.photo_url ? value.photo_url : DefaultProfile}
-              />
+              /> */}
             </MenuButton>
             <MenuList>
               <MenuItem onClick={goToProfile}>My profile</MenuItem>
