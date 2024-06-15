@@ -133,10 +133,7 @@ const SkillCard = ({
           overflow="hidden"
           textOverflow="ellipsis"
           display="-webkit-box"
-          WebkitLineClamp="3" // Limit to 3 lines
-          WebkitBoxOrient="vertical"
           css={{
-            // display: '-webkit-box',
             WebkitLineClamp: 3,
             WebkitBoxOrient: 'vertical',
           }}
