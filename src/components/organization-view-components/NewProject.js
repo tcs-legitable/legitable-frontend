@@ -1,4 +1,4 @@
-import { Button, Flex, Input, Text } from '@chakra-ui/react';
+import { Box, Button, Flex, Input, Text } from '@chakra-ui/react';
 import React, { useState } from 'react';
 
 const NewProject = () => {
@@ -8,7 +8,20 @@ const NewProject = () => {
   const [projectDeadline, setProjectDeadline] = useState("");
   const [projectBudget, setProjectBudget] = useState("");
   const [example, setExample] = useState("");
+  const [selectedCity, setSelectedCity] = useState("");
+  const [pref, setPref] = useState("");
   const [optionalNote, setOptionalNote] = useState("");
+
+  const cities = [
+    {
+      id: 1,
+      name: "Vancouver",
+    },
+    {
+      id: 2,
+      name: "Toronto",
+    }
+  ];
 
   return (
     <Flex
@@ -69,7 +82,6 @@ const NewProject = () => {
             _placeholder={{ color: '#969696' }}
           /> */}
           <Input 
-            // placeholder='Select Date' 
             size='md' 
             type='date'
             value={projectDeadline}
@@ -117,12 +129,38 @@ const NewProject = () => {
       <Flex>
         <Flex
           flexDirection="column"
+          w="50%"
         >
           <Text
             fontWeight="600"
           >
             Location*
           </Text>
+          
+          {cities.map((city) => (
+            <Box
+              key={city.id}
+              display="flex"
+              flexDir="row"
+              m="4px"
+              p="4px 10px"
+              _hover={{
+                cursor: 'pointer',
+              }}
+              borderRadius="25px"
+              color={selectedCity === city.name ? 'black' : '#555'}
+              bgColor={selectedCity === city.name ? '#d7d7d7' : 'transparent'}
+              border={selectedCity === city.name ? "1px solid black" : "1px solid #969696" }
+              onClick={() => setSelectedCity(city.name)}
+              fontSize="15px"
+            >
+              {city.name}
+            </Box>
+          ))}
+          
+          <Flex>
+
+          </Flex>
         </Flex>
         <Flex
           flexDirection="column"
