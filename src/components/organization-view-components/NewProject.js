@@ -1,5 +1,5 @@
 import { Box, Button, Flex, Input, InputGroup, InputLeftElement, Select, Text } from '@chakra-ui/react';
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import { skillOptions } from '../skillOptions';
 import Navbar from '../global-components/Navbar';
 
@@ -15,6 +15,22 @@ const NewProject = () => {
   const [selectedPreference, setSelectedPreference] = useState("");
   const [optionalNote, setOptionalNote] = useState("");
 
+  const [isFormValid, setIsFormValid] = useState(false);
+  
+  useEffect(() => {
+    const isValid =
+      projectName &&
+      projectDescription &&
+      projectDeadline &&
+      projectBudget &&
+      example &&
+      skill &&
+      selectedCity &&
+      selectedPreference;
+    setIsFormValid(isValid);
+  }, [projectName, projectDescription, projectDeadline, projectBudget, example, skill, selectedCity, selectedPreference]);
+
+
   const cities = [
     { id: 1, name: "Vancouver" },
     { id: 2, name: "Toronto" }
@@ -24,6 +40,18 @@ const NewProject = () => {
     { id: 1, name: "In-person"},
     { id: 2, name: "Remote" }
   ];
+
+  const handleCreateProject = () => {
+    console.log("Project Name:", projectName);
+    console.log("Project Description:", projectDescription);
+    console.log("Project Deadline:", projectDeadline);
+    console.log("Project Budget:", projectBudget);
+    console.log("Example:", example);
+    console.log("Skill:", skill);
+    console.log("Selected City:", selectedCity);
+    console.log("Selected Preference:", selectedPreference);
+    console.log("Optional Note:", optionalNote);
+  };
 
   return (
     <Flex
@@ -37,6 +65,7 @@ const NewProject = () => {
         height="100vh"
         flexDirection="column"
         pl="60px"
+        pr="60px"
       >
         <Text
           mt="30px"
@@ -75,6 +104,7 @@ const NewProject = () => {
           <Flex
             flexDirection="column"
             w="50%"
+            mr="20px"
           >
             <Text
               fontWeight="600"
@@ -93,6 +123,7 @@ const NewProject = () => {
           <Flex
             flexDirection="column"
             w="50%"
+            ml="20px"
           >
             <Text
               fontWeight="600"
@@ -157,6 +188,7 @@ const NewProject = () => {
           <Flex
             flexDirection="column"
             w="50%"
+            mr="20px"
           >
             <Text
               fontWeight="600"
@@ -245,14 +277,20 @@ const NewProject = () => {
           p="4px 10px"
           mt="30px"
           borderRadius="25px"
-          color="#fafafa"
-          bgColor="#0c0c0c"
+          color={isFormValid ? "#fafafa" : "#969696"}
+          bgColor={isFormValid ? "#0c0c0c" : "#e0e0e0"}
           fontWeight="300"
           _hover={{
             backgroundPosition: 'left bottom',
           }}
           _active={{
             backgroundPosition: 'left bottom',
+          }}
+          onClick={handleCreateProject}
+          disabled={!isFormValid}
+          _disabled={{
+            cursor: "not-allowed",
+            opacity: 0.6,
           }}
         >
         Create project
