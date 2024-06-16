@@ -39,6 +39,16 @@ export const doesProjectExist = async (id) => {
   return docSnap.exists();
 };
 
+export const addProject = async (projectData) => {
+  const projectId = projectData?.id || doc(collection(db, 'projects')).id;
+  const projectRef = doc(db, 'projects', projectId);
+  try {
+    await setDoc(projectRef, projectData);
+  } catch (e) {
+    console.log('error is: ', e);
+  }
+};
+
 // GET DATA FUNCTIONS
 export const getUserData = async (id) => {
   const docRef = doc(db, 'mvp_users', id);
