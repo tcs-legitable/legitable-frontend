@@ -9,18 +9,17 @@ const NewProject = () => {
   const [projectBudget, setProjectBudget] = useState("");
   const [example, setExample] = useState("");
   const [selectedCity, setSelectedCity] = useState("");
-  const [pref, setPref] = useState("");
+  const [selectedPreference, setSelectedPreference] = useState("");
   const [optionalNote, setOptionalNote] = useState("");
 
   const cities = [
-    {
-      id: 1,
-      name: "Vancouver",
-    },
-    {
-      id: 2,
-      name: "Toronto",
-    }
+    { id: 1, name: "Vancouver" },
+    { id: 2, name: "Toronto" }
+  ];
+
+  const preferences = [
+    { id: 1, name: "In-person"},
+    { id: 2, name: "Remote" }
   ];
 
   return (
@@ -74,13 +73,6 @@ const NewProject = () => {
           >
             Project deadline*
           </Text>
-          {/* <Input
-            placeholder="*DATE SELECT TEMPLATE*"
-            borderRadius="10px"
-            value={projectDeadline}
-            onChange={(e) => setProjectDeadline(e.target.value)}
-            _placeholder={{ color: '#969696' }}
-          /> */}
           <Input 
             size='md' 
             type='date'
@@ -136,32 +128,33 @@ const NewProject = () => {
           >
             Location*
           </Text>
-          
-          {cities.map((city) => (
-            <Box
-              key={city.id}
-              display="flex"
-              flexDir="row"
-              m="4px"
-              p="4px 10px"
-              _hover={{
-                cursor: 'pointer',
-              }}
-              borderRadius="25px"
-              color={selectedCity === city.name ? 'black' : '#555'}
-              bgColor={selectedCity === city.name ? '#d7d7d7' : 'transparent'}
-              border={selectedCity === city.name ? "1px solid black" : "1px solid #969696" }
-              onClick={() => setSelectedCity(city.name)}
-              fontSize="15px"
-            >
-              {city.name}
-            </Box>
-          ))}
-          
-          <Flex>
 
+          <Flex
+            flexDirection="row"
+          >
+            {cities.map((city) => (
+              <Box
+                key={city.id}
+                display="flex"
+                flexDir="row"
+                m="4px"
+                p="4px 10px"
+                _hover={{
+                  cursor: 'pointer',
+                }}
+                borderRadius="10px"
+                color={selectedCity === city.name ? 'black' : '#555'}
+                bgColor={selectedCity === city.name ? '#d7d7d7' : 'transparent'}
+                border={selectedCity === city.name ? "1px solid black" : "1px solid #969696" }
+                onClick={() => setSelectedCity(city.name)}
+                fontSize="15px"
+              >
+                {city.name}
+              </Box>
+            ))}
           </Flex>
         </Flex>
+        
         <Flex
           flexDirection="column"
         >
@@ -170,6 +163,31 @@ const NewProject = () => {
           >
             Project preference*
           </Text>
+
+          <Flex
+            flexDirection="row"
+          >
+            {preferences.map((preference) => (
+              <Box
+                key={preference.id}
+                display="flex"
+                flexDir="row"
+                m="4px"
+                p="4px 10px"
+                _hover={{
+                  cursor: 'pointer',
+                }}
+                borderRadius="10px"
+                color={selectedPreference === preference.name ? 'black' : '#555'}
+                bgColor={selectedPreference === preference.name ? '#d7d7d7' : 'transparent'}
+                border={selectedPreference === preference.name ? "1px solid black" : "1px solid #969696" }
+                onClick={() => setSelectedPreference(preference.name)}
+                fontSize="15px"
+              >
+                {preference.name}
+              </Box>
+            ))}
+          </Flex>
         </Flex>
       </Flex>
 
