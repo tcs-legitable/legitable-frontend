@@ -1,5 +1,6 @@
-import { Box, Button, Flex, Input, Text } from '@chakra-ui/react';
+import { Box, Button, Flex, Input, InputGroup, InputLeftElement, Select, Text } from '@chakra-ui/react';
 import React, { useState } from 'react';
+import { skillOptions } from '../skillOptions';
 
 const NewProject = () => {
 
@@ -8,6 +9,7 @@ const NewProject = () => {
   const [projectDeadline, setProjectDeadline] = useState("");
   const [projectBudget, setProjectBudget] = useState("");
   const [example, setExample] = useState("");
+  const [skill, setSkill] = useState("");
   const [selectedCity, setSelectedCity] = useState("");
   const [selectedPreference, setSelectedPreference] = useState("");
   const [optionalNote, setOptionalNote] = useState("");
@@ -81,21 +83,32 @@ const NewProject = () => {
             color={projectDeadline ? 'inherit' : '#969696'}
           />
         </Flex>
+
         <Flex
           flexDirection="column"
+          w="50%"
         >
           <Text
             fontWeight="600"
           >
             Project budget (CAD)*
           </Text>
-          <Input
-            placeholder="Provide a budget of the entire project - we will help break it down between deliverables"
-            borderRadius="10px"
-            value={projectBudget}
-            onChange={(e) => setProjectBudget(e.target.value)}
-            _placeholder={{ color: '#969696' }}
-          />
+          <InputGroup>
+            <InputLeftElement
+              pointerEvents="none"
+              fontSize="1.2em"
+            >
+              $
+            </InputLeftElement>
+            <Input
+              placeholder="Provide a budget of the entire project - we will help break it down between deliverables"
+              borderRadius="10px"
+              type="number"
+              value={projectBudget}
+              onChange={(e) => setProjectBudget(e.target.value)}
+              _placeholder={{ color: '#969696' }}
+            />
+          </InputGroup>
         </Flex>
       </Flex>
 
@@ -117,6 +130,22 @@ const NewProject = () => {
       >
         Skills*
       </Text>
+      <Select
+        placeholder="Select relevant skills (max 5)"
+        borderRadius="10px"
+        value={skill}
+        onChange={(e) => setSkill(e.target.value)}
+        color={skill ? '#000' : '#969696'}
+        mb="10px"
+        mt="10px"
+        width="100%"
+      >
+        {skillOptions.map(({ id, text, value }) => (
+          <option key={id} value={value}>
+            {text}
+          </option>
+        ))}
+      </Select>
 
       <Flex>
         <Flex
