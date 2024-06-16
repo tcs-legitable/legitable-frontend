@@ -2,6 +2,7 @@ import { Box, Button, Flex, Input, InputGroup, InputLeftElement, Select, Text } 
 import React, { useEffect, useState } from 'react';
 import { skillOptions } from '../skillOptions';
 import Navbar from '../global-components/Navbar';
+import { addProject } from '../../firebase/helpers';
 
 const NewProject = () => {
 
@@ -30,6 +31,29 @@ const NewProject = () => {
     setIsFormValid(isValid);
   }, [projectName, projectDescription, projectDeadline, projectBudget, example, skill, selectedCity, selectedPreference]);
 
+  const handleCreateProject = async () => {
+    if (!isFormValid) return;
+    
+    const projectData = {
+      name: projectName,
+      description: projectDescription,
+      deadline: projectDeadline,
+      budget: projectBudget,
+      example: example,
+      skill: skill,
+      city: selectedCity,
+      preference: selectedPreference,
+      optionalNote: optionalNote,
+      createdAt: new Date().toISOString()
+    };
+    
+    try {
+      await addProject(projectData);
+      console.log("Project data:", projectData);
+    } catch (error) {
+      console.error("Error creating project:", error);
+    }
+  };
 
   const cities = [
     { id: 1, name: "Vancouver" },
@@ -41,17 +65,17 @@ const NewProject = () => {
     { id: 2, name: "Remote" }
   ];
 
-  const handleCreateProject = () => {
-    console.log("Project Name:", projectName);
-    console.log("Project Description:", projectDescription);
-    console.log("Project Deadline:", projectDeadline);
-    console.log("Project Budget:", projectBudget);
-    console.log("Example:", example);
-    console.log("Skill:", skill);
-    console.log("Selected City:", selectedCity);
-    console.log("Selected Preference:", selectedPreference);
-    console.log("Optional Note:", optionalNote);
-  };
+  //   const handleCreateProject = () => {
+  //     console.log("Project Name:", projectName);
+  //     console.log("Project Description:", projectDescription);
+  //     console.log("Project Deadline:", projectDeadline);
+  //     console.log("Project Budget:", projectBudget);
+  //     console.log("Example:", example);
+  //     console.log("Skill:", skill);
+  //     console.log("Selected City:", selectedCity);
+  //     console.log("Selected Preference:", selectedPreference);
+  //     console.log("Optional Note:", optionalNote);
+  //   };
 
   return (
     <Flex
