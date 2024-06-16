@@ -1,8 +1,6 @@
 import { Button, Flex, Input, Text } from '@chakra-ui/react';
 import React, { useState } from 'react';
 
-
-
 const NewProject = () => {
 
   const [projectName, setProjectName] = useState("");
@@ -63,12 +61,20 @@ const NewProject = () => {
           >
             Project deadline*
           </Text>
-          <Input
+          {/* <Input
             placeholder="*DATE SELECT TEMPLATE*"
             borderRadius="10px"
             value={projectDeadline}
             onChange={(e) => setProjectDeadline(e.target.value)}
             _placeholder={{ color: '#969696' }}
+          /> */}
+          <Input 
+            // placeholder='Select Date' 
+            size='md' 
+            type='date'
+            value={projectDeadline}
+            onChange={(e) => setProjectDeadline(e.target.value)} 
+            color={projectDeadline ? 'inherit' : '#969696'}
           />
         </Flex>
         <Flex
