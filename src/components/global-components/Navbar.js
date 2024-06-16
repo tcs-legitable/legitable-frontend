@@ -24,6 +24,10 @@ const Navbar = () => {
     navigate('/landing');
   };
 
+  const createProject = () => {
+    navigate('/new-project');
+  };
+
   const logout = () => {
     localStorage.removeItem('user-data');
     window.location.reload();
@@ -149,7 +153,8 @@ const Navbar = () => {
         </Flex>
       ) : (
         <Box className="button-container">
-          <Button border="1px solid" p="23px" borderRadius="25px">
+          <Button border="1px solid" p="23px" borderRadius="25px"
+            onClick={createProject}>
             Post a project
           </Button>
 
