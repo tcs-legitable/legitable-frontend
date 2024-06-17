@@ -49,6 +49,16 @@ export const addProject = async (projectData) => {
   }
 };
 
+export const getAllProjects = async () => {
+  const projectsCol = collection(db, 'projects');
+  const projectSnapshot = await getDocs(projectsCol);
+  const projectList = projectSnapshot.docs.map((doc) => ({
+    id: doc.id,
+    ...doc.data(),
+  }));
+  return projectList;
+};
+
 // GET DATA FUNCTIONS
 export const getUserData = async (id) => {
   const docRef = doc(db, 'mvp_users', id);
