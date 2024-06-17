@@ -19,7 +19,12 @@ const Home = () => {
       minH="100vh"
     >
       <Navbar />
-      <Box display="flex" flexDirection="row" justifyContent="space-between">
+      <Box
+        mt="30px"
+        display="flex"
+        flexDirection="row"
+        justifyContent="space-between"
+      >
         <Creatives filters={filters} />
         <Sidebar onFilterChange={handleFilterChange} />
       </Box>
