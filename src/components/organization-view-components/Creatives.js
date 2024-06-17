@@ -21,7 +21,11 @@ const Creatives = ({ filters }) => {
     if (filters.location && !creative.city.includes(filters.location)) {
       return false;
     }
-    if (filters.preference && filters.preference !== 'any' && creative.projectPref !== filters.preference) {
+    if (
+      filters.preference &&
+      filters.preference !== 'any' &&
+      creative.projectPref !== filters.preference
+    ) {
       return false;
     }
     if (filters.verified && !creative.isVerified) {
@@ -31,7 +35,7 @@ const Creatives = ({ filters }) => {
   });
 
   return (
-    <Flex display="flex" flexDirection="column">
+    <Flex w="100%" display="flex" flexDirection="column" alignItems="center">
       {filteredCreativesList.length > 0 ? (
         filteredCreativesList.map((creative, index) => (
           <CreativeCard
@@ -49,12 +53,8 @@ const Creatives = ({ filters }) => {
           />
         ))
       ) : (
-        <Flex
-          justifyContent="center"
-          width="100%">
-          <Text fontSize="20px">
-            No results.
-          </Text>
+        <Flex justifyContent="center" width="100%">
+          <Text fontSize="20px">No results.</Text>
         </Flex>
       )}
     </Flex>
