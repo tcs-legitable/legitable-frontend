@@ -275,6 +275,17 @@ export const applyForProject = async (
   }
 };
 
+// retrieve waitlisted student list
+export const getAllWaitlistedUsers = async () => {
+  const waitlistRef = collection(db, 'student');
+  const waitlistSnap = await getDocs(waitlistRef);
+  const waitlistedUsers = waitlistSnap.docs.map((doc) => ({
+    id: doc.id,
+    ...doc.data(),
+  }));
+  return waitlistedUsers;
+};
+
 // old when endorsees was a thing
 export const addUser = async (uid, name, email, photoURL) => {
   const docSnap = await getEndorseeUserData(uid);
