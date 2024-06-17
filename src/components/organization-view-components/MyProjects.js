@@ -31,7 +31,9 @@ const MyProjects = () => {
         pl="60px"
         pr="60px"
       >
-        <Flex>
+        <Flex
+          flexDirection="column"
+        >
           <Text
             mt="30px"
             fontSize="30px"
@@ -39,6 +41,16 @@ const MyProjects = () => {
           >
             My projects
           </Text>
+
+          <Box
+            w="100%"
+            h="1.5px"
+            backgroundColor="#ececec"
+            mt="30px"
+            mb="30px"
+          >
+
+          </Box>
         </Flex>
 
         <Text
