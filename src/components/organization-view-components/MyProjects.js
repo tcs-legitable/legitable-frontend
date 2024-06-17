@@ -30,6 +30,7 @@ const MyProjects = () => {
         flexDirection="column"
         pl="60px"
         pr="60px"
+        h="fit-content"
       >
         <Flex>
           <Text
