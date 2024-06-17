@@ -1,4 +1,12 @@
-import { Box, Button, Image, Text, Link, Flex } from '@chakra-ui/react';
+import {
+  Box,
+  Button,
+  Image,
+  Text,
+  Link,
+  Flex,
+  useToast,
+} from '@chakra-ui/react';
 import React from 'react';
 import star from './../../assets/images/Star-stupaid-verified1.svg';
 import arrow from './../../assets/images/up-right-arrow.svg';
@@ -16,6 +24,8 @@ const CreativeCard = ({
   website,
   isVerified,
 }) => {
+  const toast = useToast();
+
   return (
     <Box
       // backgroundColor="pink"
@@ -33,7 +43,6 @@ const CreativeCard = ({
         borderRadius="50%"
         w="200px"
         h="60px"
-        // boxSize="100px"
         backgroundImage={photo_url ? photo_url : DefaultProfile}
         backgroundColor="#dbdbdb"
         backgroundSize="cover"
@@ -101,6 +110,15 @@ const CreativeCard = ({
           _active={{
             backgroundPosition: 'left bottom',
           }}
+          onClick={() =>
+            toast({
+              title: 'Invite sent!',
+              description: `Sent an invite to ${full_name.split(' ')[0]}`,
+              status: 'success',
+              duration: 1300,
+              isClosable: true,
+            })
+          }
         >
           Invite to apply
         </Button>
