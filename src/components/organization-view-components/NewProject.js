@@ -65,18 +65,6 @@ const NewProject = () => {
     { id: 2, name: "Remote" }
   ];
 
-  //   const handleCreateProject = () => {
-  //     console.log("Project Name:", projectName);
-  //     console.log("Project Description:", projectDescription);
-  //     console.log("Project Deadline:", projectDeadline);
-  //     console.log("Project Budget:", projectBudget);
-  //     console.log("Example:", example);
-  //     console.log("Skill:", skill);
-  //     console.log("Selected City:", selectedCity);
-  //     console.log("Selected Preference:", selectedPreference);
-  //     console.log("Optional Note:", optionalNote);
-  //   };
-
   return (
     <Flex
       flexDirection="column"

@@ -11,6 +11,7 @@ import Home from './components/organization-view-components/Home';
 import StudentLanding from './components/student-view-components/StudentLanding';
 import ProfilePage from './components/profile-components/ProfilePage';
 import NewProject from './components/organization-view-components/NewProject';
+import MyProjects from './components/organization-view-components/MyProjects';
 
 export const SignedInContext = createContext();
 
@@ -48,6 +49,10 @@ function App() {
               <Route
                 path="/new-project"
                 element={<NewProject />}
+              />
+              <Route
+                path="/my-projects"
+                element={<MyProjects />}
               />
             </Routes>
           </Router>
