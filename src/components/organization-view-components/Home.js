@@ -5,7 +5,6 @@ import Sidebar from './Sidebar';
 import Creatives from './Creatives';
 
 const Home = () => {
-
   const [filters, setFilters] = useState({});
 
   const handleFilterChange = (newFilters) => {
@@ -16,10 +15,16 @@ const Home = () => {
     <Box
       backgroundColor="#fafafa"
       width="100vw"
-      height="100vh"
+      height="fitContent"
+      minH="100vh"
     >
       <Navbar />
-      <Box display="flex" flexDirection="row" justifyContent="space-between">
+      <Box
+        mt="30px"
+        display="flex"
+        flexDirection="row"
+        justifyContent="space-between"
+      >
         <Creatives filters={filters} />
         <Sidebar onFilterChange={handleFilterChange} />
       </Box>
