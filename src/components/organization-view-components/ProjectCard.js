@@ -10,6 +10,7 @@ const ProjectCard = ({ project }) => {
       overflow="hidden"
       p="6"
       mb="4"
+      mt="7"
       backgroundColor="white"
     >
       <Flex
