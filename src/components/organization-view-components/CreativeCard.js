@@ -1,7 +1,8 @@
-import { Box, Button, Image, Text, Link } from '@chakra-ui/react';
+import { Box, Button, Image, Text, Link, Flex } from '@chakra-ui/react';
 import React from 'react';
 import star from './../../assets/images/Star-stupaid-verified1.svg';
 import arrow from './../../assets/images/up-right-arrow.svg';
+import DefaultProfile from '../../assets/images/default-pfp.svg';
 
 const CreativeCard = ({
   photo_url,
@@ -17,28 +18,29 @@ const CreativeCard = ({
 }) => {
   return (
     <Box
-      backgroundColor="white"
+      // backgroundColor="pink"
       borderRadius="10px"
       display="flex"
       flexDirection="row"
-      marginBottom="20px"
-      marginLeft="60px"
-      marginRight="40px"
-      marginTop="20px"
+      p="25px"
+      my="10px"
       border="1px solid #dbdbdb"
-      width="100%"
+      width="90%"
+      maxW="1100px"
     >
-      <Image
-        src={photo_url}
-        alt={`${full_name}'s picture`}
-        boxSize="70px"
+      <Box
         mr="20px"
-        ml="30px"
-        mt="30px"
-        borderRadius="full"
-      />
-
-      <Box mt="30px" width="200%">
+        borderRadius="50%"
+        w="200px"
+        h="60px"
+        // boxSize="100px"
+        backgroundImage={photo_url ? photo_url : DefaultProfile}
+        backgroundColor="#dbdbdb"
+        backgroundSize="cover"
+        backgroundPosition="center"
+        position="relative"
+      ></Box>
+      <Box width="200%">
         <Box display="flex" flexDirection="row">
           <Text color="#555" fontSize="13px" mb="7px">
             {city}, {country} • {school} • {projectPref}
@@ -64,25 +66,29 @@ const CreativeCard = ({
           )}
         </Box>
 
-        <Box pb="30px">
-          <Link href={website} isExternal>
-            <Button
-              borderRadius="25px"
-              border="1px solid black"
-              bg="transparent"
-            >
-              <Text marginRight="6px" fontWeight="300">
-                Graphic Design
-              </Text>
-              <Image src={arrow} />
-            </Button>
-          </Link>
-        </Box>
+        <Flex gap="10px" mt="10px">
+          {skills.map((skill, id) => {
+            return (
+              <Link key={id} href={website} isExternal>
+                <Button
+                  borderRadius="25px"
+                  border="1px solid black"
+                  bg="transparent"
+                >
+                  <Text marginRight="6px" fontWeight="300">
+                    {skill}
+                  </Text>
+                  <Image src={arrow} />
+                </Button>
+              </Link>
+            );
+          })}
+        </Flex>
       </Box>
 
-      <Box width="100%" textAlign="right" mr="30px">
+      <Box width="100%" textAlign="right">
         <Button
-          mt="30px"
+          // mt="30px"
           border="1px solid"
           p="15px"
           borderRadius="25px"
@@ -96,7 +102,7 @@ const CreativeCard = ({
             backgroundPosition: 'left bottom',
           }}
         >
-          Let's chat!
+          Invite to apply
         </Button>
       </Box>
     </Box>

@@ -1,15 +1,21 @@
 import { Flex, Text } from '@chakra-ui/react';
 import React, { useEffect, useState } from 'react';
 import CreativeCard from './CreativeCard';
-import { getAllUsers } from '../../firebase/helpers';
+import { getAllUsers, getAllWaitlistedUsers } from '../../firebase/helpers';
+
+// LOTS OF TEMP CHANGES HERE
 
 const Creatives = ({ filters }) => {
   const [creativesList, setCreativesList] = useState([]);
 
   useEffect(() => {
     const fetchData = async () => {
-      const users = await getAllUsers();
-      setCreativesList(users);
+      // const users = await getAllUsers();
+
+      // TEMP - will remove later
+      const waitlistedUsers = await getAllWaitlistedUsers();
+      // setCreativesList(users);
+      setCreativesList(waitlistedUsers);
     };
     fetchData();
   }, []);
@@ -37,21 +43,26 @@ const Creatives = ({ filters }) => {
   return (
     <Flex w="100%" display="flex" flexDirection="column" alignItems="center">
       {filteredCreativesList.length > 0 ? (
-        filteredCreativesList.map((creative, index) => (
-          <CreativeCard
-            key={index}
-            photo_url={creative.photo_url}
-            city={creative.city}
-            country={creative.country}
-            school={creative.school}
-            projectPref={creative.projectPref}
-            full_name={creative.full_name}
-            email={creative.email}
-            skills={creative.skills}
-            website={creative.website || 'https://www.stupaid.work/'}
-            isVerified={creative.isVerified}
-          />
-        ))
+        filteredCreativesList.map((creative, index) => {
+          console.log(creative, ' is the creative');
+          return (
+            <CreativeCard
+              key={index}
+              // photo_url={creative.photo_url}
+              photo_url={creative?.headshot}
+              city={creative?.city}
+              country={creative?.country}
+              school={creative?.school}
+              projectPref={creative?.projectPref}
+              // full_name={creative.full_name}
+              full_name={creative?.name}
+              email={creative.email}
+              skills={creative?.skills}
+              website={creative?.website || 'https://www.stupaid.work/'}
+              isVerified={creative?.isVerified}
+            />
+          );
+        })
       ) : (
         <Flex justifyContent="center" width="100%">
           <Text fontSize="20px">No results.</Text>
