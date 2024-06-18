@@ -32,6 +32,13 @@ export const doesUserExist = async (id) => {
   return docSnap.exists();
 };
 
+export const doesOrganizationExist = async (id) => {
+  const docRef = doc(db, 'organization', id);
+  const docSnap = await getDoc(docRef);
+
+  return docSnap.exists();
+};
+
 export const doesProjectExist = async (id) => {
   const docRef = doc(db, 'projects', id);
   const docSnap = await getDoc(docRef);
@@ -62,6 +69,17 @@ export const getAllProjects = async () => {
 // GET DATA FUNCTIONS
 export const getUserData = async (id) => {
   const docRef = doc(db, 'mvp_users', id);
+  const docSnap = await getDoc(docRef);
+
+  if (docSnap.exists()) {
+    return docSnap.data();
+  } else {
+    return null;
+  }
+};
+
+export const getOrganizationData = async (id) => {
+  const docRef = doc(db, 'organization', id);
   const docSnap = await getDoc(docRef);
 
   if (docSnap.exists()) {
@@ -124,6 +142,23 @@ export const updateStupaidUser = async (uid, updatedFields) => {
     } catch (error) {
       console.log('error encountered while updating fields: ', error);
     }
+  }
+};
+
+// adding organizations - copy format of above
+export const addOrganization = async (data) => {
+  const uid = data?.uid;
+  const docSnap = await getOrganizationData(uid);
+  if (docSnap === null) {
+    const userRef = doc(db, 'organization', uid);
+    try {
+      await setDoc(userRef, data);
+      console.log('success!');
+    } catch (e) {
+      console.log('error is: ', e);
+    }
+  } else {
+    console.log('organization w/ the uid of ', uid, ' already exists');
   }
 };
 
