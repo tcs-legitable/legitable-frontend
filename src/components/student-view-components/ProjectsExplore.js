@@ -55,15 +55,14 @@ const ProjectsExplore = () => {
     },
     {
       id: '3',
-      name: 'TCS branding',
+      name: 'TreeHouse branding',
       location: 'Vancouver',
-      deadline: 'July 1, 2024',
-      budget: '$500',
+      deadline: 'August 1, 2024',
+      budget: '$1000',
       project_pref: 'In-person',
       tags: ['Branding', 'Web Design'],
       description: 'Doing the branding for the creative solution ayo',
-      photo_url:
-        'https://media.licdn.com/dms/image/D4E03AQHRHHKsGXsN2Q/profile-displayphoto-shrink_200_200/0/1708636073967?e=2147483647&v=beta&t=4_kJRYqMsVcpeDOo-Gbp7yucbwIbKi4h2SxJXxsRSK4',
+      photo_url: 'https://www.byronwang.com/cropped-luigi.png',
       lead_name: {
         name: 'Aayush Kogar',
         link: 'https://www.byronwang.com/',

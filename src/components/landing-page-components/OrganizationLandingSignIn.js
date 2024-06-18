@@ -4,11 +4,11 @@ import StupaidLogo from '../../assets/landing-page-images/stupaid-logo-small.svg
 import GmailArrow from '../../assets/landing-page-images/continue-w-gmail-arrow-black.svg';
 import { signInWithPopup } from 'firebase/auth';
 import { auth, provider } from '../../firebase/firebase';
-import { doesUserExist, getUserData } from '../../firebase/helpers';
+import { doesOrganizationExist, getUserData } from '../../firebase/helpers';
 import { useNavigate } from 'react-router-dom';
 import { SignedInContext } from '../../App';
 
-const LandingSignIn = ({ goNext, setData }) => {
+const OrganizationLandingSignIn = ({ goNext, setData }) => {
   const navigate = useNavigate();
   const { setValue } = useContext(SignedInContext);
 
@@ -17,21 +17,21 @@ const LandingSignIn = ({ goNext, setData }) => {
       const { user } = await signInWithPopup(auth, provider);
 
       const { uid, email, displayName } = user;
-      const exists = await doesUserExist(uid);
+      const exists = await doesOrganizationExist(uid);
       let newInfo = {};
       if (exists) {
         const info = await getUserData(uid);
         newInfo = {
           uid: uid,
           name: info?.full_name,
-          type: 'student',
+          type: 'organization',
           photo_url: info?.photo_url,
         };
       } else {
         newInfo = {
           uid: uid,
           name: displayName,
-          type: 'student',
+          type: 'organization',
           photo_url: null,
         };
       }
@@ -39,7 +39,7 @@ const LandingSignIn = ({ goNext, setData }) => {
       localStorage.setItem('user-data', JSON.stringify(newInfo));
 
       if (exists) {
-        navigate('/projects');
+        navigate('/home');
       }
 
       const data = {
@@ -103,4 +103,4 @@ const LandingSignIn = ({ goNext, setData }) => {
   );
 };
 
-export default LandingSignIn;
+export default OrganizationLandingSignIn;

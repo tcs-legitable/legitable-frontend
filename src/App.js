@@ -12,6 +12,8 @@ import StudentLanding from './components/student-view-components/StudentLanding'
 import ProfilePage from './components/profile-components/ProfilePage';
 import NewProject from './components/organization-view-components/NewProject';
 import MyProjects from './components/organization-view-components/MyProjects';
+import OrganizationGetStartedLandingPage from './components/landing-page-components/OrganizationGetStartedLandingPage';
+import OrganizationProjectsPage from './components/organization-view-components/OrganizationProjectsPage';
 
 export const SignedInContext = createContext();
 
@@ -36,6 +38,10 @@ function App() {
             <Routes>
               <Route path="/" element={<HomePage />} />
               <Route path="/landing" element={<GetStartedLandingPage />} />
+              <Route
+                path="/organization-signup"
+                element={<OrganizationGetStartedLandingPage />}
+              />
               <Route path="/endorsees/:userId" element={<EndorseesPage />} />
               <Route path="/home" element={<Home />} />
               <Route
@@ -47,13 +53,11 @@ function App() {
                 element={!loading && <ProfilePage />}
               />
               <Route
-                path="/new-project"
-                element={<NewProject />}
+                path={'/organization/:userId'}
+                element={!loading && <OrganizationProjectsPage />}
               />
-              <Route
-                path="/my-projects"
-                element={<MyProjects />}
-              />
+              <Route path="/new-project" element={<NewProject />} />
+              <Route path="/my-projects" element={<MyProjects />} />
             </Routes>
           </Router>
         </VStack>
