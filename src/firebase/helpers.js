@@ -6,6 +6,9 @@ import {
   doc,
   setDoc,
   collection,
+  arrayUnion,
+  query,
+  where,
 } from '@firebase/firestore';
 import {
   deleteObject,
@@ -46,11 +49,19 @@ export const doesProjectExist = async (id) => {
   return docSnap.exists();
 };
 
-export const addProject = async (projectData) => {
+export const addProject = async (uid, projectData) => {
   const projectId = projectData?.id || doc(collection(db, 'projects')).id;
   const projectRef = doc(db, 'projects', projectId);
+  const organizationRef = doc(db, 'organization', uid);
+
   try {
-    await setDoc(projectRef, projectData);
+    await setDoc(projectRef, { ...projectData, id: projectId });
+
+    console.log('doc set!');
+    await updateDoc(organizationRef, {
+      projects: arrayUnion(projectId),
+    });
+    console.log('doc updated!');
   } catch (e) {
     console.log('error is: ', e);
   }
@@ -64,6 +75,39 @@ export const getAllProjects = async () => {
     ...doc.data(),
   }));
   return projectList;
+};
+
+export const getMyProjects = async (uid) => {
+  try {
+    // Reference to the organization document
+    const organizationRef = doc(db, 'organization', uid);
+    const organizationSnap = await getDoc(organizationRef);
+
+    if (!organizationSnap.exists()) {
+      throw new Error('Organization document does not exist');
+    }
+
+    const organizationData = organizationSnap.data();
+    const projectIds = organizationData.projects || [];
+
+    if (projectIds.length === 0) {
+      return [];
+    }
+
+    // Fetch the projects from the 'projects' collection
+    const projectsQuery = query(
+      collection(db, 'projects'),
+      where('id', 'in', projectIds),
+    );
+    const projectsSnap = await getDocs(projectsQuery);
+
+    const projects = projectsSnap.docs.map((doc) => doc.data());
+
+    return projects;
+  } catch (e) {
+    console.log('error is: ', e);
+    return [];
+  }
 };
 
 // GET DATA FUNCTIONS
