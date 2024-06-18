@@ -8,7 +8,6 @@ const OrganizationLandingFinal = ({ data }) => {
   const navigate = useNavigate();
 
   const handleClick = async () => {
-    console.log(data, ' is the data');
     await addOrganization(data);
     navigate('/home');
   };

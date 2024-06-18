@@ -39,7 +39,7 @@ const OrganizationLandingSignIn = ({ goNext, setData }) => {
       localStorage.setItem('user-data', JSON.stringify(newInfo));
 
       if (exists) {
-        navigate('/projects');
+        navigate('/home');
       }
 
       const data = {
