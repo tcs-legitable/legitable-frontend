@@ -13,6 +13,7 @@ import ProfilePage from './components/profile-components/ProfilePage';
 import NewProject from './components/organization-view-components/NewProject';
 import MyProjects from './components/organization-view-components/MyProjects';
 import OrganizationGetStartedLandingPage from './components/landing-page-components/OrganizationGetStartedLandingPage';
+import OrganizationProjectsPage from './components/organization-view-components/OrganizationProjectsPage';
 
 export const SignedInContext = createContext();
 
@@ -50,6 +51,10 @@ function App() {
               <Route
                 path={'/user/:userId'}
                 element={!loading && <ProfilePage />}
+              />
+              <Route
+                path={'/organization/:userId'}
+                element={!loading && <OrganizationProjectsPage />}
               />
               <Route path="/new-project" element={<NewProject />} />
               <Route path="/my-projects" element={<MyProjects />} />
