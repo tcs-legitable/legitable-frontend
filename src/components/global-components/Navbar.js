@@ -19,8 +19,16 @@ const Navbar = () => {
   const { value } = useContext(SignedInContext);
   const navigate = useNavigate();
 
-  const login = () => {
+  const goLanding = () => {
     navigate('/landing');
+  };
+
+  const login = () => {
+    navigate('/organization-signup');
+  };
+
+  const exploreCreatives = () => {
+    navigate('/home');
   };
 
   const createProject = () => {
@@ -36,6 +44,10 @@ const Navbar = () => {
     navigate('/user/' + value?.uid);
   };
 
+  const goToOrganizationProfile = () => {
+    navigate('/organization/' + value?.uid);
+  };
+
   return (
     <Box
       w="100%"
@@ -49,6 +61,8 @@ const Navbar = () => {
     >
       <Flex alignItems="center">
         <Image
+          cursor="pointer"
+          onClick={goLanding}
           mx="30px"
           w={{ base: '150px', mdLg: '120px' }}
           src={StupaidLogo}
@@ -62,8 +76,7 @@ const Navbar = () => {
           </Text>
         )}
       </Flex>
-
-      {value?.type === 'student' ? (
+      {value?.type === 'student' && (
         <Flex
           mr="40px"
           gap="15px"
@@ -104,6 +117,7 @@ const Navbar = () => {
             _active={{
               bgColor: '#2e2e2e',
             }}
+            onClick={goToOrganizationProfile}
           >
             My projects
           </Button>
@@ -131,29 +145,89 @@ const Navbar = () => {
             </MenuList>
           </Menu>
         </Flex>
-      ) : (
-        <Flex gap="10px" className="button-container">
-          {value?.type === 'organization' && (
-            <Button
-              p="23px"
-              bg="transparent"
-              border="1px solid"
-              py="20px"
-              px="30px"
-              borderRadius="25px"
-              fontWeight="thin"
-              _hover={{
-                bgColor: '#e2e2e2',
-              }}
-              _active={{
-                bgColor: '#e2e2e2',
-              }}
-              onClick={createProject}
-            >
-              Post a project
-            </Button>
-          )}
+      )}
+      {value?.type === 'organization' && (
+        <Flex alignItems="center" gap="10px" className="button-container">
+          <Button
+            p="23px"
+            bg="transparent"
+            border="1px solid"
+            py="20px"
+            px="30px"
+            borderRadius="25px"
+            fontWeight="thin"
+            _hover={{
+              bgColor: '#e2e2e2',
+            }}
+            _active={{
+              bgColor: '#e2e2e2',
+            }}
+            onClick={exploreCreatives}
+          >
+            Explore creatives
+          </Button>
+          <Button
+            p="23px"
+            bg="transparent"
+            border="1px solid"
+            py="20px"
+            px="30px"
+            borderRadius="25px"
+            fontWeight="thin"
+            _hover={{
+              bgColor: '#e2e2e2',
+            }}
+            _active={{
+              bgColor: '#e2e2e2',
+            }}
+            onClick={createProject}
+          >
+            Post a project
+          </Button>
 
+          <Button
+            borderRadius="25px"
+            color="#fafafa"
+            bgColor="#0c0c0c"
+            fontWeight="regular"
+            border="1px solid #0c0c0c"
+            py="20px"
+            px="25px"
+            _hover={{
+              bgColor: '#2e2e2e',
+            }}
+            _active={{
+              bgColor: '#2e2e2e',
+            }}
+            onClick={goToOrganizationProfile}
+          >
+            My projects
+          </Button>
+          <Menu>
+            <MenuButton>
+              <Box
+                borderRadius="100%"
+                w="60px"
+                h="60px"
+                alignContent="center"
+                backgroundImage={
+                  value?.photo_url ? value.photo_url : DefaultProfile
+                }
+                backgroundColor="#dbdbdb"
+                backgroundSize="cover"
+                backgroundPosition="center"
+                position="relative"
+                align="center"
+              ></Box>
+            </MenuButton>
+            <MenuList>
+              <MenuItem onClick={logout}>Log out</MenuItem>
+            </MenuList>
+          </Menu>
+        </Flex>
+      )}
+      {!value?.type && (
+        <Flex gap="10px" className="button-container">
           <Button
             borderRadius="25px"
             color="#fafafa"
