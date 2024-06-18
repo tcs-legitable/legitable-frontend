@@ -133,24 +133,26 @@ const Navbar = () => {
         </Flex>
       ) : (
         <Flex gap="10px" className="button-container">
-          <Button
-            p="23px"
-            bg="transparent"
-            border="1px solid"
-            py="20px"
-            px="30px"
-            borderRadius="25px"
-            fontWeight="thin"
-            _hover={{
-              bgColor: '#e2e2e2',
-            }}
-            _active={{
-              bgColor: '#e2e2e2',
-            }}
-            onClick={createProject}
-          >
-            Post a project
-          </Button>
+          {value?.type === 'organization' && (
+            <Button
+              p="23px"
+              bg="transparent"
+              border="1px solid"
+              py="20px"
+              px="30px"
+              borderRadius="25px"
+              fontWeight="thin"
+              _hover={{
+                bgColor: '#e2e2e2',
+              }}
+              _active={{
+                bgColor: '#e2e2e2',
+              }}
+              onClick={createProject}
+            >
+              Post a project
+            </Button>
+          )}
 
           <Button
             borderRadius="25px"
