@@ -1,12 +1,4 @@
-import {
-  Box,
-  Button,
-  Flex,
-  Image,
-  Text,
-  useBreakpointValue,
-  VStack,
-} from '@chakra-ui/react';
+import { Box, Button, Flex, Image, Text, VStack } from '@chakra-ui/react';
 import React from 'react';
 import StupaidLogo from '../../assets/landing-page-images/stupaid-logo-main.svg';
 import TalentButtonIcon from '../../assets/landing-page-images/landing-talent.svg';
@@ -14,7 +6,6 @@ import StudentButtonIcon from '../../assets/landing-page-images/landing-student.
 import { useNavigate } from 'react-router-dom';
 
 const LandingPage = ({ goNext }) => {
-  const isDesktop = useBreakpointValue({ base: false, mdLg: true });
   const navigate = useNavigate();
 
   return (
@@ -42,16 +33,6 @@ const LandingPage = ({ goNext }) => {
           A platform for connecting passionate business owners to eager creative
           students to work on cool projects.
         </Text>
-        {/* <Text bg="transparent" color="#969696">
-          Where{" "}
-          <Box color="#0c0c0c" as="span">
-            student creatives
-          </Box>{" "}
-          become{" "}
-          <Box color="#0c0c0c" as="span">
-            legit.
-          </Box>{" "}
-        </Text> */}
       </VStack>
       <Flex
         w="100%"

@@ -15,7 +15,6 @@ const LandingSignIn = ({ goNext, setData }) => {
   const handleClick = async () => {
     try {
       const { user } = await signInWithPopup(auth, provider);
-      console.log(user, ' is the user');
 
       const { uid, email, displayName } = user;
       const exists = await doesUserExist(uid);

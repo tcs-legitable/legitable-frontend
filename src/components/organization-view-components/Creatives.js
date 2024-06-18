@@ -44,7 +44,6 @@ const Creatives = ({ filters }) => {
     <Flex w="100%" display="flex" flexDirection="column" alignItems="center">
       {filteredCreativesList.length > 0 ? (
         filteredCreativesList.map((creative, index) => {
-          console.log(creative, ' is the creative');
           return (
             <CreativeCard
               key={index}
