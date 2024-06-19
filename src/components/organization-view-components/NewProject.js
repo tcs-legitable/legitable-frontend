@@ -95,7 +95,8 @@ const NewProject = () => {
       <Flex
         backgroundColor="#fafafa"
         width="100vw"
-        height="100vh"
+        minHeight="100vh"
+        height="fit-content"
         flexDirection="column"
         pl="60px"
         pr="60px"
@@ -104,7 +105,9 @@ const NewProject = () => {
           Create a project
         </Text>
 
-        <Text fontWeight="600">Project name*</Text>
+        <Text mt="20px" fontWeight="600">
+          Project name*
+        </Text>
         <Input
           placeholder="e.g. Store banner design"
           borderRadius="10px"
@@ -113,7 +116,9 @@ const NewProject = () => {
           _placeholder={{ color: '#969696' }}
         />
 
-        <Text fontWeight="600">Project description*</Text>
+        <Text mt="20px" fontWeight="600">
+          Project description*
+        </Text>
         <Input
           placeholder="Please provide 1-3 lines explaining the project"
           borderRadius="10px"
@@ -122,7 +127,7 @@ const NewProject = () => {
           _placeholder={{ color: '#969696' }}
         />
 
-        <Flex>
+        <Flex mt="20px">
           <Flex flexDirection="column" w="50%" mr="20px">
             <Text fontWeight="600">Project deadline*</Text>
             <Input
@@ -152,7 +157,9 @@ const NewProject = () => {
           </Flex>
         </Flex>
 
-        <Text fontWeight="600">Examples / References*</Text>
+        <Text mt="20px" fontWeight="600">
+          Examples / References*
+        </Text>
         <Input
           placeholder="Provide links of similar work or desired outcome of project"
           borderRadius="10px"
@@ -161,7 +168,9 @@ const NewProject = () => {
           _placeholder={{ color: '#969696' }}
         />
 
-        <Text fontWeight="600">Skills*</Text>
+        <Text mt="20px" fontWeight="600">
+          Skills*
+        </Text>
         <Select
           placeholder="Select relevant skills"
           borderRadius="10px"
@@ -179,7 +188,7 @@ const NewProject = () => {
           ))}
         </Select>
 
-        <Flex>
+        <Flex mt="20px">
           <Flex flexDirection="column" w="50%" mr="20px">
             <Text fontWeight="600">Location*</Text>
 
@@ -251,7 +260,9 @@ const NewProject = () => {
           </Flex>
         </Flex>
 
-        <Text fontWeight="600">Optional note</Text>
+        <Text mt="20px" fontWeight="600">
+          Optional note
+        </Text>
         <Input
           placeholder="Any additional information you wish for the creator to know?"
           borderRadius="10px"
@@ -261,7 +272,9 @@ const NewProject = () => {
         />
 
         <Button
-          width="100%"
+          mb="30px"
+          alignSelf="center"
+          width="80%"
           border="1px solid"
           p="4px 10px"
           mt="30px"
