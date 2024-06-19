@@ -85,7 +85,7 @@ const CreativeCard = ({
                   bg="transparent"
                 >
                   <Text marginRight="6px" fontWeight="300">
-                    {skill}
+                    {skill?.skillName ? skill?.skillName : skill}
                   </Text>
                   <Image src={arrow} />
                 </Button>
