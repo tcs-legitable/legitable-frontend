@@ -28,7 +28,6 @@ const CreativeCard = ({
 
   return (
     <Box
-      // backgroundColor="pink"
       borderRadius="10px"
       display="flex"
       flexDirection="row"

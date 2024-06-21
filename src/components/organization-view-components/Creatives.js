@@ -47,13 +47,11 @@ const Creatives = ({ filters }) => {
           return (
             <CreativeCard
               key={index}
-              // photo_url={creative.photo_url}
               photo_url={creative?.headshot}
               city={creative?.city}
               country={creative?.country}
               school={creative?.school}
               projectPref={creative?.projectPref}
-              // full_name={creative.full_name}
               full_name={creative?.name}
               email={creative.email}
               skills={creative?.skills}

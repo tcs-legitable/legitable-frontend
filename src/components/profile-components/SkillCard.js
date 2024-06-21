@@ -85,8 +85,8 @@ const SkillCard = ({
 
   const handleDelete = async () => {
     try {
-      await deleteSkillFromDB(value?.uid, skillName); // call the delete function
-      removeSkillFromState(skillName); // remove the skill from the state in parent component
+      await deleteSkillFromDB(value?.uid, skillName);
+      removeSkillFromState(skillName);
       handleClose();
     } catch (error) {
       console.error('Error deleting skill:', error);
