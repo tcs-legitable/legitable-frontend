@@ -14,6 +14,7 @@ import NewProject from './components/organization-view-components/NewProject';
 import MyProjects from './components/organization-view-components/MyProjects';
 import OrganizationGetStartedLandingPage from './components/landing-page-components/OrganizationGetStartedLandingPage';
 import OrganizationProjectsPage from './components/organization-view-components/OrganizationProjectsPage';
+import Messaging from './components/messaging/Messaging';
 
 export const SignedInContext = createContext();
 
@@ -58,6 +59,7 @@ function App() {
               />
               <Route path="/new-project" element={<NewProject />} />
               <Route path="/my-projects" element={<MyProjects />} />
+              <Route path="/messaging" element={<Messaging/>}/>
             </Routes>
           </Router>
         </VStack>
