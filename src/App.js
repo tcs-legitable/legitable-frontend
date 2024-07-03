@@ -42,7 +42,7 @@ function App() {
         console.log(userData, ' comes first');
         const userInfo = {
           uid: uid,
-          name: userData?.full_name || displayName,
+          name: userData?.input_name || displayName,
           type: localStorage.getItem('view') || null,
           photo_url: userData?.photo_url || null,
         };
