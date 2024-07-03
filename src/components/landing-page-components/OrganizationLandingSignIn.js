@@ -4,7 +4,10 @@ import StupaidLogo from '../../assets/landing-page-images/stupaid-logo-small.svg
 import GmailArrow from '../../assets/landing-page-images/continue-w-gmail-arrow-black.svg';
 import { signInWithPopup } from 'firebase/auth';
 import { auth, provider } from '../../firebase/firebase';
-import { doesOrganizationExist, getUserData } from '../../firebase/helpers';
+import {
+  doesOrganizationExist,
+  getOrganizationData,
+} from '../../firebase/helpers';
 import { useNavigate } from 'react-router-dom';
 import { SignedInContext } from '../../App';
 
@@ -20,7 +23,7 @@ const OrganizationLandingSignIn = ({ goNext, setData }) => {
       const exists = await doesOrganizationExist(uid);
       let newInfo = {};
       if (exists) {
-        const info = await getUserData(uid);
+        const info = await getOrganizationData(uid);
         newInfo = {
           uid: uid,
           name: info?.full_name,
@@ -36,7 +39,7 @@ const OrganizationLandingSignIn = ({ goNext, setData }) => {
         };
       }
       setValue(newInfo);
-      localStorage.setItem('user-data', JSON.stringify(newInfo));
+      localStorage.setItem('view', 'organization');
 
       if (exists) {
         navigate('/home');

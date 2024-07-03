@@ -21,6 +21,7 @@ const LandingCreateOrganizationProfile = ({ goNext, setData, data }) => {
       city: city,
       country: country,
       projects: [],
+      type: 'organization',
     };
 
     setData({ ...data, ...moreData });

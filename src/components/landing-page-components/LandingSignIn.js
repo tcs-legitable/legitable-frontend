@@ -35,8 +35,8 @@ const LandingSignIn = ({ goNext, setData }) => {
           photo_url: null,
         };
       }
+      localStorage.setItem('view', 'student');
       setValue(newInfo);
-      localStorage.setItem('user-data', JSON.stringify(newInfo));
 
       if (exists) {
         navigate('/projects');
