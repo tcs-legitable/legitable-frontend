@@ -1,4 +1,4 @@
-import React, { useContext } from 'react';
+import React, { useContext, useEffect } from 'react';
 import StupaidLogo from './../../assets/landing-page-images/stupaid-logo-main.svg';
 import DefaultProfile from '../../assets/images/default-pfp.svg';
 import {
@@ -14,6 +14,7 @@ import {
 } from '@chakra-ui/react';
 import { SignedInContext } from '../../App';
 import { useNavigate } from 'react-router-dom';
+import { getAuth, signOut } from 'firebase/auth';
 
 const Navbar = () => {
   const { value } = useContext(SignedInContext);
@@ -35,8 +36,14 @@ const Navbar = () => {
     navigate('/new-project');
   };
 
-  const logout = () => {
-    localStorage.removeItem('user-data');
+  const logout = async () => {
+    try {
+      const auth = getAuth();
+      localStorage.removeItem('view');
+      await signOut(auth);
+    } catch (error) {
+      console.error('Error logging out:', error);
+    }
     window.location.reload();
   };
 
