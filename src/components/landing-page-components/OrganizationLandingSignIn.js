@@ -26,7 +26,7 @@ const OrganizationLandingSignIn = ({ goNext, setData }) => {
         const info = await getOrganizationData(uid);
         newInfo = {
           uid: uid,
-          name: info?.full_name,
+          name: info?.input_name,
           type: 'organization',
           photo_url: info?.photo_url,
         };
@@ -38,16 +38,16 @@ const OrganizationLandingSignIn = ({ goNext, setData }) => {
           photo_url: null,
         };
       }
-      setValue(newInfo);
-      localStorage.setItem('view', 'organization');
 
       if (exists) {
+        setValue(newInfo);
+        localStorage.setItem('view', 'organization');
         navigate('/home');
       }
 
       const data = {
         uid: uid,
-        full_name: displayName,
+        input_name: displayName,
         first_name: displayName.split(' ')[0],
         email: email,
         photo_url: null,
