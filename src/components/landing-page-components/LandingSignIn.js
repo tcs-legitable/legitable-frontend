@@ -23,7 +23,7 @@ const LandingSignIn = ({ goNext, setData }) => {
         const info = await getUserData(uid);
         newInfo = {
           uid: uid,
-          name: info?.full_name,
+          name: info?.input_name,
           type: 'student',
           photo_url: info?.photo_url,
         };
@@ -35,8 +35,8 @@ const LandingSignIn = ({ goNext, setData }) => {
           photo_url: null,
         };
       }
+      localStorage.setItem('view', 'student');
       setValue(newInfo);
-      localStorage.setItem('user-data', JSON.stringify(newInfo));
 
       if (exists) {
         navigate('/projects');
@@ -44,7 +44,7 @@ const LandingSignIn = ({ goNext, setData }) => {
 
       const data = {
         uid: uid,
-        full_name: displayName,
+        input_name: displayName,
         first_name: displayName.split(' ')[0],
         email: email,
         photo_url: null,

@@ -114,17 +114,12 @@ const ProfileUserInfo = ({ userId, userData, canEdit }) => {
       photo_url: globalUrl !== null ? globalUrl : photo_url,
     };
     await updateStupaidUser(userId, updatedData);
-    let storedValue = localStorage.getItem('user-data');
-    if (storedValue) {
-      storedValue = JSON.parse(storedValue);
-      const updatedLocalStorage = {
-        ...storedValue,
-        name: newName,
-        photo_url: globalUrl !== null ? globalUrl : photo_url,
-      };
-      setValue(updatedLocalStorage);
-      localStorage.setItem('user-data', JSON.stringify(updatedLocalStorage));
-    }
+    const updatedContextValue = {
+      ...value,
+      name: newName,
+      photo_url: globalUrl !== null ? globalUrl : photo_url,
+    };
+    setValue(updatedContextValue);
     onClose();
   };
 

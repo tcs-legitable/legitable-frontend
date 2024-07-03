@@ -24,6 +24,7 @@ const LandingSelectSkills = ({ goNext, data, setData }) => {
       projects: [],
       isVerified: false,
       personal_site: null,
+      type: 'student',
     });
 
     goNext();

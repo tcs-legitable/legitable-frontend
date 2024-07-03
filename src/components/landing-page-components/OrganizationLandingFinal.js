@@ -1,14 +1,24 @@
 import { Button, Flex, Image, Text, VStack } from '@chakra-ui/react';
-import React from 'react';
+import React, { useContext } from 'react';
 import { useNavigate } from 'react-router-dom';
+import { SignedInContext } from '../../App';
 import StupaidLogo from '../../assets/landing-page-images/stupaid-logo-small.svg';
 import { addOrganization } from '../../firebase/helpers';
 
 const OrganizationLandingFinal = ({ data }) => {
   const navigate = useNavigate();
+  const { setValue } = useContext(SignedInContext);
 
   const handleClick = async () => {
     await addOrganization(data);
+    localStorage.setItem('view', 'organization');
+    const newInfo = {
+      uid: data?.uid,
+      name: data?.input_name,
+      type: 'organization',
+      photo_url: data?.photo_url,
+    };
+    setValue(newInfo);
     navigate('/home');
   };
 

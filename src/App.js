@@ -14,6 +14,8 @@ import NewProject from './components/organization-view-components/NewProject';
 import MyProjects from './components/organization-view-components/MyProjects';
 import OrganizationGetStartedLandingPage from './components/landing-page-components/OrganizationGetStartedLandingPage';
 import OrganizationProjectsPage from './components/organization-view-components/OrganizationProjectsPage';
+import { getAuth, onAuthStateChanged } from 'firebase/auth';
+import { getOrganizationData, getUserData } from './firebase/helpers';
 import Messaging from './components/messaging/Messaging';
 
 export const SignedInContext = createContext();
@@ -23,11 +25,37 @@ function App() {
   const [loading, setLoading] = useState(true);
 
   useEffect(() => {
-    const storedValue = localStorage.getItem('user-data');
-    if (storedValue) {
-      setValue(JSON.parse(storedValue));
-    }
-    setLoading(false);
+    const auth = getAuth();
+    const unsubscribe = onAuthStateChanged(auth, async (user) => {
+      const view = localStorage.getItem('view');
+      if (user && view) {
+        console.log(view, ' IS VIEW');
+        const { uid, displayName } = user;
+        let userData = null;
+        if (view === 'organization') {
+          console.log('organization sign in');
+          userData = await getOrganizationData(uid);
+        }
+        if (view === 'student') {
+          console.log('student sign in');
+          userData = await getUserData(uid);
+        }
+        console.log(userData, ' comes first');
+        const userInfo = {
+          uid: uid,
+          name: userData?.input_name || displayName,
+          type: localStorage.getItem('view') || null,
+          photo_url: userData?.photo_url || null,
+        };
+        console.log(userInfo, ' is userInfo');
+        setValue(userInfo);
+      } else {
+        setValue({});
+      }
+      setLoading(false);
+    });
+
+    return () => unsubscribe();
   }, []);
 
   return (
