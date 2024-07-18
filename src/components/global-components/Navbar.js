@@ -57,14 +57,15 @@ const Navbar = () => {
 
   return (
     <Box
-      w="100%"
+      w="97vw"
       display="flex"
       flexDirection="row"
       justifyContent="space-between"
       py="15px"
-      paddingLeft="1.5vw"
-      paddingRight="1.5vw"
+      paddingLeft="0.7vw"
+      paddingRight="0.7vw"
       borderBottom="2px solid #ececec"
+      margin="auto"
     >
       <Flex alignItems="center">
         <Image
