@@ -3,10 +3,9 @@ import {
   Button,
   Flex,
   Input,
-  InputGroup,
-  InputLeftElement,
   Select,
   Text,
+  Textarea,
 } from '@chakra-ui/react';
 import React, { useContext, useEffect, useState } from 'react';
 import { skillOptions } from '../skillOptions';
@@ -90,11 +89,12 @@ const NewProject = () => {
   ];
 
   return (
-    <Flex flexDirection="column" backgroundColor="white">
+    <Flex flexDirection="column">
       <Navbar />
       <Flex
+        gap="10px"
         backgroundColor="#fafafa"
-        width="100vw"
+        width={{ base: '500px', smMd: '700px', mdLg: '900px' }}
         minHeight="100vh"
         height="fit-content"
         flexDirection="column"
@@ -109,6 +109,7 @@ const NewProject = () => {
           Project name*
         </Text>
         <Input
+          mt="7px"
           placeholder="e.g. Store banner design"
           borderRadius="10px"
           value={projectName}
@@ -120,6 +121,7 @@ const NewProject = () => {
           Project description*
         </Text>
         <Input
+          mt="7px"
           placeholder="Please provide 1-3 lines explaining the project"
           borderRadius="10px"
           value={projectDescription}
@@ -131,7 +133,7 @@ const NewProject = () => {
           <Flex flexDirection="column" w="50%" mr="20px">
             <Text fontWeight="600">Project deadline*</Text>
             <Input
-              size="md"
+              mt="7px"
               type="date"
               value={projectDeadline}
               onChange={(e) => setProjectDeadline(e.target.value)}
@@ -141,19 +143,17 @@ const NewProject = () => {
 
           <Flex flexDirection="column" w="50%" ml="20px">
             <Text fontWeight="600">Project budget (CAD)*</Text>
-            <InputGroup>
-              <InputLeftElement pointerEvents="none" fontSize="1.2em">
-                $
-              </InputLeftElement>
-              <Input
-                placeholder="Provide a budget of the entire project - we will help break it down between deliverables"
-                borderRadius="10px"
-                type="number"
-                value={projectBudget}
-                onChange={(e) => setProjectBudget(e.target.value)}
-                _placeholder={{ color: '#969696' }}
-              />
-            </InputGroup>
+            <Textarea
+              mt="7px"
+              resize="none"
+              placeholder="Provide a budget of the entire project - we will help break it down between deliverables"
+              borderRadius="10px"
+              type="number"
+              value={projectBudget}
+              onChange={(e) => setProjectBudget(e.target.value)}
+              _placeholder={{ color: '#969696' }}
+            />
+            {/* </InputGroup> */}
           </Flex>
         </Flex>
 
@@ -161,6 +161,7 @@ const NewProject = () => {
           Examples / References*
         </Text>
         <Input
+          mt="7px"
           placeholder="Provide links of similar work or desired outcome of project"
           borderRadius="10px"
           value={example}
@@ -188,18 +189,23 @@ const NewProject = () => {
           ))}
         </Select>
 
-        <Flex mt="20px">
-          <Flex flexDirection="column" w="50%" mr="20px">
+        <Flex
+          mt="20px"
+          flexDirection={{ base: 'column', mdLg: 'row' }}
+          w="100%"
+          gap={{ base: '25px', mdLg: '0px' }}
+        >
+          <Flex flex="1" flexDirection="column" mr="20px">
             <Text fontWeight="600">Location*</Text>
 
-            <Flex flexDirection="row">
+            <Flex mt="7px" flexDirection="row">
               {cities.map((city) => (
                 <Box
                   key={city.id}
                   display="flex"
                   flexDir="row"
                   m="4px"
-                  p="4px 10px"
+                  p="10px 45px"
                   _hover={{
                     cursor: 'pointer',
                   }}
@@ -222,17 +228,17 @@ const NewProject = () => {
             </Flex>
           </Flex>
 
-          <Flex flexDirection="column">
+          <Flex flex="1" flexDirection="column">
             <Text fontWeight="600">Project preference*</Text>
 
-            <Flex flexDirection="row">
+            <Flex mt="7px" flexDirection="row">
               {preferences.map((preference) => (
                 <Box
                   key={preference.id}
                   display="flex"
                   flexDir="row"
                   m="4px"
-                  p="4px 10px"
+                  p="10px 45px"
                   _hover={{
                     cursor: 'pointer',
                   }}
@@ -263,7 +269,8 @@ const NewProject = () => {
         <Text mt="20px" fontWeight="600">
           Optional note
         </Text>
-        <Input
+        <Textarea
+          mt="7px"
           placeholder="Any additional information you wish for the creator to know?"
           borderRadius="10px"
           value={optionalNote}
@@ -274,7 +281,7 @@ const NewProject = () => {
         <Button
           mb="30px"
           alignSelf="center"
-          width="80%"
+          width="100%"
           border="1px solid"
           p="4px 10px"
           mt="30px"
