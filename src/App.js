@@ -14,7 +14,7 @@ import NewProject from './components/organization-view-components/NewProject';
 import MyProjects from './components/organization-view-components/MyProjects';
 import OrganizationGetStartedLandingPage from './components/landing-page-components/OrganizationGetStartedLandingPage';
 import OrganizationProjectsPage from './components/organization-view-components/OrganizationProjectsPage';
-import Messaging from './components/messaging/Messaging';
+import Messaging from './components/messaging/MessagingMain';
 
 export const SignedInContext = createContext();
 
