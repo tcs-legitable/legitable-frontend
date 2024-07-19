@@ -2,6 +2,7 @@ import React, { useContext } from 'react';
 import StupaidLogo from './../../assets/landing-page-images/stupaid-logo-main.svg';
 import DefaultProfile from '../../assets/images/default-pfp.svg';
 import WhiteCheckMark from '../../assets/images/white-check-mark.svg';
+import Burger from '../../assets/images/burger.svg';
 import {
   Box,
   Button,
@@ -68,7 +69,6 @@ const Navbar = () => {
       justifyContent="space-between"
       py="15px"
       paddingLeft="0.7vw"
-      paddingRight="0.7vw"
       borderBottom="2px solid #ececec"
       mx="auto"
       mt="22px"
@@ -78,7 +78,7 @@ const Navbar = () => {
           cursor="pointer"
           onClick={goLanding}
           mx="30px"
-          w={{ base: '150px', mdLg: '120px' }}
+          w="120px"
           src={StupaidLogo}
         />
         {value?.name && (
@@ -115,48 +115,21 @@ const Navbar = () => {
             </>
           ) : (
             <Menu>
-              <MenuButton
-                as={Button}
-                aria-label="Options"
-                // icon={<HamburgerIcon />}
-                variant="outline"
-              />
+              <MenuButton mr="10px" aria-label="Options" variant="outline">
+                <PrimaryButtonGrey>
+                  <Image src={Burger} />
+                </PrimaryButtonGrey>
+              </MenuButton>
               <MenuList>
                 <MenuItem
-                  // bg="transparent"
-                  // border="1px solid"
-                  py="10px"
-                  // px="30px"
-                  // borderRadius="25px"
-                  fontWeight="thin"
                   onClick={() => {
                     navigate('/projects');
                   }}
-                  _hover={{
-                    bgColor: '#e2e2e2',
-                  }}
-                  _active={{
-                    bgColor: '#e2e2e2',
-                  }}
                 >
-                  My explore
+                  Find work
                 </MenuItem>
-                <MenuItem
-                  border="1px solid #0c0c0c"
-                  py="20px"
-                  px="30px"
-                  borderRadius="25px"
-                  color="#fafafa"
-                  bgColor="#0c0c0c"
-                  fontWeight="regular"
-                  _hover={{
-                    bgColor: '#2e2e2e',
-                  }}
-                  _active={{
-                    bgColor: '#2e2e2e',
-                  }}
-                  onClick={goToOrganizationProfile}
-                >
+                <MenuItem onClick={exploreCreatives}>Peers</MenuItem>
+                <MenuItem onClick={goToOrganizationProfile}>
                   My projects
                 </MenuItem>
               </MenuList>
@@ -189,16 +162,35 @@ const Navbar = () => {
       )}
       {value?.type === 'organization' && (
         <Flex alignItems="center" gap="10px" className="button-container">
-          <PrimaryButtonGrey onClick={exploreCreatives}>
-            Explore
-          </PrimaryButtonGrey>
-          <PrimaryButtonGrey onClick={goToOrganizationProfile}>
-            My projects
-          </PrimaryButtonGrey>
-          <PrimaryButtonBlack onClick={createProject} mr="10px">
-            <Image src={WhiteCheckMark} mr="9px" />
-            Post a project
-          </PrimaryButtonBlack>
+          {isDesktop ? (
+            <>
+              <PrimaryButtonGrey onClick={exploreCreatives}>
+                Explore
+              </PrimaryButtonGrey>
+              <PrimaryButtonGrey onClick={goToOrganizationProfile}>
+                My projects
+              </PrimaryButtonGrey>
+              <PrimaryButtonBlack onClick={createProject} mr="10px">
+                <Image src={WhiteCheckMark} mr="9px" />
+                Post a project
+              </PrimaryButtonBlack>
+            </>
+          ) : (
+            <Menu>
+              <MenuButton mr="10px" aria-label="Options" variant="outline">
+                <PrimaryButtonGrey>
+                  <Image src={Burger} />
+                </PrimaryButtonGrey>
+              </MenuButton>
+              <MenuList>
+                <MenuItem onClick={exploreCreatives}>Explore</MenuItem>
+                <MenuItem onClick={goToOrganizationProfile}>
+                  My projects
+                </MenuItem>
+                <MenuItem onClick={createProject}>Post a project</MenuItem>
+              </MenuList>
+            </Menu>
+          )}
           <Menu>
             <MenuButton>
               <Box
