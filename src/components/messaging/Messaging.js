@@ -6,6 +6,8 @@ import { SignedInContext } from '../../App';
 // const socket = io.connect("legitable-backend.up.railway.app");
 const socket = io.connect("");
 import { addMessage, getMessages } from '../../firebase/helpers';
+import MessagingHeader from './MessagingHeader';
+import SendMessage from './SendMessage';
 
 const Messaging = () => {
 
@@ -57,8 +59,11 @@ const Messaging = () => {
   };
 
   return (
-    <Flex flexDirection='column' backgroundColor="white">
-      <Box backgroundColor='white' p="20px" mt="20px" width="100%" maxWidth="600px">
+    <Flex flexDirection='column' backgroundColor="#fafafa" w="100%">
+
+      <MessagingHeader/>
+      
+      <Box backgroundColor='#fafafa' p="20px" mt="20px" maxWidth="600px">
 
         <Flex w="100%" justifyContent="center">
           <Text>
@@ -73,7 +78,7 @@ const Messaging = () => {
               m="5px"
               borderRadius="10px"
               bg={msg.author === value.name ? 'blue.100' : 'gray.100'}
-              maxWidth="80%"
+              maxWidth="100%"
             >
               <p><strong>{msg.author}</strong> [{msg.time}]: {msg.message}</p>
             </Box>
@@ -99,6 +104,8 @@ const Messaging = () => {
         />
         <Button onClick={sendMessage}>Submit</Button>
       </Flex>
+
+      <SendMessage/>
     </Flex>
   );
 };
