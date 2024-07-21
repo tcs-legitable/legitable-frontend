@@ -5,7 +5,6 @@ import WhiteCheckMark from '../../assets/images/white-check-mark.svg';
 import Burger from '../../assets/images/burger.svg';
 import {
   Box,
-  Button,
   Flex,
   Image,
   Menu,
