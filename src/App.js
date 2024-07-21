@@ -72,7 +72,7 @@ function App() {
                 element={<OrganizationGetStartedLandingPage />}
               />
               <Route path="/endorsees/:userId" element={<EndorseesPage />} />
-              <Route path="/home" element={<Home />} />
+              <Route path="/home" element={!loading && <Home />} />
               <Route
                 path="/projects"
                 element={!loading && <StudentLanding view={value?.type} />}
@@ -87,7 +87,7 @@ function App() {
               />
               <Route path="/new-project" element={<NewProject />} />
               <Route path="/my-projects" element={<MyProjects />} />
-              <Route path="/messaging" element={<Messaging/>}/>
+              <Route path="/messaging" element={<Messaging />} />
             </Routes>
           </Router>
         </VStack>
