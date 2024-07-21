@@ -216,43 +216,8 @@ const Navbar = () => {
       )}
       {!value?.type && (
         <Flex gap="10px" className="button-container">
-          <Button
-            borderRadius="25px"
-            color="#fafafa"
-            bgColor="#0c0c0c"
-            fontWeight="regular"
-            border="1px solid #0c0c0c"
-            py="20px"
-            px="25px"
-            _hover={{
-              bgColor: '#2e2e2e',
-            }}
-            _active={{
-              bgColor: '#2e2e2e',
-            }}
-            onClick={login}
-          >
-            Sign up
-          </Button>
-
-          <Button
-            onClick={login}
-            p="23px"
-            bg="transparent"
-            border="1px solid"
-            py="20px"
-            px="30px"
-            borderRadius="25px"
-            fontWeight="thin"
-            _hover={{
-              bgColor: '#e2e2e2',
-            }}
-            _active={{
-              bgColor: '#e2e2e2',
-            }}
-          >
-            Log in
-          </Button>
+          <PrimaryButtonBlack onClick={login}>Sign up</PrimaryButtonBlack>
+          <PrimaryButtonGrey onClick={login}>Log in</PrimaryButtonGrey>
         </Flex>
       )}
     </Box>
