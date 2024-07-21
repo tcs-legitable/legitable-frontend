@@ -1,4 +1,4 @@
-import { Button, Flex, Image, Text, VStack } from '@chakra-ui/react';
+import { Flex, Image, Text, VStack } from '@chakra-ui/react';
 import React, { useContext } from 'react';
 import StupaidLogo from '../../assets/landing-page-images/stupaid-logo-small.svg';
 import GmailArrow from '../../assets/landing-page-images/continue-w-gmail-arrow-black.svg';
@@ -10,6 +10,7 @@ import {
 } from '../../firebase/helpers';
 import { useNavigate } from 'react-router-dom';
 import { SignedInContext } from '../../App';
+import PrimaryButtonBlack from '../button-components/PrimaryButtonBlack';
 
 const OrganizationLandingSignIn = ({ goNext, setData }) => {
   const navigate = useNavigate();
@@ -83,24 +84,9 @@ const OrganizationLandingSignIn = ({ goNext, setData }) => {
         bg="transparent"
         pt="25px"
       >
-        <Button
-          border="1px solid"
-          p="23px"
-          borderRadius="25px"
-          color="#fafafa"
-          bgColor="#0c0c0c"
-          fontWeight="regular"
-          _hover={{
-            backgroundPosition: 'left bottom',
-          }}
-          _active={{
-            backgroundPosition: 'left bottom',
-          }}
-          onClick={() => handleClick()}
-        >
-          Continue with Gmail
-          <Image pl="10px" src={GmailArrow} />
-        </Button>
+        <PrimaryButtonBlack onClick={() => handleClick()}>
+          Continue with Gmail <Image pl="10px" src={GmailArrow} />
+        </PrimaryButtonBlack>
       </Flex>
     </Flex>
   );
