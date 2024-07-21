@@ -1,7 +1,8 @@
-import { Button, Flex, Image, Input, Text, VStack } from '@chakra-ui/react';
+import { Flex, Image, Input, Text, VStack } from '@chakra-ui/react';
 import React, { useState } from 'react';
 import StupaidLogo from '../../assets/landing-page-images/stupaid-logo-small.svg';
 import GmailArrow from '../../assets/landing-page-images/continue-w-gmail-arrow-black.svg';
+import PrimaryButtonBlack from '../button-components/PrimaryButtonBlack';
 
 const LandingCreateOrganizationProfile = ({ goNext, setData, data }) => {
   const [name, setName] = useState('');
@@ -97,7 +98,7 @@ const LandingCreateOrganizationProfile = ({ goNext, setData, data }) => {
           </Flex>
         </Flex>
 
-        <Button
+        <PrimaryButtonBlack
           isDisabled={
             name === '' ||
             organizationName === '' ||
@@ -105,25 +106,13 @@ const LandingCreateOrganizationProfile = ({ goNext, setData, data }) => {
             country === '' ||
             city === ''
           }
-          border="1px solid"
-          p="23px"
-          borderRadius="25px"
-          color="#fafafa"
-          bgColor="#0c0c0c"
-          fontWeight="regular"
-          _hover={{
-            backgroundPosition: 'left bottom',
-          }}
-          _active={{
-            backgroundPosition: 'left bottom',
-          }}
           onClick={() => handleClick()}
           w="50%"
           alignSelf="center"
         >
           Continue
           <Image pl="10px" src={GmailArrow} />
-        </Button>
+        </PrimaryButtonBlack>
       </Flex>
     </Flex>
   );
