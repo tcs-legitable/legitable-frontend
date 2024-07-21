@@ -6,7 +6,8 @@ import { SignedInContext } from '../../App';
 import { addMessage, getMessages } from '../../firebase/helpers';
 import MessagingHeader from './MessagingHeader';
 import SendMessage from './SendMessage';
-const socket = io.connect("http://localhost:3001");
+// const socket = io.connect("http://localhost:3001");
+const socket = io.connect("https://legitable-backend.up.railway.app/");
 
 const Messaging = () => {
   const { user1, user2 } = useParams();
