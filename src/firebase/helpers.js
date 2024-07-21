@@ -351,7 +351,7 @@ export const applyForProject = async (
 
     const projectApplication = {
       studentId: studentId,
-      studentName: studentSnap.data().full_name,
+      studentName: studentSnap.data().input_name,
       applicationDescription: applicationDescription,
       time_applied: new Date().toISOString(),
     };

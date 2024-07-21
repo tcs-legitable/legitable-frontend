@@ -1,4 +1,4 @@
-import { Button, Flex, Image, Text, VStack } from '@chakra-ui/react';
+import { Flex, Image, Text, VStack } from '@chakra-ui/react';
 import React, { useContext } from 'react';
 import StupaidLogo from '../../assets/landing-page-images/stupaid-logo-small.svg';
 import GmailArrow from '../../assets/landing-page-images/continue-w-gmail-arrow-black.svg';
@@ -7,6 +7,7 @@ import { auth, provider } from '../../firebase/firebase';
 import { doesUserExist, getUserData } from '../../firebase/helpers';
 import { useNavigate } from 'react-router-dom';
 import { SignedInContext } from '../../App';
+import PrimaryButtonBlack from '../button-components/PrimaryButtonBlack';
 
 const LandingSignIn = ({ goNext, setData }) => {
   const navigate = useNavigate();
@@ -23,7 +24,7 @@ const LandingSignIn = ({ goNext, setData }) => {
         const info = await getUserData(uid);
         newInfo = {
           uid: uid,
-          name: info?.full_name,
+          name: info?.input_name,
           type: 'student',
           photo_url: info?.photo_url,
         };
@@ -35,8 +36,8 @@ const LandingSignIn = ({ goNext, setData }) => {
           photo_url: null,
         };
       }
+      localStorage.setItem('view', 'student');
       setValue(newInfo);
-      localStorage.setItem('user-data', JSON.stringify(newInfo));
 
       if (exists) {
         navigate('/projects');
@@ -44,7 +45,7 @@ const LandingSignIn = ({ goNext, setData }) => {
 
       const data = {
         uid: uid,
-        full_name: displayName,
+        input_name: displayName,
         first_name: displayName.split(' ')[0],
         email: email,
         photo_url: null,
@@ -80,24 +81,10 @@ const LandingSignIn = ({ goNext, setData }) => {
         bg="transparent"
         pt="25px"
       >
-        <Button
-          border="1px solid"
-          p="23px"
-          borderRadius="25px"
-          color="#fafafa"
-          bgColor="#0c0c0c"
-          fontWeight="regular"
-          _hover={{
-            backgroundPosition: 'left bottom',
-          }}
-          _active={{
-            backgroundPosition: 'left bottom',
-          }}
-          onClick={() => handleClick()}
-        >
+        <PrimaryButtonBlack onClick={() => handleClick()}>
           Continue with Gmail
           <Image pl="10px" src={GmailArrow} />
-        </Button>
+        </PrimaryButtonBlack>
       </Flex>
     </Flex>
   );

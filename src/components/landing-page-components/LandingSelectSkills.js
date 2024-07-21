@@ -1,9 +1,9 @@
-import { Box, Button, Flex, Image, Text, VStack } from '@chakra-ui/react';
+import { Box, Flex, Image, Text, VStack } from '@chakra-ui/react';
 import React, { useState } from 'react';
 import StupaidLogo from '../../assets/landing-page-images/stupaid-logo-small.svg';
 import GmailArrow from '../../assets/landing-page-images/continue-w-gmail-arrow-black.svg';
-import CheckMark from '../../assets/landing-page-images/check-mark.svg';
 import { skillOptions } from '../skillOptions';
+import PrimaryButtonBlack from '../button-components/PrimaryButtonBlack';
 
 const LandingSelectSkills = ({ goNext, data, setData }) => {
   const [skills, setSkills] = useState([]);
@@ -24,6 +24,7 @@ const LandingSelectSkills = ({ goNext, data, setData }) => {
       projects: [],
       isVerified: false,
       personal_site: null,
+      type: 'student',
     });
 
     goNext();
@@ -62,6 +63,12 @@ const LandingSelectSkills = ({ goNext, data, setData }) => {
           pb="30px"
         >
           {skillOptions.map(({ id, text }) => {
+            const skillColors = ['#F3D1F4', '#C3D61E', '#A4F1EB'];
+            const skillIndex = skills.indexOf(id);
+            const bgColor =
+              skillIndex !== -1 ? skillColors[skillIndex] : 'transparent';
+            console.log(bgColor, ' iS COOLR');
+
             return (
               <Box
                 display="flex"
@@ -73,7 +80,7 @@ const LandingSelectSkills = ({ goNext, data, setData }) => {
                 _hover={{
                   cursor: 'pointer',
                 }}
-                borderRadius="25px"
+                borderRadius="7px"
                 color="#0c0c0c"
                 bg="transparent"
                 onClick={() => {
@@ -91,34 +98,18 @@ const LandingSelectSkills = ({ goNext, data, setData }) => {
                     setSkills(filteredList);
                   }
                 }}
-                bgColor={skills.includes(id) && '#d7d7d7'}
+                bgColor={bgColor}
               >
-                {skills.includes(id) && <Image pr="10px" src={CheckMark} />}
                 {text}
               </Box>
             );
           })}
         </Flex>
 
-        <Button
-          border="1px solid"
-          w="180px"
-          p="23px"
-          borderRadius="25px"
-          color="#fafafa"
-          bgColor="#0c0c0c"
-          fontWeight="regular"
-          _hover={{
-            backgroundPosition: 'left bottom',
-          }}
-          _active={{
-            backgroundPosition: 'left bottom',
-          }}
-          onClick={() => handleClick()}
-        >
+        <PrimaryButtonBlack px="43px" onClick={() => handleClick()}>
           Continue
           <Image pl="10px" src={GmailArrow} />
-        </Button>
+        </PrimaryButtonBlack>
       </Flex>
     </Flex>
   );

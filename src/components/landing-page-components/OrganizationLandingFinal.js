@@ -1,14 +1,25 @@
-import { Button, Flex, Image, Text, VStack } from '@chakra-ui/react';
-import React from 'react';
+import { Flex, Image, Text, VStack } from '@chakra-ui/react';
+import React, { useContext } from 'react';
 import { useNavigate } from 'react-router-dom';
+import { SignedInContext } from '../../App';
 import StupaidLogo from '../../assets/landing-page-images/stupaid-logo-small.svg';
 import { addOrganization } from '../../firebase/helpers';
+import PrimaryButtonBlack from '../button-components/PrimaryButtonBlack';
 
 const OrganizationLandingFinal = ({ data }) => {
   const navigate = useNavigate();
+  const { setValue } = useContext(SignedInContext);
 
   const handleClick = async () => {
     await addOrganization(data);
+    localStorage.setItem('view', 'organization');
+    const newInfo = {
+      uid: data?.uid,
+      name: data?.input_name,
+      type: 'organization',
+      photo_url: data?.photo_url,
+    };
+    setValue(newInfo);
     navigate('/home');
   };
 
@@ -19,6 +30,7 @@ const OrganizationLandingFinal = ({ data }) => {
       flexDir="column"
       alignItems="center"
       pb="0px"
+      gap="3px"
     >
       <Image
         bg="transparent"
@@ -38,23 +50,9 @@ const OrganizationLandingFinal = ({ data }) => {
         bg="transparent"
         pt="25px"
       >
-        <Button
-          border="1px solid"
-          p="23px"
-          borderRadius="25px"
-          color="#fafafa"
-          bgColor="#0c0c0c"
-          fontWeight="regular"
-          _hover={{
-            backgroundPosition: 'left bottom',
-          }}
-          _active={{
-            backgroundPosition: 'left bottom',
-          }}
-          onClick={handleClick}
-        >
-          Let's get stupaid
-        </Button>
+        <PrimaryButtonBlack px="30px" onClick={handleClick}>
+          Let's get stupaid!
+        </PrimaryButtonBlack>
       </Flex>
     </Flex>
   );

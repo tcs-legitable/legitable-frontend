@@ -1,8 +1,9 @@
-import { Button, Flex, Image, Text, VStack } from '@chakra-ui/react';
+import { Flex, Image, Text, VStack } from '@chakra-ui/react';
 import React from 'react';
 import { useNavigate } from 'react-router-dom';
 import StupaidLogo from '../../assets/landing-page-images/stupaid-logo-small.svg';
 import { addStupaidUser } from '../../firebase/helpers';
+import PrimaryButtonBlack from '../button-components/PrimaryButtonBlack';
 
 const LandingFinal = ({ data }) => {
   const navigate = useNavigate();
@@ -37,23 +38,9 @@ const LandingFinal = ({ data }) => {
         bg="transparent"
         pt="25px"
       >
-        <Button
-          border="1px solid"
-          p="23px"
-          borderRadius="25px"
-          color="#fafafa"
-          bgColor="#0c0c0c"
-          fontWeight="regular"
-          _hover={{
-            backgroundPosition: 'left bottom',
-          }}
-          _active={{
-            backgroundPosition: 'left bottom',
-          }}
-          onClick={handleClick}
-        >
-          Let's get stupaid
-        </Button>
+        <PrimaryButtonBlack onClick={handleClick} px="30px">
+          Let's get stupaid!
+        </PrimaryButtonBlack>
       </Flex>
     </Flex>
   );
