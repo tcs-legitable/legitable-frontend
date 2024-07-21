@@ -1,76 +1,76 @@
 import { Box, Button, Flex, Input, Text } from '@chakra-ui/react';
 import React, { useContext, useEffect, useState } from 'react';
+import { useParams } from 'react-router-dom';
 import io from 'socket.io-client';
 import { SignedInContext } from '../../App';
-// const socket = io.connect("http://localhost:3001");
-// const socket = io.connect("legitable-backend.up.railway.app");
-const socket = io.connect("");
 import { addMessage, getMessages } from '../../firebase/helpers';
 import MessagingHeader from './MessagingHeader';
 import SendMessage from './SendMessage';
+const socket = io.connect("http://localhost:3001");
 
 const Messaging = () => {
-
+  const { user1, user2 } = useParams();
   const { value } = useContext(SignedInContext);
-
-  const [room, setRoom] = useState("");
   const [message, setMessage] = useState("");
   const [messages, setMessages] = useState([]);
 
+  // takes the room id from url
+  const roomId = `room-${[user1, user2].sort().join('-')}`;
+
   const joinRoom = async () => {
-    if (room !== "") {
-      socket.emit("join_room", room);
-      const initialMessages = await getMessages(room);
+    if (roomId) {
+      socket.emit("join_room", roomId);
+      const initialMessages = await getMessages(roomId);
       setMessages(initialMessages);
     }
   };
 
   const sendMessage = async () => {
-    if (message.trim() === "") return; //so we don't send an empty message
-    
+    if (message.trim() === "") return;
+
     const messageData = {
-      message, 
-      // room,
+      message,
+      room: roomId,
       author: value.name || "Anon.",
-      time: new Date().toLocaleDateString(),
+      time: new Date().toLocaleTimeString(),
     };
 
-    socket.emit("send_message", { room, ...messageData });
-    await addMessage(room, messageData);
+    console.log("Sending message:", messageData);
+
+    socket.emit("send_message", messageData);
+    await addMessage(roomId, messageData);
     setMessages((prevMessages) => [...prevMessages, messageData]);
     setMessage("");
   };
 
   useEffect(() => {
+    joinRoom();
+
     socket.on("receive_message", (data) => {
+      console.log("Received message:", data);
       setMessages((prevMessages) => [...prevMessages, data]);
     });
 
     return () => {
       socket.off("receive_message");
     };
-  }, []);
+  }, [roomId]);
 
   const handleKeyPress = (event) => {
     if (event.key === "Enter") {
       event.preventDefault();
       sendMessage();
-    };
+    }
   };
 
   return (
     <Flex flexDirection='column' backgroundColor="#fafafa" w="100%">
-
       <MessagingHeader/>
       
-      <Box backgroundColor='#fafafa' p="20px" mt="20px" maxWidth="600px">
-
+      <Box backgroundColor='#fafafa' p="20px" mt="20px">
         <Flex w="100%" justifyContent="center">
-          <Text>
-            Start your conversation!
-          </Text>
+          <Text>Start your conversation!</Text>
         </Flex>
-
         {messages.map((msg, index) => (
           <Flex key={index} justifyContent={msg.author === value.name ? 'flex-end' : 'flex-start'}>
             <Box
@@ -87,19 +87,10 @@ const Messaging = () => {
       </Box>
 
       <Flex>
-        <Input placeholder='Enter room number'
-          onChange={(event) => {
-            setRoom(event.target.value);
-          }}
-        />
-        <Button onClick={joinRoom}>Join room</Button>
-      </Flex>
-      <Flex>
-        <Input placeholder='Enter your message here'
+        <Input 
+          placeholder='Enter your message here'
           value={message}
-          onChange={(event) => {
-            setMessage(event.target.value);
-          }}
+          onChange={(event) => setMessage(event.target.value)}
           onKeyDown={handleKeyPress}
         />
         <Button onClick={sendMessage}>Submit</Button>

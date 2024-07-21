@@ -60,6 +60,7 @@ function App() {
               <Route path="/new-project" element={<NewProject />} />
               <Route path="/my-projects" element={<MyProjects />} />
               <Route path="/messaging" element={<Messaging/>}/>
+              <Route path="/messaging/6oLvnxTUlcUsvajw2YhFzB5g8En1/F8lBp9S1alOfbA5Dtv7WMeX8sZl2" element={<Messaging />} />
             </Routes>
           </Router>
         </VStack>

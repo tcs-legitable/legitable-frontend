@@ -6,6 +6,7 @@ const MessageSidePreview = () => {
   return (
     <Flex
       ml='30px'
+      cursor='pointer'
     >
       <Image src={pic} borderRadius="20px" w='42px'/>
 

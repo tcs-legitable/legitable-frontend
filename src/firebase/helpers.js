@@ -9,6 +9,7 @@ import {
   arrayUnion,
   query,
   where,
+  addDoc,
 } from '@firebase/firestore';
 import {
   deleteObject,
@@ -17,6 +18,24 @@ import {
   uploadBytes,
 } from 'firebase/storage';
 import { db, storage } from './firebase';
+
+export const addMessage = async (roomId, messageData) => {
+  const roomRef = doc(db, 'rooms', roomId);
+  await setDoc(roomRef, {}, {merge: true});
+
+  const messagesRef = collection(roomRef, 'messages');
+  await addDoc(messagesRef, messageData);
+};
+
+export const getMessages = async (roomId) => {
+  const messages = [];
+  const messagesRef = collection(db, 'rooms', roomId, 'messages');
+  const messagesSnapshot = await getDocs(messagesRef);
+  messagesSnapshot.forEach((doc) => {
+    messages.push(doc.data());
+  });
+  return messages;
+};
 
 export const getAllUsers = async () => {
   const usersCol = collection(db, 'mvp_users');
