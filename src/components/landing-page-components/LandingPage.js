@@ -57,7 +57,6 @@ const LandingPage = ({ goNext }) => {
         <PrimaryButtonBlack
           px="30px"
           onClick={() => {
-            console.log(value, ' is the VAL');
             if (Object.keys(value).length === 0) {
               goNext();
             } else {
