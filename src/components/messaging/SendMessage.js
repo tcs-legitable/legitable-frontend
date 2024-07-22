@@ -4,17 +4,19 @@ import React from 'react';
 const SendMessage = () => {
   return (
     <Flex
-      position='absolute'
       bottom='0'
-      ml='30px'
-      mb='30px'
-      w='71%'
+      left='0'
+      right='0'
+      p='10px'
+      backgroundColor='white'
+      zIndex='1000'
     >
       <Box
         w='40px'
         h='40px'
         borderRadius='8px'
-        backgroundColor='#e8e8e8'
+        backgroundColor='#fafafa'
+        border='1px solid #ececec'
         display='flex'
         alignItems='center'
         justifyContent='center'
@@ -26,6 +28,8 @@ const SendMessage = () => {
         placeholder='Message...'
         ml='12px'
         w='100%'
+        border='1px solid #ececec'
+        backgroundColor='#fafafa'
       />
     </Flex>
   );

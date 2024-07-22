@@ -13,7 +13,7 @@ const MessagingHeader = () => {
       borderBottom='1px solid #E8E8E8'
     >
       
-      <Image src={pic} borderRadius="20px" w='42px' ml='30px'/>
+      <Image src={pic} borderRadius="20px" w='42px' ml='30px' mt='18px' mb='18px'/>
 
       <Text
         ml='12px'

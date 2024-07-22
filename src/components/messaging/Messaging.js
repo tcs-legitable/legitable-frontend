@@ -1,4 +1,4 @@
-import { Box, Button, Flex, Input, Text } from '@chakra-ui/react';
+import { Box, Button, Flex, Image, Input, Text } from '@chakra-ui/react';
 import React, { useContext, useEffect, useState } from 'react';
 import { useParams } from 'react-router-dom';
 import io from 'socket.io-client';
@@ -6,6 +6,9 @@ import { SignedInContext } from '../../App';
 import { addMessage, getMessages } from '../../firebase/helpers';
 import MessagingHeader from './MessagingHeader';
 import SendMessage from './SendMessage';
+import { formatISO } from 'date-fns';
+import defaultProfilePic from './../../assets/images/default-pfp.svg';
+
 // const socket = io.connect("http://localhost:3001");
 const socket = io.connect("https://legitable-backend.up.railway.app/");
 
@@ -33,7 +36,7 @@ const Messaging = () => {
       message,
       room: roomId,
       author: value.name || "Anon.",
-      time: new Date().toLocaleTimeString(),
+      time: formatISO(new Date()),
     };
 
     console.log("Sending message:", messageData);
@@ -65,26 +68,56 @@ const Messaging = () => {
   };
 
   return (
-    <Flex flexDirection='column' backgroundColor="#fafafa" w="100%">
+    <Flex flexDirection='column' backgroundColor="#fafafa" w="100%" h='100vh'>
       <MessagingHeader/>
       
-      <Box backgroundColor='#fafafa' p="20px" mt="20px">
+      <Box backgroundColor='#fafafa' p="20px" mt="20px" overflowY='auto'>
         <Flex w="100%" justifyContent="center">
           <Text>Start your conversation!</Text>
         </Flex>
-        {messages.map((msg, index) => (
-          <Flex key={index} justifyContent={msg.author === value.name ? 'flex-end' : 'flex-start'}>
-            <Box
-              p="10px"
-              m="5px"
-              borderRadius="10px"
-              bg={msg.author === value.name ? 'blue.100' : 'gray.100'}
-              maxWidth="100%"
-            >
-              <p><strong>{msg.author}</strong> [{msg.time}]: {msg.message}</p>
-            </Box>
-          </Flex>
-        ))}
+        {messages.map((msg, index) => {
+          const previousMessage = messages[index - 1];
+          const isSameAuthor = previousMessage && previousMessage.author === msg.author;
+          const nextMessage = messages[index + 1];
+          const isLastFromAuthor = !nextMessage || nextMessage.author !== msg.author;
+          const showProfilePicture = msg.author !== value.name && isLastFromAuthor;
+          const marginTop = isSameAuthor ? "5px" : "20px";
+          
+          const isCurrentUser = msg.author === value.name;
+
+          return (
+            <Flex key={index} mt={marginTop} align="flex-end" justify={isCurrentUser ? 'flex-end' : 'flex-start'}>
+              {!isCurrentUser && (
+                <Box w="50px" minW="50px">
+                  {showProfilePicture && (
+                    <Image 
+                      src={defaultProfilePic} 
+                      borderRadius="full" 
+                      boxSize="40px" 
+                      mr="10px" 
+                    />
+                  )}
+                </Box>
+              )}
+              <Box
+                p="10px"
+                borderRadius="10px"
+                bg={isCurrentUser ? '#ae7bef' : '#eaeaea'}
+                color={isCurrentUser ? 'white' : 'black'}
+                maxWidth="80%"
+                position="relative"
+                sx={{
+                  ':hover .message-time': {
+                    opacity: 1,
+                  }
+                }}
+              >
+                <p>{msg.message}</p>
+            
+              </Box>
+            </Flex>
+          );
+        })}
       </Box>
 
       <Flex>
@@ -93,11 +126,15 @@ const Messaging = () => {
           value={message}
           onChange={(event) => setMessage(event.target.value)}
           onKeyDown={handleKeyPress}
+          borderColor='#ECECEC'
+          _hover={{ borderColor: '#ECECEC' }}
+          _focus={{ borderColor: '#ECECEC' }}
+          backgroundColor='#FAFAFA'
         />
         <Button onClick={sendMessage}>Submit</Button>
       </Flex>
 
-      <SendMessage/>
+      <SendMessage />
     </Flex>
   );
 };
