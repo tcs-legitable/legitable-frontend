@@ -1,5 +1,4 @@
 import {
-  Button,
   Flex,
   HStack,
   Image,
@@ -14,7 +13,7 @@ import {
   Box,
   Link,
 } from '@chakra-ui/react';
-import React, { useContext, useEffect, useRef, useState } from 'react';
+import React, { useContext, useRef, useState } from 'react';
 import StupaidVerified from '../global-components/StupaidVerified';
 import LocationIcon from '../../assets/images/location-icon.svg';
 import ProjectPrefIcon from '../../assets/images/project-pref-icon.svg';
@@ -26,6 +25,8 @@ import ReplaceIcon from '../../assets/images/replace-icon.svg';
 import BackArrow from '../../assets/images/back-arrow-black.svg';
 import { updateStupaidUser, uploadImage } from '../../firebase/helpers';
 import { SignedInContext } from '../../App';
+import PrimaryButtonGrey from '../button-components/PrimaryButtonGrey';
+import PrimaryButtonBlack from '../button-components/PrimaryButtonBlack';
 
 const ProfileUserInfo = ({ userId, userData, canEdit }) => {
   const { value, setValue } = useContext(SignedInContext);
@@ -142,17 +143,10 @@ const ProfileUserInfo = ({ userId, userData, canEdit }) => {
           {isVerified && <StupaidVerified />}
         </VStack>
         {canEdit && (
-          <Button
-            border="#545454 solid 1.5px"
-            bg="transparent"
-            borderRadius="20px"
-            alignSelf="baseline"
-            ml="auto"
-            onClick={onOpen}
-          >
+          <PrimaryButtonGrey alignSelf="baseline" ml="auto" onClick={onOpen}>
             <Image mr="5px" src={EditIcon} />
             <Text>Edit profile</Text>
-          </Button>
+          </PrimaryButtonGrey>
         )}
       </HStack>
       <VStack mt="30px" color="#545454" alignItems="baseline" w="fit-content">
@@ -199,12 +193,8 @@ const ProfileUserInfo = ({ userId, userData, canEdit }) => {
                   backgroundSize="cover"
                   backgroundPosition="center"
                 ></Box>
-                <Button
-                  borderRadius="20px"
-                  fontWeight="regular"
+                <PrimaryButtonGrey
                   w="100%"
-                  border="#0d0d0d 1.5px solid"
-                  bg="transparent"
                   mt="20px"
                   onClick={() => fileInputRef.current.click()}
                 >
@@ -222,7 +212,7 @@ const ProfileUserInfo = ({ userId, userData, canEdit }) => {
                     onChange={handleImageUpload}
                     style={{ display: 'none' }}
                   />
-                </Button>
+                </PrimaryButtonGrey>
               </VStack>
               <Box mx="30px" h="inherit" bgColor="#ececec" w="1.5px"></Box>
               <Flex gap="20px" flexDir="column">
@@ -307,18 +297,11 @@ const ProfileUserInfo = ({ userId, userData, canEdit }) => {
                   />
                 </VStack>
                 <HStack mt="10px">
-                  <Button
-                    borderRadius="15px"
-                    fontWeight="regular"
-                    w="100%"
-                    border="#0d0d0d 1.5px solid"
-                    bg="transparent"
-                    onClick={handleClose}
-                  >
+                  <PrimaryButtonGrey onClick={handleClose} w="100%">
                     <Image src={BackArrow} mr="8px" />
                     Back to profile
-                  </Button>
-                  <Button
+                  </PrimaryButtonGrey>
+                  <PrimaryButtonBlack
                     isDisabled={
                       newName === '' ||
                       newSchool === '' ||
@@ -326,23 +309,12 @@ const ProfileUserInfo = ({ userId, userData, canEdit }) => {
                       newCountry === '' ||
                       newCity === ''
                     }
-                    borderRadius="15px"
-                    border="#101010 1.5px solid"
-                    bgColor="#101010"
-                    fontWeight="regular"
                     w="100%"
-                    colorScheme="blue"
                     mr={3}
                     onClick={handleSave}
-                    _hover={{
-                      bgColor: 'black',
-                    }}
-                    _active={{
-                      bgColor: 'black',
-                    }}
                   >
                     Save changes
-                  </Button>
+                  </PrimaryButtonBlack>
                 </HStack>
               </Flex>
             </Flex>
