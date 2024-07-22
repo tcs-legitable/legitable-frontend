@@ -1,4 +1,4 @@
-import { Box } from '@chakra-ui/react';
+import { Box, useBreakpointValue } from '@chakra-ui/react';
 import React, { useState } from 'react';
 import Navbar from '../global-components/Navbar';
 import Sidebar from './Sidebar';
@@ -10,6 +10,8 @@ const Home = () => {
   const handleFilterChange = (newFilters) => {
     setFilters(newFilters);
   };
+
+  const isDesktop = useBreakpointValue({ base: false, mdLg: true });
 
   return (
     <Box
@@ -26,7 +28,7 @@ const Home = () => {
         justifyContent="space-between"
       >
         <Creatives filters={filters} />
-        <Sidebar onFilterChange={handleFilterChange} />
+        {isDesktop && <Sidebar onFilterChange={handleFilterChange} />}
       </Box>
     </Box>
   );

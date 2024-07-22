@@ -1,6 +1,5 @@
-import { Box, Flex, Text, useBreakpointValue } from '@chakra-ui/react';
-import React, { useContext, useEffect } from 'react';
-import { SignedInContext } from '../../App';
+import { Flex, Text } from '@chakra-ui/react';
+import React from 'react';
 import AddSkillCard from './AddSkillCard';
 import SkillCard from './SkillCard';
 
