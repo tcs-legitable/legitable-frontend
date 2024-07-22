@@ -41,10 +41,6 @@ const CreativeCard = ({
     }
   };
 
-  useEffect(() => {
-    console.log(skillImages, ' are te images');
-  }, []);
-
   return (
     <Box
       borderRadius="10px"
