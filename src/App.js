@@ -4,7 +4,12 @@ import { ChakraProvider, VStack } from '@chakra-ui/react';
 import { createContext, useEffect, useState } from 'react';
 import HomePage from './components/HomePage';
 import EndorseesPage from './components/EndorseesPage';
-import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
+import {
+  BrowserRouter as Router,
+  Routes,
+  Route,
+  useLocation,
+} from 'react-router-dom';
 import theme from './theme/theme';
 import GetStartedLandingPage from './components/landing-page-components/GetStartedLandingPage';
 import Home from './components/organization-view-components/Home';
@@ -62,8 +67,8 @@ function App() {
     <ChakraProvider theme={theme}>
       <SignedInContext.Provider value={{ value, setValue }}>
         <VStack height="100%" className="outer-container">
-          {/* <HomePage /> */}
           <Router>
+            <BackgroundColorChanger />
             <Routes>
               <Route path="/" element={<HomePage />} />
               <Route path="/landing" element={<GetStartedLandingPage />} />
@@ -95,5 +100,23 @@ function App() {
     </ChakraProvider>
   );
 }
+
+const BackgroundColorChanger = () => {
+  const location = useLocation();
+
+  useEffect(() => {
+    const changeBackgroundColor = () => {
+      if (location.pathname === '/') {
+        document.body.style.backgroundColor = '#0c0c0c';
+      } else {
+        document.body.style.backgroundColor = '#fafafa';
+      }
+    };
+
+    changeBackgroundColor();
+  }, [location]);
+
+  return null;
+};
 
 export default App;
