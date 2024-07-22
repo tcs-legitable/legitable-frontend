@@ -19,9 +19,10 @@ import NewProject from './components/organization-view-components/NewProject';
 import MyProjects from './components/organization-view-components/MyProjects';
 import OrganizationGetStartedLandingPage from './components/landing-page-components/OrganizationGetStartedLandingPage';
 import OrganizationProjectsPage from './components/organization-view-components/OrganizationProjectsPage';
+
+import Messaging from './components/messaging/MessagingMain';
 import { getAuth, onAuthStateChanged } from 'firebase/auth';
 import { getOrganizationData, getUserData } from './firebase/helpers';
-import Messaging from './components/messaging/Messaging';
 
 export const SignedInContext = createContext();
 
@@ -92,7 +93,8 @@ function App() {
               />
               <Route path="/new-project" element={<NewProject />} />
               <Route path="/my-projects" element={<MyProjects />} />
-              <Route path="/messaging" element={<Messaging />} />
+              <Route path="/messaging" element={<Messaging/>}/>
+              <Route path="/messaging/6oLvnxTUlcUsvajw2YhFzB5g8En1/F8lBp9S1alOfbA5Dtv7WMeX8sZl2" element={<Messaging />} />
             </Routes>
           </Router>
         </VStack>
