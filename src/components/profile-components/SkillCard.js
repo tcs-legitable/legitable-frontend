@@ -25,6 +25,7 @@ import {
 } from '../../firebase/helpers';
 import { SignedInContext } from '../../App';
 import ReplaceIcon from '../../assets/images/replace-icon.svg';
+import PrimaryButtonGrey from '../button-components/PrimaryButtonGrey';
 
 const SkillCard = ({
   skill,
@@ -142,16 +143,10 @@ const SkillCard = ({
         </Text>
       )}
       {canEdit && (
-        <Button
-          border="#545454 solid 1.5px"
-          bg="transparent"
-          borderRadius="20px"
-          mt="auto"
-          onClick={onOpen}
-        >
+        <PrimaryButtonGrey mt="auto" onClick={onOpen}>
           <Image mr="7px" src={EditIcon} />
           Edit Skill
-        </Button>
+        </PrimaryButtonGrey>
       )}
       <Modal isOpen={isOpen} onClose={handleClose}>
         <ModalOverlay />

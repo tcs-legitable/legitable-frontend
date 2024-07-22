@@ -6,8 +6,6 @@ body {
   /* font-family: 'Archivo', sans-serif; */
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
-  /* remove after launch */
-  background-color: #0c0c0c !important;
 }
 
 code {
@@ -16,11 +14,9 @@ code {
 }
 
 .waitlist {
-  background-color: #0c0c0c;
   color: #fafafa;
 }
 
 .landing {
   color: #0c0c0c;
-  background-color: #fafafa !important;
 }

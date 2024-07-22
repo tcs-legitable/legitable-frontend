@@ -1,16 +1,11 @@
-import {
-  Box,
-  Button,
-  Image,
-  Text,
-  Link,
-  Flex,
-  useToast,
-} from '@chakra-ui/react';
-import React from 'react';
-import star from './../../assets/images/Star-stupaid-verified1.svg';
-import arrow from './../../assets/images/up-right-arrow.svg';
-import DefaultProfile from '../../assets/images/default-pfp.svg';
+import { Box, Image, Text, Flex } from '@chakra-ui/react';
+import React, { useEffect, useState } from 'react';
+import StupaidVerifiedBadge from './../../assets/images/stupaid-verified-badge.svg';
+import { useNavigate } from 'react-router-dom';
+import PrimaryButtonGrey from '../button-components/PrimaryButtonGrey';
+import TemplateSkillImage from '../../assets/images/template-image.svg';
+import ArrowPointLeft from '../../assets/images/arrow-point-left.svg';
+import ArrowPointRight from '../../assets/images/arrow-point-right.svg';
 
 const CreativeCard = ({
   photo_url,
@@ -19,108 +14,125 @@ const CreativeCard = ({
   school,
   projectPref,
   full_name,
-  email,
   skills,
-  website,
+  skillImages,
   isVerified,
+  uid,
 }) => {
-  const toast = useToast();
+  const navigate = useNavigate();
+  const [imageIndex, setImageIndex] = useState(0);
+
+  const nextImage = () => {
+    const max = skillImages.length;
+    if (imageIndex + 1 >= max) {
+      setImageIndex(0);
+    } else {
+      setImageIndex(imageIndex + 1);
+    }
+  };
+
+  const prevImage = () => {
+    const max = skillImages.length - 1;
+    const min = 0;
+    if (imageIndex - 1 < min) {
+      setImageIndex(max);
+    } else {
+      setImageIndex(imageIndex - 1);
+    }
+  };
 
   return (
     <Box
       borderRadius="10px"
       display="flex"
-      flexDirection="row"
+      flexDirection="column"
       p="25px"
       my="10px"
       border="1px solid #dbdbdb"
-      width="90%"
+      w="100%"
       maxW="1100px"
     >
       <Box
-        mr="20px"
-        borderRadius="50%"
-        w="200px"
-        h="60px"
-        backgroundImage={photo_url ? photo_url : DefaultProfile}
-        backgroundColor="#dbdbdb"
+        w="100%"
+        mb="20px"
+        h="200px"
+        backgroundImage={
+          skillImages.length > 0 ? skillImages[imageIndex] : TemplateSkillImage
+        }
+        borderRadius="10px"
         backgroundSize="cover"
         backgroundPosition="center"
-        position="relative"
-      ></Box>
-      <Box width="200%">
-        <Box display="flex" flexDirection="row">
-          <Text color="#555" fontSize="13px" mb="7px">
-            {city}, {country} • {school} • {projectPref}
-          </Text>
-        </Box>
-
-        <Box display="flex" flexDirection="row" mb="7px">
-          <Text fontSize="xl" fontWeight="bold">
+      >
+        {skillImages.length > 0 && (
+          <PrimaryButtonGrey
+            top="35%"
+            ml="10px"
+            pos="relative"
+            float="left"
+            bgColor="rgba(250, 250, 250, 0.8)"
+            _hover={{ bgColor: 'rgba(239, 239, 239, 0.8)' }}
+            _active={{ bgColor: 'rgba(239, 239, 239, 0.8)' }}
+            onClick={prevImage}
+          >
+            <Image src={ArrowPointLeft} />
+          </PrimaryButtonGrey>
+        )}
+        {skillImages.length > 0 && (
+          <PrimaryButtonGrey
+            top="35%"
+            pos="relative"
+            float="right"
+            mr="10px"
+            bgColor="rgba(250, 250, 250, 0.8)"
+            _hover={{ bgColor: 'rgba(239, 239, 239, 0.8)' }}
+            _active={{ bgColor: 'rgba(239, 239, 239, 0.8)' }}
+            onClick={nextImage}
+          >
+            <Image src={ArrowPointRight} />
+          </PrimaryButtonGrey>
+        )}
+      </Box>
+      <Box w="inherit">
+        <Box display="flex" mb="7px">
+          <Text
+            _hover={{ textDecoration: 'underline', cursor: 'pointer' }}
+            onClick={() => {
+              navigate(`/user/${uid}`);
+            }}
+            fontSize="xl"
+            fontWeight="bold"
+          >
             {full_name}
           </Text>
-          {isVerified && (
-            <>
-              <Text fontSize="xl" mx="10px">
-                |
-              </Text>
-              <Button borderRadius="25px">
-                <Image src={star} />
-                <Text marginLeft="6px" fontSize="12px" fontWeight="300">
-                  Stupaid verified
-                </Text>
-              </Button>
-            </>
-          )}
+          {isVerified && <Image ml="7px" src={StupaidVerifiedBadge} />}
         </Box>
 
-        <Flex gap="10px" mt="10px">
-          {skills.map((skill, id) => {
-            return (
-              <Link key={id} href={website} isExternal>
-                <Button
-                  borderRadius="25px"
-                  border="1px solid black"
-                  bg="transparent"
-                >
-                  <Text marginRight="6px" fontWeight="300">
-                    {skill?.skillName ? skill?.skillName : skill}
-                  </Text>
-                  <Image src={arrow} />
-                </Button>
-              </Link>
-            );
-          })}
-        </Flex>
-      </Box>
+        <Text>
+          {city}, {country}
+        </Text>
 
-      <Box width="100%" textAlign="right">
-        <Button
-          // mt="30px"
-          border="1px solid"
-          p="15px"
-          borderRadius="25px"
-          color="#fafafa"
-          bgColor="#0c0c0c"
-          fontWeight="300"
-          _hover={{
-            backgroundPosition: 'left bottom',
-          }}
-          _active={{
-            backgroundPosition: 'left bottom',
-          }}
-          onClick={() =>
-            toast({
-              title: 'Invite sent!',
-              description: `Sent an invite to ${full_name.split(' ')[0]}`,
-              status: 'success',
-              duration: 1300,
-              isClosable: true,
-            })
-          }
-        >
-          Invite to apply
-        </Button>
+        <Text>{school}</Text>
+
+        <Flex gap="10px" flexWrap="wrap" w="100%" mt="10px">
+          {skills &&
+            skills.map((skill, id) => {
+              return (
+                <PrimaryButtonGrey
+                  key={id}
+                  onClick={() => {
+                    if (skill?.link) {
+                      window.open(skill?.link, '_blank');
+                    }
+                  }}
+                >
+                  {' '}
+                  <Text marginRight="6px" fontWeight="300">
+                    {skill?.skillName}
+                  </Text>
+                </PrimaryButtonGrey>
+              );
+            })}
+        </Flex>
       </Box>
     </Box>
   );

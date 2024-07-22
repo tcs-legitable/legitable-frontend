@@ -282,19 +282,17 @@ const NewProject = () => {
           mb="30px"
           alignSelf="center"
           width="100%"
-          border="1px solid"
+          border="1.5px solid"
           p="4px 10px"
           mt="30px"
-          borderRadius="25px"
+          borderRadius="7px"
           color={isFormValid ? '#fafafa' : '#969696'}
-          bgColor={isFormValid ? '#0c0c0c' : '#e0e0e0'}
           fontWeight="300"
-          _hover={{
-            backgroundPosition: 'left bottom',
-          }}
-          _active={{
-            backgroundPosition: 'left bottom',
-          }}
+          _hover={isFormValid ? { bgColor: '#333333' } : { bgColor: '#e0e0e0' }}
+          _active={
+            isFormValid ? { bgColor: '#333333' } : { bgColor: '#e0e0e0' }
+          }
+          bgColor={isFormValid ? '#0c0c0c' : '#e0e0e0'}
           onClick={handleCreateProject}
           disabled={!isFormValid}
           _disabled={{

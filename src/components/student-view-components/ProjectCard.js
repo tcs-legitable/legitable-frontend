@@ -61,11 +61,11 @@ const ProjectCard = ({ project, key }) => {
       w="100%"
       flexDir="column"
     >
-      <Text color="#555555">
-        {location} - {project_pref}
-      </Text>
-      <Text py="20px" fontSize="23px" fontWeight="bold">
+      <Text fontSize="23px" fontWeight="bold">
         {name}
+      </Text>
+      <Text py="15px" color="#555555">
+        {location} - {project_pref}
       </Text>
       <Text color="#555555" pb="20px">
         {description}
