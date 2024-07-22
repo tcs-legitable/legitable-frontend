@@ -10,6 +10,7 @@ import {
   query,
   where,
   addDoc,
+  orderBy,
 } from '@firebase/firestore';
 import {
   deleteObject,
@@ -24,13 +25,17 @@ export const addMessage = async (roomId, messageData) => {
   await setDoc(roomRef, {}, {merge: true});
 
   const messagesRef = collection(roomRef, 'messages');
-  await addDoc(messagesRef, messageData);
+  await addDoc(messagesRef, {
+    ...messageData,
+    timestamp: new Date()
+  });
 };
 
 export const getMessages = async (roomId) => {
   const messages = [];
   const messagesRef = collection(db, 'rooms', roomId, 'messages');
-  const messagesSnapshot = await getDocs(messagesRef);
+  const messagesQuery = query(messagesRef, orderBy('timestamp', 'asc'));
+  const messagesSnapshot = await getDocs(messagesQuery);
   messagesSnapshot.forEach((doc) => {
     messages.push(doc.data());
   });

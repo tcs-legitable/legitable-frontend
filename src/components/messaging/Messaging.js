@@ -1,12 +1,11 @@
-import { Box, Button, Flex, Image, Input, Text } from '@chakra-ui/react';
-import React, { useContext, useEffect, useState } from 'react';
+import { Box, Flex, Image, Text } from '@chakra-ui/react';
+import React, { useContext, useEffect, useRef, useState } from 'react';
 import { useParams } from 'react-router-dom';
 import io from 'socket.io-client';
 import { SignedInContext } from '../../App';
-import { addMessage, getMessages } from '../../firebase/helpers';
+import { getMessages } from '../../firebase/helpers';
 import MessagingHeader from './MessagingHeader';
 import SendMessage from './SendMessage';
-import { formatISO } from 'date-fns';
 import defaultProfilePic from './../../assets/images/default-pfp.svg';
 
 // const socket = io.connect("http://localhost:3001");
@@ -15,8 +14,8 @@ const socket = io.connect("https://legitable-backend.up.railway.app/");
 const Messaging = () => {
   const { user1, user2 } = useParams();
   const { value } = useContext(SignedInContext);
-  const [message, setMessage] = useState("");
   const [messages, setMessages] = useState([]);
+  const messagesEndRef = useRef(null);
 
   // takes the room id from url
   const roomId = `room-${[user1, user2].sort().join('-')}`;
@@ -29,22 +28,8 @@ const Messaging = () => {
     }
   };
 
-  const sendMessage = async () => {
-    if (message.trim() === "") return;
-
-    const messageData = {
-      message,
-      room: roomId,
-      author: value.name || "Anon.",
-      time: formatISO(new Date()),
-    };
-
-    console.log("Sending message:", messageData);
-
-    socket.emit("send_message", messageData);
-    await addMessage(roomId, messageData);
-    setMessages((prevMessages) => [...prevMessages, messageData]);
-    setMessage("");
+  const scrollToBottom = () => {
+    messagesEndRef.current?.scrollIntoView();
   };
 
   useEffect(() => {
@@ -60,18 +45,15 @@ const Messaging = () => {
     };
   }, [roomId]);
 
-  const handleKeyPress = (event) => {
-    if (event.key === "Enter") {
-      event.preventDefault();
-      sendMessage();
-    }
-  };
+  useEffect(() => {
+    scrollToBottom();
+  }, [messages]);
 
   return (
-    <Flex flexDirection='column' backgroundColor="#fafafa" w="100%" h='100vh'>
+    <Flex flexDirection="column" backgroundColor="#fafafa" w="100%" h="100vh">
       <MessagingHeader/>
       
-      <Box backgroundColor='#fafafa' p="20px" mt="20px" overflowY='auto'>
+      <Box backgroundColor="#fafafa" p="20px" overflowY="auto" flex="1">
         <Flex w="100%" justifyContent="center">
           <Text>Start your conversation!</Text>
         </Flex>
@@ -113,28 +95,14 @@ const Messaging = () => {
                 }}
               >
                 <p>{msg.message}</p>
-            
               </Box>
             </Flex>
           );
         })}
+        <div ref={messagesEndRef} />
       </Box>
 
-      <Flex>
-        <Input 
-          placeholder='Enter your message here'
-          value={message}
-          onChange={(event) => setMessage(event.target.value)}
-          onKeyDown={handleKeyPress}
-          borderColor='#ECECEC'
-          _hover={{ borderColor: '#ECECEC' }}
-          _focus={{ borderColor: '#ECECEC' }}
-          backgroundColor='#FAFAFA'
-        />
-        <Button onClick={sendMessage}>Submit</Button>
-      </Flex>
-
-      <SendMessage />
+      <SendMessage roomId={roomId} />
     </Flex>
   );
 };
