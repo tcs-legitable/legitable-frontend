@@ -1,14 +1,16 @@
 import { Flex, Image, Text } from '@chakra-ui/react';
-import React from 'react';
+import React, { useContext, useEffect } from 'react';
 import LandingPageFunFooter from '../../assets/images/landing-page-fun-footer.svg';
 import StupaidLogo from '../../assets/landing-page-images/stupaid-logo-main.svg';
 import TalentButtonIcon from '../../assets/images/talent-button.svg';
 import StudentButtonIcon from '../../assets/images/student-icon.svg';
 import { useNavigate } from 'react-router-dom';
 import PrimaryButtonBlack from '../button-components/PrimaryButtonBlack';
+import { SignedInContext } from '../../App';
 
 const LandingPage = ({ goNext }) => {
   const navigate = useNavigate();
+  const { value } = useContext(SignedInContext);
 
   return (
     <Flex
@@ -49,17 +51,24 @@ const LandingPage = ({ goNext }) => {
           mr={{ base: '0px', mdLg: '10px' }}
           onClick={() => navigate('/home')}
         >
-          <Image bgColor="inherit" mr="5px" src={TalentButtonIcon} /> I'm
-          looking for talent
+          <Image bgColor="inherit" mr="5px" src={TalentButtonIcon} />
+          I'm looking for talent
         </PrimaryButtonBlack>
         <PrimaryButtonBlack
           px="30px"
-          onClick={() => goNext()}
+          onClick={() => {
+            console.log(value, ' is the VAL');
+            if (Object.keys(value).length === 0) {
+              goNext();
+            } else {
+              navigate('/projects');
+            }
+          }}
           ml={{ base: '0px', mdLg: '10px' }}
           mt={{ base: '10px', mdLg: '0px' }}
         >
-          <Image bgColor="inherit" mr="5px" src={StudentButtonIcon} /> I'm a
-          student
+          <Image bgColor="inherit" mr="5px" src={StudentButtonIcon} />
+          I'm a student
         </PrimaryButtonBlack>
       </Flex>
       <Image
