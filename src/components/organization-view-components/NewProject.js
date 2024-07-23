@@ -58,6 +58,7 @@ const NewProject = () => {
 
     const projectData = {
       name: projectName,
+      ownerUid: value?.uid,
       description: projectDescription,
       deadline: projectDeadline,
       budget: projectBudget,
