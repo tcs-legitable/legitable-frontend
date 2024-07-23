@@ -2,6 +2,7 @@ import React, { useContext } from 'react';
 import StupaidLogo from './../../assets/landing-page-images/stupaid-logo-main.svg';
 import DefaultProfile from '../../assets/images/default-pfp.svg';
 import WhiteCheckMark from '../../assets/images/white-check-mark.svg';
+import MailIcon from '../../assets/images/mail-icon.svg';
 import Burger from '../../assets/images/burger.svg';
 import {
   Box,
@@ -31,6 +32,10 @@ const Navbar = () => {
 
   const login = () => {
     navigate('/organization-signup');
+  };
+
+  const goToMessaging = () => {
+    navigate('/messaging');
   };
 
   const exploreCreatives = () => {
@@ -111,6 +116,9 @@ const Navbar = () => {
               <PrimaryButtonGrey onClick={goToOrganizationProfile}>
                 My projects
               </PrimaryButtonGrey>
+              <PrimaryButtonGrey onClick={goToMessaging}>
+                <Image src={MailIcon} />
+              </PrimaryButtonGrey>
             </>
           ) : (
             <Menu>
@@ -130,6 +138,9 @@ const Navbar = () => {
                 <MenuItem onClick={exploreCreatives}>Peers</MenuItem>
                 <MenuItem onClick={goToOrganizationProfile}>
                   My projects
+                </MenuItem>
+                <MenuItem onClick={goToMessaging}>
+                  <Image src={MailIcon} />
                 </MenuItem>
               </MenuList>
             </Menu>
@@ -169,6 +180,9 @@ const Navbar = () => {
               <PrimaryButtonGrey onClick={goToOrganizationProfile}>
                 My projects
               </PrimaryButtonGrey>
+              <PrimaryButtonGrey onClick={goToMessaging}>
+                <Image src={MailIcon} />
+              </PrimaryButtonGrey>
               <PrimaryButtonBlack onClick={createProject} mr="10px">
                 <Image src={WhiteCheckMark} mr="9px" />
                 Post a project
@@ -185,6 +199,9 @@ const Navbar = () => {
                 <MenuItem onClick={exploreCreatives}>Explore</MenuItem>
                 <MenuItem onClick={goToOrganizationProfile}>
                   My projects
+                </MenuItem>
+                <MenuItem onClick={goToMessaging}>
+                  <Image src={MailIcon} />
                 </MenuItem>
                 <MenuItem onClick={createProject}>Post a project</MenuItem>
               </MenuList>
