@@ -22,13 +22,10 @@ import { db, storage } from './firebase';
 
 export const addMessage = async (roomId, messageData) => {
   const roomRef = doc(db, 'rooms', roomId);
-  await setDoc(roomRef, {}, {merge: true});
+  await setDoc(roomRef, {}, { merge: true });
 
   const messagesRef = collection(roomRef, 'messages');
-  await addDoc(messagesRef, {
-    ...messageData,
-    timestamp: new Date()
-  });
+  await addDoc(messagesRef, messageData);
 };
 
 export const getMessages = async (roomId) => {
