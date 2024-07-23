@@ -28,16 +28,9 @@ const LandingSignIn = ({ goNext, setData }) => {
           type: 'student',
           photo_url: info?.photo_url,
         };
-      } else {
-        newInfo = {
-          uid: uid,
-          name: displayName,
-          type: 'student',
-          photo_url: null,
-        };
+        localStorage.setItem('view', 'student');
+        setValue(newInfo);
       }
-      localStorage.setItem('view', 'student');
-      setValue(newInfo);
 
       if (exists) {
         navigate('/projects');

@@ -1,14 +1,24 @@
 import { Flex, Image, Text, VStack } from '@chakra-ui/react';
-import React from 'react';
+import React, { useContext } from 'react';
 import { useNavigate } from 'react-router-dom';
+import { SignedInContext } from '../../App';
 import StupaidLogo from '../../assets/landing-page-images/stupaid-logo-small.svg';
 import { addStupaidUser } from '../../firebase/helpers';
 import PrimaryButtonBlack from '../button-components/PrimaryButtonBlack';
 
 const LandingFinal = ({ data }) => {
   const navigate = useNavigate();
+  const { setValue } = useContext(SignedInContext);
 
   const handleClick = async () => {
+    localStorage.setItem('view', 'student');
+    const newInfo = {
+      uid: data?.uid,
+      name: data?.input_name,
+      type: 'student',
+      photo_url: data?.photo_url,
+    };
+    setValue(newInfo);
     await addStupaidUser(data);
     navigate('/projects');
   };
