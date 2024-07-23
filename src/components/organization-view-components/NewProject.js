@@ -68,6 +68,7 @@ const NewProject = () => {
       preference: selectedPreference,
       optionalNote: optionalNote,
       createdAt: new Date().toISOString(),
+      status: 'unassigned',
     };
 
     try {
