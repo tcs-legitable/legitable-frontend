@@ -72,7 +72,6 @@ const NewProject = () => {
 
     try {
       await addProject(value?.uid, projectData);
-      console.log('Project data:', projectData);
       navigate('/organization/' + value?.uid);
     } catch (error) {
       console.error('Error creating project:', error);
@@ -154,7 +153,6 @@ const NewProject = () => {
               onChange={(e) => setProjectBudget(e.target.value)}
               _placeholder={{ color: '#969696' }}
             />
-            {/* </InputGroup> */}
           </Flex>
         </Flex>
 
