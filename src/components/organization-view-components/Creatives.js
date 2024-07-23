@@ -63,7 +63,7 @@ const Creatives = ({ filters }) => {
                 country={creative?.country}
                 school={creative?.school}
                 projectPref={creative?.projectPref}
-                full_name={creative?.full_name}
+                input_name={creative?.input_name}
                 email={creative.email}
                 skills={creative?.skills}
                 skillImages={skillImages}

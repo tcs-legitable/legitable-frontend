@@ -1,5 +1,5 @@
 import { Box, Image, Text, Flex } from '@chakra-ui/react';
-import React, { useEffect, useState } from 'react';
+import React, { useState } from 'react';
 import StupaidVerifiedBadge from './../../assets/images/stupaid-verified-badge.svg';
 import { useNavigate } from 'react-router-dom';
 import PrimaryButtonGrey from '../button-components/PrimaryButtonGrey';
@@ -13,7 +13,7 @@ const CreativeCard = ({
   country,
   school,
   projectPref,
-  full_name,
+  input_name,
   skills,
   skillImages,
   isVerified,
@@ -102,7 +102,7 @@ const CreativeCard = ({
             fontSize="xl"
             fontWeight="bold"
           >
-            {full_name}
+            {input_name}
           </Text>
           {isVerified && <Image ml="7px" src={StupaidVerifiedBadge} />}
         </Box>
