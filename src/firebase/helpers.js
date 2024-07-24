@@ -49,6 +49,16 @@ export const getAllUsers = async () => {
   return userList;
 };
 
+export const getAllStudents = async () => {
+  const usersCol = collection(db, 'mvp_users');
+  const userSnapshot = await getDocs(usersCol);
+  const studentList = userSnapshot.docs.map((doc) => ({
+    id: doc.id,
+    ...doc.data(),
+  })).filter(user => user.type === 'student');
+  return studentList;
+};
+
 export const doesUserExist = async (id) => {
   const docRef = doc(db, 'mvp_users', id);
   const docSnap = await getDoc(docRef);
