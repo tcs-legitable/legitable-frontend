@@ -58,7 +58,7 @@ const Navbar = () => {
   };
 
   const goToProfile = () => {
-    navigate('/user/' + value?.uid);
+    window.location.href = `/user/${value?.uid}`;
   };
 
   const goToOrganizationProfile = () => {
