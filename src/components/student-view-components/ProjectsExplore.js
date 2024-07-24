@@ -58,41 +58,41 @@ const ProjectsExplore = () => {
       ],
       organization_name: 'Floats',
     },
-    {
-      id: '3',
-      name: 'WHEREAMI Music Video Shoot',
-      location: 'Vancouver',
-      deadline: 'August 9, 2024',
-      budget: '$200',
-      project_pref: 'In-person',
-      tags: ['Videography'],
-      description:
-        'Ideate, plan, and produce a music video with me! I want a creative partner to bounce ideas off of, plan shots, operate the camera, and give feedback on the edit. I will handle for the most part - sourcing talent, direction, post-production.',
-      photo_url: null,
-      lead_name: {
-        name: 'Justin Kung',
-        link: 'https://www.linkedin.com/in/justinzoekung/',
-      },
-      links: [
-        {
-          display_name: 'Inspo video 1',
-          link: 'https://www.youtube.com/watch?v=zVIPD_PUBbo',
-        },
-        {
-          display_name: 'Inspo video 2',
-          link: 'https://www.youtube.com/watch?v=5GhhVHpPR_M',
-        },
-        {
-          display_name: 'Inspo video 3',
-          link: 'https://www.youtube.com/watch?v=dyoV1IwGobU',
-        },
-        {
-          display_name: 'Inspo video 4',
-          link: 'https://www.youtube.com/watch?v=ScDgJJi5Guc',
-        },
-      ],
-      organization_name: 'Justin Kung',
-    },
+    // {
+    //   id: '3',
+    //   name: 'WHEREAMI Music Video Shoot',
+    //   location: 'Vancouver',
+    //   deadline: 'August 9, 2024',
+    //   budget: '$200',
+    //   project_pref: 'In-person',
+    //   tags: ['Videography'],
+    //   description:
+    //     'Ideate, plan, and produce a music video with me! I want a creative partner to bounce ideas off of, plan shots, operate the camera, and give feedback on the edit. I will handle for the most part - sourcing talent, direction, post-production.',
+    //   photo_url: null,
+    //   lead_name: {
+    //     name: 'Justin Kung',
+    //     link: 'https://www.linkedin.com/in/justinzoekung/',
+    //   },
+    //   links: [
+    //     {
+    //       display_name: 'Inspo video 1',
+    //       link: 'https://www.youtube.com/watch?v=zVIPD_PUBbo',
+    //     },
+    //     {
+    //       display_name: 'Inspo video 2',
+    //       link: 'https://www.youtube.com/watch?v=5GhhVHpPR_M',
+    //     },
+    //     {
+    //       display_name: 'Inspo video 3',
+    //       link: 'https://www.youtube.com/watch?v=dyoV1IwGobU',
+    //     },
+    //     {
+    //       display_name: 'Inspo video 4',
+    //       link: 'https://www.youtube.com/watch?v=ScDgJJi5Guc',
+    //     },
+    //   ],
+    //   organization_name: 'Justin Kung',
+    // },
   ];
 
   return (
