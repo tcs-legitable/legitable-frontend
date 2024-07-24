@@ -1,5 +1,5 @@
 import { Box, Button, Flex, HStack, Image, Link, Text } from '@chakra-ui/react';
-import React, { useContext, useEffect, useState } from 'react';
+import React, { useContext, useEffect, useRef, useState } from 'react';
 import DeadlineIcon from '../../assets/images/deadline-icon.svg';
 import BudgetIcon from '../../assets/images/budget-icon.svg';
 import LinkArrow from '../../assets/images/link-arrow.svg';
@@ -7,6 +7,7 @@ import ProjectApplyModal from './ProjectApplyModal';
 import { studentAlreadyAppliedForProject } from '../../firebase/helpers';
 import { SignedInContext } from '../../App';
 import DefaultProfile from '../../assets/images/default-pfp.svg';
+import ApplyButtonIcon from '../../assets/images/apply-button-icon.svg';
 
 const ProjectCard = ({ project }, key) => {
   const {
@@ -25,9 +26,25 @@ const ProjectCard = ({ project }, key) => {
   } = project;
 
   const [projectApplyModalOpen, setProjectApplyModalOpen] = useState({});
+  const [isTruncated, setIsTruncated] = useState(true);
   const { value } = useContext(SignedInContext);
 
   const [alreadyApplied, setAlreadyApplied] = useState(false);
+  const [isOverflowing, setIsOverflowing] = useState(false);
+  const textRef = useRef(null);
+
+  const toggleTruncate = () => {
+    setIsTruncated(!isTruncated);
+  };
+
+  useEffect(() => {
+    if (textRef.current) {
+      setIsOverflowing(
+        textRef.current.scrollHeight > textRef.current.clientHeight,
+      );
+    }
+  }, [description]);
+
   useEffect(() => {
     const checkApplied = async () => {
       const check = await studentAlreadyAppliedForProject(value?.uid, id);
@@ -55,10 +72,12 @@ const ProjectCard = ({ project }, key) => {
   return (
     <Flex
       border="2px solid #ececec"
-      borderRadius="20px"
+      borderRadius="15px"
       p="20px"
       bgColor="white"
       w="100%"
+      h={isTruncated ? '780px' : 'fit-content'}
+      // minH="1000px"
       flexDir="column"
     >
       <Text fontSize="23px" fontWeight="bold">
@@ -67,9 +86,43 @@ const ProjectCard = ({ project }, key) => {
       <Text py="15px" color="#555555">
         {location} - {project_pref}
       </Text>
-      <Text color="#555555" pb="20px">
-        {description}
-      </Text>
+      <Box mb="10px" display="flex" flexDir="column" alignItems="center">
+        <Text
+          ref={textRef}
+          color="#555555"
+          pb="20px"
+          height={isTruncated ? '100px' : 'fit-content'}
+          overflow={isTruncated && 'hidden'}
+          textOverflow="ellipsis"
+          style={{
+            WebkitBoxOrient: 'vertical',
+            WebkitLineClamp: isTruncated ? 2 : 'none',
+          }}
+        >
+          {description}
+        </Text>
+        {isTruncated && (
+          <Link
+            alignSelf="baseline"
+            onClick={toggleTruncate}
+            color="#8C8C8C"
+            cursor="pointer"
+          >
+            See more
+          </Link>
+        )}
+
+        {!isTruncated && (
+          <Link
+            alignSelf="baseline"
+            onClick={toggleTruncate}
+            color="#8C8C8C"
+            cursor="pointer"
+          >
+            See less
+          </Link>
+        )}
+      </Box>
       <HStack py="7px">
         <Image src={DeadlineIcon} />
         <Text color="#969696">
@@ -126,44 +179,50 @@ const ProjectCard = ({ project }, key) => {
           );
         })}
       </Flex>
-      <Flex pt="20px" flexDir="row" align="center">
-        <Image
-          mr="20px"
-          borderRadius="50%"
-          w="80px"
-          src={photo_url ? photo_url : DefaultProfile}
-        />
-        <Flex flexDir="column">
-          <HStack>
-            <Link src={lead_name?.link}>{lead_name?.name}</Link>
-            <Image src={LinkArrow} />
-          </HStack>
-          <Text color="#969696">{organization_name}</Text>
+      <Flex flexDir="column" pos="relative" marginTop="auto">
+        <Flex mb="10px" pt="20px" flexDir="row" align="center">
+          <Image
+            mr="20px"
+            borderRadius="50%"
+            w="80px"
+            src={photo_url ? photo_url : DefaultProfile}
+          />
+          <Flex flexDir="column">
+            <HStack>
+              <Link isExternal href={lead_name?.link}>
+                {lead_name?.name}
+              </Link>
+              <Image src={LinkArrow} />
+            </HStack>
+            <Text color="#969696">{organization_name}</Text>
+          </Flex>
         </Flex>
+        <Button
+          isDisabled={alreadyApplied}
+          alignSelf="center"
+          py="24px"
+          mb="10px"
+          w={{ base: '100%', mdLg: '300px' }}
+          fontWeight="regular"
+          mt="20px"
+          bgColor="#0c0c0c"
+          color="white"
+          _hover={{
+            bgColor: '#2e2e2e',
+            color: 'white',
+          }}
+          _active={{
+            bgColor: '#2e2e2e',
+            color: 'white',
+          }}
+          onClick={() => {
+            openProjectModal(key);
+          }}
+        >
+          <Image src={ApplyButtonIcon} mr="6px" />
+          {alreadyApplied ? 'Already applied' : 'Apply now!'}
+        </Button>
       </Flex>
-      <Button
-        isDisabled={alreadyApplied}
-        alignSelf="center"
-        py="24px"
-        w="300px"
-        fontWeight="regular"
-        mt="20px"
-        bgColor="#0c0c0c"
-        color="white"
-        _hover={{
-          bgColor: '#2e2e2e',
-          color: 'white',
-        }}
-        _active={{
-          bgColor: '#2e2e2e',
-          color: 'white',
-        }}
-        onClick={() => {
-          openProjectModal(key);
-        }}
-      >
-        {alreadyApplied ? 'Already applied' : 'Apply now!'}
-      </Button>
       <ProjectApplyModal
         pt="0px"
         key={key}
