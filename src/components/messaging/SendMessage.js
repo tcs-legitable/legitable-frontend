@@ -65,7 +65,7 @@ const SendMessage = ({ roomId }) => {
         w="40px"
         h="40px"
         borderRadius="8px"
-        backgroundColor="#fafafa"
+        backgroundColor="#f5f5f5"
         border="1px solid #ececec"
         display="flex"
         alignItems="center"
@@ -94,7 +94,7 @@ const SendMessage = ({ roomId }) => {
           }}
           onKeyDown={handleKeyPress}
           border="1px solid #ececec"
-          backgroundColor="#fafafa"
+          backgroundColor="#f5f5f5"
           color={file ? "#3181CE" : "black"}
         />
         {file && (

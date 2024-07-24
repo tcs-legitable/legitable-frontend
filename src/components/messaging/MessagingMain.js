@@ -32,7 +32,7 @@ const MessagingMain = () => {
           <Flex mt='28px' ml='30px' mb='30px'>
             <Text fontSize='18px' fontWeight='600' mt='2px'>Messages</Text>
 
-            <Box
+            {/* <Box
               w='30px'
               h='30px'
               backgroundColor='#ae7bef'
@@ -47,7 +47,7 @@ const MessagingMain = () => {
               >
               1
               </Text>
-            </Box>
+            </Box> */}
           </Flex>
           <MessageSidePreview users={users} />
         </Box>
