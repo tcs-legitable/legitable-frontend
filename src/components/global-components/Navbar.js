@@ -113,9 +113,9 @@ const Navbar = () => {
               <PrimaryButtonGrey onClick={exploreCreatives}>
                 Peers
               </PrimaryButtonGrey>
-              <PrimaryButtonGrey onClick={goToOrganizationProfile}>
+              {/* <PrimaryButtonGrey onClick={goToOrganizationProfile}>
                 My projects
-              </PrimaryButtonGrey>
+              </PrimaryButtonGrey> */}
               <PrimaryButtonGrey onClick={goToMessaging}>
                 <Image src={MailIcon} />
               </PrimaryButtonGrey>
@@ -136,10 +136,10 @@ const Navbar = () => {
                   Find work
                 </MenuItem>
                 <MenuItem onClick={exploreCreatives}>Peers</MenuItem>
-                <MenuItem onClick={goToOrganizationProfile}>
+                {/* <MenuItem onClick={goToOrganizationProfile}>
                   My projects
-                </MenuItem>
-                <MenuItem onClick={goToMessaging}>
+                </MenuItem> */}
+                <MenuItem py="12px" onClick={goToMessaging}>
                   <Image src={MailIcon} />
                 </MenuItem>
               </MenuList>
@@ -200,7 +200,7 @@ const Navbar = () => {
                 <MenuItem onClick={goToOrganizationProfile}>
                   My projects
                 </MenuItem>
-                <MenuItem onClick={goToMessaging}>
+                <MenuItem py="12px" onClick={goToMessaging}>
                   <Image src={MailIcon} />
                 </MenuItem>
                 <MenuItem onClick={createProject}>Post a project</MenuItem>
