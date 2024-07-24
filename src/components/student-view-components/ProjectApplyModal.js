@@ -10,13 +10,10 @@ import ProjectApplicationSuccessModal from './ProjectApplicationSuccessModal';
 import ProjectCardApplyModal from './ProjectCardApplyModal';
 import ProjectCardApplyModalApplication from './ProjectCardApplyModalApplication';
 
-const ProjectApplyModal = ({
-  isOpen,
-  onClose,
-  project,
-  setAlreadyApplied,
+const ProjectApplyModal = (
+  { isOpen, onClose, project, setAlreadyApplied },
   key,
-}) => {
+) => {
   const isDesktop = useBreakpointValue({ base: false, lg: true });
   const [triggerSuccessModal, setTriggerSuccessModal] = useState(false);
 

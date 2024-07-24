@@ -1,8 +1,9 @@
-import { Box, Button, Flex, HStack, Text, VStack } from '@chakra-ui/react';
+import { Flex, Text } from '@chakra-ui/react';
 import React, { useContext, useEffect, useState } from 'react';
 import { SignedInContext } from '../../App';
 import { getMyProjects } from '../../firebase/helpers';
 import Navbar from '../global-components/Navbar';
+import ProjectStatusBadge from '../misc-components/ProjectStatusBadge';
 
 const OrganizationProjectsPage = () => {
   const [projects, setProjects] = useState([]);
@@ -20,20 +21,48 @@ const OrganizationProjectsPage = () => {
     fetchProjects();
   }, [value]);
   return (
-    <Flex w="100%" flexDir="column" h="inherit" minH="100vh" bgColor="#fafafa">
+    <Flex w="100%" flexDir="column" h="inherit" minH="100vh" bgColor="#ffffff">
       <Navbar />
-      <Flex p="20px" flexDir="column">
-        <Text fontWeight="bold" fontSize="26px" mt="20px" mb="30px">
-          My Projects
+      <Flex px="60px" flexDir="column">
+        <Text fontWeight="bold" fontSize="21px" mt="25px" mb="10px">
+          My projects
         </Text>
-        <Box w="100%" bgColor="#e7e7e7" h="1.5px" mb="20px"></Box>
         <Flex
           alignItems="center"
           flexDir="column"
-          gap="20px"
           justifyContent="center"
           w="100%"
         >
+          <Flex
+            px="10px"
+            fontWeight="bold"
+            py="25px"
+            w="100%"
+            color="#8C8C8C"
+            flexDir="row"
+            fontSize={{ base: '10px', mdLg: '13px' }}
+          >
+            <Text w="30%">PROJECT NAME</Text>
+            <Text w="17.5%">START DATE</Text>
+            <Text w="17.5%">DEADLINE</Text>
+            <Text w="17.5%">PEOPLE</Text>
+            <Text w="17.5%">STAGE</Text>
+            <Text w="17.5%">STATUS</Text>
+          </Flex>
+          {projects.length === 0 && (
+            <Flex
+              borderY="1px solid #E8E8E8"
+              bgColor="#fafafa"
+              w="100%"
+              py="20px"
+              px="10px"
+              flexDir="row"
+              fontSize={{ base: '13px', mdLg: '16px' }}
+              justifyContent="center"
+            >
+              Create a project
+            </Flex>
+          )}
           {projects.map((project, id) => {
             const {
               budget,
@@ -46,43 +75,34 @@ const OrganizationProjectsPage = () => {
               preference,
               skill,
               optionalNote,
+              status,
             } = project;
             return (
               <Flex
-                maxW="1100px"
-                border="1.5px solid #ededed"
-                borderRadius="10px"
-                bgColor="white"
+                borderY="1px solid #E8E8E8"
+                bgColor="#fafafa"
                 w="100%"
-                h="150px"
                 key={id}
-                p="20px"
+                py="20px"
+                px="10px"
+                flexDir="row"
+                fontSize={{ base: '10px', mdLg: '13px' }}
+                alignItems="center"
               >
-                <VStack alignItems="baseline">
-                  <Text color="#555555">
-                    Started on {createdAt.split('T')[0]} - {city}
-                  </Text>
-                  <HStack mt="13px" spacing="20px">
-                    <Text fontWeight="bold" fontSize="20px">
-                      {name}
-                    </Text>
-                    <Box h="50%" w="1.5px" bgColor="black"></Box>
-                    <Box bgColor="#ececec" p="13px" borderRadius="20px">
-                      {preference}
-                    </Box>
-                  </HStack>
-                </VStack>
-                <Button
-                  bgColor="#0c0c0c"
-                  color="white"
-                  borderRadius="20px"
-                  fontWeight="light"
-                  ml="auto"
-                  mr="20px"
-                  position="relative"
-                >
-                  Update status
-                </Button>
+                <Text w="30%" fontWeight="bold">
+                  {name}
+                </Text>
+                <Text w="17.5%">
+                  {status === 'unassigned' ? '--' : createdAt}
+                </Text>
+                <Text w="17.5%">
+                  {status === 'unassigned' ? '--' : deadline}
+                </Text>
+                <Text w="17.5%">--</Text>
+                <Text w="17.5%">--</Text>
+                <Text w="17.5%">
+                  <ProjectStatusBadge>Unassigned</ProjectStatusBadge>
+                </Text>
               </Flex>
             );
           })}

@@ -1,11 +1,10 @@
-import { Box, Button, Flex, Text } from '@chakra-ui/react';
+import { Box, Flex, Text } from '@chakra-ui/react';
 import React, { useEffect, useState } from 'react';
 import Navbar from '../global-components/Navbar';
 import { getAllProjects } from '../../firebase/helpers';
 import ProjectCard from './ProjectCard';
 
 const MyProjects = () => {
-
   const [projects, setProjects] = useState([]);
 
   useEffect(() => {
@@ -18,11 +17,8 @@ const MyProjects = () => {
   }, []);
 
   return (
-    <Flex
-      flexDirection="column"
-      backgroundColor="white"
-    >
-      <Navbar/>
+    <Flex flexDirection="column" backgroundColor="white">
+      <Navbar />
       <Flex
         backgroundColor="#fafafa"
         width="100vw"
@@ -32,14 +28,8 @@ const MyProjects = () => {
         pr="60px"
         h="fit-content"
       >
-        <Flex
-          flexDirection="column"
-        >
-          <Text
-            mt="30px"
-            fontSize="30px"
-            fontWeight="600"
-          >
+        <Flex flexDirection="column">
+          <Text mt="30px" fontSize="30px" fontWeight="600">
             My projects
           </Text>
 
@@ -49,22 +39,14 @@ const MyProjects = () => {
             backgroundColor="#ececec"
             mt="30px"
             mb="30px"
-          >
-
-          </Box>
+          ></Box>
         </Flex>
 
-        <Text
-          fontSize="24px"
-          fontWeight="300"
-        >
+        <Text fontSize="24px" fontWeight="300">
           Live projects
         </Text>
 
-        <Text
-          fontSize="24px"
-          fontWeight="300"
-        >
+        <Text fontSize="24px" fontWeight="300">
           Unassigned projects
         </Text>
 
@@ -73,7 +55,6 @@ const MyProjects = () => {
             <ProjectCard key={project.id} project={project} />
           ))}
         </Box>
-
       </Flex>
     </Flex>
   );

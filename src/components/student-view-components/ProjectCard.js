@@ -8,7 +8,7 @@ import { studentAlreadyAppliedForProject } from '../../firebase/helpers';
 import { SignedInContext } from '../../App';
 import DefaultProfile from '../../assets/images/default-pfp.svg';
 
-const ProjectCard = ({ project, key }) => {
+const ProjectCard = ({ project }, key) => {
   const {
     name,
     id,
