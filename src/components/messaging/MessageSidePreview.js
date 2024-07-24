@@ -17,7 +17,7 @@ const MessageSidePreview = () => {
           fontSize='15px'
           fontWeight='500'
         >
-          Alan Wang
+          Stupaid Admin
         </Text>
 
         <Text
@@ -27,18 +27,18 @@ const MessageSidePreview = () => {
           textOverflow='ellipsis'
           fontSize='14px'
         >
-          This is a message from your brother
+          Chat with us here!
         </Text>
       </Box>
 
-      <Text
+      {/* <Text
         alignContent='end'
         fontSize='12px'
         color='#8c8c8c'
         ml='10px'
       >
         • 40 mins
-      </Text>
+      </Text> */}
     </Flex>
   );
 };
