@@ -1,16 +1,9 @@
-import {
-  Box,
-  Button,
-  Flex,
-  HStack,
-  Image,
-  Text,
-  Textarea,
-} from '@chakra-ui/react';
+import { Box, Flex, HStack, Image, Text, Textarea } from '@chakra-ui/react';
 import React, { useContext, useState } from 'react';
 import { SignedInContext } from '../../App';
 import { applyForProject } from '../../firebase/helpers';
 import DefaultProfile from '../../assets/images/default-pfp.svg';
+import PrimaryButtonGrey from '../button-components/PrimaryButtonGrey';
 
 const ProjectCardApplyModalApplication = ({
   handleApply,
@@ -58,25 +51,9 @@ const ProjectCardApplyModalApplication = ({
           placeholder="Add a note to your application to increase your chances of getting selected"
         />
       </Flex>
-      <Button
-        mt="auto"
-        border="1px solid #0c0c0c"
-        py="20px"
-        px="30px"
-        borderRadius="25px"
-        color="black"
-        bgColor="#fafafa"
-        fontWeight="regular"
-        _hover={{
-          bgColor: '#d2d2d2',
-        }}
-        _active={{
-          bgColor: '#d2d2d2',
-        }}
-        onClick={handleClick}
-      >
+      <PrimaryButtonGrey mt="auto" onClick={handleClick}>
         Apply now!
-      </Button>
+      </PrimaryButtonGrey>
     </Flex>
   );
 };
