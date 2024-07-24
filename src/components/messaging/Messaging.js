@@ -54,7 +54,13 @@ const Messaging = () => {
       
       <Box backgroundColor="#fafafa" p="20px" overflowY="auto" flex="1">
         <Flex w="100%" justifyContent="center">
-          <Text>Start your conversation!</Text>
+          <Text
+            textAlign='center'
+            width='50%'
+            color='#8c8c8c'
+          >
+            If you have any suggestions or find any bugs, our DM's are always open below!
+          </Text>
         </Flex>
         {messages.map((msg, index) => {
           const previousMessage = messages[index - 1];
@@ -67,40 +73,47 @@ const Messaging = () => {
           const isCurrentUser = msg.author === value.name;
 
           return (
-            <Flex key={index} mt={marginTop} align="flex-end" justify={isCurrentUser ? 'flex-end' : 'flex-start'}>
-              {!isCurrentUser && (
-                <Box w="50px" minW="50px">
-                  {showProfilePicture && (
-                    <Image 
-                      src={defaultProfilePic} 
-                      borderRadius="full" 
-                      boxSize="40px" 
-                      mr="10px" 
-                    />
+            <Box key={index} mt={marginTop}>
+              {!isCurrentUser && !isSameAuthor && (
+                <Text mb='2px' ml='55px' color='#8c8c8c'>
+                  {msg.author}
+                </Text>
+              )}
+              <Flex align="flex-end" justify={isCurrentUser ? 'flex-end' : 'flex-start'}>
+                {!isCurrentUser && (
+                  <Box w="50px" minW="50px">
+                    {showProfilePicture && (
+                      <Image 
+                        src={defaultProfilePic} 
+                        borderRadius="full" 
+                        boxSize="40px" 
+                        mr="10px" 
+                      />
+                    )}
+                  </Box>
+                )}
+                <Box
+                  p="10px"
+                  borderRadius="10px"
+                  bg={isCurrentUser ? '#ae7bef' : '#eaeaea'}
+                  color={isCurrentUser ? 'white' : 'black'}
+                  maxWidth="80%"
+                  position="relative"
+                  sx={{
+                    ':hover .message-time': {
+                      opacity: 1,
+                    }
+                  }}
+                >
+                  <p>{msg.message}</p>
+                  {msg.fileURL && (
+                    <Link href={msg.fileURL} isExternal color={isCurrentUser ? "#63b3ed" : "blue.500"} textDecoration="underline">
+                      {msg.fileName}
+                    </Link>
                   )}
                 </Box>
-              )}
-              <Box
-                p="10px"
-                borderRadius="10px"
-                bg={isCurrentUser ? '#ae7bef' : '#eaeaea'}
-                color={isCurrentUser ? 'white' : 'black'}
-                maxWidth="80%"
-                position="relative"
-                sx={{
-                  ':hover .message-time': {
-                    opacity: 1,
-                  }
-                }}
-              >
-                <p>{msg.message}</p>
-                {msg.fileURL && (
-                  <Link href={msg.fileURL} isExternal color={isCurrentUser ? "#E1F1FD" : "blue.500"} textDecoration="underline">
-                    {msg.fileName}
-                  </Link>
-                )}
-              </Box>
-            </Flex>
+              </Flex>
+            </Box>
           );
         })}
         <div ref={messagesEndRef} />
