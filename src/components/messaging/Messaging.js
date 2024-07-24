@@ -6,7 +6,7 @@ import { SignedInContext } from '../../App';
 import { getMessages } from '../../firebase/helpers';
 import MessagingHeader from './MessagingHeader';
 import SendMessage from './SendMessage';
-import defaultProfilePic from './../../assets/images/default-pfp.svg';
+import defaultProfilePic from './../../assets/landing-page-images/stupaid-logo-main.svg';
 
 const socket = io.connect("https://legitable-backend.up.railway.app/");
 // const socket = io.connect("http://localhost:3001");
@@ -17,7 +17,7 @@ const Messaging = () => {
   const [messages, setMessages] = useState([]);
   const messagesEndRef = useRef(null);
 
-  const roomId = `room-${[user1, user2].sort().join('-')}`;
+  const roomId = user1 && user2 ? `room-${[user1, user2].sort().join('-')}` : null;
 
   const joinRoom = async () => {
     if (roomId) {
@@ -32,12 +32,13 @@ const Messaging = () => {
   };
 
   useEffect(() => {
-    joinRoom();
-
-    socket.on("receive_message", (data) => {
-      console.log("Received message:", data);
-      setMessages((prevMessages) => [...prevMessages, data]);
-    });
+    if (roomId) {
+      joinRoom();
+      socket.on("receive_message", (data) => {
+        console.log("Received message:", data);
+        setMessages((prevMessages) => [...prevMessages, data]);
+      });
+    }
 
     return () => {
       socket.off("receive_message");
@@ -48,9 +49,19 @@ const Messaging = () => {
     scrollToBottom();
   }, [messages]);
 
+  if (!roomId) {
+    return (
+      <Flex flexDirection="column" backgroundColor="#fafafa" w="100%" h="100vh" alignItems="center" justifyContent="center">
+        <Text textAlign='center' width='50%' color='#8c8c8c'>
+          Come chat with us by clicking the profile on the left! If you have any suggestions or find any bugs, our DM's are always open!
+        </Text>
+      </Flex>
+    );
+  }
+
   return (
     <Flex flexDirection="column" backgroundColor="#fafafa" w="100%" h="100vh">
-      <MessagingHeader/>
+      <MessagingHeader />
       
       <Box backgroundColor="#fafafa" p="20px" overflowY="auto" flex="1">
         <Flex w="100%" justifyContent="center">

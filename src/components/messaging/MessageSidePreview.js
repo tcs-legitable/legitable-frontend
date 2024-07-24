@@ -2,7 +2,7 @@ import { Box, Flex, Image, Text } from '@chakra-ui/react';
 import React, { useContext, useEffect, useState } from 'react';
 import { SignedInContext } from '../../App';
 import { getAllUsers } from '../../firebase/helpers';
-import defaultProfilePic from './../../assets/images/default-pfp.svg';
+import defaultProfilePic from './../../assets/landing-page-images/stupaid-logo-main.svg';
 import { useNavigate } from 'react-router-dom';
 
 const MessageSidePreview = () => {
@@ -43,6 +43,7 @@ const MessageSidePreview = () => {
             <Flex
               key={user.uid}
               ml='30px'
+              mb='10px'
               cursor='pointer'
               onClick={() => handleNavigate(user)}
             >

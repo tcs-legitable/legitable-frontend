@@ -1,6 +1,6 @@
 import { Box, Image, Text } from '@chakra-ui/react';
 import React from 'react';
-import pic from './../../assets/images/default-pfp.svg';
+import pic from './../../assets/landing-page-images/stupaid-logo-main.svg';
 
 const MessagingHeader = () => {
   return (
@@ -20,7 +20,7 @@ const MessagingHeader = () => {
         fontSize='18px'
         fontWeight='600'
       >
-        Alan Wang
+        Stupaid Admin
       </Text>
 
     </Box>
