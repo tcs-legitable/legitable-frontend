@@ -131,11 +131,12 @@ const SkillCard = ({
           color="#969696"
           mt="15px"
           maxHeight="80px"
-          overflow="hidden"
-          textOverflow="ellipsis"
+          // overflow="hidden"
+          // textOverflow="ellipsis"
+          overflowY='auto'
           display="-webkit-box"
           css={{
-            WebkitLineClamp: 3,
+            // WebkitLineClamp: 3,
             WebkitBoxOrient: 'vertical',
           }}
         >
