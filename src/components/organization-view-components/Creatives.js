@@ -8,14 +8,22 @@ import { getAllUsers, getAllWaitlistedUsers } from '../../firebase/helpers';
 const Creatives = ({ filters }) => {
   const [creativesList, setCreativesList] = useState([]);
 
+  const shuffleArray = (array) => {
+    for (let i = array.length - 1; i > 0; i--) {
+      const j = Math.floor(Math.random() * (i + 1));
+      [array[i], array[j]] = [array[j], array[i]];
+    }
+    return array;
+  };
+
   useEffect(() => {
     const fetchData = async () => {
       const users = await getAllUsers();
+      const shuffledUsers = shuffleArray(users);
 
       // TEMP - will remove later
       // const waitlistedUsers = await getAllWaitlistedUsers();
-      setCreativesList(users);
-      // setCreativesList(waitlistedUsers);
+      setCreativesList(shuffledUsers);
     };
     fetchData();
   }, []);
