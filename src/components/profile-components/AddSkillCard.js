@@ -178,7 +178,7 @@ const AddSkillCard = ({ addSkillInState }) => {
                     <Image ml="auto" mr="10px" src={ChevronDownIcon} />
                   </Flex>
                 </MenuButton>
-                <MenuList>
+                <MenuList maxH="200px" overflowY="auto">
                   {availableSkills.map((skill) => (
                     <MenuItem
                       key={skill.id}
