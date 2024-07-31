@@ -63,7 +63,7 @@ const CreativeCard = ({
         backgroundSize="cover"
         backgroundPosition="center"
       >
-        {skillImages.length > 0 && (
+        {skillImages.length > 1 && (
           <PrimaryButtonGrey
             top="35%"
             ml="10px"
@@ -77,7 +77,7 @@ const CreativeCard = ({
             <Image src={ArrowPointLeft} />
           </PrimaryButtonGrey>
         )}
-        {skillImages.length > 0 && (
+        {skillImages.length > 1 && (
           <PrimaryButtonGrey
             top="35%"
             pos="relative"
