@@ -202,7 +202,7 @@ const ProjectCard = ({ project }, key) => {
           alignSelf="center"
           py="24px"
           mb="10px"
-          w={{ base: '100%', mdLg: '300px' }}
+          w={{ base: '100%', mdLg: '100%' }}
           fontWeight="regular"
           mt="20px"
           bgColor="#0c0c0c"
