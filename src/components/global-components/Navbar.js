@@ -46,6 +46,10 @@ const Navbar = () => {
     navigate('/new-project');
   };
 
+  const findWork = () => {
+    navigate('/projects');
+  };
+
   const logout = async () => {
     try {
       const auth = getAuth();
@@ -80,7 +84,7 @@ const Navbar = () => {
       <Flex alignItems="center">
         <Image
           cursor="pointer"
-          onClick={goLanding}
+          onClick={value?.type === 'student' ? findWork : goLanding}
           mx="30px"
           w="120px"
           src={StupaidLogo}
