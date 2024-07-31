@@ -227,11 +227,7 @@ const AddSkillCard = ({ addSkillInState }) => {
                 Cancel
               </Button>
               <Button
-                isDisabled={
-                  newSkillName === '' ||
-                  newDescription === '' ||
-                  newImage === ''
-                }
+                isDisabled={newSkillName === ''}
                 _hover={{
                   bgColor: '#383838',
                 }}

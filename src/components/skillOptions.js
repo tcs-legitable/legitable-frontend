@@ -13,4 +13,5 @@ export const skillOptions = [
   { id: 11, text: 'Animation', value: 'animation' },
   { id: 12, text: '3D Modeling', value: '3d-modeling' },
   { id: 13, text: 'Music Production', value: 'music-production' },
+  { id: 14, text: 'Marketing Strategy', value: 'marketing-strategy' },
 ];
