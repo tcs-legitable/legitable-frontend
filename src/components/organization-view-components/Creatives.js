@@ -1,9 +1,7 @@
 import { Grid, Flex, Text } from '@chakra-ui/react';
 import React, { useEffect, useState } from 'react';
 import CreativeCard from './CreativeCard';
-import { getAllUsers, getAllWaitlistedUsers } from '../../firebase/helpers';
-
-// LOTS OF TEMP CHANGES HERE
+import { getAllUsers } from '../../firebase/helpers';
 
 const Creatives = ({ filters }) => {
   const [creativesList, setCreativesList] = useState([]);
@@ -21,8 +19,6 @@ const Creatives = ({ filters }) => {
       const users = await getAllUsers();
       const shuffledUsers = shuffleArray(users);
 
-      // TEMP - will remove later
-      // const waitlistedUsers = await getAllWaitlistedUsers();
       setCreativesList(shuffledUsers);
     };
     fetchData();
