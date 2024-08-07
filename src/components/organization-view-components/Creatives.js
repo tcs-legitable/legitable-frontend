@@ -17,9 +17,28 @@ const Creatives = ({ filters }) => {
   useEffect(() => {
     const fetchData = async () => {
       const users = await getAllUsers();
-      const shuffledUsers = shuffleArray(users);
 
-      setCreativesList(shuffledUsers);
+      // Prioritize users with non-null skill images
+      const prioritizedUsers = users.filter((user) =>
+        user.skills.some((skill) => skill.image !== null),
+      );
+
+      // Get the rest of the users
+      const nonPrioritizedUsers = users.filter(
+        (user) => !user.skills.some((skill) => skill.image !== null),
+      );
+
+      // Shuffle each group individually
+      const shuffledPrioritizedUsers = shuffleArray(prioritizedUsers);
+      const shuffledNonPrioritizedUsers = shuffleArray(nonPrioritizedUsers);
+
+      // Concatenate the prioritized users first
+      const finalUserList = [
+        ...shuffledPrioritizedUsers,
+        ...shuffledNonPrioritizedUsers,
+      ];
+
+      setCreativesList(finalUserList);
     };
     fetchData();
   }, []);
