@@ -52,10 +52,12 @@ export const getAllUsers = async () => {
 export const getAllStudents = async () => {
   const usersCol = collection(db, 'mvp_users');
   const userSnapshot = await getDocs(usersCol);
-  const studentList = userSnapshot.docs.map((doc) => ({
-    id: doc.id,
-    ...doc.data(),
-  })).filter(user => user.type === 'student');
+  const studentList = userSnapshot.docs
+    .map((doc) => ({
+      id: doc.id,
+      ...doc.data(),
+    }))
+    .filter((user) => user.type === 'student');
   return studentList;
 };
 
@@ -456,6 +458,23 @@ export const getEndorsees = async (uid) => {
   const { endorsees } = userData;
   console.log(endorsees, ' within');
   return endorsees;
+};
+
+// misc functions
+export const hasSeenPopup = async (uid) => {
+  if (!uid) {
+    console.error('UID is required!');
+    return;
+  }
+  const userRef = doc(db, 'mvp_users', uid);
+  const docSnap = await getUserData(uid);
+  const hasSeenModal = docSnap?.profileModalViewed ?? false;
+
+  if (docSnap?.profileModalViewed === undefined) {
+    await setDoc(userRef, { profileModalViewed: false });
+  }
+
+  return hasSeenModal;
 };
 
 // waitlist functions
