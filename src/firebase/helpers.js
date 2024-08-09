@@ -487,6 +487,37 @@ export const updateSeenPopup = async (uid) => {
   await setDoc(userRef, { profileModalViewed: true }, { merge: true });
 };
 
+export const hasCompletedProfile = async (uid) => {
+  if (!uid) {
+    console.error('UID is required!');
+    return false; // Return false if UID is not provided
+  }
+
+  const docSnap = await getUserData(uid);
+  if (!docSnap) {
+    console.error('User document does not exist!');
+    return false; // Return false if the document does not exist
+  }
+
+  const userData = docSnap;
+  // Check if photo_url is missing
+  if (!userData.photo_url) {
+    return false;
+  }
+  // Check if any skill has missing fields
+  if (userData.skills) {
+    for (const skill of userData.skills) {
+      if (!skill.name || !skill.description || !skill.link) {
+        return false;
+      }
+    }
+  } else {
+    return false; // Return false if the skills array is missing
+  }
+
+  return true; // Return true only if all checks pass
+};
+
 // waitlist functions
 export const addWaitlistEntry = async (collection, name, email, id) => {
   let data = {
