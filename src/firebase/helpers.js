@@ -471,10 +471,20 @@ export const hasSeenPopup = async (uid) => {
   const hasSeenModal = docSnap?.profileModalViewed ?? false;
 
   if (docSnap?.profileModalViewed === undefined) {
-    await setDoc(userRef, { profileModalViewed: false });
+    await setDoc(userRef, { profileModalViewed: false }, { merge: true });
   }
 
   return hasSeenModal;
+};
+
+export const updateSeenPopup = async (uid) => {
+  if (!uid) {
+    console.error('UID is required!');
+    return;
+  }
+  const userRef = doc(db, 'mvp_users', uid);
+
+  await setDoc(userRef, { profileModalViewed: true }, { merge: true });
 };
 
 // waitlist functions
