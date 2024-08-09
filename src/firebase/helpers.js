@@ -507,7 +507,7 @@ export const hasCompletedProfile = async (uid) => {
   // Check if any skill has missing fields
   if (userData.skills) {
     for (const skill of userData.skills) {
-      if (!skill.name || !skill.description || !skill.link) {
+      if (!skill.image || !skill.description || !skill.link) {
         return false;
       }
     }
