@@ -52,10 +52,12 @@ export const getAllUsers = async () => {
 export const getAllStudents = async () => {
   const usersCol = collection(db, 'mvp_users');
   const userSnapshot = await getDocs(usersCol);
-  const studentList = userSnapshot.docs.map((doc) => ({
-    id: doc.id,
-    ...doc.data(),
-  })).filter(user => user.type === 'student');
+  const studentList = userSnapshot.docs
+    .map((doc) => ({
+      id: doc.id,
+      ...doc.data(),
+    }))
+    .filter((user) => user.type === 'student');
   return studentList;
 };
 
@@ -456,6 +458,64 @@ export const getEndorsees = async (uid) => {
   const { endorsees } = userData;
   console.log(endorsees, ' within');
   return endorsees;
+};
+
+// misc functions
+export const hasSeenPopup = async (uid) => {
+  if (!uid) {
+    console.error('UID is required!');
+    return;
+  }
+  const userRef = doc(db, 'mvp_users', uid);
+  const docSnap = await getUserData(uid);
+  const hasSeenModal = docSnap?.profileModalViewed ?? false;
+
+  if (docSnap?.profileModalViewed === undefined) {
+    await setDoc(userRef, { profileModalViewed: false }, { merge: true });
+  }
+
+  return hasSeenModal;
+};
+
+export const updateSeenPopup = async (uid) => {
+  if (!uid) {
+    console.error('UID is required!');
+    return;
+  }
+  const userRef = doc(db, 'mvp_users', uid);
+
+  await setDoc(userRef, { profileModalViewed: true }, { merge: true });
+};
+
+export const hasCompletedProfile = async (uid) => {
+  if (!uid) {
+    console.error('UID is required!');
+    return false; // Return false if UID is not provided
+  }
+
+  const docSnap = await getUserData(uid);
+  if (!docSnap) {
+    console.error('User document does not exist!');
+    return false; // Return false if the document does not exist
+  }
+
+  const userData = docSnap;
+  // Check if photo_url is missing
+  if (!userData.photo_url) {
+    return false;
+  }
+  // Check if any skill has missing fields
+  if (userData.skills) {
+    for (const skill of userData.skills) {
+      if (!skill.image || !skill.description || !skill.link) {
+        return false;
+      }
+    }
+  } else {
+    return false; // Return false if the skills array is missing
+  }
+
+  return true; // Return true only if all checks pass
 };
 
 // waitlist functions
