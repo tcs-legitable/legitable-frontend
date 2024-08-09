@@ -1,9 +1,58 @@
-import { Box, Flex, Text, useBreakpointValue } from '@chakra-ui/react';
-import React from 'react';
+import {
+  Box,
+  Flex,
+  Text,
+  useBreakpointValue,
+  useDisclosure,
+  Modal,
+  ModalOverlay,
+  ModalContent,
+  ModalHeader,
+  ModalBody,
+} from '@chakra-ui/react';
+import React, { useContext, useEffect, useState } from 'react';
+import { SignedInContext } from '../../App';
+import {
+  hasSeenPopup,
+  updateSeenPopup,
+  hasCompletedProfile,
+} from '../../firebase/helpers';
+import PrimaryButtonBlack from '../button-components/PrimaryButtonBlack';
+import PrimaryButtonGrey from '../button-components/PrimaryButtonGrey';
 import ProjectCard from './ProjectCard';
 
 const ProjectsExplore = () => {
   const isDesktop = useBreakpointValue({ base: false, lg: true });
+  const { isOpen, onOpen, onClose } = useDisclosure();
+  const [shouldShowModal, setShouldShowModal] = useState(false);
+  const { value } = useContext(SignedInContext);
+
+  useEffect(() => {
+    const checkModal = async () => {
+      const hasSeen = await hasSeenPopup(value?.uid);
+      const finishedProfile = await hasCompletedProfile(value?.uid);
+      console.log(hasSeen, finishedProfile, ' are vals');
+      if (!hasSeen && !finishedProfile) {
+        setShouldShowModal(true);
+        onOpen();
+      }
+    };
+
+    checkModal();
+  }, [value, onOpen]);
+
+  const handleCloseModal = async () => {
+    await updateSeenPopup(value?.uid);
+    setShouldShowModal(false);
+    onClose();
+  };
+
+  const finishProfile = async () => {
+    await updateSeenPopup(value?.uid);
+    setShouldShowModal(false);
+    onClose();
+    window.location.href = `/user/${value?.uid}`;
+  };
 
   const projects = [
     {
@@ -111,6 +160,25 @@ const ProjectsExplore = () => {
           return <ProjectCard project={project} key={id} />;
         })}
       </Flex>
+      {value?.uid && shouldShowModal && (
+        <Modal isOpen={isOpen} onClose={handleCloseModal}>
+          <ModalOverlay />
+          <ModalContent pb="10px">
+            <ModalHeader>Complete your profile!</ModalHeader>
+            <ModalBody>
+              <Text mb="20px">
+                Before you apply for projects, ensure you've created a profile!
+              </Text>
+              <PrimaryButtonGrey mr="10px" onClick={finishProfile}>
+                Update Profile
+              </PrimaryButtonGrey>
+              <PrimaryButtonBlack onClick={handleCloseModal}>
+                Continue
+              </PrimaryButtonBlack>
+            </ModalBody>
+          </ModalContent>
+        </Modal>
+      )}
     </Flex>
   );
 };
