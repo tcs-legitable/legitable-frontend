@@ -518,6 +518,14 @@ export const hasCompletedProfile = async (uid) => {
   return true; // Return true only if all checks pass
 };
 
+export const formatUrl = (url) => {
+  if (url && !url.startsWith('https://') && !url.startsWith('https://')) {
+    return `https://${url}`;
+  } else {
+    return url;
+  }
+};
+
 // waitlist functions
 export const addWaitlistEntry = async (collection, name, email, id) => {
   let data = {
