@@ -23,7 +23,11 @@ import PersonalSiteIcon from '../../assets/images/website-icon.svg';
 import DefaultProfile from '../../assets/images/default-pfp.svg';
 import ReplaceIcon from '../../assets/images/replace-icon.svg';
 import BackArrow from '../../assets/images/back-arrow-black.svg';
-import { updateStupaidUser, uploadImage } from '../../firebase/helpers';
+import {
+  formatUrl,
+  updateStupaidUser,
+  uploadImage,
+} from '../../firebase/helpers';
 import { SignedInContext } from '../../App';
 import PrimaryButtonGrey from '../button-components/PrimaryButtonGrey';
 import PrimaryButtonBlack from '../button-components/PrimaryButtonBlack';
@@ -168,7 +172,7 @@ const ProfileUserInfo = ({ userId, userData, canEdit }) => {
           <HStack mt="2px">
             <Image src={PersonalSiteIcon} />
             <Link
-              href={personal_site}
+              href={formatUrl(personal_site)}
               target="_blank"
               textDecoration="underline"
             >

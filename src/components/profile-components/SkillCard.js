@@ -20,6 +20,7 @@ import TemplateSkillImage from '../../assets/images/template-image.svg';
 import ChevronDownIcon from '../../assets/images/chevron-down.svg';
 import {
   deleteSkillFromDB,
+  formatUrl,
   updateSkills,
   uploadImage,
 } from '../../firebase/helpers';
@@ -122,7 +123,12 @@ const SkillCard = ({
         align="center"
       ></Box>
       {link && (
-        <Link target="_blank" color="#1c9bd1" fontWeight="bold" href={link}>
+        <Link
+          target="_blank"
+          color="#1c9bd1"
+          fontWeight="bold"
+          href={formatUrl(link)}
+        >
           {link}
         </Link>
       )}
@@ -133,7 +139,7 @@ const SkillCard = ({
           maxHeight="80px"
           // overflow="hidden"
           // textOverflow="ellipsis"
-          overflowY='auto'
+          overflowY="auto"
           display="-webkit-box"
           css={{
             // WebkitLineClamp: 3,

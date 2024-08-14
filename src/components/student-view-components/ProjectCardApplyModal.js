@@ -4,6 +4,7 @@ import DeadlineIcon from '../../assets/images/deadline-icon.svg';
 import BudgetIcon from '../../assets/images/budget-icon.svg';
 import LinkArrow from '../../assets/images/link-arrow.svg';
 import DefaultProfile from '../../assets/images/default-pfp.svg';
+import { formatUrl } from '../../firebase/helpers';
 
 const ProjectCardApplyModal = ({ project, key }) => {
   const {
@@ -75,7 +76,7 @@ const ProjectCardApplyModal = ({ project, key }) => {
               w="fit-content"
               color="#969696"
               isExternal
-              href={link}
+              href={formatUrl(link)}
               key={id}
               textDecoration="underline"
             >

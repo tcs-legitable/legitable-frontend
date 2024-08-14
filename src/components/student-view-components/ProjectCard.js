@@ -4,7 +4,10 @@ import DeadlineIcon from '../../assets/images/deadline-icon.svg';
 import BudgetIcon from '../../assets/images/budget-icon.svg';
 import LinkArrow from '../../assets/images/link-arrow.svg';
 import ProjectApplyModal from './ProjectApplyModal';
-import { studentAlreadyAppliedForProject } from '../../firebase/helpers';
+import {
+  formatUrl,
+  studentAlreadyAppliedForProject,
+} from '../../firebase/helpers';
 import { SignedInContext } from '../../App';
 import DefaultProfile from '../../assets/images/default-pfp.svg';
 import ApplyButtonIcon from '../../assets/images/apply-button-icon.svg';
@@ -167,7 +170,7 @@ const ProjectCard = ({ project }, key) => {
               w="fit-content"
               color="#969696"
               isExternal
-              href={link}
+              href={formatUrl(link)}
               key={id}
               textDecoration="underline"
             >
@@ -189,7 +192,7 @@ const ProjectCard = ({ project }, key) => {
           />
           <Flex flexDir="column">
             <HStack>
-              <Link isExternal href={lead_name?.link}>
+              <Link isExternal href={formatUrl(lead_name?.link)}>
                 {lead_name?.name}
               </Link>
               <Image src={LinkArrow} />

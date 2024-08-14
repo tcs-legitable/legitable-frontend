@@ -1,5 +1,6 @@
 import { Box, Text, Button, Flex, Link, Image } from '@chakra-ui/react';
 import React from 'react';
+import { formatUrl } from '../../firebase/helpers';
 import arrow from './../../assets/images/up-right-arrow.svg';
 
 const ProjectCard = ({ project }) => {
@@ -13,14 +14,8 @@ const ProjectCard = ({ project }) => {
       mt="7"
       backgroundColor="white"
     >
-      <Flex
-        flexDirection="column"
-      >
-        <Text
-          fontFamily="13px"
-          fontWeight="200"
-          color="#555"
-        >
+      <Flex flexDirection="column">
+        <Text fontFamily="13px" fontWeight="200" color="#555">
           Started on {project.deadline} • Byron Wang • {project.city}, Canada
         </Text>
 
@@ -30,11 +25,12 @@ const ProjectCard = ({ project }) => {
           fontSize="20px"
           fontWeight="500"
         >
-          {project.name} | <Box>
-            <Text 
+          {project.name} |{' '}
+          <Box>
+            <Text
               fontSize="12px"
-              fontWeight="300" 
-              ml="5px" 
+              fontWeight="300"
+              ml="5px"
               borderWidth="1px"
               borderRadius="20px"
               overflow="hidden"
@@ -46,16 +42,12 @@ const ProjectCard = ({ project }) => {
           </Box>
         </Text>
 
-        <Text
-          fontFamily="13px"
-          fontWeight="200"
-          color="#555"
-        >
+        <Text fontFamily="13px" fontWeight="200" color="#555">
           Project links
         </Text>
 
         <Box pb="30px">
-          <Link href={project.example} isExternal>
+          <Link href={formatUrl(project.example)} isExternal>
             <Button
               borderRadius="20px"
               border="1px solid black"
