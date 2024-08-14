@@ -169,12 +169,14 @@ const ProjectsExplore = () => {
               <Text mb="20px">
                 Before you apply for projects, ensure you've created a profile!
               </Text>
-              <PrimaryButtonGrey mr="10px" onClick={finishProfile}>
-                Update Profile
-              </PrimaryButtonGrey>
-              <PrimaryButtonBlack onClick={handleCloseModal}>
-                Continue
-              </PrimaryButtonBlack>
+              <Flex justifyContent="right">
+                <PrimaryButtonGrey mr="10px" onClick={handleCloseModal}>
+                  Do it later
+                </PrimaryButtonGrey>
+                <PrimaryButtonBlack onClick={finishProfile}>
+                  Update Profile
+                </PrimaryButtonBlack>
+              </Flex>
             </ModalBody>
           </ModalContent>
         </Modal>
