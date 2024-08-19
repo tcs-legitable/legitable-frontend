@@ -7,8 +7,8 @@ import io from 'socket.io-client';
 import { addMessage } from '../../firebase/helpers';
 import { getStorage, ref, uploadBytes, getDownloadURL } from 'firebase/storage';
 
-const socket = io.connect("https://legitable-backend.up.railway.app/");
-// const socket = io.connect("http://localhost:3001");
+// const socket = io.connect("https://legitable-backend.up.railway.app/");
+const socket = io.connect("http://localhost:3001");
 
 const SendMessage = ({ roomId }) => {
   const { value } = useContext(SignedInContext);

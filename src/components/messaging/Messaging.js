@@ -8,8 +8,8 @@ import MessagingHeader from './MessagingHeader';
 import SendMessage from './SendMessage';
 import defaultProfilePic from './../../assets/landing-page-images/stupaid-logo-main.svg';
 
-const socket = io.connect('https://legitable-backend.up.railway.app/');
-// const socket = io.connect("http://localhost:3001");
+// const socket = io.connect('https://legitable-backend.up.railway.app/');
+const socket = io.connect("http://localhost:3001");
 
 const Messaging = () => {
   const { user1, user2 } = useParams();
