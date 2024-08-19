@@ -31,7 +31,6 @@ const ProjectsExplore = () => {
     const checkModal = async () => {
       const hasSeen = await hasSeenPopup(value?.uid);
       const finishedProfile = await hasCompletedProfile(value?.uid);
-      console.log(hasSeen, finishedProfile, ' are vals');
       if (!hasSeen && !finishedProfile) {
         setShouldShowModal(true);
         onOpen();
