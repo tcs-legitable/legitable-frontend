@@ -56,6 +56,7 @@ const MessageSidePreview = () => {
         // Filter out any null values that might have resulted from errors
         setRoomData(roomDetails.filter(detail => detail !== null));
       } catch (error) {
+        console.log(error);
       }
     };
   

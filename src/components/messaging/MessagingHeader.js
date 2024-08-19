@@ -36,7 +36,7 @@ const MessagingHeader = ({userId}) => {
       borderBottom='1px solid #E8E8E8'
     >
       
-      <Image src={userPfp} borderRadius="20px" w='42px' ml='30px' mt='18px' mb='18px'/>
+      <Image src={userPfp}  borderRadius="50%" w='42px' h='42px' ml='30px' mt='18px' mb='18px' objectFit='cover' />
 
       <Text
         ml='12px'
