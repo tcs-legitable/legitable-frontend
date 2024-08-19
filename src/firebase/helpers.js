@@ -61,6 +61,22 @@ export const getAllStudents = async () => {
   return studentList;
 };
 
+//get user rooms
+export const getUserRooms = async (uid) => {
+  const rooms = [];
+  const roomsRef = collection(db, 'rooms');
+  const roomsSnapshot = await getDocs(roomsRef);
+
+  roomsSnapshot.forEach((doc) => {
+    const roomId = doc.id;
+    if (roomId.includes(uid)) {
+      rooms.push(roomId);
+    }
+  });
+
+  return rooms;
+};
+
 export const doesUserExist = async (id) => {
   const docRef = doc(db, 'mvp_users', id);
   const docSnap = await getDoc(docRef);

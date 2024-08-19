@@ -3,10 +3,10 @@ import React, { useContext, useEffect, useRef, useState } from 'react';
 import { useParams } from 'react-router-dom';
 import io from 'socket.io-client';
 import { SignedInContext } from '../../App';
-import { getMessages } from '../../firebase/helpers';
+import { getMessages, getOrganizationData, getUserData } from '../../firebase/helpers';
 import MessagingHeader from './MessagingHeader';
 import SendMessage from './SendMessage';
-import defaultProfilePic from './../../assets/landing-page-images/stupaid-logo-main.svg';
+import defaultProfilePic from './../../assets/images/default-pfp.svg';
 
 const socket = io.connect('https://legitable-backend.up.railway.app/');
 // const socket = io.connect("http://localhost:3001");
@@ -16,6 +16,9 @@ const Messaging = () => {
   const { value } = useContext(SignedInContext);
   const [messages, setMessages] = useState([]);
   const messagesEndRef = useRef(null);
+
+  const [userName, setUserName] = useState("");
+  const [userPfp, setUserPfp] = useState(defaultProfilePic);
 
   const roomId =
     user1 && user2 ? `room-${[user1, user2].sort().join('-')}` : null;
@@ -36,7 +39,6 @@ const Messaging = () => {
     if (roomId) {
       joinRoom();
       socket.on('receive_message', (data) => {
-        console.log('Received message:', data);
         setMessages((prevMessages) => [...prevMessages, data]);
       });
     }
@@ -49,6 +51,32 @@ const Messaging = () => {
   useEffect(() => {
     scrollToBottom();
   }, [messages]);
+
+  useEffect(() => {
+    const fetchData = async () => {
+      const userData = await getUserData(userName);
+      const orgData = await getOrganizationData(userName);
+      if (userData?.input_name) {
+        setUserName(userData?.input_name);
+      }
+      if (orgData?.input_name) {
+        setUserName(orgData?.input_name);
+      }
+      if (userData?.photo_url) {
+        setUserPfp(userData?.photo_url || defaultProfilePic);
+      }
+      if (orgData?.photo_url) {
+        setUserPfp(orgData?.photo_url || defaultProfilePic);
+      }
+    };
+    if (userName) {
+      fetchData();
+    }
+  }, [userName]);
+
+  useEffect(() => {
+    value?.uid === user1 ? setUserName(user2) : setUserName(user1);
+  }, []);
 
   if (!roomId) {
     return (
@@ -70,7 +98,7 @@ const Messaging = () => {
 
   return (
     <Flex flexDirection="column" backgroundColor="#fafafa" w="100%" h="100vh">
-      <MessagingHeader />
+      <MessagingHeader userId={value?.uid === user1 ? user2 : user1} />
 
       <Box backgroundColor="#fafafa" p="20px" overflowY="auto" flex="1">
         {messages.map((msg, index) => {
@@ -101,7 +129,7 @@ const Messaging = () => {
                   <Box w="50px" minW="50px">
                     {showProfilePicture && (
                       <Image
-                        src={defaultProfilePic}
+                        src={userPfp}
                         borderRadius="full"
                         boxSize="40px"
                         mr="10px"
