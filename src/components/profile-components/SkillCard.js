@@ -9,6 +9,7 @@ import {
   ModalBody,
   ModalContent,
   ModalOverlay,
+  Spinner,
   Text,
   Textarea,
   useDisclosure,
@@ -137,12 +138,9 @@ const SkillCard = ({
           color="#969696"
           mt="15px"
           maxHeight="80px"
-          // overflow="hidden"
-          // textOverflow="ellipsis"
           overflowY="auto"
           display="-webkit-box"
           css={{
-            // WebkitLineClamp: 3,
             WebkitBoxOrient: 'vertical',
           }}
         >
@@ -174,6 +172,16 @@ const SkillCard = ({
               position="relative"
               align="center"
             >
+              {isUploading && (
+                <Spinner
+                  size="xl"
+                  thickness="4px"
+                  color="blue.500"
+                  position="absolute"
+                  top="65%"
+                  left="45%"
+                />
+              )}
               {!newImage && (
                 <Button
                   fontWeight="regular"
@@ -252,7 +260,7 @@ const SkillCard = ({
                 Delete skill
               </Button>
               <Button
-                isDisabled={newSkillName === ''}
+                isDisabled={newSkillName === '' || isUploading}
                 _hover={{
                   bgColor: '#383838',
                 }}

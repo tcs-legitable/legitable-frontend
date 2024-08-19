@@ -12,6 +12,7 @@ import {
   ModalBody,
   ModalContent,
   ModalOverlay,
+  Spinner,
   Text,
   Textarea,
   useDisclosure,
@@ -140,6 +141,16 @@ const AddSkillCard = ({ addSkillInState }) => {
               position="relative"
               align="center"
             >
+              {isUploading && (
+                <Spinner
+                  size="xl"
+                  thickness="4px"
+                  color="blue.500"
+                  position="absolute"
+                  top="65%"
+                  left="45%"
+                />
+              )}
               {!newImage && (
                 <Button
                   fontWeight="regular"
@@ -227,7 +238,7 @@ const AddSkillCard = ({ addSkillInState }) => {
                 Cancel
               </Button>
               <Button
-                isDisabled={newSkillName === ''}
+                isDisabled={newSkillName === '' || isUploading}
                 _hover={{
                   bgColor: '#383838',
                 }}
