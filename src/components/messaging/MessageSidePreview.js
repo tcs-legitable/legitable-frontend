@@ -85,7 +85,7 @@ const MessageSidePreview = () => {
           cursor="pointer"
           onClick={() => handleNavigate(room.roomId)}
         >
-          <Image src={room?.photo_url || defaultProfilePic} borderRadius="20px" w="42px" />
+          <Image src={room?.photo_url || defaultProfilePic} borderRadius="20px" w="42px" objectFit='cover' />
           <Box ml="21px">
             <Text fontSize="15px" fontWeight="500">
               Chat with {room.displayName}
