@@ -2,7 +2,7 @@ import { Box, Flex, Image, Text } from '@chakra-ui/react';
 import React, { useContext, useEffect, useState } from 'react';
 import { SignedInContext } from '../../App';
 import { useNavigate } from 'react-router-dom';
-import defaultProfilePic from './../../assets/landing-page-images/stupaid-logo-main.svg';
+import defaultProfilePic from './../../assets/images/default-pfp.svg';
 import { getOrganizationData, getUserData, getUserRooms } from '../../firebase/helpers';
 
 const MessageSidePreview = () => {
@@ -15,7 +15,6 @@ const MessageSidePreview = () => {
     const fetchRooms = async () => {
       if (value && value.uid) {
         const userRooms = await getUserRooms(value.uid);
-        console.log(userRooms, ' are the rooms');
         setRooms(userRooms);
       }
     };
@@ -24,17 +23,11 @@ const MessageSidePreview = () => {
   }, [value]);
 
   useEffect(() => {
-    console.log(roomData, " ARE THE ROOMS");
-  }, [roomData]);
-
-  useEffect(() => {
     const fetchRoomData = async () => {
       try {
-        console.log('Rooms:', rooms); // Log rooms to verify its structure
         const roomDetails = await Promise.all(
           rooms.map(async (room) => {
             if (typeof room !== 'string') {
-              console.error('Invalid room format:', room);
               return null; // Skip processing this room
             }
   
@@ -42,22 +35,18 @@ const MessageSidePreview = () => {
             const otherParticipantUID = roomParticipants.find(uid => uid !== value.uid);
   
             if (!otherParticipantUID) {
-              console.error('No valid participant UID found in room:', room);
               return null; // Skip processing if no valid UID
             }
   
             try {
               const userData = await getUserData(otherParticipantUID);
               const orgData = await getOrganizationData(otherParticipantUID);
-  
-              console.log(userData?.photo_url, orgData?.photo_url, ' are irl');
               return {
                 roomId: room,
                 photo_url: userData?.photo_url || orgData?.photo_url || defaultProfilePic,
                 displayName: userData?.input_name || orgData?.input_name || 'Unknown'
               };
             } catch (error) {
-              console.error('Error fetching data for UID:', otherParticipantUID, error);
               return null; // Skip processing in case of error
             }
           })
@@ -67,7 +56,6 @@ const MessageSidePreview = () => {
         // Filter out any null values that might have resulted from errors
         setRoomData(roomDetails.filter(detail => detail !== null));
       } catch (error) {
-        console.error('Error fetching room data:', error);
       }
     };
   
