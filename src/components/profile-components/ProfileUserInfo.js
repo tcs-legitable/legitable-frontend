@@ -12,6 +12,7 @@ import {
   Input,
   Box,
   Link,
+  Spinner,
 } from '@chakra-ui/react';
 import React, { useContext, useRef, useState } from 'react';
 import StupaidVerified from '../global-components/StupaidVerified';
@@ -64,6 +65,7 @@ const ProfileUserInfo = ({ userId, userData, canEdit }) => {
   const [newProjectPref, setNewProjectPref] = useState(projectPref);
   const [newWebsite, setNewWebsite] = useState(personal_site);
   const [newImage, setNewImage] = useState(photo_url);
+  const [loading, setLoading] = useState(false);
 
   const fileInputRef = useRef(null);
 
@@ -95,6 +97,7 @@ const ProfileUserInfo = ({ userId, userData, canEdit }) => {
     let globalUrl = null;
     if (file) {
       try {
+        setLoading(true);
         const { url } = await uploadImage(
           file,
           value?.uid,
@@ -103,6 +106,8 @@ const ProfileUserInfo = ({ userId, userData, canEdit }) => {
         globalUrl = url;
       } catch (error) {
         console.error('Error uploading image:', error);
+      } finally {
+        setLoading(false);
       }
     }
     const updatedData = {
@@ -186,8 +191,8 @@ const ProfileUserInfo = ({ userId, userData, canEdit }) => {
         <ModalOverlay />
         <ModalContent p="40px" h="fit-content" maxW="800px">
           <ModalBody>
-            <Flex flexDir="row">
-              <VStack>
+            <Flex flexDir={{ base: 'column', md: 'row' }}>
+              <VStack mb={{ base: '70px', md: 0 }}>
                 <Box
                   borderRadius="100%"
                   w="110px"
@@ -196,9 +201,21 @@ const ProfileUserInfo = ({ userId, userData, canEdit }) => {
                   backgroundColor="#dbdbdb"
                   backgroundSize="cover"
                   backgroundPosition="center"
-                ></Box>
+                >
+                  {loading && (
+                    <Spinner
+                      size={{ base: 'lg', md: 'xl' }}
+                      thickness="4px"
+                      color="blue.500"
+                      position="absolute"
+                      top={{ base: '34vh', md: '40vh' }}
+                      left={{ base: '46vw', md: '8.5vw' }}
+                      transform="translate(-50%, -50%)"
+                    />
+                  )}
+                </Box>
                 <PrimaryButtonGrey
-                  w="100%"
+                  w={{ sm: '80%', md: '100%' }}
                   mt="20px"
                   onClick={() => fileInputRef.current.click()}
                 >
@@ -267,7 +284,7 @@ const ProfileUserInfo = ({ userId, userData, canEdit }) => {
                   <Flex
                     flexDir="row"
                     alignSelf="center"
-                    justifyContent="space-between"
+                    wrap="wrap"
                     w="100%"
                     gap="10px"
                   >
@@ -311,7 +328,8 @@ const ProfileUserInfo = ({ userId, userData, canEdit }) => {
                       newSchool === '' ||
                       newYear === '' ||
                       newCountry === '' ||
-                      newCity === ''
+                      newCity === '' ||
+                      loading
                     }
                     w="100%"
                     mr={3}
