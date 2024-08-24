@@ -3,13 +3,17 @@ import React, { useContext, useEffect, useRef, useState } from 'react';
 import { useParams } from 'react-router-dom';
 import io from 'socket.io-client';
 import { SignedInContext } from '../../App';
-import { getMessages, getOrganizationData, getUserData } from '../../firebase/helpers';
+import {
+  getMessages,
+  getOrganizationData,
+  getUserData,
+} from '../../firebase/helpers';
 import MessagingHeader from './MessagingHeader';
 import SendMessage from './SendMessage';
 import defaultProfilePic from './../../assets/images/default-pfp.svg';
 
 const socket = io.connect('https://legitable-backend.up.railway.app/');
-// const socket = io.connect("http://localhost:3001");
+// const socket = io.connect('http://localhost:3001');
 
 const Messaging = () => {
   const { user1, user2 } = useParams();
@@ -17,7 +21,7 @@ const Messaging = () => {
   const [messages, setMessages] = useState([]);
   const messagesEndRef = useRef(null);
 
-  const [userName, setUserName] = useState("");
+  const [userName, setUserName] = useState('');
   const [userPfp, setUserPfp] = useState(defaultProfilePic);
 
   const roomId =
@@ -169,7 +173,10 @@ const Messaging = () => {
         <div ref={messagesEndRef} />
       </Box>
 
-      <SendMessage roomId={roomId} />
+      <SendMessage
+        recipientId={value?.uid === user1 ? user2 : user2}
+        roomId={roomId}
+      />
     </Flex>
   );
 };

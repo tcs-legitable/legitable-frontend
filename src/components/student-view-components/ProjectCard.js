@@ -81,6 +81,7 @@ const ProjectCard = ({ project }, key) => {
       w="100%"
       h={isTruncated ? '780px' : 'fit-content'}
       // minH="1000px"
+      maxW="600px"
       flexDir="column"
     >
       <Text fontSize="23px" fontWeight="bold">

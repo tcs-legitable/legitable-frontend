@@ -1,18 +1,18 @@
 import { Box, Flex, Image, Input, IconButton } from '@chakra-ui/react';
 import { CloseIcon } from '@chakra-ui/icons';
-import React, { useContext, useState } from 'react';
+import React, { useContext, useEffect, useState } from 'react';
 import { SignedInContext } from '../../App';
 import clip from './../../assets/images/clip.svg';
 import io from 'socket.io-client';
-import { addMessage } from '../../firebase/helpers';
+import { addMessage, setSendUserEmailStatus } from '../../firebase/helpers';
 import { getStorage, ref, uploadBytes, getDownloadURL } from 'firebase/storage';
 
-const socket = io.connect("https://legitable-backend.up.railway.app/");
-// const socket = io.connect("http://localhost:3001");
+const socket = io.connect('https://legitable-backend.up.railway.app/');
+// const socket = io.connect('http://localhost:3001');
 
-const SendMessage = ({ roomId }) => {
+const SendMessage = ({ recipientId, roomId }) => {
   const { value } = useContext(SignedInContext);
-  const [message, setMessage] = useState("");
+  const [message, setMessage] = useState('');
   const [file, setFile] = useState(null);
 
   const uploadFile = async () => {
@@ -31,25 +31,24 @@ const SendMessage = ({ roomId }) => {
     }
 
     const messageData = {
-      message: message.trim() !== "" ? message : "",
+      message: message.trim() !== '' ? message : '',
       room: roomId,
-      author: value.name || "Anon.",
+      author: value.name || 'Anon.',
       timestamp: new Date(),
       fileURL: fileData?.fileURL || null,
-      fileName: fileData?.fileName || null
+      fileName: fileData?.fileName || null,
     };
 
-    console.log("Sending message:", messageData);
-
-    socket.emit("send_message", messageData);
+    socket.emit('send_message', messageData);
 
     await addMessage(roomId, messageData);
-    setMessage("");
+    await setSendUserEmailStatus(value?.uid, recipientId, true);
+    setMessage('');
     setFile(null);
   };
 
   const handleKeyPress = (event) => {
-    if (event.key === "Enter") {
+    if (event.key === 'Enter') {
       event.preventDefault();
       sendMessage();
     }
@@ -83,7 +82,7 @@ const SendMessage = ({ roomId }) => {
       </Box>
 
       <Flex w="100%" ml="12px" align="center">
-        <Input 
+        <Input
           placeholder="Message..."
           w="100%"
           value={file ? file.name : message}
@@ -95,7 +94,7 @@ const SendMessage = ({ roomId }) => {
           onKeyDown={handleKeyPress}
           border="1px solid #ececec"
           backgroundColor="#f5f5f5"
-          color={file ? "#3181CE" : "black"}
+          color={file ? '#3181CE' : 'black'}
         />
         {file && (
           <IconButton
