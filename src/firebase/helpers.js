@@ -159,6 +159,19 @@ export const getMyProjects = async (uid) => {
   }
 };
 
+// email functions
+export const setSendUserEmailStatus = async (senderId, recipientId, value) => {
+  const userRef = doc(db, 'mvp_users', recipientId);
+  const docSnap = await getUserData(recipientId);
+  if (docSnap !== null) {
+    try {
+      await setDoc(userRef, { userReceivedNewMessage: value }, { merge: true });
+    } catch (error) {
+      console.log('error in setting the userSendEmail status: ', error);
+    }
+  }
+};
+
 // GET DATA FUNCTIONS
 export const getUserData = async (id) => {
   const docRef = doc(db, 'mvp_users', id);
