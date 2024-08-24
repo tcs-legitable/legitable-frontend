@@ -82,30 +82,30 @@ const ProjectsExplore = () => {
       ],
       organization_name: 'Uncle Mumble',
     },
-    {
-      id: '2',
-      name: 'Savory Oats Brand + Packaging Design',
-      location: 'Vancouver',
-      deadline: 'August 30, 2024',
-      budget: '$400',
-      project_pref: 'Hybrid',
-      tags: ['Branding', 'Packaging Design'],
-      description:
-        'Targeting young health-conscious late-night snackers, we are looking for basic branding and packaging design for a Savery Oats product that will soon hit the counters. This will be about a one-month long project which you will work directly with the founder on.',
-      photo_url:
-        'https://media.licdn.com/dms/image/D5603AQEXxucq4fChQA/profile-displayphoto-shrink_400_400/0/1700476565330?e=1727308800&v=beta&t=DDd1JMoWje85EMY7ImxKiquY4bSatCdMyB8FQrINAL4',
-      lead_name: {
-        name: 'James Kim',
-        link: 'https://www.linkedin.com/in/jameskimca/',
-      },
-      links: [
-        {
-          display_name: 'Google Drive Inspiration',
-          link: 'https://drive.google.com/file/d/1oCo9tiI1fqTQbL_sQNnLs-sqeEPBWt9M/view?usp=sharing',
-        },
-      ],
-      organization_name: 'Floats',
-    },
+    // {
+    //   id: '2',
+    //   name: 'Savory Oats Brand + Packaging Design',
+    //   location: 'Vancouver',
+    //   deadline: 'August 30, 2024',
+    //   budget: '$400',
+    //   project_pref: 'Hybrid',
+    //   tags: ['Branding', 'Packaging Design'],
+    //   description:
+    //     'Targeting young health-conscious late-night snackers, we are looking for basic branding and packaging design for a Savery Oats product that will soon hit the counters. This will be about a one-month long project which you will work directly with the founder on.',
+    //   photo_url:
+    //     'https://media.licdn.com/dms/image/D5603AQEXxucq4fChQA/profile-displayphoto-shrink_400_400/0/1700476565330?e=1727308800&v=beta&t=DDd1JMoWje85EMY7ImxKiquY4bSatCdMyB8FQrINAL4',
+    //   lead_name: {
+    //     name: 'James Kim',
+    //     link: 'https://www.linkedin.com/in/jameskimca/',
+    //   },
+    //   links: [
+    //     {
+    //       display_name: 'Google Drive Inspiration',
+    //       link: 'https://drive.google.com/file/d/1oCo9tiI1fqTQbL_sQNnLs-sqeEPBWt9M/view?usp=sharing',
+    //     },
+    //   ],
+    //   organization_name: 'Floats',
+    // },
     // {
     //   id: '3',
     //   name: 'WHEREAMI Music Video Shoot',
