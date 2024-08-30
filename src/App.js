@@ -7,10 +7,10 @@ import {
   Routes,
   Route,
   useLocation,
+  Navigate,
 } from 'react-router-dom';
 import theme from './theme/theme';
 import MessagingMain from './components/messaging/MessagingMain';
-import HomePage from './components/HomePage';
 import GetStartedLandingPage from './components/landing-page-components/GetStartedLandingPage';
 import OrganizationGetStartedLandingPage from './components/landing-page-components/OrganizationGetStartedLandingPage';
 import Home from './components/organization-view-components/Home';
@@ -65,17 +65,37 @@ function App() {
           <Router>
             <BackgroundColorChanger />
             <Routes>
-              <Route path="/" element={<HomePage />} />
-              <Route path="/landing" element={<GetStartedLandingPage />} />
-              <Route path="/organization-signup" element={<OrganizationGetStartedLandingPage />} />
+              <Route
+                path="/student-signup"
+                element={<GetStartedLandingPage />}
+              />
+              <Route
+                path="/organization-signup"
+                element={<OrganizationGetStartedLandingPage />}
+              />
               <Route path="/home" element={!loading && <Home />} />
-              <Route path="/projects" element={!loading && <StudentLanding view={value?.type} />} />
-              <Route path="/user/:userId" element={!loading && <ProfilePage />} />
-              <Route path="/organization/:userId" element={!loading && <OrganizationProjectsPage />} />
+              <Route
+                path="/projects"
+                element={!loading && <StudentLanding view={value?.type} />}
+              />
+              <Route
+                path="/user/:userId"
+                element={!loading && <ProfilePage />}
+              />
+              <Route
+                path="/organization/:userId"
+                element={!loading && <OrganizationProjectsPage />}
+              />
               <Route path="/new-project" element={<NewProject />} />
               <Route path="/my-projects" element={<MyProjects />} />
               <Route path="/messaging" element={<MessagingMain />} />
               <Route path="/messaging/:user1/:user2" element={<Messaging />} />
+
+              <Route
+                path="/landing"
+                element={<Navigate to="/home" replace />}
+              />
+              <Route path="/" element={<Navigate to="/home" replace />} />
             </Routes>
           </Router>
         </VStack>
