@@ -33,7 +33,7 @@ const LandingSignIn = ({ goNext, setData }) => {
       }
 
       if (exists) {
-        navigate('/projects');
+        navigate('/home');
       }
 
       const data = {

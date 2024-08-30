@@ -1,5 +1,5 @@
 import { Flex, Image, Text } from '@chakra-ui/react';
-import React, { useContext, useEffect } from 'react';
+import React, { useContext } from 'react';
 import LandingPageFunFooter from '../../assets/images/landing-page-fun-footer.svg';
 import StupaidLogo from '../../assets/landing-page-images/stupaid-logo-main.svg';
 import TalentButtonIcon from '../../assets/images/talent-button.svg';
@@ -60,7 +60,7 @@ const LandingPage = ({ goNext }) => {
             if (Object.keys(value).length === 0) {
               goNext();
             } else {
-              navigate('/projects');
+              navigate('/home');
             }
           }}
           ml={{ base: '0px', mdLg: '10px' }}

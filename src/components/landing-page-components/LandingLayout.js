@@ -12,7 +12,7 @@ const LandingLayout = ({ children, goPrev, step }) => {
       minH="100vh"
       overflow="hidden"
     >
-      {step >= 1 && (
+      {step > 1 && (
         <PrimaryButtonGrey
           pos="absolute"
           onClick={() => {

@@ -20,7 +20,7 @@ const LandingFinal = ({ data }) => {
     };
     setValue(newInfo);
     await addStupaidUser(data);
-    navigate('/projects');
+    navigate('/home');
   };
 
   return (

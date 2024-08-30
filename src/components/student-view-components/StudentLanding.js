@@ -9,7 +9,7 @@ const StudentLanding = ({ view }) => {
   const navigate = useNavigate();
   useEffect(() => {
     if (!view || view !== 'student') {
-      navigate('/landing');
+      navigate('/student-signup');
     }
   }, []);
 

@@ -27,11 +27,11 @@ const Navbar = () => {
   const navigate = useNavigate();
 
   const goLanding = () => {
-    navigate('/landing');
+    navigate('/home');
   };
 
   const login = () => {
-    navigate('/organization-signup');
+    navigate('/student-signup?step=1');
   };
 
   const goToMessaging = () => {
@@ -84,7 +84,7 @@ const Navbar = () => {
       <Flex alignItems="center">
         <Image
           cursor="pointer"
-          onClick={value?.type === 'student' ? findWork : goLanding}
+          onClick={goLanding}
           mx="30px"
           w="120px"
           src={StupaidLogo}
@@ -107,22 +107,22 @@ const Navbar = () => {
         >
           {isDesktop ? (
             <>
-              <PrimaryButtonGrey
+              {/* <PrimaryButtonGrey
                 onClick={() => {
                   navigate('/projects');
                 }}
               >
                 Find work
-              </PrimaryButtonGrey>
+              </PrimaryButtonGrey> */}
               <PrimaryButtonGrey onClick={exploreCreatives}>
-                Peers
+                Find creatives
               </PrimaryButtonGrey>
               {/* <PrimaryButtonGrey onClick={goToOrganizationProfile}>
                 My projects
               </PrimaryButtonGrey> */}
-              <PrimaryButtonGrey onClick={goToMessaging}>
+              {/* <PrimaryButtonGrey onClick={goToMessaging}>
                 <Image src={MailIcon} />
-              </PrimaryButtonGrey>
+              </PrimaryButtonGrey> */}
             </>
           ) : (
             <Menu>
@@ -132,20 +132,20 @@ const Navbar = () => {
                 </PrimaryButtonGrey>
               </MenuButton>
               <MenuList>
-                <MenuItem
+                {/* <MenuItem
                   onClick={() => {
                     navigate('/projects');
                   }}
                 >
                   Find work
-                </MenuItem>
-                <MenuItem onClick={exploreCreatives}>Peers</MenuItem>
+                </MenuItem> */}
+                <MenuItem onClick={exploreCreatives}>Find creatives</MenuItem>
                 {/* <MenuItem onClick={goToOrganizationProfile}>
                   My projects
                 </MenuItem> */}
-                <MenuItem py="12px" onClick={goToMessaging}>
+                {/* <MenuItem py="12px" onClick={goToMessaging}>
                   <Image src={MailIcon} />
-                </MenuItem>
+                </MenuItem> */}
               </MenuList>
             </Menu>
           )}
