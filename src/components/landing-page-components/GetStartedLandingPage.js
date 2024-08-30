@@ -1,5 +1,7 @@
 import { Flex } from '@chakra-ui/react';
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
+import { useLocation } from 'react-router-dom';
+import queryString from 'query-string';
 import LandingCreateStudentProfile from './LandingCreateStudentProfile';
 import LandingFinal from './LandingFinal';
 import LandingLayout from './LandingLayout';
@@ -8,8 +10,10 @@ import LandingSelectSkills from './LandingSelectSkills';
 import LandingSignIn from './LandingSignIn';
 
 const GetStartedLandingPage = () => {
+  const location = useLocation();
+  const { step: assignedStep = 1 } = queryString.parse(location.search);
   const [data, setData] = useState({});
-  const [step, setStep] = useState(0);
+  const [step, setStep] = useState(Number(assignedStep));
 
   const goNext = () => {
     setStep(step + 1);
