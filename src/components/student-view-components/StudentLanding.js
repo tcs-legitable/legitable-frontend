@@ -1,7 +1,6 @@
 import { Flex } from '@chakra-ui/react';
-import React, { useContext, useEffect } from 'react';
+import React, { useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
-import { SignedInContext } from '../../App';
 import Navbar from '../global-components/Navbar';
 import ProjectsExplore from './ProjectsExplore';
 
