@@ -236,7 +236,9 @@ const Navbar = () => {
       )}
       {!value?.type && (
         <Flex gap="10px" className="button-container">
-          <PrimaryButtonBlack onClick={login}>Sign up</PrimaryButtonBlack>
+          <PrimaryButtonBlack onClick={login}>
+            Student creative sign up
+          </PrimaryButtonBlack>
           <PrimaryButtonGrey onClick={login}>Log in</PrimaryButtonGrey>
         </Flex>
       )}
