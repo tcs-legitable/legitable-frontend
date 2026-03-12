@@ -73,11 +73,14 @@ function App() {
                 path="/organization-signup"
                 element={<OrganizationGetStartedLandingPage />}
               />
-              <Route path="/home" element={!loading && <Home />} />
-              {/* <Route
-                path="/projects"
-                element={!loading && <StudentLanding view={value?.type} />}
-              /> */}
+              <Route
+                path="/home"
+                element={
+                  !loading && (value?.type === 'student'
+                    ? <StudentLanding view={value?.type} />
+                    : <Home />)
+                }
+              />
               <Route
                 path="/user/:userId"
                 element={!loading && <ProfilePage />}
@@ -93,10 +96,6 @@ function App() {
 
               <Route
                 path="/landing"
-                element={<Navigate to="/home" replace />}
-              />
-              <Route
-                path="/projects"
                 element={<Navigate to="/home" replace />}
               />
               <Route path="/" element={<Navigate to="/home" replace />} />
