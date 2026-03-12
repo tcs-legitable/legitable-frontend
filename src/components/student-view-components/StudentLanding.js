@@ -1,17 +1,9 @@
 import { Flex } from '@chakra-ui/react';
-import React, { useEffect } from 'react';
-import { useNavigate } from 'react-router-dom';
+import React from 'react';
 import Navbar from '../global-components/Navbar';
 import ProjectsExplore from './ProjectsExplore';
 
-const StudentLanding = ({ view }) => {
-  const navigate = useNavigate();
-  useEffect(() => {
-    if (!view || view !== 'student') {
-      navigate('/student-signup');
-    }
-  }, []);
-
+const StudentLanding = () => {
   return (
     <Flex className="landing" flexDir="column" w="100%" h="100%">
       <Navbar />
