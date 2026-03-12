@@ -1,5 +1,6 @@
 import { Box, Button, Flex, HStack, Image, Link, Text } from '@chakra-ui/react';
 import React, { useContext, useEffect, useRef, useState } from 'react';
+import { useNavigate } from 'react-router-dom';
 import DeadlineIcon from '../../assets/images/deadline-icon.svg';
 import BudgetIcon from '../../assets/images/budget-icon.svg';
 import LinkArrow from '../../assets/images/link-arrow.svg';
@@ -31,6 +32,7 @@ const ProjectCard = ({ project }, key) => {
   const [projectApplyModalOpen, setProjectApplyModalOpen] = useState({});
   const [isTruncated, setIsTruncated] = useState(true);
   const { value } = useContext(SignedInContext);
+  const navigate = useNavigate();
 
   const [alreadyApplied, setAlreadyApplied] = useState(false);
   const [isOverflowing, setIsOverflowing] = useState(false);
@@ -226,6 +228,21 @@ const ProjectCard = ({ project }, key) => {
           <Image src={ApplyButtonIcon} mr="6px" />
           {alreadyApplied ? 'Already applied' : 'Apply now!'}
         </Button>
+        {value?.type === 'student' && value?.uid && project.organization_uid && (
+          <Button
+            alignSelf="center"
+            py="24px"
+            w={{ base: '100%', mdLg: '100%' }}
+            fontWeight="regular"
+            border="2px solid #0c0c0c"
+            bgColor="white"
+            color="#0c0c0c"
+            _hover={{ bgColor: '#f5f5f5' }}
+            onClick={() => navigate(`/messaging/${value.uid}/${project.organization_uid}`)}
+          >
+            Message organization
+          </Button>
+        )}
       </Flex>
       <ProjectApplyModal
         pt="0px"

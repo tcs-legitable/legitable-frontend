@@ -104,7 +104,7 @@ export const addProject = async (uid, projectData) => {
   const organizationRef = doc(db, 'organization', uid);
 
   try {
-    await setDoc(projectRef, { ...projectData, id: projectId });
+    await setDoc(projectRef, { ...projectData, id: projectId, organization_uid: uid });
 
     console.log('doc set!');
     await updateDoc(organizationRef, {
